@@ -32,5 +32,4 @@
 *.app
 
 # VSCode
-.vscode/algorithm.code-workspace
 .vscode/c_cpp_properties.json
