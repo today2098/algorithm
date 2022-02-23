@@ -33,3 +33,6 @@
 
 # VSCode
 .vscode/c_cpp_properties.json
+
+# Others
+test.cpp
