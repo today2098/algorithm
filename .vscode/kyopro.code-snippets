@@ -15,4 +15,138 @@
 	// 	],
 	// 	"description": "Log output to console"
 	// }
+	"My Template": {
+		"scope": "cpp",
+		"prefix": "My Template",
+		"body": [
+			"#include <bits/stdc++.h>",
+			"#define REP(i,n)   for(int i=0;i<(int)(n);++i)",
+			"#define FOR(i,l,r) for(int i=(int)(l);i<(int)(r);++i)",
+			"#define ALL(v)     (v).begin(),(v).end()",
+			"#define debug(x)   std::cerr<<\"(L\"<<__LINE__<<\") \"<<#x<<\": \"<<(x)<<std::endl",
+			"using ll   = long long;",
+			"using vi   = std::vector<int>;",
+			"using vvi  = std::vector<vi>;",
+			"using vvvi = std::vector<vvi>;",
+			"using pii  = std::pair<int,int>;",
+			"using namespace std;",
+			"constexpr int       INF  = 1e9;",
+			"constexpr long long LINF = 1e18;",
+			"constexpr double    EPS  = 1e-10;",
+			"constexpr int       MOD  = 1e9+7;",
+			"template<class Type> void line(const Type &a){int cnt=0;for(const auto &elem:a)std::cerr<<(cnt++?\" \":\">\")<<elem;std::cerr<<std::endl;}",
+			"",
+			"int main(){}"
+		],
+		"description": ""
+	},
+	"using vl, vvl, vvvl, pll": {
+		"scope": "cpp",
+		"prefix": "using vl, vvl, vvvl, pll",
+		"body": [
+			"using vl   = std::vector<long long>;",
+			"using vvl  = std::vector<vl>;",
+			"using vvvl = std::vector<vvl>;",
+			"using pll  = std::pair<long long,long long>;"
+		],
+		"description": ""
+	},
+	"using vd, vvd, vvvd, pdd": {
+		"scope": "cpp",
+		"prefix": "using vd, vvd, vvvd, pdd",
+		"body": [
+			"using vd   = std::vector<double>;",
+			"using vvd  = std::vector<vd>;",
+			"using vvvd = std::vector<vvd>;",
+			"using pdd  = std::pair<double,double>;"
+		],
+		"description": ""
+	},
+	"using r_priority_queue": {
+		"scope": "cpp",
+		"prefix": "using r_priority_queue",
+		"body": [
+			"template <typename Type>",
+			"using r_priority_queue = std::priority_queue<Type,vector<Type>,greater<Type> >;"
+		],
+		"description": ""
+	},
+	"int MOD2": {
+		"scope": "cpp",
+		"prefix": "int MOD2",
+		"body": "constexpr int MOD2 = 998'244'353;",
+		"description": ""
+	},
+	"int dy[], dx[]": {
+		"scope": "cpp",
+		"prefix": "int dy[], dx[]",
+		"body": [
+			"const int dy[] = {-1, 0, 0, 1};",
+			"const int dx[] = {0, -1, 1, 0};"
+		],
+		"description": ""
+	},
+	"int ddy[], ddx[]": {
+		"scope": "cpp",
+		"prefix": "int ddy[], ddx[]",
+		"body": [
+			"const int ddy[8] = {-1, -1, -1, 0, 0, 1, 1, 1};",
+			"const int ddx[8] = {-1, 0, 1, -1, 1, -1, 0, 1};"
+		],
+		"description": ""
+	},
+	"define of LazySegTree (RMQ & RUQ)": {
+		"scope": "cpp",
+		"prefix": "define of LazySegTree (RMQ & RUQ)",
+		"body": [
+			"using Monoid=${1:int};",
+			"using Action=${2:int};",
+			"const auto fm=[&](Monoid a,Monoid b)->Monoid{return ${3:max(a,b)};};",
+			"const auto fa=[&](Monoid &a,Action d)->void{${4:a=(d==id?a:d)};};",
+			"const auto fc=[&](Action &d,Action e)->void{${5:d=(d==id?e:d)};};",
+			"const Monoid e=${6:-INF};",
+			"const Action id=${7:-INF};",
+			"LazySegTree<Monoid,Action> tree(fm,fa,fc,e,id,$8);"
+		],
+	},
+	"define of LazySegTree (RSQ & RAQ)": {
+		"scope": "cpp",
+		"prefix": "define of LazySegTree (RSQ & RAQ)",
+		"body": [
+			"using Monoid=${1:struct{",
+			"    int val;",
+			"    int sz;",
+			"}};",
+			"using Action=${2:int};",
+			"const auto fm=[&](Monoid a,Monoid b)->Monoid{return ${3:(Monoid){a.val+b.val,a.sz+b.sz}};};",
+			"const auto fa=[&](Monoid &a,Action d)->void{${4:a.val+=d*a.sz};};",
+			"const auto fc=[&](Action &d,Action e)->void{${5:d+=e};};",
+			"const Monoid e=${6:(Monoid){0,0}};",
+			"const Action id=${7:0};",
+			"LazySegTree<Monoid,Action> tree(fm,fa,fc,e,id,vector<Monoid>($8,${9:(Monoid){0,1}}));"
+		],
+	},
+	"define of SegmentTree": {
+		"scope": "cpp",
+		"prefix": "define of SegmentTree",
+		"body": [
+			"using T=${1:int};",
+			"const auto f=[](T a,T b)->T{return ${2:max(a,b)};};",
+			"const T e=${3:-INF};",
+			"SegmentTree<T> tree(f,e,$4);"
+		],
+		"description": ""
+	},
+	"lambda for SegmentTree": {
+		"scope": "cpp",
+		"prefix": "lambda for SegmentTree",
+		"body": [
+			"const auto f=[](T a)->bool{return $1;};",
+		],
+		"description": ""
+	},
+	"// I refered explanations": {
+		"prefix": "// I refered explanations",
+		"body": "// I refered explanations."
+	}
 }
