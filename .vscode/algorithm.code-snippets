@@ -1616,6 +1616,15 @@
 		],
 		"description": "素集合データ構造"
 	},
+	"igcd, ilcm": {
+		"scope": "cpp",
+		"prefix": "igcd, ilcm",
+		"body": [
+			"template<typename Type> Type igcd(Type x,Type y){return (y==0)?x:igcd(y,x%y);}",
+			"template<typename Type> Type ilcm(Type x,Type y){return x/igcd(x,y)*y;}"
+		],
+		"description": "最大公約数, 最小公倍数"
+	},
 	"is_prime": {
 		"scope": "cpp",
 		"prefix": "is_prime",
