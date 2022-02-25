@@ -1703,6 +1703,26 @@
 		],
 		"description": "素集合データ構造"
 	},
+	"calc_divisors": {
+		"prefix": "calc_divisors",
+		"body": [
+			"template <typename Type>",
+			"std::vector<Type> calc_divisors(Type n) {  // 約数列挙．O(√N).",
+			"    assert(0 <= n);",
+			"    std::vector<Type> res;  // res[]:=(自然数nの約数の集合).",
+			"    for(Type p = 1; p * p <= n; ++p) {",
+			"        if(n % p == 0) {",
+			"            res.push_back(p);",
+			"            Type q = n / p;",
+			"            if(q != p) res.push_back(q);",
+			"        }",
+			"    }",
+			"    std::sort(res.begin(), res.end());",
+			"    return res;",
+			"}"
+		],
+		"description": "約数列挙"
+	},
 	"igcd, ilcm": {
 		"scope": "cpp",
 		"prefix": "igcd, ilcm",
