@@ -1976,6 +1976,22 @@
 		],
 		"description": "素因数分解"
 	},
+	"string_modulo": {
+		"scope": "cpp",
+		"prefix": "string_modulo",
+		"body": [
+			"long long string_modulo(const std::string &s, int m) {  // O(|S|).",
+			"    int n = s.size();",
+			"    long long res = 0LL;",
+			"    for(int i = 0; i < n; ++i) {",
+			"        assert('0' <= s[i] and s[i] <= '9');",
+			"        res = (10 * res + (s[i] - '0')) % m;",
+			"    }",
+			"    return res;",
+			"}"
+		],
+		"description": ""
+	},
 	"z_algorithm": {
 		"scope": "cpp",
 		"prefix": "z_algorithm",
