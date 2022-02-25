@@ -2041,6 +2041,22 @@
 		],
 		"description": "素因数分解"
 	},
+	"split": {
+		"scope": "cpp",
+		"prefix": "split",
+		"body": [
+			"std::vector<std::string> split(const std::string &s, char delim) {  // 文字列分割．指定の文字delimで分割する．",
+			"    std::vector<std::string> res;",
+			"    std::stringstream ss(s);",
+			"    std::string item;",
+			"    while(std::getline(ss, item, delim)) {",
+			"        if(!item.empty()) res.push_back(item);",
+			"    }",
+			"    return res;",
+			"}"
+		],
+		"description": "文字列分割"
+	},
 	"string_modulo": {
 		"scope": "cpp",
 		"prefix": "string_modulo",
