@@ -1834,8 +1834,9 @@
 		],
 		"description": "約数列挙"
 	},
-	"count_bits32, count_bits64": {
-		"prefix": "count_bits32, count_bits64",
+	"count_bits": {
+		"scope": "cpp",
+		"prefix": "count_bits",
 		"body": [
 			"int count_bits32(unsigned int n) {",
 			"    unsigned int masks[5] = {0x55555555U, 0x33333333U, 0x0f0f0f0fU, 0x00ff00ffU, 0x0000ffffU};",
