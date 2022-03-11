@@ -19,26 +19,7 @@ public:
         val = (val % mod + mod) % mod;
     }
 
-    bool operator==(const Modint &a) const { return val == a.val; }
-    bool operator!=(const Modint &a) const { return val != a.val; }
     Modint operator-() const { return Modint(-val); }
-    Modint operator+(const Modint &a) const { return Modint(*this) += a; }
-    Modint operator-(const Modint &a) const { return Modint(*this) -= a; }
-    Modint operator*(const Modint &a) const { return Modint(*this) *= a; }
-    Modint operator/(const Modint &a) const { return Modint(*this) /= a; }
-    Modint &operator+=(const Modint &a) {
-        val = (val + a.val) % mod;
-        return *this;
-    }
-    Modint &operator-=(const Modint &a) {
-        val = (val - a.val + mod) % mod;
-        return *this;
-    }
-    Modint &operator*=(const Modint &a) {
-        val = val * a.val % mod;
-        return *this;
-    }
-    Modint &operator/=(const Modint &a) { return (*this) *= a.inv(); }
     Modint operator++(int) {
         Modint tmp = *this;
         (*this) += 1;
@@ -51,6 +32,25 @@ public:
     }
     Modint &operator++() { return (*this) += 1; }
     Modint &operator--() { return (*this) -= 1; }
+    Modint operator*(const Modint &a) const { return Modint(*this) *= a; }
+    Modint operator/(const Modint &a) const { return Modint(*this) /= a; }
+    Modint operator+(const Modint &a) const { return Modint(*this) += a; }
+    Modint operator-(const Modint &a) const { return Modint(*this) -= a; }
+    Modint &operator*=(const Modint &a) {
+        val = val * a.val % mod;
+        return *this;
+    }
+    Modint &operator/=(const Modint &a) { return (*this) *= a.inv(); }
+    Modint &operator+=(const Modint &a) {
+        val = (val + a.val) % mod;
+        return *this;
+    }
+    Modint &operator-=(const Modint &a) {
+        val = (val - a.val + mod) % mod;
+        return *this;
+    }
+    bool operator==(const Modint &a) const { return val == a.val; }
+    bool operator!=(const Modint &a) const { return val != a.val; }
     friend std::istream &operator>>(std::istream &is, Modint<mod> &x) {
         is >> x.val;
         x.val = (x.val % mod + mod) % mod;
@@ -74,8 +74,8 @@ public:
         if(k == 0LL) return 1;
         if(k < 0LL) return pow(x.inv(), -k);
         Modint<mod> res = 1, tmp = x;
-        while(k > 0) {
-            if(k & 1) res *= tmp;
+        while(k > 0LL) {
+            if(k & 1LL) res *= tmp;
             tmp = tmp * tmp, k >>= 1;
         }
         return res;
@@ -83,7 +83,7 @@ public:
 };
 
 using mint998244353 = Modint<998'244'353>;
-using mint1000000007 = Modint<1'000'000'007>;
+using mint = Modint<1'000'000'007>;
 
 }  // namespace algorithm
 
