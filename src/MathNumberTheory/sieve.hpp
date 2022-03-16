@@ -16,7 +16,8 @@ class Sieve {
 public:
     // constructor.
     Sieve() : Sieve(51e4) {}
-    explicit Sieve(std::size_t n) : sz(n + 1), fact(n + 1, -1) {  // n以下の自然数を篩にかける．
+    explicit Sieve(int n) : sz(n + 1), fact(n + 1, -1) {  // n以下の自然数を篩にかける．
+        assert(n >= 0);
         for(int i = 2; i < sz; ++i) fact[i] = i;
         for(int i = 2; i * i < sz; ++i) {
             if(fact[i] == i) {
@@ -39,7 +40,8 @@ public:
         return res;
     }
     std::vector<int> divisors(int n) const {  // 高速約数列挙．
-        assert(1 <= n and n < sz);
+        assert(0 <= n and n < sz);
+        if(n == 0) return std::vector<int>();
         std::vector<int> res({1});
         if(n == 1) return res;
         const auto &&pf = prime_factorize(n);
