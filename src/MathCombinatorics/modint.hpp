@@ -71,7 +71,6 @@ public:
     }
 
     friend Modint<mod> pow(const Modint<mod> &x, long long k) {
-        if(k == 0LL) return 1;
         if(k < 0LL) return pow(x.inv(), -k);
         Modint<mod> res = 1, tmp = x;
         while(k > 0LL) {
