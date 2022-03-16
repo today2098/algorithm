@@ -6,8 +6,8 @@
 namespace algorithm {
 
 long long ipow(long long n, long long k) {  // 繰返し二乗法．O(logK).
-    assert(0 <= k);
-    if(k == 0) return 1;
+    assert(k >= 0LL);
+    if(k == 0LL) return 1;
     long long res = ipow(n * n, k >> 1);
     if(k & 1LL) res *= n;
     return res;

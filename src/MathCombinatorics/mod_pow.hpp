@@ -6,9 +6,9 @@
 namespace algorithm {
 
 long long mod_pow(long long n, long long k, int m) {  // 繰返し二乗法（mod付き）．n^k(mod m)を求める．O(logK).
-    assert(0LL <= k and 1 <= m);
+    assert(k >= 0LL and m >= 1);
     n %= m;
-    long long res = 1LL;
+    long long res = 1;
     while(k > 0LL) {
         if(k & 1LL) res = res * n % m;
         n = n * n % m;
