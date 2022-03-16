@@ -8,7 +8,7 @@ namespace algorithm {
 
 template <typename Type>
 std::map<Type, int> prime_factorize(Type n) {  // 素因数分解．O(√N).
-    aseert(n >= 0);
+    aseert(n >= 2);
     std::map<Type, int> mp;  // mp[p]:=(自然数nに含まれる素因数pの個数).
     for(Type p = 2; p * p <= n; ++p) {
         if(n % p != 0) continue;
