@@ -9,7 +9,7 @@ namespace algorithm {
 
 template <typename Type>
 std::vector<Type> calc_divisors(Type n) {  // 約数列挙．O(√N).
-    assert(0 <= n);
+    assert(n >= 0);
     std::vector<Type> res;  // res[]:=(自然数nの約数の集合).
     for(Type p = 1; p * p <= n; ++p) {
         if(n % p == 0) {
