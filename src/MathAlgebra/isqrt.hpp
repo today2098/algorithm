@@ -6,12 +6,12 @@
 
 namespace algorithm {
 
-double isqrt(double x, double eps = 1e-12) {  // 平方根（ニュートン法）．
-    assert(0.0 <= x);
+double isqrt(double x, double eps = 1e-10) {  // 平方根（ニュートン法）．
+    assert(x >= 0.0);
     double res = 5.0;
     while(1) {
         double tmp = (x / res + res) / 2;
-        if(std::abs(tmp - res) < eps) break;
+        if(std::fabs(tmp - res) < eps) break;
         res = tmp;
     }
     return res;
