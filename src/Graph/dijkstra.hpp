@@ -28,7 +28,7 @@ class Dijkstra {
 public:
     // constructor.
     Dijkstra() : Dijkstra(0) {}
-    explicit Dijkstra(std::size_t vn_, T inf_ = 1e9) : vn(vn_), g(vn_), d(vn_, inf_), pre(vn_, -1), inf(inf_) {}
+    explicit Dijkstra(size_t vn_, T inf_ = 1e9) : vn(vn_), g(vn_), d(vn_, inf_), pre(vn_, -1), inf(inf_) {}
 
     int size() const { return vn; }  // ノード数を返す．
     T infinity() const { return inf; }
@@ -42,7 +42,7 @@ public:
         std::fill(d.begin(), d.end(), inf);
         d[s] = 0;
         std::fill(pre.begin(), pre.end(), -1);
-        r_priority_queue<std::pair<T, int> > pque;  // (dt,v).
+        r_priority_queue<std::pair<T, int> > pque;  // pair(dt,v).
         pque.emplace(0, s);
         while(!pque.empty()) {
             auto [dt, v] = pque.top();

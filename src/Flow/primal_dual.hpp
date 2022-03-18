@@ -56,7 +56,7 @@ class PrimalDual {
 public:
     // constructor.
     PrimalDual() : PrimalDual(0) {}
-    explicit PrimalDual(std::size_t vn_, U inf_ = 1e9) : vn(vn_), g(vn_), level(vn_), p(vn_), prevv(vn_), preve(vn_), inf(inf_) {}
+    explicit PrimalDual(size_t vn_, U inf_ = 1e9) : vn(vn_), g(vn_), level(vn_), p(vn_), prevv(vn_), preve(vn_), inf(inf_) {}
 
     int size() const { return vn; }                   // ノード数を返す．
     void add_egde(int from, int to, T cap, U cost) {  // 容量cap，コストcostの有向辺を追加する．

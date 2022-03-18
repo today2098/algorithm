@@ -23,7 +23,7 @@ class BellmanFord {
 public:
     // constructor.
     BellmanFord() : BellmanFord(0) {}
-    explicit BellmanFord(std::size_t vn_, T inf_ = 1e9) : vn(vn_), g(vn_), d(vn_, inf_), pre(vn_, -1), inf(inf_) {}
+    explicit BellmanFord(size_t vn_, T inf_ = 1e9) : vn(vn_), g(vn_), d(vn_, inf_), pre(vn_, -1), inf(inf_) {}
 
     int size() const { return vn; }  // ノード数を返す．
     T infinity() const { return inf; }

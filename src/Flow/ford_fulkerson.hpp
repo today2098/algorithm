@@ -44,7 +44,7 @@ class FordFulkerson {
 public:
     // constructor.
     FordFulkerson() : FordFulkerson(0) {}
-    explicit FordFulkerson(std::size_t vn_, T inf_ = 1e9) : vn(vn_), g(vn_), inf(inf_) {
+    explicit FordFulkerson(size_t vn_, T inf_ = 1e9) : vn(vn_), g(vn_), inf(inf_) {
         seen = new bool[vn]{};
     }
 

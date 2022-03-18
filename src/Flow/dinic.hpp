@@ -63,7 +63,7 @@ class Dinic {
 public:
     // constructor.
     Dinic() : Dinic(0) {}
-    explicit Dinic(std::size_t vn_, T inf_ = 1e9) : vn(vn_), g(vn_), level(vn_), iter(vn_), inf(inf_) {}
+    explicit Dinic(size_t vn_, T inf_ = 1e9) : vn(vn_), g(vn_), level(vn_), iter(vn_), inf(inf_) {}
 
     int size() const { return vn; }  // ノード数を返す．
     T infinity() const { return inf; }
