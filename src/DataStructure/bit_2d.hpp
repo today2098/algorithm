@@ -1,7 +1,7 @@
 #ifndef ALGORITHM_BIT_2D_HPP
 #define ALGORITHM_BIT_2D_HPP 1
 
-#include <algorithm>
+#include <algorithm>  // for fill().
 #include <cassert>
 #include <vector>
 
@@ -27,7 +27,7 @@ class BIT2D {
 public:
     // constructor. O(H*W).
     BIT2D() : BIT2D(0, 0) {}
-    explicit BIT2D(std::size_t h_, std::size_t w_) : h(h_), w(w_), dat(h_ + 1, std::vector<T>(w_ + 1, 0)) {}
+    explicit BIT2D(size_t h_, size_t w_) : h(h_), w(w_), dat(h_ + 1, std::vector<T>(w_ + 1, 0)) {}
     explicit BIT2D(const std::vector<std::vector<T> > &dat_)
         : h(dat_.size()), w(dat_[0].size()), dat(dat_.size() + 1, std::vector<T>(dat_[0].size() + 1)) {
         for(int i = 0; i < h; ++i) std::copy(dat_[i].begin(), dat_[i].end(), dat[i + 1].begin() + 1);

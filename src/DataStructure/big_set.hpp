@@ -3,9 +3,9 @@
 
 #include <cassert>
 #include <iostream>
-#include <iterator>
+#include <iterator>  // for prev().
 #include <set>
-#include <utility>
+#include <utility>  // for pair.
 
 namespace algorithm {
 
@@ -79,7 +79,7 @@ public:
         return (x < r ? r : x);
     }
 
-    friend std::ostream &operator<<(std::ostream &os, const BigSet<T> &ob) {
+    friend std::ostream &operator<<(std::ostream &os, const BigSet &ob) {
         for(const auto &[l, r] : ob.st) os << "[" << l << ", " << r << ") ";
         os << std::endl;
     }

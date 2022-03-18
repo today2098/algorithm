@@ -1,9 +1,9 @@
 #ifndef ALGORITHM_LAZY_SEGMENT_TREE_HPP
 #define ALGORITHM_LAZY_SEGMENT_TREE_HPP 1
 
-#include <algorithm>
+#include <algorithm>  // for fill().
 #include <cassert>
-#include <functional>
+#include <functional>  // for function.
 #include <vector>
 
 namespace algorithm {
@@ -48,7 +48,7 @@ class LazySegTree {
 public:
     // constructor. O(N).
     LazySegTree() {}
-    explicit LazySegTree(const FuncMonoid &fm_, const FuncAction &fa_, const FuncComposition &fc_, const Monoid &e_, const Action &id_, std::size_t sz_)
+    explicit LazySegTree(const FuncMonoid &fm_, const FuncAction &fa_, const FuncComposition &fc_, const Monoid &e_, const Action &id_, size_t sz_)
         : fm(fm_), fa(fa_), fc(fc_), e(e_), id(id_), sz(sz_) {
         build();
     }

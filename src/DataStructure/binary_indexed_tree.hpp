@@ -1,7 +1,7 @@
 #ifndef ALGORITHM_BINARY_INDEXED_TREE_HPP
 #define ALGORITHM_BINARY_INDEXED_TREE_HPP 1
 
-#include <algorithm>
+#include <algorithm>  // for copy() and fill().
 #include <cassert>
 #include <vector>
 
@@ -23,7 +23,7 @@ class BIT {
 public:
     // constructor. O(N).
     BIT() : BIT(0){};
-    explicit BIT(std::size_t sz_) : sz(sz_), tree(sz_ + 1, 0) {}
+    explicit BIT(size_t sz_) : sz(sz_), tree(sz_ + 1, 0) {}
     explicit BIT(const std::vector<T> &v) : sz(v.size()), tree(v.size() + 1) {
         std::copy(v.begin(), v.end(), tree.begin() + 1);
         build();

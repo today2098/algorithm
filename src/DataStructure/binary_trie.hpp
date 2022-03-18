@@ -58,9 +58,11 @@ class BinaryTrie {
 
 public:
     // constructor.
-    BinaryTrie() : root(nullptr) {}
+    BinaryTrie() : root(nullptr) {
+        static_assert(B >= 0);
+    }
 
-    T operator[](int k) {  // 集合内でk番目に小さい値を取得．
+    T operator[](int k) const {  // 集合内でk番目に小さい値を取得．
         assert(0 <= k and k < size());
         return get(root, k, 0);
     }

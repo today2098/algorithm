@@ -1,9 +1,9 @@
 #ifndef ALGORITHM_POTENTIALIZED_UNION_FIND_HPP
 #define ALGORITHM_POTENTIALIZED_UNION_FIND_HPP 1
 
-#include <algorithm>
+#include <algorithm>  // fill().
 #include <cassert>
-#include <utility>
+#include <utility>  // swap().
 #include <vector>
 
 namespace algorithm {
@@ -18,7 +18,7 @@ class PotentializedUnionFind {
 public:
     // constructor.
     PotentializedUnionFind() : PotentializedUnionFind(0) {}
-    explicit PotentializedUnionFind(std::size_t vn_) : vn(vn_), gn(vn_), par(vn_, -1), p(vn_, 0) {}
+    explicit PotentializedUnionFind(size_t vn_) : vn(vn_), gn(vn_), par(vn_, -1), p(vn_, 0) {}
 
     int get_vn() const { return vn; };  // ノード数を返す．
     int get_gn() const { return gn; };  // グループ数を返す．

@@ -1,9 +1,10 @@
 #ifndef ALGORITHM_HEAP_HPP
 #define ALGORITHM_HEAP_HPP 1
 
-#include <algorithm>
+#include <algorithm>  // for copy().
 #include <cassert>
-#include <functional>
+#include <functional>  // for function.
+#include <utility>     // for swap().
 #include <vector>
 
 namespace algorithm {

@@ -1,9 +1,9 @@
 #ifndef ALGORITHM_UNION_FIND_HPP
 #define ALGORITHM_UNION_FIND_HPP 1
 
-#include <algorithm>
+#include <algorithm>  // for fill().
 #include <cassert>
-#include <utility>
+#include <utility>  // for swap().
 #include <vector>
 
 namespace algorithm {
@@ -15,7 +15,7 @@ class UnionFind {
 public:
     // constructor.
     UnionFind() : UnionFind(0) {}
-    explicit UnionFind(std::size_t vn_) : vn(vn_), gn(vn_), par(vn_, -1) {}
+    explicit UnionFind(size_t vn_) : vn(vn_), gn(vn_), par(vn_, -1) {}
 
     int get_vn() const { return vn; };  // ノード数を返す．
     int get_gn() const { return gn; };  // グループ数を返す．

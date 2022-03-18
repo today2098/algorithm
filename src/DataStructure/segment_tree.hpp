@@ -1,9 +1,9 @@
 #ifndef ALGORITHM_SEGMENT_TREE_HPP
 #define ALGORITHM_SEGMENT_TREE_HPP 1
 
-#include <algorithm>
+#include <algorithm>  // for copy() and fill().
 #include <cassert>
-#include <functional>
+#include <functional>  // for function.
 #include <vector>
 
 namespace algorithm {
@@ -26,7 +26,7 @@ class SegmentTree {
 public:
     // constructor. O(N).
     SegmentTree(){};
-    explicit SegmentTree(const F &f_, const T &e_, std::size_t sz_) : f(f_), e(e_), sz(sz_) {
+    explicit SegmentTree(const F &f_, const T &e_, size_t sz_) : f(f_), e(e_), sz(sz_) {
         build();
     }
     explicit SegmentTree(const F &f_, const T &e_, std::vector<T> &v) : f(f_), e(e_), sz(v.size()) {

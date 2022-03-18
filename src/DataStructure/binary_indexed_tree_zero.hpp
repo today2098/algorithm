@@ -1,7 +1,7 @@
 #ifndef ALGORITHM_BINARY_INDEXED_TREE_ZERO_HPP
 #define ALGORITHM_BINARY_INDEXED_TREE_ZERO_HPP 1
 
-#include <algorithm>
+#include <algorithm>  // for fill().
 #include <cassert>
 #include <vector>
 
@@ -23,7 +23,7 @@ class BIT0 {
 public:
     // constructor. O(N).
     BIT0() : BIT0(0){};
-    explicit BIT0(std::size_t sz_) : sz(sz_), tree(sz_, 0) {}
+    explicit BIT0(size_t sz_) : sz(sz_), tree(sz_, 0) {}
     explicit BIT0(const std::vector<T> &v) : sz(v.size()), tree(v) {
         build();
     }
