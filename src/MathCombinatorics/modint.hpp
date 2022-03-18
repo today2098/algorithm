@@ -16,7 +16,8 @@ public:
     Modint() : Modint(0) {}
     Modint(long long val_) : val(val_) {
         static_assert(mod >= 1);
-        val = (val % mod + mod) % mod;
+        val %= mod;
+        if(val < 0) val += mod;
     }
 
     Modint operator+() const { return Modint(*this); }
@@ -60,11 +61,12 @@ public:
         if(val < 0) val += mod;
         return *this;
     }
-    friend operator==(const Modint &x, const Modint &y) { return x.val == y.val; }
-    friend operator!=(const Modint &x, const Modint &y) { return x.val != y.val; }
+    friend bool operator==(const Modint &x, const Modint &y) { return x.val == y.val; }
+    friend bool operator!=(const Modint &x, const Modint &y) { return x.val != y.val; }
     friend std::istream &operator>>(std::istream &is, Modint &x) {
         is >> x.val;
-        x.val = (x.val % mod + mod) % mod;
+        x.val %= mod;
+        if(x.val < 0) x.val += mod;
         return is;
     }
     friend std::ostream &operator<<(std::ostream &os, const Modint &x) { return os << x.val; }
