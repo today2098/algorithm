@@ -14,7 +14,7 @@ class PascalTriangle {
 public:
     // constructor. O(N^2).
     PascalTriangle() : PascalTriangle(101) {}
-    explicit PascalTriangle(std::size_t sz_) : sz(sz_), c(sz_) {
+    explicit PascalTriangle(size_t sz_) : sz(sz_), c(sz_) {
         for(int i = 0; i < sz; ++i) {
             c[i].resize(i + 1);
             for(int j = 0; j <= i; ++j) {

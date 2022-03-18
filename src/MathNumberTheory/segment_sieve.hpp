@@ -27,7 +27,7 @@ class SegmentSieve {
                 for(long long j = i * i; j < m; j += i) small[j] = i;
                 for(long long j = std::max<long long>(2LL, (l + i - 1) / i) * i; j < r; j += i) {
                     long long tmp = j;
-                    while(tmp % i == 0LL and aux[j - l] * aux[j - l] <= r) {
+                    while(tmp % i == 0 and aux[j - l] * aux[j - l] <= r) {
                         large[j - l][i]++;
                         aux[j - l] *= i;
                         tmp /= i;
@@ -41,7 +41,7 @@ public:
     // constructor. 制約の目安は大体2<=l<r<=1e12, r-l<=1e6．
     SegmentSieve() : SegmentSieve(2, 3) {}
     explicit SegmentSieve(long long l_, long long r_) : l(l_), r(r_) {  // 範囲[l,r)の自然数を篩にかける．
-        assert(2LL <= l and l < r);
+        assert(2 <= l and l < r);
         build();
     }
 
@@ -57,7 +57,7 @@ public:
             res[n]++;
             return res;
         }
-        while(n > 1LL) {
+        while(n > 1) {
             res[small[n]]++;
             n /= small[n];
         }
@@ -66,7 +66,7 @@ public:
     std::vector<long long> divisors(long long n) const {  // 高速約数列挙．
         assert(l <= n and n < r);
         std::vector<long long> res({1});
-        if(n == 1LL) return res;
+        if(n == 1) return res;
         const auto &&pf = prime_factorize(n);
         for(const auto &[p, cnt] : pf) {
             int m = res.size();
