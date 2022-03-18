@@ -10,7 +10,7 @@ namespace algorithm {
 template <int mod>
 class Combination {
     int sz;                                  // sz:=(要素数). ただし，sz<mod．
-    std::vector<long long> fact, inv, finv;  // fact[n]:=(nの階乗), inv[n]:=(nの逆元), finv[n]:=(nの逆元の階乗).
+    std::vector<long long> fact, inv, finv;  // fact[n]:=(nの階乗), inv[n]:=(nの逆元), finv[n]:=(nの階乗の逆元).
 
     void build() {
         fact[0] = fact[1] = 1;
@@ -26,22 +26,23 @@ class Combination {
 public:
     // constructor. O(N).
     Combination() : Combination(51e4) {}
-    explicit Combination(std::size_t sz_) : sz(sz_), fact(sz_), inv(sz_), finv(sz_) {
+    explicit Combination(size_t sz_) : sz(sz_), fact(sz_), inv(sz_), finv(sz_) {
+        static_assert(mod >= 1);
         assert(2 <= sz and sz < mod);
         build();
     }
 
     int modulus() const { return mod; }
-    int get_fact(int n) const {
+    int factorial(int n) const {  // 階乗.
         assert(0 <= n and n < sz);
         return fact[n];
     }
-    int get_inv(int n) const {
+    int inverse(int n) const {  // 逆元.
         assert(1 <= n and n < sz);
         return inv[n];
     }
-    int get_finv(int n) const {
-        assert(1 <= n and n < sz);
+    int inverse_fact(int n) const {  // 階乗の逆元.
+        assert(0 <= n and n < sz);
         return finv[n];
     }
     int nPk(int n, int k) const {  // 順列．
@@ -55,8 +56,8 @@ public:
     int nHk(int n, int k) const { return nCk(k + n - 1, n - 1); }  // 重複組み合わせ．
 };
 
-using combination998244353 = Combination<998'244'353>;
-using combination1000000007 = Combination<1'000'000'007>;
+using Combination998244353 = Combination<998'244'353>;
+using Combination1000000007 = Combination<1'000'000'007>;
 
 }  // namespace algorithm
 
