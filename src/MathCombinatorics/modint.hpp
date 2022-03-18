@@ -15,51 +15,62 @@ public:
     // constructor.
     Modint() : Modint(0) {}
     Modint(long long val_) : val(val_) {
-        assert(mod >= 1);
+        static_assert(mod >= 1);
         val = (val % mod + mod) % mod;
     }
 
-    Modint operator-() const { return Modint(-val); }
+    Modint operator+() const { return Modint(*this); }
+    Modint operator-() const { return Modint() - (*this); }
+    Modint &operator++() {
+        val++;
+        if(val == mod) val = 0;
+        return *this;
+    }
+    Modint &operator--() {
+        if(val == 0) val = mod;
+        val--;
+        return *this;
+    }
     Modint operator++(int) {
-        Modint tmp = *this;
-        (*this) += 1;
-        return tmp;
+        Modint res = *this;
+        ++(*this);
+        return res;
     }
     Modint operator--(int) {
-        Modint tmp = *this;
-        (*this) -= 1;
-        return tmp;
+        Modint res = *this;
+        --(*this);
+        return res;
     }
-    Modint &operator++() { return (*this) += 1; }
-    Modint &operator--() { return (*this) -= 1; }
-    Modint operator*(const Modint &a) const { return Modint(*this) *= a; }
-    Modint operator/(const Modint &a) const { return Modint(*this) /= a; }
-    Modint operator+(const Modint &a) const { return Modint(*this) += a; }
-    Modint operator-(const Modint &a) const { return Modint(*this) -= a; }
+    friend Modint operator*(const Modint &x, const Modint &y) { return Modint(x) *= y; }
+    friend Modint operator/(const Modint &x, const Modint &y) { return Modint(x) /= y; }
+    friend Modint operator+(const Modint &x, const Modint &y) { return Modint(x) += y; }
+    friend Modint operator-(const Modint &x, const Modint &y) { return Modint(x) -= y; }
     Modint &operator*=(const Modint &a) {
         val = val * a.val % mod;
         return *this;
     }
     Modint &operator/=(const Modint &a) { return (*this) *= a.inv(); }
     Modint &operator+=(const Modint &a) {
-        val = (val + a.val) % mod;
+        val += a.val;
+        if(val >= mod) val -= mod;
         return *this;
     }
     Modint &operator-=(const Modint &a) {
-        val = (val - a.val + mod) % mod;
+        val -= a.val;
+        if(val < 0) val += mod;
         return *this;
     }
-    bool operator==(const Modint &a) const { return val == a.val; }
-    bool operator!=(const Modint &a) const { return val != a.val; }
-    friend std::istream &operator>>(std::istream &is, Modint<mod> &x) {
+    friend operator==(const Modint &x, const Modint &y) { return x.val == y.val; }
+    friend operator!=(const Modint &x, const Modint &y) { return x.val != y.val; }
+    friend std::istream &operator>>(std::istream &is, Modint &x) {
         is >> x.val;
         x.val = (x.val % mod + mod) % mod;
         return is;
     }
-    friend std::ostream &operator<<(std::ostream &os, const Modint<mod> &x) { return os << x.val; }
+    friend std::ostream &operator<<(std::ostream &os, const Modint &x) { return os << x.val; }
 
-    long long value() const { return val; }
     int modulus() const { return mod; }
+    long long value() const { return val; }
     Modint inv() const {
         long long a = val, b = mod, u = 1, v = 0;
         while(b) {
@@ -70,10 +81,10 @@ public:
         return Modint(u);
     }
 
-    friend Modint<mod> pow(const Modint<mod> &x, long long k) {
-        if(k < 0LL) return pow(x.inv(), -k);
-        Modint<mod> res = 1, tmp = x;
-        while(k > 0LL) {
+    friend Modint mod_pow(const Modint &x, long long k) {
+        if(k < 0) return mod_pow(x.inv(), -k);
+        Modint res = 1, tmp = x;
+        while(k > 0) {
             if(k & 1LL) res *= tmp;
             tmp = tmp * tmp, k >>= 1;
         }
