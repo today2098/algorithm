@@ -8,6 +8,7 @@
 
 namespace algorithm {
 
+// 素集合データ構造.
 class UnionFind {
     int vn, gn;            // vn:=(ノード数), gn:=(グループ数).
     std::vector<int> par;  // par[v]:=(ノードvの親番号). 0未満の場合，vが親で，絶対値がグループサイズを表す．
