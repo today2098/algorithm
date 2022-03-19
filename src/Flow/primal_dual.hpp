@@ -1,10 +1,11 @@
 #ifndef ALGORITHM_PRIMAL_DUAL_HPP
 #define ALGORITHM_PRIMAL_DUAL_HPP 1
 
-#include <algorithm>
+#include <algorithm>  // for fill() and min().
 #include <cassert>
-#include <queue>
-#include <utility>
+#include <functional>  // for greater.
+#include <queue>       // for priority_queue.
+#include <utility>     // for pair.
 #include <vector>
 
 namespace algorithm {

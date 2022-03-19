@@ -1,7 +1,7 @@
 #ifndef ALGORITHM_DINIC_HPP
 #define ALGORITHM_DINIC_HPP 1
 
-#include <algorithm>
+#include <algorithm>  // for fill() and min().
 #include <cassert>
 #include <queue>
 #include <vector>

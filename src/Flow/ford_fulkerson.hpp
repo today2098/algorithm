@@ -1,7 +1,7 @@
 #ifndef ALGORITHM_FORD_FULKERSON_HPP
 #define ALGORITHM_FORD_FULKERSON_HPP 1
 
-#include <algorithm>
+#include <algorithm>  // for fill() and min().
 #include <cassert>
 #include <vector>
 
