@@ -1,8 +1,9 @@
 #ifndef ALGORITHM_LCA_HPP
 #define ALGORITHM_LCA_HPP 1
 
-#include <algorithm>
+#include <algorithm>  // for fill().
 #include <cassert>
+#include <utility>  // for swap().
 #include <vector>
 
 namespace algorithm {
@@ -35,7 +36,7 @@ class LCA {
 public:
     // constructor. O(log|V|).
     LCA() : LCA(0) {}
-    explicit LCA(std::size_t vn_, int rt_ = 0) : vn(vn_), h(1), rt(rt_), g(vn_), depth(vn_, -1), update(true) {
+    explicit LCA(size_t vn_, int rt_ = 0) : vn(vn_), h(1), rt(rt_), g(vn_), depth(vn_, -1), update(true) {
         while((1 << h) < vn) h++;
         par.assign(vn, std::vector<int>(h, -1));
     }
