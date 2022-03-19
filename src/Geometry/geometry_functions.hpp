@@ -1,9 +1,10 @@
 #ifndef ALGORITHM_GEOMETRY_FUNCTION_HPP
 #define ALGORITHM_GEOMETRY_FUNCTION_HPP 1
 
-#include <algorithm>
+#include <algorithm>  // for min() and sort().
 #include <cassert>
-#include <cmath>
+#include <cmath>    // for sqrt(), sin(), cos(), acos() and atan2().
+#include <utility>  // for pair and swap().
 #include <vector>
 
 #include "geometry_elements.hpp"
