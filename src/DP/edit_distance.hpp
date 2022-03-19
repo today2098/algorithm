@@ -1,12 +1,12 @@
 #ifndef ALGORITHM_EDIT_DISTANCE_HPP
 #define ALGORITHM_EDIT_DISTANCE_HPP 1
 
-#include <algorithm>
+#include <algorithm>  // for min().
 #include <vector>
 
 namespace algorithm {
 
-// 編集距離 (edit distance)．O(|A|*|B|).
+// 編集距離 (edit distance)．引数はSTLのシーケンスコンテナ．O(|A|*|B|).
 template <class Class>
 int edit_distance(const Class &a, const Class &b) {
     int an = a.size(), bn = b.size();

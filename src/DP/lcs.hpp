@@ -1,12 +1,12 @@
 #ifndef ALGORITHM_LCS_HPP
 #define ALGORITHM_LCS_HPP 1
 
-#include <algorithm>
+#include <algorithm>  // for max().
 #include <vector>
 
 namespace algorithm {
 
-// 最長共通部分列 (LCS:Longest Common Subsequence)．O(|A|*|B|).
+// 最長共通部分列 (LCS:Longest Common Subsequence)．引数はSTLのシーケンスコンテナ．O(|A|*|B|).
 template <class Class>
 Class lcs(const Class &a, const Class &b) {
     int an = a.size(), bn = b.size();
