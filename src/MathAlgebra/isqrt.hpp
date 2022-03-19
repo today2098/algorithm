@@ -2,7 +2,7 @@
 #define ALGORITHM_ISQRT_HPP 1
 
 #include <cassert>
-#include <cmath>
+#include <cmath> // for fabs().
 
 namespace algorithm {
 

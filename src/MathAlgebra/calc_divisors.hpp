@@ -1,7 +1,7 @@
 #ifndef ALGORITHM_DIVISOR_HPP
 #define ALGORITHM_DIVISOR_HPP 1
 
-#include <algorithm>
+#include <algorithm> // for sort().
 #include <cassert>
 #include <vector>
 

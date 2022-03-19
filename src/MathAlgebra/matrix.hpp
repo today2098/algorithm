@@ -15,7 +15,7 @@ class Matrix {
 public:
     // constructor.
     Matrix() : Matrix(0, 0, 0){};
-    explicit Matrix(std::size_t m, std::size_t n, T x = 0) : col(m), row(n), val(m, std::vector<T>(n, x)) {}
+    explicit Matrix(size_t m, size_t n, T x = 0) : col(m), row(n), val(m, std::vector<T>(n, x)) {}
     explicit Matrix(const std::vector<std::vector<T> > &v) : col(v.size()), row(v[0].size()), val(v) {}
 
     std::vector<T> &operator[](int i) { return val[i]; }
@@ -34,20 +34,6 @@ public:
             for(int j = 0; j < R.row; ++j) R[i][j] /= a;
         return R;
     }
-    friend Matrix<T> operator+(const Matrix<T> &A, const Matrix<T> &B) {
-        assert(A.col == B.col and A.row == B.row);
-        Matrix<T> R(A.col, A.row);
-        for(int i = 0; i < A.col; ++i)
-            for(int j = 0; j < A.row; ++j) R[i][j] = A[i][j] + B[i][j];
-        return R;
-    }
-    friend Matrix<T> operator-(const Matrix<T> &A, const Matrix<T> &B) {
-        assert(A.col == B.col and A.row == B.row);
-        Matrix<T> R(A.col, A.row);
-        for(int i = 0; i < A.col; ++i)
-            for(int j = 0; j < A.row; ++j) R[i][j] = A[i][j] - B[i][j];
-        return R;
-    }
     friend std::vector<T> operator*(const Matrix<T> &A, const std::vector<T> &B) {
         assert(A.row == B.size());
         std::vector<T> R(A.col, 0);
@@ -61,6 +47,20 @@ public:
         for(int i = 0; i < A.col; ++i)
             for(int j = 0; j < B.row; ++j)
                 for(int k = 0; k < A.row; ++k) R[i][j] += A[i][k] * B[k][j];
+        return R;
+    }
+    friend Matrix<T> operator+(const Matrix<T> &A, const Matrix<T> &B) {
+        assert(A.col == B.col and A.row == B.row);
+        Matrix<T> R(A.col, A.row);
+        for(int i = 0; i < A.col; ++i)
+            for(int j = 0; j < A.row; ++j) R[i][j] = A[i][j] + B[i][j];
+        return R;
+    }
+    friend Matrix<T> operator-(const Matrix<T> &A, const Matrix<T> &B) {
+        assert(A.col == B.col and A.row == B.row);
+        Matrix<T> R(A.col, A.row);
+        for(int i = 0; i < A.col; ++i)
+            for(int j = 0; j < A.row; ++j) R[i][j] = A[i][j] - B[i][j];
         return R;
     }
     friend std::ostream &operator<<(std::ostream &os, const Matrix<T> &A) {
