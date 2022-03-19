@@ -1,9 +1,9 @@
 #ifndef ALGORITHM_RUNTIME_MODINT_HPP
-#define ALGORITHM_RUNTIME_MODINT_HPP
+#define ALGORITHM_RUNTIME_MODINT_HPP 1
 
 #include <cassert>
 #include <iostream>
-#include <utility>
+#include <utility>  // for swap().
 #include <vector>
 
 namespace algorithm {

@@ -3,7 +3,7 @@
 
 #include <cassert>
 #include <iostream>
-#include <utility>
+#include <utility>  // for swap().
 
 namespace algorithm {
 

@@ -2,7 +2,7 @@
 #define ALGORITHM_MOD_INV_HPP 1
 
 #include <cassert>
-#include <utility>
+#include <utility>  // for swap().
 
 namespace algorithm {
 
