@@ -1,8 +1,8 @@
 #ifndef ALGORITHM_SPLIT_HPP
 #define ALGORITHM_SPLIT_HPP 1
 
-#include <sstream>
-#include <string>
+#include <sstream>  // for stringstream
+#include <string>   // for getline().
 #include <vector>
 
 namespace algorithm {

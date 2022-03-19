@@ -28,7 +28,7 @@ class Manacher {
     }
 
 public:
-    // constructor. 引数はstringやvectorなど，STLの配列クラス．O(|S|).
+    // constructor. 引数はSTLのシーケンスコンテナ．O(|S|).
     Manacher() : Manacher(C()) {}
     explicit Manacher(const C &s) : n(s.size()), len(2 * s.size()) {
         C t(2 * n, 0);
