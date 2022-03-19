@@ -1,9 +1,9 @@
 #ifndef ALGORITHM_SEGMENT_SIEVE_HPP
 #define ALGORITHM_SEGMENT_SIEVE_HPP 1
 
-#include <algorithm>
+#include <algorithm>  // for max() and sort().
 #include <cassert>
-#include <cmath>
+#include <cmath>  // for sqrt().
 #include <map>
 #include <vector>
 

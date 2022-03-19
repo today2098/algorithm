@@ -1,7 +1,7 @@
 #ifndef ALGORITHM_SIEVE_HPP
 #define ALGORITHM_SIEVE_HPP 1
 
-#include <algorithm>
+#include <algorithm>  // for sort().
 #include <cassert>
 #include <map>
 #include <vector>
