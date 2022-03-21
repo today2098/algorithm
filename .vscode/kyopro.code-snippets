@@ -68,8 +68,8 @@
 		"body": [
 			"using Type = $1;",
 			"using vt   = std::vector<Type>;",
-			"using vvt  = std::vector<Type>;",
-			"using vvvt = std::vector<Type>;",
+			"using vvt  = std::vector<vt>;",
+			"using vvvt = std::vector<vvt>;",
 		],
 		"description": ""
 	},
