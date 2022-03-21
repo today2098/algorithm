@@ -62,6 +62,17 @@
 		],
 		"description": ""
 	},
+	"using vt, vvt, vvvt, ptt": {
+		"scope": "cpp",
+		"prefix": "using vt, vvt, vvvt",
+		"body": [
+			"using Type = $1;",
+			"using vt   = std::vector<Type>;",
+			"using vvt  = std::vector<Type>;",
+			"using vvvt = std::vector<Type>;",
+		],
+		"description": ""
+	},
 	"using r_priority_queue": {
 		"scope": "cpp",
 		"prefix": "using r_priority_queue",
