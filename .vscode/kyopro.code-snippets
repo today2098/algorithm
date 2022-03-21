@@ -62,7 +62,7 @@
 		],
 		"description": ""
 	},
-	"using vt, vvt, vvvt, ptt": {
+	"using vt, vvt, vvvt": {
 		"scope": "cpp",
 		"prefix": "using vt, vvt, vvvt",
 		"body": [
