@@ -6,7 +6,7 @@
 
 namespace algorithm {
 
-// きたまさ法．k項間漸化式a[n+k]=d[0]*a[n]+d[1]*a[n+1]+....+d[k-1]*a[n+k-1]を求める．
+// きたまさ法．k項間漸化式a[n]=d[0]*a[n-k]+d[1]*a[n-k+1]+....+d[k-1]*a[n-1]を求める．
 template <typename T = long long>
 class Kitamasa {
     int k;                // k:=(漸化式の階数).
@@ -34,7 +34,7 @@ class Kitamasa {
             return x;  // f(0).
         }
         std::vector<T> &&x = mul(calc(n / 2));
-        if(n & 1) x = add(x);
+        if(n & 1LL) x = add(x);
         return x;
     }
 
