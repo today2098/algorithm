@@ -21,55 +21,41 @@
 		"body": [
 			"#include <bits/stdc++.h>",
 			"#define REP(i,n)   for(int i=0;i<(int)(n);++i)",
-			"#define FOR(i,l,r) for(int i=(int)(l);i<(int)(r);++i)",
+			"#define FOR(i,l,r) for(long long i=(long long)(l);i<(long long)(r);++i)",
 			"#define ALL(v)     (v).begin(),(v).end()",
 			"#define debug(x)   std::cerr<<\"(L\"<<__LINE__<<\") \"<<#x<<\": \"<<(x)<<std::endl",
-			"using ll   = long long;",
-			"using vi   = std::vector<int>;",
-			"using vvi  = std::vector<vi>;",
-			"using vvvi = std::vector<vvi>;",
-			"using pii  = std::pair<int,int>;",
+			"using ll  = long long;",
+			"using vi  = std::vector<int>;",
+			"using vvi = std::vector<vi>;",
+			"using pii = std::pair<int,int>;",
 			"using namespace std;",
 			"constexpr int       INF  = 1e9;",
 			"constexpr long long LINF = 1e18;",
 			"constexpr double    EPS  = 1e-10;",
 			"constexpr int       MOD  = 1e9+7;",
-			"template<class Type> void line(const Type &a){int cnt=0;for(const auto &elem:a)std::cerr<<(cnt++?\" \":\">\")<<elem;std::cerr<<std::endl;}",
+			"template<class Class> void line(const Class &a,std::ostream &os=std::cerr){int cnt=0;for(const auto &elem:a)os<<(cnt++==0?\"\":\" \")<<elem;os<<std::endl;}",
 			"",
 			"int main(){}"
 		],
 		"description": ""
 	},
-	"using vl, vvl, vvvl, pll": {
+	"using vl, vvl, pll": {
 		"scope": "cpp",
-		"prefix": "using vl, vvl, vvvl, pll",
+		"prefix": "using vl, vvl, pll",
 		"body": [
 			"using vl   = std::vector<long long>;",
 			"using vvl  = std::vector<vl>;",
-			"using vvvl = std::vector<vvl>;",
 			"using pll  = std::pair<long long,long long>;"
 		],
 		"description": ""
 	},
-	"using vd, vvd, vvvd, pdd": {
+	"using vd, vvd, pdd": {
 		"scope": "cpp",
-		"prefix": "using vd, vvd, vvvd, pdd",
+		"prefix": "using vd, vvd, pdd",
 		"body": [
 			"using vd   = std::vector<double>;",
 			"using vvd  = std::vector<vd>;",
-			"using vvvd = std::vector<vvd>;",
 			"using pdd  = std::pair<double,double>;"
-		],
-		"description": ""
-	},
-	"using vt, vvt, vvvt": {
-		"scope": "cpp",
-		"prefix": "using vt, vvt, vvvt",
-		"body": [
-			"using Type = $1;",
-			"using vt   = std::vector<Type>;",
-			"using vvt  = std::vector<vt>;",
-			"using vvvt = std::vector<vvt>;",
 		],
 		"description": ""
 	},
