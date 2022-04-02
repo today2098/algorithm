@@ -9,7 +9,7 @@
 
 namespace algorithm {
 
-namespace fourier {
+namespace fft {
 
 using D = double;
 const D PI = std::acos(-1.0);
@@ -114,7 +114,7 @@ std::vector<long long> convolution_fft(const std::vector<long long> &a, const st
     return res;
 }
 
-}  // namespace fourier
+}  // namespace fft
 
 }  // namespace algorithm
 
