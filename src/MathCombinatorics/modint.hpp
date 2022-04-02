@@ -95,6 +95,7 @@ public:
 };
 
 using mint998244353 = Modint<998'244'353>;
+using mint1000000007 = Modint<1'000'000'007>;
 using mint = Modint<1'000'000'007>;
 
 }  // namespace algorithm
