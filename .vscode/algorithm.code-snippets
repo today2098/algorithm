@@ -553,7 +553,7 @@
 			"    int nHk(int n, int k) const { return nCk(k + n - 1, n - 1); }  // 重複組み合わせ．",
 			"};",
 			"",
-			"using Combination998244353 = Combination<998'244'353>;",
+			"using Combination998244353  = Combination<998'244'353>;",
 			"using Combination1000000007 = Combination<1'000'000'007>;"
 		],
 		"description": "二項係数（mod付き）"
@@ -1455,8 +1455,7 @@
 			"};",
 			"",
 			"using mint998244353  = Modint<998'244'353>;",
-			"using mint1000000007 = Modint<1'000'000'007>;",
-			"using mint           = Modint<1'000'000'007>;"
+			"using mint1000000007 = Modint<1'000'000'007>;"
 		],
 		"description": ""
 	},
@@ -1759,7 +1758,7 @@
 			"    }",
 			"};",
 			"",
-			"using runmint998244353 = RuntimeModint<0>;",
+			"using runmint998244353  = RuntimeModint<0>;",
 			"using runmint1000000007 = RuntimeModint<1>;",
 			"",
 			"}  // namespace runtime_modint",
