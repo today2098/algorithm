@@ -1,10 +1,9 @@
 #ifndef ALGORITHM_TABLE_HPP
 #define ALGORITHM_TABLE_HPP 1
 
-namespace algorithm {
-
 #include <utility>  // for move().
 #include <vector>
+namespace algorithm {
 
 template <typename Type>
 std::vector<Type> table(size_t n, Type val) { return std::vector<Type>(n, val); }
