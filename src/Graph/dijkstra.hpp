@@ -20,7 +20,7 @@ class Dijkstra {
     };
 
     int vn;                             // vn:=(ノード数).
-    std::vector<std::vector<Edge> > g;  // g[v][]:=(ノードvがもつ辺のリスト).
+    std::vector<std::vector<Edge> > g;  // g[v][]:=(ノードvが始点である有向辺のリスト).
     std::vector<T> d;                   // d[v]:=(ノードsからvへの最短距離).
     std::vector<int> pre;               // pre[v]:=(ノードvを訪問する直前のノード番号). 逆方向経路．
     T inf;
@@ -37,17 +37,42 @@ public:
         assert(0 <= to and to < vn);
         g[from].push_back((Edge){to, cost});
     }
-    void dijkstra(int s) {  // ノードsから各ノードへの最短距離を求める．O(|E|*log|V|).
+    void dijkstra(int s) {  // ノードsから各ノードへの最短距離を求める．O(|V|^2).
         assert(0 <= s and s < vn);
         std::fill(d.begin(), d.end(), inf);
         d[s] = 0;
         std::fill(pre.begin(), pre.end(), -1);
-        r_priority_queue<std::pair<T, int> > pque;  // pair(dt,v).
+        bool seen[vn] = {};
+        for(int i = 0; i < vn; ++i) {
+            T min_dist = inf;
+            int min_v = -1;
+            for(int v = 0; v < vn; ++v) {
+                if(!seen[v] and d[v] < min_dist) {
+                    min_dist = d[v];
+                    min_v = v;
+                }
+            }
+            if(min_v == -1) break;
+            for(const Edge &e : g[min_v]) {
+                if(d[e.to] > d[min_v] + e.cost) {
+                    d[e.to] = d[min_v] + e.cost;
+                    pre[e.to] = min_v;
+                }
+            }
+            seen[min_v] = true;
+        }
+    }
+    void dijkstra_heap(int s) {  // ノードsから各ノードへの最短距離を求める．O(|E|*log|V|).
+        assert(0 <= s and s < vn);
+        std::fill(d.begin(), d.end(), inf);
+        d[s] = 0;
+        std::fill(pre.begin(), pre.end(), -1);
+        r_priority_queue<std::pair<T, int> > pque;  // pair(dist,v).
         pque.emplace(0, s);
         while(!pque.empty()) {
-            auto [dt, v] = pque.top();
+            auto [dist, v] = pque.top();
             pque.pop();
-            if(d[v] < dt) continue;
+            if(d[v] < dist) continue;
             for(const Edge &e : g[v]) {
                 if(d[e.to] > d[v] + e.cost) {
                     d[e.to] = d[v] + e.cost;
