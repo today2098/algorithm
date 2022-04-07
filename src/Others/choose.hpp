@@ -1,6 +1,7 @@
 #ifndef ALGORITHM_CHOOSE_HPP
 #define ALGORITHM_CHOOSE_HPP 1
 
+#include <algorithm>  // for sort(), unique() and lower_bound().
 #include <cassert>
 #include <string>
 #include <vector>
@@ -56,6 +57,16 @@ std::string vtos(const std::vector<int> &v) {
         s[i] = v[i];
     }
     return s;
+}
+
+template <typename Type>
+std::vector<Type> compress(std::vector<Type> &v) {  // 座標圧縮．
+    const int n = v.size();
+    std::vector<Type> res = v;
+    std::sort(res.begin(), res.end());
+    res.erase(std::unique(res.begin(), res.end()), res.end());
+    for(int i = 0; i < n; ++i) v[i] = std::lower_bound(res.begin(), res.end(), v[i]) - res.begin();
+    return res;
 }
 
 }  // namespace algorithm
