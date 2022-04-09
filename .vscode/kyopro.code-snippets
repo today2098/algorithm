@@ -39,26 +39,6 @@
 		],
 		"description": ""
 	},
-	"using vl, vvl, pll": {
-		"scope": "cpp",
-		"prefix": "using vl, vvl, pll",
-		"body": [
-			"using vl   = std::vector<long long>;",
-			"using vvl  = std::vector<vl>;",
-			"using pll  = std::pair<long long,long long>;"
-		],
-		"description": ""
-	},
-	"using vd, vvd, pdd": {
-		"scope": "cpp",
-		"prefix": "using vd, vvd, pdd",
-		"body": [
-			"using vd   = std::vector<double>;",
-			"using vvd  = std::vector<vd>;",
-			"using pdd  = std::pair<double,double>;"
-		],
-		"description": ""
-	},
 	"using r_priority_queue": {
 		"scope": "cpp",
 		"prefix": "using r_priority_queue",
