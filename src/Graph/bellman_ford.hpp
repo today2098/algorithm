@@ -15,7 +15,7 @@ class BellmanFord {
     };
 
     int vn;                             // vn:=(ノード数).
-    std::vector<std::vector<Edge> > g;  // g[v][]:=(ノードvがもつ辺のリスト).
+    std::vector<std::vector<Edge> > g;  // g[v][]:=(ノードvが始点である有向辺のリスト).
     std::vector<T> d;                   // d[v]:=(ノードsからvへの最短距離).
     std::vector<int> pre;               // pre[v]:=(ノードvを訪問する直前のノード番号). 逆方向経路．
     T inf;
