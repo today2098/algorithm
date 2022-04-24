@@ -119,6 +119,7 @@
 			"const Action id=${7:-INF};",
 			"LazySegTree<Monoid,Action> tree(fm,fa,fc,e,id,$8);"
 		],
+		"description": ""
 	},
 	"define of LazySegTree (RSQ & RAQ)": {
 		"scope": "cpp",
@@ -136,6 +137,7 @@
 			"const Action id=${7:0};",
 			"LazySegTree<Monoid,Action> tree(fm,fa,fc,e,id,vector<Monoid>($8,${9:(Monoid){0,1}}));"
 		],
+		"description": ""
 	},
 	"define of SegmentTree": {
 		"scope": "cpp",
@@ -152,7 +154,7 @@
 		"scope": "cpp",
 		"prefix": "lambda for SegmentTree",
 		"body": [
-			"const auto f=[](T a)->bool{return $1;};",
+			"const auto jud=[](T a)->bool{return $1;};",
 		],
 		"description": ""
 	},
