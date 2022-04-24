@@ -10,28 +10,28 @@ namespace algorithm {
 
 // エラトステネスの篩．
 class Sieve {
-    int sz;                 // sz:=(要素数).
+    int mx;                 // mx:=(篩にかける最大の自然数).
     std::vector<int> fact;  // fact[n]:=(自然数nの任意の素因数). fact[n]=nのとき，nは素数．
 
 public:
     // constructor.
     Sieve() : Sieve(51e4) {}
-    explicit Sieve(int n) : sz(n + 1), fact(n + 1, -1) {  // n以下の自然数を篩にかける．
+    explicit Sieve(int n) : mx(n), fact(n + 1, -1) {  // n以下の自然数を篩にかける．
         assert(n >= 0);
-        for(int i = 2; i < sz; ++i) fact[i] = i;
-        for(int i = 2; i * i < sz; ++i) {
-            if(fact[i] == i) {
-                for(int j = i * i; j < sz; j += i) fact[j] = i;
+        for(int p = 2; p <= mx; ++p) fact[p] = p;
+        for(int p = 2; p * p <= mx; ++p) {
+            if(fact[p] == p) {
+                for(int m = p * p; m <= mx; m += p) fact[m] = p;
             }
         }
     }
 
     bool is_prime(int n) const {  // 素数判定．O(1).
-        assert(0 <= n and n < sz);
+        assert(0 <= n and n <= mx);
         return fact[n] == n;
     }
     std::map<int, int> prime_factorize(int n) const {  // 高速素因数分解．
-        assert(2 <= n and n < sz);
+        assert(2 <= n and n <= mx);
         std::map<int, int> res;
         while(n > 1) {
             res[fact[n]]++;
@@ -40,14 +40,13 @@ public:
         return res;
     }
     std::vector<int> divisors(int n) const {  // 高速約数列挙．
-        assert(0 <= n and n < sz);
-        if(n == 0) return std::vector<int>();
+        assert(1 <= n and n <= mx);
         std::vector<int> res({1});
         if(n == 1) return res;
         const auto &&pf = prime_factorize(n);
         for(const auto &[p, cnt] : pf) {
-            int m = res.size();
-            for(int i = 0; i < m; ++i) {
+            int sz = res.size();
+            for(int i = 0; i < sz; ++i) {
                 int v = 1;
                 for(int j = 0; j < cnt; ++j) {
                     v *= p;
