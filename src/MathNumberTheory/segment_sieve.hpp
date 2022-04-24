@@ -11,26 +11,27 @@ namespace algorithm {
 
 // 区間篩．
 class SegmentSieve {
-    long long l, r, m;
+    long long l, r;
+    long long sr;                                  // sr:=√r.
     std::vector<long long> small;                  // small[n]:=(範囲[2,√r)の自然数xのある素因数).
-    std::vector<std::map<long long, int> > large;  // large[n-l]:=(範囲[l,r)の自然数xのいくつかの素因数).
+    std::vector<std::map<long long, int> > large;  // large[n-l]:=(範囲[l,r)の自然数xの範囲[2,√r)における素因数).
     std::vector<long long> aux;                    // aux[n-l]:=(large[n-l]の素因数の積).
 
     void build() {
-        m = std::sqrt(r) + 5;
-        small.assign(m, -1);
-        for(long long i = 2; i < m; ++i) small[i] = i;
+        sr = std::sqrt(r) + 5;
+        small.assign(sr, -1);
+        for(long long p = 2; p < sr; ++p) small[p] = p;
         large.resize(r - l);
         aux.assign(r - l, 1);
-        for(long long i = 2; i * i < r; ++i) {
-            if(small[i] == i) {
-                for(long long j = i * i; j < m; j += i) small[j] = i;
-                for(long long j = std::max<long long>(2LL, (l + i - 1) / i) * i; j < r; j += i) {
-                    long long tmp = j;
-                    while(tmp % i == 0 and aux[j - l] * aux[j - l] <= r) {
-                        large[j - l][i]++;
-                        aux[j - l] *= i;
-                        tmp /= i;
+        for(long long p = 2; p * p < r; ++p) {
+            if(small[p] == p) {
+                for(long long m = p * p; m < sr; m += p) small[m] = p;
+                for(long long m = std::max<long long>(2LL, (l + p - 1) / p) * p; m < r; m += p) {
+                    long long tmp = m;
+                    while(tmp % p == 0 and aux[m - l] * aux[m - l] <= r) {
+                        large[m - l][p]++;
+                        aux[m - l] *= p;
+                        tmp /= p;
                     }
                 }
             }
@@ -53,7 +54,7 @@ public:
         assert(l <= n and n < r);
         std::map<long long, int> res = large[n - l];
         n /= aux[n - l];
-        if(n >= m) {
+        if(n >= sr) {
             res[n]++;
             return res;
         }
@@ -69,8 +70,8 @@ public:
         if(n == 1) return res;
         const auto &&pf = prime_factorize(n);
         for(const auto &[p, cnt] : pf) {
-            int m = res.size();
-            for(int i = 0; i < m; ++i) {
+            int sz = res.size();
+            for(int i = 0; i < sz; ++i) {
                 long long v = 1;
                 for(int j = 0; j < cnt; ++j) {
                     v *= p;
