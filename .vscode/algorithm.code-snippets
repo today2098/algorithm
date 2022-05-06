@@ -2208,10 +2208,10 @@
 		"scope": "cpp",
 		"prefix": "igcd, ilcm",
 		"body": [
-			"template<typename Type> Type igcd(Type x,Type y){return (y==0)?x:igcd(y,x%y);}",
-			"template<typename Type> Type ilcm(Type x,Type y){return x/igcd(x,y)*y;}"
+			"template<typename Type> Type igcd(Type a,Type b){return (b==0)?a:igcd(b,a%b);}",
+			"template<typename Type> Type ilcm(Type a,Type b){return a/igcd(a,b)*b;}"
 		],
-		"description": "最大公約数, 最小公倍数"
+		"description": "最大公約数，最小公倍数"
 	},
 	"ipow": {
 		"scope": "cpp",

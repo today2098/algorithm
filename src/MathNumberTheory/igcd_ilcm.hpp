@@ -4,10 +4,10 @@
 namespace algorithm {
 
 template <typename Type>
-Type igcd(Type x, Type y) { return (y == 0) ? x : igcd(y, x % y); }  // 最大公約数 (GCD:Greatest Common Divisor).
+Type igcd(Type a, Type b) { return (b == 0) ? a : igcd(b, a % b); }  // 最大公約数 (GCD:Greatest Common Divisor)．O(logN).
 
 template <typename Type>
-Type ilcm(Type x, Type y) { return x / igcd(x, y) * y; }  // 最小公倍数 (LCM:Least Common Multiple).
+Type ilcm(Type a, Type b) { return a / igcd(a, b) * b; }  // 最小公倍数 (LCM:Least Common Multiple)．O(logN).
 
 }  // namespace algorithm
 
