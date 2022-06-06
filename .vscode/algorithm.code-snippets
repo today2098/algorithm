@@ -1985,7 +1985,7 @@
 		],
 		"description": "セグメント木"
 	},
-	"エラトステネスの篩": {
+	"Sieve": {
 		"scope": "cpp",
 		"prefix": "Sieve",
 		"body": [
