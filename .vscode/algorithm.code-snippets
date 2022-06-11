@@ -2248,6 +2248,14 @@
 		],
 		"description": "編集距離 (edit distance)"
 	},
+	"euclidean_distance": {
+		"prefix": "euclidean_distance",
+		"body": [
+			"template <typename Type>",
+			"Type euclidean_distance(Type dy, Type dx) { return dy * dy + dx * dx; }"
+		],
+		"description": "ユークリッド距離"
+	},
 	"extgcd": {
 		"scope": "cpp",
 		"prefix": "extgcd",
