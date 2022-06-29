@@ -33,27 +33,27 @@ public:
     }
 
     int modulus() const { return mod; }
-    int factorial(int n) const {  // 階乗.
+    long long factorial(int n) const {  // 階乗.
         assert(0 <= n and n < sz);
         return fact[n];
     }
-    int inverse(int n) const {  // 逆元.
+    long long inverse(int n) const {  // 逆元.
         assert(1 <= n and n < sz);
         return inv[n];
     }
-    int inverse_fact(int n) const {  // 階乗の逆元.
+    long long inverse_fact(int n) const {  // 階乗の逆元.
         assert(0 <= n and n < sz);
         return finv[n];
     }
-    int nPk(int n, int k) const {  // 順列．
+    long long nPk(int n, int k) const {  // 順列．
         assert(0 <= k and k <= n and n < sz);
         return fact[n] * finv[n - k] % mod;
     }
-    int nCk(int n, int k) const {  // 組み合わせ．
+    long long nCk(int n, int k) const {  // 組み合わせ．
         assert(0 <= k and k <= n and n < sz);
         return fact[n] * finv[n - k] % mod * finv[k] % mod;
     }
-    int nHk(int n, int k) const { return nCk(k + n - 1, n - 1); }  // 重複組み合わせ．
+    long long nHk(int n, int k) const { return nCk(k + n - 1, n - 1); }  // 重複組み合わせ．
 };
 
 using Combination998244353 = Combination<998'244'353>;
