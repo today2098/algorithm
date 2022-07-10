@@ -8,46 +8,46 @@
 
 namespace algorithm {
 
-// 素集合データ構造.
+// 素集合データ構造．
 class UnionFind {
-    int vn, gn;            // vn:=(ノード数), gn:=(グループ数).
-    std::vector<int> par;  // par[v]:=(ノードvの親番号). 0未満の場合，vが親で，絶対値がグループサイズを表す．
+    int m_vn, m_gn;          // m_vn:=(ノード数), m_gn:=(グループ数).
+    std::vector<int> m_par;  // m_par[v]:=(ノードvの親番号). 0未満の場合，vが親で，絶対値がグループサイズを表す．
 
 public:
     // constructor.
     UnionFind() : UnionFind(0) {}
-    explicit UnionFind(size_t vn_) : vn(vn_), gn(vn_), par(vn_, -1) {}
+    explicit UnionFind(size_t vn) : m_vn(vn), m_gn(vn), m_par(vn, -1) {}
 
-    int get_vn() const { return vn; };  // ノード数を返す．
-    int get_gn() const { return gn; };  // グループ数を返す．
-    int root(int v) {                   // ノードvの親番号を返す．
-        assert(0 <= v and v < vn);
-        if(par[v] < 0) return v;
-        return par[v] = root(par[v]);
+    int get_vn() const { return m_vn; };  // ノード数を返す．
+    int get_gn() const { return m_gn; };  // グループ数を返す．
+    int root(int v) {                     // ノードvの親番号を返す．
+        assert(0 <= v and v < m_vn);
+        if(m_par[v] < 0) return v;
+        return m_par[v] = root(m_par[v]);
     }
     int size(int v) {  // ノードvが属するグループのサイズを返す．
-        assert(0 <= v and v < vn);
-        return -par[root(v)];
+        assert(0 <= v and v < m_vn);
+        return -m_par[root(v)];
     }
     bool same(int u, int v) {  // ノードuとvが同じグループか判定する．
-        assert(0 <= u and u < vn);
-        assert(0 <= v and v < vn);
+        assert(0 <= u and u < m_vn);
+        assert(0 <= v and v < m_vn);
         return root(u) == root(v);
     }
     bool unite(int u, int v) {  // ノードu, vが属するそれぞれのグループを結合する．
-        assert(0 <= u and u < vn);
-        assert(0 <= v and v < vn);
+        assert(0 <= u and u < m_vn);
+        assert(0 <= v and v < m_vn);
         u = root(u), v = root(v);
         if(u == v) return false;                // Do nothing.
         if(size(u) < size(v)) std::swap(u, v);  // Merge technique.
-        par[u] += par[v];
-        par[v] = u;
-        gn--;
+        m_par[u] += m_par[v];
+        m_par[v] = u;
+        m_gn--;
         return true;
     }
     void reset() {
-        gn = vn;
-        std::fill(par.begin(), par.end(), -1);
+        m_gn = m_vn;
+        std::fill(m_par.begin(), m_par.end(), -1);
     }
 };
 
