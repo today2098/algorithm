@@ -118,6 +118,16 @@
 		],
 		"description": ""
 	},
+	"using vt, vvt, vvvt": {
+		"scope": "cpp",
+		"prefix": "using vt, vvt, vvvt",
+		"body": [
+			"template<typename Type> using vt   = std::vector<Type>;",
+			"template<typename Type> using vvt  = std::vector<vt<Type> >;",
+			"template<typename Type> using vvvt = std::vector<vvt<Type> >;"
+		],
+		"description": ""
+	},
 	"int MOD2": {
 		"scope": "cpp",
 		"prefix": "int MOD2",
