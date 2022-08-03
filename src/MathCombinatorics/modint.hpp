@@ -42,15 +42,6 @@ public:
         --(*this);
         return res;
     }
-    friend Modint operator*(const Modint &x, const Modint &y) { return Modint(x) *= y; }
-    friend Modint operator/(const Modint &x, const Modint &y) { return Modint(x) /= y; }
-    friend Modint operator+(const Modint &x, const Modint &y) { return Modint(x) += y; }
-    friend Modint operator-(const Modint &x, const Modint &y) { return Modint(x) -= y; }
-    Modint &operator*=(const Modint &a) {
-        val = val * a.val % mod;
-        return *this;
-    }
-    Modint &operator/=(const Modint &a) { return (*this) *= a.inv(); }
     Modint &operator+=(const Modint &a) {
         val += a.val;
         if(val >= mod) val -= mod;
@@ -61,6 +52,16 @@ public:
         if(val < 0) val += mod;
         return *this;
     }
+    Modint &operator*=(const Modint &a) {
+        val = val * a.val % mod;
+        return *this;
+    }
+    Modint &operator/=(const Modint &a) { return (*this) *= a.inv(); }
+
+    friend Modint operator+(const Modint &x, const Modint &y) { return Modint(x) += y; }
+    friend Modint operator-(const Modint &x, const Modint &y) { return Modint(x) -= y; }
+    friend Modint operator*(const Modint &x, const Modint &y) { return Modint(x) *= y; }
+    friend Modint operator/(const Modint &x, const Modint &y) { return Modint(x) /= y; }
     friend bool operator==(const Modint &x, const Modint &y) { return x.val == y.val; }
     friend bool operator!=(const Modint &x, const Modint &y) { return x.val != y.val; }
     friend std::istream &operator>>(std::istream &is, Modint &x) {
@@ -71,7 +72,7 @@ public:
     }
     friend std::ostream &operator<<(std::ostream &os, const Modint &x) { return os << x.val; }
 
-    int modulus() const { return mod; }
+    static constexpr int modulus() { return mod; }
     long long value() const { return val; }
     Modint inv() const {
         long long a = val, b = mod, u = 1, v = 0;
@@ -88,7 +89,8 @@ public:
         Modint res = 1, tmp = x;
         while(k > 0) {
             if(k & 1LL) res *= tmp;
-            tmp = tmp * tmp, k >>= 1;
+            tmp = tmp * tmp;
+            k >>= 1;
         }
         return res;
     }
