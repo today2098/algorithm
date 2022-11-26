@@ -1,0 +1,73 @@
+{
+	// Place your algorithm ワークスペース snippets here. Each snippet is defined under a snippet name and has a scope, prefix, body and 
+	// description. Add comma separated ids of the languages where the snippet is applicable in the scope field. If scope 
+	// is left empty or omitted, the snippet gets applied to all languages. The prefix is what is 
+	// used to trigger the snippet and the body will be expanded and inserted. Possible variables are: 
+	// $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. 
+	// Placeholders with the same ids are connected.
+	// Example:
+	// "Print to console": {
+	// 	"scope": "javascript,typescript",
+	// 	"prefix": "log",
+	// 	"body": [
+	// 		"console.log('$1');",
+	// 		"$2"
+	// 	],
+	// 	"description": "Log output to console"
+	// }
+	"UnionFind": {
+		"scope": "cpp",
+		"prefix": "UnionFind",
+		"body": [
+			"// 素集合データ構造．",
+			"class UnionFind {",
+			"    int m_vn;                // m_vn:=(ノード数).",
+			"    int m_gn;                // m_gn:=(グループ数).",
+			"    std::vector<int> m_par;  // m_par[v]:=(ノードvの親番号). 0未満の場合，vは親で，値の絶対値はグループサイズを表す．",
+			"",
+			"public:",
+			"    UnionFind() : UnionFind(0) {}",
+			"    explicit UnionFind(size_t vn) : m_vn(vn), m_gn(vn), m_par(vn, -1) {}",
+			"",
+			"    // ノード数を返す．",
+			"    int vn() const { return m_vn; };",
+			"    // グループ数を返す．",
+			"    int gn() const { return m_gn; };",
+			"    // ノードvの親番号を返す．",
+			"    int root(int v) {",
+			"        assert(0 <= v and v < vn());",
+			"        if(m_par[v] < 0) return v;",
+			"        return m_par[v] = root(m_par[v]);",
+			"    }",
+			"    // ノードvが属するグループのサイズを返す．",
+			"    int size(int v) {",
+			"        assert(0 <= v and v < vn());",
+			"        return -m_par[root(v)];",
+			"    }",
+			"    // ノードuとvが同じグループか判定する．",
+			"    bool same(int u, int v) {",
+			"        assert(0 <= u and u < vn());",
+			"        assert(0 <= v and v < vn());",
+			"        return root(u) == root(v);",
+			"    }",
+			"    // ノードu, vが属するそれぞれのグループを結合する．",
+			"    bool unite(int u, int v) {",
+			"        assert(0 <= u and u < vn());",
+			"        assert(0 <= v and v < vn());",
+			"        u = root(u), v = root(v);",
+			"        if(u == v) return false;                // Do nothing.",
+			"        if(size(u) < size(v)) std::swap(u, v);  // Merge technique.",
+			"        m_par[u] += m_par[v];",
+			"        m_par[v] = u;",
+			"        m_gn--;",
+			"        return true;",
+			"    }",
+			"    void reset() {",
+			"        m_gn = vn();",
+			"        std::fill(m_par.begin(), m_par.end(), -1);",
+			"    }",
+			"};"
+		],
+		"description": "素集合データ構造"
+	}
+}
