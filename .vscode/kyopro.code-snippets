@@ -37,5 +37,16 @@
 			"int main(){}"
 		],
 		"description": "Main template"
+	},
+	"Declaration of SegmentTree (RMQ)": {
+		"scope": "cpp",
+		"prefix": "SegmentTree (RMQ)",
+		"body": [
+			"using T=${1:int};",
+			"auto op=[](T a,T b)->T{return ${2:max(a,b)};};",
+			"const T e=${3:-INF};",
+			"SegmentTree<T> tree(op,e,${4:0});"
+		],
+		"description": "SegmentTree (RMQ) の宣言"
 	}
 }
