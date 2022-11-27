@@ -18,9 +18,9 @@ $ cd algorithm
 $ cp .vscode/*.code-snippets /path/to/your/workspace/.vscode/
 ```
 
-またスニペット作成を簡単にするため，関数の宣言と定義，ソースとヘッダを分けず，ヘッダーファイル (.hpp) にまとめて記述しています．
+またソースコードについて，スニペット作成を簡単にするため，関数の宣言と定義を分けず，ヘッダーファイル (.hpp) にまとめて記述しています．
 
-I write only on header files to simplify making snippet. 
+I write source code only on header file in order to simplify making snippet. 
 
 
 ## Description
