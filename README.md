@@ -45,4 +45,12 @@ I write only on header files to simplify making snippet.
 - Dijkstra : 単一始点最短経路 (Single Source Shortest Path, SSSP)．
 
 
+### Math Number Theory
+
+#### Modulo
+
+- Modint
+- DynamicModint : 動的Modint．
+
+
 ## Reference
