@@ -83,7 +83,7 @@
 			"    }",
 			"};"
 		],
-		"description": "単一始点最短経路問題"
+		"description": "単一始点最短経路"
 	},
 	"SegmentTree": {
 		"scope": "cpp",
