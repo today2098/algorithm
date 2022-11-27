@@ -75,7 +75,10 @@ public:
         assert(0 <= u and u < vn());
         assert(0 <= v and v < vn());
         u = root(u), v = root(v);
-        if(u == v) return false;  // Do nothing.
+        if(u == v) {
+            m_now++;
+            return false;  // Already united.
+        }
         int sz_u = -m_par[u].rbegin()->second;
         int sz_v = -m_par[v].rbegin()->second;
         if(sz_u < sz_v) std::swap(u, v), std::swap(sz_u, sz_v);  // Merge technique.
