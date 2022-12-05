@@ -30,6 +30,7 @@ I write source code only on header file in order to simplify making snippet.
 #### Union-Find Tree
 
 - UnionFind : 素集合データ構造．
+- PotentializedUnionFind : 重み付きUnion-Find Tree.
 - SubPersistentUnionFind : 部分永続Union-Find Tree．
 
 
@@ -42,6 +43,7 @@ I write source code only on header file in order to simplify making snippet.
 
 #### Shortest Path
 
+- BellmanFord : 単一始点最短経路 (Single Source Shortest Path, SSSP)．
 - Dijkstra : 単一始点最短経路 (Single Source Shortest Path, SSSP)．
 
 
@@ -51,6 +53,14 @@ I write source code only on header file in order to simplify making snippet.
 
 - Modint
 - DynamicModint : 動的Modint．
+
+
+### Math Combinatorics
+
+- Combination : 二項係数（mod付き）．
+- nPk() : 順列．
+- nCK() : 組み合わせ．
+- nHk() : 重複組み合わせ．
 
 
 ## Reference
