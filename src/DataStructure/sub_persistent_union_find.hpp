@@ -17,9 +17,13 @@ class SubPersistentUnionFind {
     // m_par[v][](t,id):=(ノードvの時刻tにおける親番号id). 値idが0未満の場合，vが親で，値idの絶対値はグループサイズを示す．
     std::vector<std::vector<pii> > m_par;
 
+    static constexpr int infinity() { return 1e9; }
+
 public:
     SubPersistentUnionFind() : SubPersistentUnionFind(0) {}
-    explicit SubPersistentUnionFind(size_t vn) : m_now(1), m_vn(vn), m_gn(vn), m_par(vn, std::vector<pii>(1, pii(0, -1))) {}
+    explicit SubPersistentUnionFind(size_t vn) : m_now(1), m_vn(vn), m_gn(vn), m_par(vn, std::vector<pii>(1, pii(0, -1))) {
+        assert((int)vn < infinity());
+    }
 
     // 現在の時刻を返す．
     int now() const { return m_now; }
@@ -38,7 +42,7 @@ public:
     int root(int v, int t) const {
         assert(0 <= v and v < vn());
         assert(0 <= t and t < now());
-        auto itr = std::lower_bound(m_par[v].begin(), m_par[v].end(), pii(t, -1e9));
+        auto itr = std::lower_bound(m_par[v].begin(), m_par[v].end(), pii(t, -infinity()));
         if(itr == m_par[v].end() or itr->first > t) itr--;
         if(itr->second < 0) return v;
         return (itr->first == t ? itr->second : root(itr->second, t));
@@ -53,7 +57,7 @@ public:
         assert(0 <= v and v < vn());
         assert(0 <= t and t < now());
         int par = root(v, t);
-        auto itr = std::lower_bound(m_par[par].begin(), m_par[par].end(), pii(t, -1e9));
+        auto itr = std::lower_bound(m_par[par].begin(), m_par[par].end(), pii(t, -infinity()));
         if(itr == m_par[par].end() or itr->first > t) itr--;
         return -itr->second;
     }
@@ -90,7 +94,7 @@ public:
     }
     void reset() {
         m_now = 1;
-        m_gn = m_vn;
+        m_gn = vn();
         for(auto &history : m_par) history.resize(1);
     }
 };
