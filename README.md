@@ -34,6 +34,12 @@ I write source code only on header file in order to simplify making snippet.
 - SubPersistentUnionFind : 部分永続Union-Find Tree．
 
 
+#### Binary Indexed Tree
+
+- BIT : Binary Indexed Tree. 別名「フェニック木」．
+- BIT0 : Binary Indexed Tree (0-based index).
+
+
 #### Segment Tree
 
 - SegmentTree : 一点更新・区間取得セグメント木．
@@ -43,8 +49,13 @@ I write source code only on header file in order to simplify making snippet.
 
 #### Shortest Path
 
-- BellmanFord : 単一始点最短経路 (Single Source Shortest Path, SSSP)．
-- Dijkstra : 単一始点最短経路 (Single Source Shortest Path, SSSP)．
+- BellmanFord : Bellman-Fordアルゴリズム．単一始点最短経路 (Single Source Shortest Path, SSSP) を求める．
+- Dijkstra : Dijkstraアルゴリズム．単一始点最短経路 (Single Source Shortest Path, SSSP) を求める．
+
+
+#### Max Flow
+
+- FordFulkerson : Ford-Fulkersonアルゴリズム．
 
 
 ### Math Number Theory
@@ -55,12 +66,17 @@ I write source code only on header file in order to simplify making snippet.
 - DynamicModint : 動的Modint．
 
 
+#### Prime Number
+
+- Sieve : エラトステネスの篩
+
+
 ### Math Combinatorics
 
 - Combination : 二項係数（mod付き）．
-- nPk() : 順列．
-- nCK() : 組み合わせ．
-- nHk() : 重複組み合わせ．
+- nPk () : 順列．
+- nCK () : 組み合わせ．
+- nHk () : 重複組み合わせ．
 
 
 ## Reference
