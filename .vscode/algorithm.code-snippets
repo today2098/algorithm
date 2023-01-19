@@ -1329,6 +1329,19 @@
 		],
 		"description": "素集合データ構造"
 	},
+	"line": {
+		"scope": "cpp",
+		"prefix": "line",
+		"body": [
+			"template <class Class>",
+			"void line(const Class &a, std::string delim = \" \") {",
+			"    int cnt = 0;",
+			"    for(const auto &elem : a) std::cout << (cnt++ == 0 ? \"\" : delim) << elem;",
+			"    std::cout << std::endl;",
+			"}"
+		],
+		"description": ""
+	},
 	"nPk, nCk, nHk": {
 		"prefix": "nPk, nCk, nHk",
 		"body": [
