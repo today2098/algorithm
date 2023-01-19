@@ -10,7 +10,7 @@ namespace algorithm {
 class UnionFind {
     int m_vn;                // m_vn:=(ノード数).
     int m_gn;                // m_gn:=(グループ数).
-    std::vector<int> m_par;  // m_par[v]:=(ノードvの親番号). 0未満の場合，vは親で，値の絶対値はグループサイズを表す．
+    std::vector<int> m_par;  // m_par[v]:=(ノードvの親番号). 0未満の場合，vは親となり，値の絶対値はグループサイズを表す．
 
 public:
     UnionFind() : UnionFind(0) {}

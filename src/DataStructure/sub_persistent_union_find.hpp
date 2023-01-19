@@ -2,7 +2,6 @@
 #define ALGORITHM_SUB_PERSISTENT_UNION_FIND_HPP 1
 
 #include <cassert>
-#include <utility>
 #include <vector>
 
 namespace algorithm {
@@ -14,7 +13,7 @@ class SubPersistentUnionFind {
     int m_now;  // m_now:=(時刻).
     int m_vn;   // m_vn:=(ノード数).
     int m_gn;   // m_gn:=(グループ数).
-    // m_par[v][](t,id):=(ノードvの時刻tにおける親番号id). 値idが0未満の場合，vが親で，値idの絶対値はグループサイズを示す．
+    // m_par[v][](t,id):=(時刻tにおけるノードvの親番号id). 値idが0未満の場合，vは親となり，値idの絶対値はグループサイズを表す．
     std::vector<std::vector<pii> > m_par;
 
     static constexpr int infinity() { return 1e9; }

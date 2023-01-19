@@ -11,7 +11,7 @@ template <typename T>
 class PotentializedUnionFind {
     int m_vn;                // m_vn:=(ノード数).
     int m_gn;                // m_gn:=(グループ数).
-    std::vector<int> m_par;  // m_par[v]:=(ノードvの親番号). 0未満の場合，vが親で，値の絶対値がグループサイズを表す．
+    std::vector<int> m_par;  // m_par[v]:=(ノードvの親番号). 0未満の場合，vは親となり，値の絶対値はグループサイズを表す．
     std::vector<T> m_p;      // m_p[v]:=(ノードvのポテンシャル).
 
 public:
@@ -61,7 +61,7 @@ public:
         u = root(u), v = root(v);
         if(u == v) return false;  // Do nothing.
         if(size(u) < size(v)) {   // Merge technique.
-            swap(u, v);
+            std::swap(u, v);
             d = -d;
         }
         m_par[u] += m_par[v];
