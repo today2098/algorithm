@@ -13,10 +13,15 @@ public:
 
     // 計測開始時間を保存する．
     void restart() { m_start = std::chrono::system_clock::now(); }
-    // 経過時間を返す．[msec].
+    // 経過時間を返す．[millisec].
     auto elapsed() const {
         auto now = std::chrono::system_clock::now();
         return std::chrono::duration_cast<std::chrono::milliseconds>(now - m_start).count();
+    }
+    // 経過時間を返す．[microsec].
+    auto elapsed_micro() const {
+        auto now = std::chrono::system_clock::now();
+        return std::chrono::duration_cast<std::chrono::microseconds>(now - m_start).count();
     }
 };
 
