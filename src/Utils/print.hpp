@@ -7,6 +7,19 @@
 
 namespace algorithm {
 
+template <typename Type>
+std::istream &operator>>(std::istream &is, std::vector<Type> &v) {
+    for(auto &in : v) is >> in;
+    return is;
+}
+
+template <typename Type>
+std::ostream &operator<<(std::ostream &os, const std::vector<Type> &v) {
+    int cnt = 0;
+    for(const auto &out : v) os << (cnt++ ? " " : "") << out;
+    return os;
+}
+
 template <class Class>
 void line(const Class &a, std::string delim = " ") {
     int cnt = 0;

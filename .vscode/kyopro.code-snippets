@@ -97,6 +97,25 @@
 		],
 		"description": ""
 	},
+	"I/O of std::vector": {
+		"scope": "cpp",
+		"prefix": "I/O of std::vector",
+		"body": [
+			"template <typename Type>",
+			"std::istream &operator>>(std::istream &is, std::vector<Type> &v) {",
+			"    for(auto &in : v) is >> in;",
+			"    return is;",
+			"}",
+			"",
+			"template <typename Type>",
+			"std::ostream &operator<<(std::ostream &os, const std::vector<Type> &v) {",
+			"    int cnt = 0;",
+			"    for(const auto &out : v) os << (cnt++ ? \" \" : \"\") << out;",
+			"    return os;",
+			"}"
+		],
+		"description": ""
+	},
 	"line": {
 		"scope": "cpp",
 		"prefix": "line",
