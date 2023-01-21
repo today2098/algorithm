@@ -356,6 +356,33 @@
 		],
 		"description": ""
 	},
+	"using r_priority_queue": {
+		"scope": "cpp",
+		"prefix": "using r_priority_queue",
+		"body": [
+			"template <typename Type>",
+			"using r_priority_queue = std::priority_queue<Type, std::vector<Type>, std::greater<Type> >;"
+		],
+		"description": ""
+	},
+	"dy[], dx[]": {
+		"scope": "cpp",
+		"prefix": "dy[], dx[]",
+		"body": [
+			"const int dy[] = {-1, 0, 0, 1};",
+			"const int dx[] = {0, -1, 1, 0};"
+		],
+		"description": "グリッドの4近傍"
+	},
+	"ddy[], ddx[]": {
+		"scope": "cpp",
+		"prefix": "ddy[], ddx[]",
+		"body": [
+			"const int ddy[8] = {-1, -1, -1, 0, 0, 1, 1, 1};",
+			"const int ddx[8] = {-1, 0, 1, -1, 1, -1, 0, 1};"
+		],
+		"description": "グリッドの8近傍"
+	},
 	"Declaration of RNG": {
 		"scope": "cpp",
 		"prefix": "rng",
