@@ -217,6 +217,17 @@
 		],
 		"description": ""
 	},
+	"Declaration of RNG": {
+		"scope": "cpp",
+		"prefix": "rng",
+		"body": [
+			"std::random_device seed;                                   // 乱数生成器のシード（非決定的な乱数生成器）．",
+			"std::mt19937_64 rng(seed());                               // 決定的な乱数生成器．",
+			"std::uniform_int_distribution<long long> uniform(0, 100);  // 範囲[0,100]の離散一様分布．",
+			"std::cerr << uniform(rng) << std::endl;"
+		],
+		"description": "乱数生成"
+	},
 	"Declaration of SegmentTree (RMQ)": {
 		"scope": "cpp",
 		"prefix": "SegmentTree (RMQ)",
