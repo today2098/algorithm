@@ -1857,6 +1857,23 @@
 		],
 		"description": "平方根（ニュートン法）"
 	},
+	"is_prime": {
+		"scope": "cpp",
+		"prefix": "is_prime",
+		"body": [
+			"// 素数判定．O(√N).",
+			"template <typename Type>",
+			"bool is_prime(Type n) {",
+			"    assert(std::is_integral<Type>::value);",
+			"    if(n < 2) return false;",
+			"    for(Type p = 2; p * p <= n; ++p) {",
+			"        if(n % p == 0) return false;",
+			"    }",
+			"    return true;",
+			"}"
+		],
+		"description": "素数判定"
+	},
 	"lcs": {
 		"scope": "cpp",
 		"prefix": "lcs",
@@ -1970,6 +1987,25 @@
 			"long long nHk(long long n, int k) { return nCk(k + n - 1, n - 1); }"
 		],
 		"description": "順列，組み合わせ"
+	},
+	"prime_factorize": {
+		"scope": "cpp",
+		"prefix": "prime_factorize",
+		"body": [
+			"// 素因数分解．O(√N).",
+			"template <typename Type>",
+			"std::map<Type, int> prime_factorize(Type n) {",
+			"    assert(n >= 2);",
+			"    std::map<Type, int> mp;  // mp[p]:=(自然数nに含まれる素因数pの個数).",
+			"    for(Type p = 2; p * p <= n; ++p) {",
+			"        if(n % p != 0) continue;",
+			"        while(n % p == 0) mp[p]++, n /= p;",
+			"    }",
+			"    if(n != 1) mp[n]++;",
+			"    return mp;",
+			"}"
+		],
+		"description": "素因数分解"
 	},
 	"z_algorithm": {
 		"scope": "cpp",
