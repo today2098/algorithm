@@ -1774,6 +1774,28 @@
 		],
 		"description": ""
 	},
+	"calc_divisors": {
+		"scope": "cpp",
+		"prefix": "calc_divisors",
+		"body": [
+			"// 約数列挙．O(√N).",
+			"template <typename Type>",
+			"std::vector<Type> calc_divisors(Type n) {",
+			"    assert(n >= 0);",
+			"    std::vector<Type> res;  // res[]:=(自然数nの約数の集合).",
+			"    for(Type p = 1; p * p <= n; ++p) {",
+			"        if(n % p == 0) {",
+			"            res.push_back(p);",
+			"            Type q = n / p;",
+			"            if(q != p) res.push_back(q);",
+			"        }",
+			"    }",
+			"    std::sort(res.begin(), res.end());",
+			"    return res;",
+			"}"
+		],
+		"description": "約数列挙"
+	},
 	"edit_distance": {
 		"scope": "cpp",
 		"prefix": "edit_distance",
@@ -1792,6 +1814,15 @@
 			"}"
 		],
 		"description": "編集距離 (edit distance)"
+	},
+	"igcd, ilcm": {
+		"scope": "cpp",
+		"prefix": "igcd, ilcm",
+		"body": [
+			"template<typename Type> Type igcd(Type a,Type b){return (b==0)?a:igcd(b,a%b);}",
+			"template<typename Type> Type ilcm(Type a,Type b){return a/igcd(a,b)*b;}"
+		],
+		"description": "最大公約数，最小公倍数"
 	},
 	"ipow": {
 		"scope": "cpp",
