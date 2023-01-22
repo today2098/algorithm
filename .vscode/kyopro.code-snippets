@@ -38,7 +38,7 @@
 		],
 		"description": "Main template"
 	},
-	"Main template2": {
+	"All template": {
 		"prefix": "main",
 		"body": [
 			"#include <bits/stdc++.h>",
@@ -104,7 +104,7 @@
 			"int main(){}",
 			""
 		],
-		"description": "Main template2"
+		"description": ""
 	},
 	"DEBUG": {
 		"scope": "cpp",
