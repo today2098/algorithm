@@ -1,6 +1,7 @@
 #ifndef ALGORITHM_BINARY_TRIE_HPP
 #define ALGORITHM_BINARY_TRIE_HPP 1
 
+#include <bitset>
 #include <cassert>
 #include <vector>
 
@@ -19,9 +20,9 @@ class BinaryTrie {
 
     void delete_tree(Node *rt) {
         if(rt == nullptr) return;
-        for(int i = 0; i < 2; ++i) {
-            delete_tree(rt->ch[i]);
-            rt->ch[i] = nullptr;
+        for(bool flag : {0, 1}) {
+            delete_tree(rt->ch[flag]);
+            rt->ch[flag] = nullptr;
         }
         delete rt;
         rt = nullptr;
@@ -70,17 +71,15 @@ class BinaryTrie {
         bool flag = (x >> shift) & (T)1;
         return ((flag and p->ch[0] != nullptr) ? p->ch[0]->cnt : 0) + count_lower(p->ch[flag], x, shift - 1);
     }
-    void dfs(std::ostream &os, Node *p, int i, bool bits[]) const {
-        if(i == B) {
-            os << "[";
-            for(int j = 0; j < B; ++j) os << (bits[j] ? 1 : 0);
-            os << "] (num:" << p->cnt << ")" << std::endl;
+    void dfs(std::ostream &os, Node *p, std::bitset<B> &bits, int shift = B - 1) const {
+        if(shift < 0) {
+            os << "[" << bits << "] (num: " << (T)bits.to_ullong() << ", cnt: " << p->cnt << ")\n";
             return;
         }
-        for(int j = 0; j < 2; ++j) {
-            if(p->ch[j] != nullptr) {
-                bits[i] = j;
-                dfs(os, p->ch[j], i + 1, bits);
+        for(bool flag : {0, 1}) {
+            if(p->ch[flag] != nullptr) {
+                bits.set(shift, flag);
+                dfs(os, p->ch[flag], bits, shift - 1);
             }
         }
     }
@@ -93,16 +92,16 @@ public:
         clear();
     }
 
-    // 集合内でk番目に小さい値を取得．O(B).
+    // 集合内でk番目に小さい値を取得する．O(B).
     T operator[](int k) const {
         assert(0 <= k and k < size());
         return get(root, k);
     }
 
+    // 要素が空かどうか判定する．O(1).
+    bool empty() const { return root == nullptr; }
     // 要素数を返す．O(1).
     int size() const { return (root == nullptr ? 0 : root->cnt); }
-    // 要素が空かどうか．O(1).
-    bool empty() const { return root == nullptr; }
     // 値xの要素数を返す．O(B).
     int count(T x) const {
         if(root == nullptr) return 0;
@@ -113,26 +112,27 @@ public:
         }
         return p->cnt;
     }
-    // 値xを集合に1つ追加．O(B).
+    // 集合に値xを1つ追加する．O(B).
     void insert(T x) { root = add(root, x); }
-    // 値xを集合から1つ削除．O(B).
+    // 集合から値xを1つ削除する．O(B).
     void erace(T x) {
         assert(count(x) >= 1);
         root = sub(root, x);
     }
-    // 集合内で値xとXORしたときに最小となる値を取得．O(B).
+    // 集合内で値xとXORしたときに最小となる値を取得する．O(B).
     T min_element(T x = 0) const { return get_min(root, x); }
-    // 集合内で値xとXORしたときに最大となる値を取得．O(B).
+    // 集合内で値xとXORしたときに最大となる値を取得する．O(B).
     T max_element(T x = 0) const { return get_min(root, ~x); }
-    // 集合内で値xとXORしたときにk番目に小さい値を取得．O(B).
+    // 集合内で値xとXORしたときにk番目に小さい値を取得する．O(B).
     T kth_element(int k, T x = 0) const {
         assert(0 <= k and k < size());
         return get(root, k, x);
     }
-    // 集合内で値x以上の最小の要素の番号を取得．O(B).
+    // 集合内で値x以上の最小の要素の番号を取得する．O(B).
     int lower_bound(T x) const { return count_lower(root, x); }
-    // 集合内で値xより大きい最小の要素の番号を取得．O(B).
+    // 集合内で値xより大きい最小の要素の番号を取得する．O(B).
     int upper_bound(T x) const { return count_lower(root, x + 1); }
+    // 全要素を削除する．
     void clear() {
         delete_tree(root);
         root = nullptr;
@@ -140,8 +140,8 @@ public:
 
     friend std::ostream &operator<<(std::ostream &os, const BinaryTrie &ob) {
         if(ob.empty()) return os;
-        bool bits[B] = {};
-        ob.dfs(os, ob.root, 0, bits);
+        std::bitset<B> bits(0);
+        ob.dfs(os, ob.root, bits);
     }
 };
 
