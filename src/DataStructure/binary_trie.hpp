@@ -8,7 +8,7 @@
 namespace algorithm {
 
 // 非負整数値を扱うTrie木．
-template <typename T = unsigned, int B = 32, typename U = size_t>  // T:非負整数値の型, B:ビット長, U:サイズの型.
+template <typename T = unsigned, int B = 32, typename U = int>  // T:非負整数値の型, B:ビット長, U:サイズの型.
 class BinaryTrie {
     struct Node {
         U cnt;        // cnt:=(自身を根とする部分木に含まれる要素数).
