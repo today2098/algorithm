@@ -101,8 +101,7 @@
 			"    return os;",
 			"}",
 			"",
-			"int main(){}",
-			""
+			"int main(){}"
 		],
 		"description": ""
 	},
@@ -390,9 +389,9 @@
 			"std::random_device seed;                                   // 乱数生成器のシード（非決定的な乱数生成器）．",
 			"std::mt19937_64 rng(seed());                               // 決定的な乱数生成器．",
 			"std::uniform_int_distribution<long long> uniform(0, 100);  // 範囲[0,100]の離散一様分布．",
-			"std::cerr << uniform(rng) << std::endl;"
+			"// std::cerr << uniform(rng) << std::endl;"
 		],
-		"description": "乱数生成の宣言"
+		"description": "乱数生成器の宣言"
 	},
 	"Declaration of SegmentTree (RMQ)": {
 		"scope": "cpp",
@@ -407,7 +406,7 @@
 	},
 	"Declaration of LazySegTree (RAQ, RMQ)": {
 		"scope": "cpp",
-		"prefix": "Declaration of LazySegTree (RAQ, RMQ)",
+		"prefix": "LazySegTree (RAQ, RMQ)",
 		"body": [
 			"using Monoid=${1:int};",
 			"using Action=${2:int};",
@@ -422,7 +421,7 @@
 	},
 	"Declaration of LazySegTree (RAQ, RSQ)": {
 		"scope": "cpp",
-		"prefix": "Declaration of LazySegTree (RAQ, RSQ)",
+		"prefix": "LazySegTree (RAQ, RSQ)",
 		"body": [
 			"using Monoid=${1:struct{",
 			"    ll val;",
@@ -440,7 +439,7 @@
 	},
 	"Declaration of LazySegTree (RUQ, RMQ)": {
 		"scope": "cpp",
-		"prefix": "Declaration of LazySegTree (RUQ, RMQ)",
+		"prefix": "LazySegTree (RUQ, RMQ)",
 		"body": [
 			"using Monoid=${1:int};",
 			"using Action=${2:int};",
