@@ -1,6 +1,7 @@
 #ifndef ALGORITHM_DINIC_HPP
 #define ALGORITHM_DINIC_HPP 1
 
+#include <algorithm>
 #include <cassert>
 #include <queue>
 #include <vector>
@@ -22,10 +23,6 @@ class Dinic {
     std::vector<int> m_iter;              // m_iter[v]:=(m_g[v][]の次に調べるべきイテレータ).
     T m_inf;
 
-    void init() {
-        for(std::vector<Edge> &es : m_g)
-            for(Edge &e : es) e.rest = e.cap;
-    }
     // ノードsから各ノードへのホップ数を計算する．
     void bfs(int s) {
         std::fill(m_level.begin(), m_level.end(), -1);
@@ -88,7 +85,9 @@ public:
     T max_flow(int s, int t) {
         assert(0 <= s and s < size());
         assert(0 <= t and t < size());
-        init();
+        for(std::vector<Edge> &es : m_g) {
+            for(Edge &e : es) e.rest = e.cap;
+        }
         T flow = 0;
         while(flow < infinity()) {
             bfs(s);

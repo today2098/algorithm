@@ -1,6 +1,7 @@
 #ifndef ALGORITHM_FORD_FULKERSON_HPP
 #define ALGORITHM_FORD_FULKERSON_HPP 1
 
+#include <algorithm>
 #include <cassert>
 #include <vector>
 
@@ -20,10 +21,6 @@ class FordFulkerson {
     bool *m_seen;                         // m_seen[v]:=(DFSでノードvを調べたか).
     T m_inf;
 
-    void init() {
-        for(std::vector<Edge> &es : m_g)
-            for(Edge &e : es) e.rest = e.cap;
-    }
     // 増加パスを探す．
     T dfs(int v, int t, T flow) {
         if(v == t) return flow;
@@ -70,7 +67,9 @@ public:
     T max_flow(int s, int t) {
         assert(0 <= s and s < size());
         assert(0 <= t and t < size());
-        init();
+        for(std::vector<Edge> &es : m_g) {
+            for(Edge &e : es) e.rest = e.cap;
+        }
         T flow = 0;
         while(flow < infinity()) {
             std::fill(m_seen, m_seen + m_vn, false);
