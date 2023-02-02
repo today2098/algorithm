@@ -2545,6 +2545,24 @@
 		],
 		"description": "編集距離 (edit distance)"
 	},
+	"extgcd": {
+		"scope": "cpp",
+		"prefix": "extgcd",
+		"body": [
+			"// 拡張ユークリッド互除法．ax+by=GCD(a,b) を満たす整数の組(x,y)を格納する．O(logN).",
+			"template <typename Type>",
+			"Type extgcd(Type a, Type b, Type &x, Type &y) {",
+			"    if(b == 0) {",
+			"        x = 1, y = 0;",
+			"        return a;",
+			"    }",
+			"    Type d = extgcd(b, a % b, y, x);",
+			"    y -= a / b * x;",
+			"    return d;",
+			"}"
+		],
+		"description": "拡張ユークリッド互除法"
+	},
 	"igcd, ilcm": {
 		"scope": "cpp",
 		"prefix": "igcd, ilcm",
