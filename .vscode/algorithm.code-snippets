@@ -2568,7 +2568,6 @@
 			"std::pair<long long, long long> crt(long long b1, long long m1, long long b2, long long m2) {",
 			"    long long p, q;",
 			"    long long d = extgcd(m1, m2, p, q);  // p is inv of m1/d (mod. m2/d)",
-			"    debug(m1, m2, d);",
 			"    if((b2 - b1) % d != 0) return {0, -1};",
 			"    long long m = m1 / d * m2;  // lcm of (m1,m2)",
 			"    long long tmp = (b2 - b1) / d * p % (m2 / d);",
