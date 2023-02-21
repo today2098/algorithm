@@ -131,15 +131,15 @@ public:
     // 零行列．
     static Matrix zero_matrix(int m, int n) {
         assert(m >= 0 and n >= 0);
-        Matrix R(m, n, 0);
-        return R;
+        Matrix O(m, n, 0);
+        return O;
     }
     // 単位行列．
     static Matrix identity_matrix(int n) {
         assert(n >= 0);
-        Matrix R(n, n, 0);
-        for(int i = 0; i < n; ++i) R.loc(i, i) = 1;
-        return R;
+        Matrix I(n, n, 0);
+        for(int i = 0; i < n; ++i) I.loc(i, i) = 1;
+        return I;
     }
 
     // 行数．
@@ -164,25 +164,11 @@ using mat = Matrix<Type>;
 // 転置行列．
 template <typename T>
 inline Matrix<T> transposed_matrix(const Matrix<T> &A) {
-    Matrix<T> R(A.row(), A.column());
+    Matrix<T> tA(A.row(), A.column());
     for(int i = 0; i < A.row(); ++i) {
-        for(int j = 0; j < A.column(); ++j) R.loc(i, j) = A.loc(j, i);
+        for(int j = 0; j < A.column(); ++j) tA.loc(i, j) = A.loc(j, i);
     }
-    return R;
-}
-
-// 行列累乗．O((logK)*N^3)
-template <typename T>
-Matrix<T> pow(const Matrix<T> &A, long long k, bool right_side = false) {
-    assert(A.row() == A.column() and k >= 0);
-    auto &&R = Matrix<T>::identity_matrix(A.column());
-    auto B = A;
-    while(k > 0) {
-        if(k & 1) R = (right_side ? R * B : B * R);
-        B = B * B;
-        k >>= 1;
-    }
-    return R;
+    return tA;
 }
 
 // LU分解．O(N^3).
@@ -207,21 +193,12 @@ template <typename T>
 T sarrus(const Matrix<T> &A) {
     assert(A.column() == A.row());
     assert(1 <= A.column() and A.column() <= 3);
-    if(A.column() == 1) return A.loc(0, 0);
-    if(A.column() == 2) return A.loc(0, 0) * A.loc(1, 1) - A.loc(0, 1) * A.loc(1, 0);
-    if(A.column() == 3) {
-        T res = 0;
-        for(int j = 0; j < 3; ++j) {
-            T tmp1 = 1, tmp2 = 1;
-            for(int i = 0; i < 3; ++i) {
-                tmp1 *= A.loc(i, (j + i) % 3);
-                tmp2 *= A.loc(i, (j - i + 3) % 3);
-            }
-            res += tmp1 - tmp2;
-        }
-        return res;
-    }
-    assert(false);
+    if(A.column() == 1) return A.loc(0, 0);                                            // 1次の場合．
+    if(A.column() == 2) return A.loc(0, 0) * A.loc(1, 1) - A.loc(0, 1) * A.loc(1, 0);  // 2次の場合．
+    // 3次の場合．
+    auto a = A.loc(0, 0) * A.loc(1, 1) * A.loc(2, 2) + A.loc(0, 1) * A.loc(1, 2) * A.loc(2, 0) + A.loc(0, 2) * A.loc(1, 0) * A.loc(2, 1);
+    auto b = A.loc(0, 2) * A.loc(1, 1) * A.loc(2, 0) + A.loc(0, 1) * A.loc(1, 0) * A.loc(2, 2) + A.loc(0, 0) * A.loc(1, 2) * A.loc(2, 1);
+    return a - b;
 }
 
 // 行列式．
@@ -237,7 +214,36 @@ T det(const Matrix<T> &A) {
     return res;
 }
 
-// 逆行列．掃き出し法．O(N^3).
+// 掃き出し法．ガウスの消去法．O(N^3).
+template <typename T>
+void gaussian_elimination(Matrix<T> &sweep) {
+    int k = 0, l = 0;
+    while(k < sweep.column() and l < sweep.row()) {
+        T mx = std::abs(sweep.loc(k, l));
+        int idx = k;
+        for(int i = k + 1; i < sweep.column(); ++i) {
+            if(std::abs(sweep.loc(i, l)) > mx) {
+                mx = std::abs(sweep.loc(i, l));
+                idx = i;
+            }
+        }
+        if(mx < EPS) {
+            l++;
+            continue;
+        }
+        std::swap(sweep[k], sweep[idx]);
+        auto tmp = 1.0 / sweep.loc(k, l);
+        for(int j = l; j < sweep.row(); ++j) sweep.loc(k, j) *= tmp;
+        for(int i = 0; i < sweep.column(); ++i) {
+            if(i == k) continue;
+            auto tmp2 = -sweep.loc(i, l);
+            for(int j = l; j < sweep.row(); ++j) sweep.loc(i, j) += sweep.loc(k, j) * tmp2;
+        }
+        k++, l++;
+    }
+}
+
+// 逆行列．掃き出し法を用いる．O(N^3).
 template <typename T>
 Matrix<T> inv_matrix(const Matrix<T> &A) {
     assert(A.column() == A.row());
@@ -250,25 +256,7 @@ Matrix<T> inv_matrix(const Matrix<T> &A) {
             sweep.loc(i, j + n) = (i == j ? 1 : 0);
         }
     }
-    for(int k = 0; k < n; ++k) {
-        T mx = std::abs(sweep.loc(k, k));
-        int idx = k;
-        for(int i = k + 1; i < n; ++i) {
-            if(std::abs(sweep.loc(i, k)) > mx) {
-                mx = std::abs(sweep.loc(i, k));
-                idx = i;
-            }
-        }
-        assert(mx > EPS);
-        std::swap(sweep[k], sweep[idx]);
-        auto tmp = 1.0 / sweep.loc(k, k);
-        for(int j = k; j < 2 * n; ++j) sweep.loc(k, j) *= tmp;
-        for(int i = 0; i < n; ++i) {
-            if(i == k) continue;
-            auto tmp2 = -sweep.loc(i, k);
-            for(int j = k; j < 2 * n; ++j) sweep.loc(i, j) += sweep.loc(k, j) * tmp2;
-        }
-    }
+    gaussian_elimination(sweep);
     Matrix<T> inv(n, n);
     for(int i = 0; i < n; ++i) {
         for(int j = 0; j < n; ++j) inv.loc(i, j) = sweep.loc(i, j + n);
@@ -282,6 +270,33 @@ inline mat rotation_matrix(Type arg) {
     auto cv = std::cos(arg);
     mat R({{cv, -sv}, {sv, cv}});
     return R;
+}
+
+// 行列累乗．O((logK)*N^3)
+template <typename T>
+Matrix<T> pow(const Matrix<T> &A, long long k, bool right_side = false) {
+    assert(A.row() == A.column() and k >= 0);
+    auto &&R = Matrix<T>::identity_matrix(A.column());
+    auto B = A;
+    while(k > 0) {
+        if(k & 1) R = (right_side ? R * B : B * R);
+        B = B * B;
+        k >>= 1;
+    }
+    return R;
+}
+
+// 連立一次方程式を解く．Linear Simultaneous Equation.
+template <typename T>
+Matrix<T> solve_lse(const Matrix<T> &A, const std::vector<T> &b) {
+    assert(A.column() == static_cast<int>(b.size()));
+    Matrix<T> res(A.column(), A.row() + 1);
+    for(int i = 0; i < A.column(); ++i) {
+        for(int j = 0; j < A.row(); ++j) res.loc(i, j) = A.loc(i, j);
+        res.loc(i, A.row()) = b[i];
+    }
+    gaussian_elimination(res);
+    return res;
 }
 
 }  // namespace matrix
