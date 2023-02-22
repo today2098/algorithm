@@ -355,7 +355,7 @@ void gaussian_elimination(Matrix<T> &sweep) {
             l++;
             continue;
         }
-        std::swap(sweep[k], sweep[idx]);
+        for(int j = l; j < sweep.row(); ++j) std::swap(sweep.loc(k, j), sweep.loc(idx, j));
         auto tmp = 1.0 / sweep.loc(k, l);
         for(int j = l; j < sweep.row(); ++j) sweep.loc(k, j) *= tmp;
         for(int i = 0; i < sweep.column(); ++i) {
