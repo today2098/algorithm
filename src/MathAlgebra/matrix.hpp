@@ -1,8 +1,10 @@
 #ifndef ALGORITHM_MATRIX_HPP
 #define ALGORITHM_MATRIX_HPP 1
 
+#include <algorithm>
 #include <cassert>
 #include <cmath>
+#include <numeric>
 #include <tuple>
 #include <vector>
 
@@ -30,14 +32,6 @@ public:
         for(auto &v : m_dat) v.resize(m_row, 0);
     }
 
-    std::vector<T> &operator[](int i) {
-        assert(0 <= i and i < m_col);
-        return m_dat[i];
-    }
-    const std::vector<T> operator[](int i) const {
-        assert(0 <= i and i < m_col);
-        return m_dat[i];
-    }
     Matrix operator+() const { return Matrix(*this); }
     Matrix operator-() const {
         Matrix R(column(), row());
@@ -122,8 +116,8 @@ public:
     friend bool operator!=(const Matrix<T> &A, const Matrix<T> &B) { return !(A == B); }
     friend std::ostream &operator<<(std::ostream &os, const Matrix<T> &A) {
         for(int i = 0; i < A.column(); ++i) {
-            for(int j = 0; j < A.row(); ++j) os << A.loc(i, j) << ' ';
-            os << '\n';
+            for(int j = 0; j < A.row(); ++j) os << (i == 0 and j == 0 ? '[' : ' ') << A.loc(i, j);
+            os << (i == A.column() - 1 ? ']' : '\n');
         }
         return os;
     }
@@ -171,6 +165,136 @@ inline Matrix<T> transposed_matrix(const Matrix<T> &A) {
     return tA;
 }
 
+class Permutation {
+    int m_n;                  // m_n:=(次元数).
+    std::vector<int> m_perm;  // m_perm[]:=(置換行列).
+    std::vector<int> m_inv;   // m_inv[]:=(m_perm[]に対する逆置換行列). m_inv[m_perm[i]]==i
+    bool m_is_inversed;
+
+    int &operator[](int i) {
+        assert(0 <= i and i < order());
+        return (is_inversed() ? m_inv[i] : m_perm[i]);
+    }
+
+    int &inv(int i) {
+        assert(0 <= i and i < order());
+        return (is_inversed() ? m_perm[i] : m_inv[i]);
+    }
+    bool is_inversed() const { return m_is_inversed; }
+
+public:
+    Permutation() : Permutation(0) {}
+    explicit Permutation(int n) : m_n(n), m_perm(n), m_inv(n), m_is_inversed(false) {
+        std::iota(m_perm.begin(), m_perm.end(), 0);
+        std::iota(m_inv.begin(), m_inv.end(), 0);
+    }
+    explicit Permutation(const std::vector<int> &pivot)
+        : m_n(pivot.size()), m_perm(pivot), m_inv(pivot.size(), -1), m_is_inversed(false) {
+        for(int i = 0; i < m_n; ++i) {
+            assert(0 <= m_perm[i] and m_perm[i] < m_n);
+            assert(m_inv[m_perm[i]] == -1);
+            m_inv[m_perm[i]] = i;
+        }
+    }
+
+    const int operator[](int i) const {
+        assert(0 <= i and i < order());
+        return (is_inversed() ? m_inv[i] : m_perm[i]);
+    }
+    template <typename T>
+    Matrix<T> operator*(const Matrix<T> &A) {
+        assert(A.column() == order());
+        Matrix<T> R(A.column(), A.row());
+        for(int i = 0; i < A.column(); ++i) {
+            for(int j = 0; j < A.row(); ++j) R.loc(i, j) = A.loc((*this)[i], j);
+        }
+        return R;
+    }
+    Permutation operator*(const Permutation &P) {
+        assert(P.order() == order());
+        std::vector<int> res(order());
+        for(int i = 0; i < order(); ++i) res[i] = P[(*this)[i]];
+        return Permutation(res);
+    }
+
+    friend std::ostream &operator<<(std::ostream &os, const Permutation &P) {
+        for(int i = 0; i < P.order(); ++i) os << (i == 0 ? '[' : ' ') << i;
+        os << '\n';
+        for(int i = 0; i < P.order(); ++i) os << ' ' << P[i];
+        os << ']';
+        return os;
+    }
+
+    int order() const { return m_n; }
+    const int inv(int i) const {
+        assert(0 <= i and i < order());
+        return (is_inversed() ? m_perm[i] : m_inv[i]);
+    }
+    void swap(int i, int j) {
+        assert(0 <= i and i < order());
+        assert(0 <= j and j < order());
+        std::swap((*this)[i], (*this)[j]);
+        inv((*this)[i]) = i;
+        inv((*this)[j]) = j;
+    }
+    void inverse() { m_is_inversed = !m_is_inversed; }
+    template <typename T>
+    void sort(Matrix<T> &A) const {
+        assert(A.column() == order());
+        bool seen[order()] = {};
+        for(int i = 0; i < order(); ++i) {
+            if(seen[i]) continue;
+            int idx = inv(i);
+            while(idx != i) {
+                for(int j = 0; j < A.row(); ++j) std::swap(A.loc(i, j), A.loc(idx, j));
+                seen[idx] = true;
+                idx = inv(idx);
+            }
+            seen[i] = true;
+        }
+    }
+    void sort(Permutation &P) const {
+        assert(P.order() == order());
+        bool seen[order()] = {};
+        for(int i = 0; i < order(); ++i) {
+            if(seen[i]) continue;
+            int idx = inv(i);
+            while(idx != i) {
+                std::swap(P[i], P[idx]);
+                seen[idx] = true;
+                idx = inv(idx);
+            }
+            seen[i] = true;
+        }
+    }
+    template <typename T>
+    void reverse(Matrix<T> &A) {
+        inverse();
+        sort(A);
+        inverse();
+    }
+    void reverse(Permutation &P) {
+        inverse();
+        sort(P);
+        inverse();
+    }
+    void init() {
+        std::iota(m_perm.begin(), m_perm.end(), 0);
+        std::iota(m_inv.begin(), m_inv.end(), 0);
+        m_is_inversed = false;
+    }
+
+    auto begin() const { return (is_inversed() ? m_inv.begin() : m_perm.begin()); }
+    auto end() const { return (is_inversed() ? m_inv.end() : m_perm.end()); }
+};
+
+// 逆置換行列．
+Permutation inv_permutaion(const Permutation &P) {
+    Permutation inv(P);
+    inv.inverse();
+    return inv;
+}
+
 // LU分解．O(N^3).
 template <typename T>
 std::tuple<Matrix<T>, Matrix<T>, bool> lu_decomposition(const Matrix<T> &A) {
@@ -214,7 +338,7 @@ T det(const Matrix<T> &A) {
     return res;
 }
 
-// 掃き出し法．ガウスの消去法．O(N^3).
+// 掃き出し法．ガウス・ジョルダンの消去法．O(N^3).
 template <typename T>
 void gaussian_elimination(Matrix<T> &sweep) {
     int k = 0, l = 0;

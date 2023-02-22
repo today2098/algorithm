@@ -32,7 +32,7 @@ std::tuple<Matrix<Modint<mod> >, Matrix<Modint<mod> >, bool> lu_decomposition(co
     return {L, U, true};
 }
 
-// 掃き出し法．ガウスの消去法．O(N^3).
+// 掃き出し法．ガウス・ジョルダンの消去法．O(N^3).
 template <int mod>
 void gaussian_elimination(Matrix<Modint<mod> > &sweep) {
     int k = 0, l = 0;
