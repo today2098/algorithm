@@ -141,15 +141,31 @@ public:
     // 列数．
     int row() const { return (m_is_transposed ? m_col : m_row); }
     const T &loc(int i, int j) const {
-        assert(0 <= i and i < column() and 0 <= j and j < row());
+        assert(0 <= i and i < column());
+        assert(0 <= j and j < row());
         return (m_is_transposed ? m_dat[j][i] : m_dat[i][j]);
     }
     T &loc(int i, int j) {
-        assert(0 <= i and i < column() and 0 <= j and j < row());
+        assert(0 <= i and i < column());
+        assert(0 <= j and j < row());
         return (m_is_transposed ? m_dat[j][i] : m_dat[i][j]);
     }
     // 転置．
     void transpose() { m_is_transposed = !m_is_transposed; }
+    // 行・列の入れ替え．
+    void swap(int p, int q, int axis = 0) {
+        if(axis == 0) {
+            assert(0 <= p and p < column());
+            assert(0 <= q and q < column());
+            if(p == q) return;
+            for(int j = 0; j < row(); ++j) std::swap(loc(p, j), loc(q, j));
+        } else {
+            assert(0 <= p and p < row());
+            assert(0 <= q and q < row());
+            if(p == q) return;
+            for(int i = 0; i < column(); ++i) std::swap(loc(i, p), loc(i, q));
+        }
+    }
 };
 
 using mat = Matrix<Type>;
@@ -346,6 +362,7 @@ public:
 
     template <typename T>
     friend Matrix<T> operator*(Matrix<T> &A, Pivot &pivot) {
+        assert(A.row() == pivot.order());
         A.transpose();
         pivot.inverse();
         auto &&R = pivot * A;
@@ -374,7 +391,7 @@ public:
             if(seen[i]) continue;
             int idx = m_perm.inv(i);
             while(idx != i) {
-                for(int j = 0; j < A.row(); ++j) std::swap(A.loc(i, j), A.loc(idx, j));
+                A.swap(i, idx);
                 seen[idx] = true;
                 idx = m_perm.inv(idx);
             }
@@ -466,7 +483,7 @@ void gaussian_elimination(Matrix<T> &sweep) {
         for(int i = k + 1; i < sweep.column(); ++i) {
             if(std::abs(sweep.loc(i, l)) > std::abs(sweep.loc(idx, l))) idx = i;
         }
-        if(std::abs(sweep.loc(idx, l)) < EPS) {
+        if(std::abs(sweep.loc(idx, l)) <= EPS) {
             l++;
             continue;
         }
@@ -529,7 +546,7 @@ Matrix<T> pow(const Matrix<T> &A, long long k, bool right_side = false) {
 
 // 連立一次方程式を解く．Linear Simultaneous Equation.
 template <typename T>
-Matrix<T> solve_lse(const Matrix<T> &A, const std::vector<T> &b) {
+std::pair<Matrix<T>, int> solve_lse(const Matrix<T> &A, const std::vector<T> &b) {
     assert(A.column() == static_cast<int>(b.size()));
     Matrix<T> res(A.column(), A.row() + 1);
     for(int i = 0; i < A.column(); ++i) {
@@ -537,7 +554,20 @@ Matrix<T> solve_lse(const Matrix<T> &A, const std::vector<T> &b) {
         res.loc(i, A.row()) = b[i];
     }
     gaussian_elimination(res);
-    return res;
+    int rank = A.column();
+    for(int i = A.column() - 1; i >= 0; --i) {
+        bool flag = false;
+        for(int j = 0; j < A.row(); ++j) {
+            if(res.loc(i, j) > EPS) {
+                flag = true;
+                break;
+            }
+        }
+        if(flag) break;
+        if(res.loc(i, A.row()) > EPS) return {res, 0};
+        rank--;
+    }
+    return {res, rank};
 }
 
 }  // namespace matrix
