@@ -140,11 +140,11 @@ public:
     int column() const { return (m_is_transposed ? m_row : m_col); }
     // 列数．
     int row() const { return (m_is_transposed ? m_col : m_row); }
-    T &loc(int i, int j) {
+    const T &loc(int i, int j) const {
         assert(0 <= i and i < column() and 0 <= j and j < row());
         return (m_is_transposed ? m_dat[j][i] : m_dat[i][j]);
     }
-    const T loc(int i, int j) const {
+    T &loc(int i, int j) {
         assert(0 <= i and i < column() and 0 <= j and j < row());
         return (m_is_transposed ? m_dat[j][i] : m_dat[i][j]);
     }
@@ -171,15 +171,6 @@ class Permutation {
     std::vector<int> m_inv;   // m_inv[]:=(m_perm[]に対する逆置換). m_inv[m_perm[i]]==i
     bool m_is_inversed;
 
-    int &operator[](int i) {
-        assert(0 <= i and i < order());
-        return (is_inversed() ? m_inv[i] : m_perm[i]);
-    }
-
-    int &inv(int i) {
-        assert(0 <= i and i < order());
-        return (is_inversed() ? m_perm[i] : m_inv[i]);
-    }
     bool is_inversed() const { return m_is_inversed; }
 
 public:
@@ -211,7 +202,7 @@ public:
         }
     }
 
-    const int operator[](int i) const {
+    const int &operator[](int i) const {
         assert(0 <= i and i < order());
         return (is_inversed() ? m_inv[i] : m_perm[i]);
     }
@@ -231,16 +222,22 @@ public:
     }
 
     int order() const { return m_n; }
-    const int inv(int i) const {
+    const int &inv(int i) const {
         assert(0 <= i and i < order());
         return (is_inversed() ? m_perm[i] : m_inv[i]);
     }
     void swap(int i, int j) {
         assert(0 <= i and i < order());
         assert(0 <= j and j < order());
-        std::swap((*this)[i], (*this)[j]);
-        inv((*this)[i]) = i;
-        inv((*this)[j]) = j;
+        if(is_inversed()) {
+            std::swap(m_inv[i], m_inv[j]);
+            m_perm[i] = i;
+            m_perm[j] = j;
+        } else {
+            std::swap(m_perm[i], m_perm[j]);
+            m_inv[i] = i;
+            m_inv[j] = j;
+        }
     }
     void inverse() { m_is_inversed = !m_is_inversed; }
     template <class Sequence>
@@ -277,6 +274,89 @@ public:
 // 逆置換．
 Permutation inv_permutaion(const Permutation &P) {
     Permutation inv(P);
+    inv.inverse();
+    return inv;
+}
+
+class Pivot {
+    Permutation m_perm;  // m_perm[i]:=(i行目におけるピボットの位置).
+
+public:
+    Pivot() : Pivot(0) {}
+    explicit Pivot(int n) : m_perm(n) {}
+    explicit Pivot(const std::vector<int> &perm) : m_perm(perm) {}
+
+    const int &operator[](int i) const {
+        assert(0 <= i and i < order());
+        return m_perm[i];
+    }
+    template <typename T>
+    Matrix<T> operator*(const Matrix<T> &A) const {
+        assert(A.column() == order());
+        Matrix<T> R(A.column(), A.row());
+        for(int i = 0; i < R.column(); ++i) {
+            for(int j = 0; j < R.row(); ++j) R.loc(i, j) = A.loc(m_perm[i], j);
+        }
+        return R;
+    }
+    Pivot operator*(const Pivot &pivot) const {
+        assert(pivot.order() == order());
+        std::vector<int> res(order());
+        for(int i = 0; i < order(); ++i) res[i] = pivot[(*this)[i]];
+        return Pivot(res);
+    }
+
+    template <typename T>
+    friend Matrix<T> operator*(Matrix<T> &A, Pivot &pivot) {
+        A.transpose();
+        pivot.inverse();
+        auto R = pivot * A;
+        R.transpose();
+        A.transpose();
+        pivot.inverse();
+        return R;
+    }
+    friend std::ostream &operator<<(std::ostream &os, const Pivot &pivot) {
+        for(int i = 0; i < pivot.order(); ++i) os << pivot[i] << (i < pivot.order() - 1 ? " " : "");
+        return os;
+    }
+
+    int order() const { return m_perm.order(); }
+    void swap(int i, int j) {
+        assert(0 <= i and i < order());
+        assert(0 <= j and j < order());
+        m_perm.swap(i, j);
+    }
+    void inverse() { m_perm.inverse(); }
+    template <typename T>
+    void sort(Matrix<T> &A) {
+        assert(A.column() == order());
+        bool seen[order()] = {};
+        for(int i = 0; i < order(); ++i) {
+            if(seen[i]) continue;
+            int idx = m_perm.inv(i);
+            while(idx != i) {
+                for(int j = 0; j < A.row(); ++j) std::swap(A.loc(i, j), A.loc(idx, j));
+                seen[idx] = true;
+                idx = m_perm.inv(idx);
+            }
+            seen[i] = true;
+        }
+    }
+    template <typename T>
+    void reverse(Matrix<T> &A) {
+        inverse();
+        sort(A);
+        inverse();
+    }
+    void init() { m_perm.init(); }
+
+    auto begin() const { return m_perm.begin(); }
+    auto end() const { return m_perm.end(); }
+};
+
+Pivot inv_pivot(const Pivot &pivot) {
+    Pivot inv(pivot);
     inv.inverse();
     return inv;
 }
