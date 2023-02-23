@@ -148,7 +148,6 @@ public:
         assert(0 <= i and i < column() and 0 <= j and j < row());
         return (m_is_transposed ? m_dat[j][i] : m_dat[i][j]);
     }
-    bool is_transposed() const { return m_is_transposed; }
     // 転置．
     void transpose() { m_is_transposed = !m_is_transposed; }
 };
@@ -165,13 +164,12 @@ inline Matrix<T> transposed_matrix(const Matrix<T> &A) {
     return tA;
 }
 
+// 置換．
 class Permutation {
     int m_n;                  // m_n:=(次数).
     std::vector<int> m_perm;  // m_perm[]:=(置換).
-    std::vector<int> m_inv;   // m_inv[]:=(m_perm[]に対する逆置換). m_inv[m_perm[i]]==i
+    std::vector<int> m_inv;   // m_inv[]:=(逆置換). m_inv[m_perm[i]]==i
     bool m_is_inversed;
-
-    bool is_inversed() const { return m_is_inversed; }
 
 public:
     Permutation() : Permutation(0) {}
@@ -204,8 +202,9 @@ public:
 
     const int &operator[](int i) const {
         assert(0 <= i and i < order());
-        return (is_inversed() ? m_inv[i] : m_perm[i]);
+        return (m_is_inversed ? m_inv[i] : m_perm[i]);
     }
+    // 置換の積．
     Permutation operator*(const Permutation &P) {
         assert(P.order() == order());
         std::vector<int> res(order());
@@ -221,22 +220,23 @@ public:
         return os;
     }
 
+    // 次数．
     int order() const { return m_n; }
     const int &inv(int i) const {
         assert(0 <= i and i < order());
-        return (is_inversed() ? m_perm[i] : m_inv[i]);
+        return (m_is_inversed ? m_perm[i] : m_inv[i]);
     }
     void swap(int i, int j) {
         assert(0 <= i and i < order());
         assert(0 <= j and j < order());
-        if(is_inversed()) {
+        if(m_is_inversed) {
             std::swap(m_inv[i], m_inv[j]);
-            m_perm[i] = i;
-            m_perm[j] = j;
+            m_perm[m_inv[i]] = i;
+            m_perm[m_inv[j]] = j;
         } else {
             std::swap(m_perm[i], m_perm[j]);
-            m_inv[i] = i;
-            m_inv[j] = j;
+            m_inv[m_perm[i]] = i;
+            m_inv[m_perm[j]] = j;
         }
     }
     void inverse() { m_is_inversed = !m_is_inversed; }
@@ -261,14 +261,50 @@ public:
         sort(a);
         inverse();
     }
+    // 巡回置換．
+    std::vector<std::vector<int> > cycles() const {
+        std::vector<std::vector<int> > res;
+        bool seen[order()] = {};
+        for(int i = 0; i < order(); ++i) {
+            if(seen[i]) continue;
+            seen[i] = true;
+            std::vector<int> cycle({i});
+            int idx = (*this)[i];
+            while(!seen[idx]) {
+                cycle.push_back(idx);
+                seen[idx] = true;
+                idx = (*this)[idx];
+            }
+            res.push_back(cycle);
+        }
+        return res;
+    }
+    // 置換符号．
+    int sgn() const {
+        int res = 1;
+        bool seen[order()] = {};
+        for(int i = 0; i < order(); ++i) {
+            if(seen[i]) continue;
+            seen[i] = true;
+            int idx = (*this)[i];
+            int cnt = 0;
+            while(!seen[idx]) {
+                cnt++;
+                seen[idx] = true;
+                idx = (*this)[idx];
+            }
+            if(cnt % 2 == 1) res *= -1;  // 奇置換である場合．
+        }
+        return res;
+    }
     void init() {
         std::iota(m_perm.begin(), m_perm.end(), 0);
         std::iota(m_inv.begin(), m_inv.end(), 0);
         m_is_inversed = false;
     }
 
-    auto begin() const { return (is_inversed() ? m_inv.begin() : m_perm.begin()); }
-    auto end() const { return (is_inversed() ? m_inv.end() : m_perm.end()); }
+    auto begin() const { return (m_is_inversed ? m_inv.begin() : m_perm.begin()); }
+    auto end() const { return (m_is_inversed ? m_inv.end() : m_perm.end()); }
 };
 
 // 逆置換．
@@ -278,6 +314,7 @@ Permutation inv_permutaion(const Permutation &P) {
     return inv;
 }
 
+// 置換行列．
 class Pivot {
     Permutation m_perm;  // m_perm[i]:=(i行目におけるピボットの位置).
 
@@ -285,6 +322,7 @@ public:
     Pivot() : Pivot(0) {}
     explicit Pivot(int n) : m_perm(n) {}
     explicit Pivot(const std::vector<int> &perm) : m_perm(perm) {}
+    explicit Pivot(const Permutation &perm) : m_perm(perm) {}
 
     const int &operator[](int i) const {
         assert(0 <= i and i < order());
@@ -310,7 +348,7 @@ public:
     friend Matrix<T> operator*(Matrix<T> &A, Pivot &pivot) {
         A.transpose();
         pivot.inverse();
-        auto R = pivot * A;
+        auto &&R = pivot * A;
         R.transpose();
         A.transpose();
         pivot.inverse();
@@ -349,6 +387,7 @@ public:
         sort(A);
         inverse();
     }
+    int sgn() const { return m_perm.sgn(); }
     void init() { m_perm.init(); }
 
     auto begin() const { return m_perm.begin(); }
@@ -361,21 +400,35 @@ Pivot inv_pivot(const Pivot &pivot) {
     return inv;
 }
 
-// LU分解．O(N^3).
+// PLU分解．O(N^3).
 template <typename T>
-std::tuple<Matrix<T>, Matrix<T>, bool> lu_decomposition(const Matrix<T> &A) {
+std::tuple<Pivot, Matrix<T>, Matrix<T>, bool> lu_decomposition(Matrix<T> A) {
     assert(A.column() == A.row());
     const int n = A.column();
-    Matrix<T> L(n, n, 0), U(n, n, 0), B(A);
+    Matrix<T> L(n, n, 0), U(n, n, 0);
+    Pivot P(n);
     for(int k = 0; k < n; ++k) {
-        if(std::abs(B.loc(k, k)) < EPS) return {L, U, false};
-        for(int i = k; i < n; ++i) L.loc(i, k) = B.loc(i, k) / B.loc(k, k);
-        for(int j = k; j < n; ++j) U.loc(k, j) = B.loc(k, j);
+        int idx = k;
         for(int i = k + 1; i < n; ++i) {
-            for(int j = k + 1; j < n; ++j) B.loc(i, j) -= L.loc(i, k) * U.loc(k, j);
+            if(std::abs(A.loc(i, k)) > std::abs(A.loc(idx, k))) idx = i;
+        }
+        if(std::abs(A.loc(idx, k)) <= EPS) return {P, L, U, false};
+        if(idx != k) {
+            P.swap(k, idx);
+            for(int j = 0; j < k; ++j) {
+                std::swap(L.loc(k, j), L.loc(idx, j));
+                std::swap(U.loc(k, j), U.loc(idx, j));
+            }
+            for(int j = k; j < n; ++j) std::swap(A.loc(k, j), A.loc(idx, j));
+        }
+        auto tmp = 1.0 / A.loc(k, k);
+        for(int i = k; i < n; ++i) L.loc(i, k) = A.loc(i, k) * tmp;
+        for(int j = k; j < n; ++j) U.loc(k, j) = A.loc(k, j);
+        for(int i = k + 1; i < n; ++i) {
+            for(int j = k + 1; j < n; ++j) A.loc(i, j) -= L.loc(i, k) * U.loc(k, j);
         }
     }
-    return {L, U, true};
+    return {P, L, U, true};
 }
 
 // サラスの方法．1次，2次，3次の正方行列の行列式を求める．O(N^2).
@@ -397,9 +450,9 @@ T det(const Matrix<T> &A) {
     assert(A.column() == A.row());
     assert(A.column() > 0);
     if(1 <= A.column() and A.column() <= 3) return sarrus(A);
-    const auto &&[L, U, success] = lu_decomposition(A);
-    assert(success);
-    T res = 1;
+    const auto &&[P, L, U, success] = lu_decomposition(A);
+    if(!success) return 0;
+    T res = P.sgn();
     for(int i = 0; i < U.column(); ++i) res *= U.loc(i, i);
     return res;
 }
@@ -409,19 +462,17 @@ template <typename T>
 void gaussian_elimination(Matrix<T> &sweep) {
     int k = 0, l = 0;
     while(k < sweep.column() and l < sweep.row()) {
-        T mx = std::abs(sweep.loc(k, l));
         int idx = k;
         for(int i = k + 1; i < sweep.column(); ++i) {
-            if(std::abs(sweep.loc(i, l)) > mx) {
-                mx = std::abs(sweep.loc(i, l));
-                idx = i;
-            }
+            if(std::abs(sweep.loc(i, l)) > std::abs(sweep.loc(idx, l))) idx = i;
         }
-        if(mx < EPS) {
+        if(std::abs(sweep.loc(idx, l)) < EPS) {
             l++;
             continue;
         }
-        for(int j = l; j < sweep.row(); ++j) std::swap(sweep.loc(k, j), sweep.loc(idx, j));
+        if(idx != k) {
+            for(int j = l; j < sweep.row(); ++j) std::swap(sweep.loc(k, j), sweep.loc(idx, j));
+        }
         auto tmp = 1.0 / sweep.loc(k, l);
         for(int j = l; j < sweep.row(); ++j) sweep.loc(k, j) *= tmp;
         for(int i = 0; i < sweep.column(); ++i) {

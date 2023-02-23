@@ -12,24 +12,33 @@ namespace algorithm {
 
 namespace matrix {
 
-// LU分解．O(N^3).
+// PLU分解．O(N^3).
 template <int mod>
-std::tuple<Matrix<Modint<mod> >, Matrix<Modint<mod> >, bool> lu_decomposition(const Matrix<Modint<mod> > &A) {
+std::tuple<Pivot, Matrix<Modint<mod> >, Matrix<Modint<mod> >, bool> lu_decomposition(Matrix<Modint<mod> > A) {
     assert(A.column() == A.row());
     const int n = A.column();
-    Matrix<Modint<mod> > L(n, n, 0), U(n, n, 0), B(n, n);
-    for(int i = 0; i < n; ++i) {
-        for(int j = 0; j < n; ++j) B.loc(i, j) = A.loc(i, j);
-    }
+    Matrix<Modint<mod> > L(n, n, 0), U(n, n, 0);
+    Pivot P(n);
     for(int k = 0; k < n; ++k) {
-        if(B.loc(k, k) == 0) return {L, U, false};
-        for(int i = k; i < n; ++i) L.loc(i, k) = B.loc(i, k) / B.loc(k, k);
-        for(int j = k; j < n; ++j) U.loc(k, j) = B.loc(k, j);
+        int idx = k;
+        while(idx < n and A.loc(idx, k) == 0) idx++;
+        if(idx == n) return {P, L, U, false};
+        if(idx != k) {
+            P.swap(k, idx);
+            for(int j = 0; j < k; ++j) {
+                std::swap(L.loc(k, j), L.loc(idx, j));
+                std::swap(U.loc(k, j), U.loc(idx, j));
+            }
+            for(int j = k; j < n; ++j) std::swap(A.loc(k, j), A.loc(idx, j));
+        }
+        auto tmp = 1 / A.loc(k, k);
+        for(int i = k; i < n; ++i) L.loc(i, k) = A.loc(i, k) * tmp;
+        for(int j = k; j < n; ++j) U.loc(k, j) = A.loc(k, j);
         for(int i = k + 1; i < n; ++i) {
-            for(int j = k + 1; j < n; ++j) B.loc(i, j) -= L.loc(i, k) * U.loc(k, j);
+            for(int j = k + 1; j < n; ++j) A.loc(i, j) -= L.loc(i, k) * U.loc(k, j);
         }
     }
-    return {L, U, true};
+    return {P, L, U, true};
 }
 
 // 掃き出し法．ガウス・ジョルダンの消去法．O(N^3).
@@ -43,8 +52,10 @@ void gaussian_elimination(Matrix<Modint<mod> > &sweep) {
             l++;
             continue;
         }
-        for(int j = l; j < sweep.row(); ++j) std::swap(sweep.loc(k, j), sweep.loc(idx, j));
-        auto tmp = 1.0 / sweep.loc(k, l);
+        if(idx != k) {
+            for(int j = l; j < sweep.row(); ++j) std::swap(sweep.loc(k, j), sweep.loc(idx, j));
+        }
+        auto tmp = 1 / sweep.loc(k, l);
         for(int j = l; j < sweep.row(); ++j) sweep.loc(k, j) *= tmp;
         for(int i = 0; i < sweep.column(); ++i) {
             if(i == k) continue;
