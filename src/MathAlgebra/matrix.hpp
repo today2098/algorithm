@@ -166,9 +166,9 @@ inline Matrix<T> transposed_matrix(const Matrix<T> &A) {
 }
 
 class Permutation {
-    int m_n;                  // m_n:=(次元数).
-    std::vector<int> m_perm;  // m_perm[]:=(置換行列).
-    std::vector<int> m_inv;   // m_inv[]:=(m_perm[]に対する逆置換行列). m_inv[m_perm[i]]==i
+    int m_n;                  // m_n:=(次数).
+    std::vector<int> m_perm;  // m_perm[]:=(置換).
+    std::vector<int> m_inv;   // m_inv[]:=(m_perm[]に対する逆置換). m_inv[m_perm[i]]==i
     bool m_is_inversed;
 
     int &operator[](int i) {
@@ -188,8 +188,22 @@ public:
         std::iota(m_perm.begin(), m_perm.end(), 0);
         std::iota(m_inv.begin(), m_inv.end(), 0);
     }
-    explicit Permutation(const std::vector<int> &pivot)
-        : m_n(pivot.size()), m_perm(pivot), m_inv(pivot.size(), -1), m_is_inversed(false) {
+    explicit Permutation(int n, const std::vector<int> &cycle) : Permutation(n, std::vector<std::vector<int> >(1, cycle)) {}
+    explicit Permutation(int n, const std::vector<std::vector<int> > &cycles) : m_n(n), m_perm(n, -1), m_inv(n), m_is_inversed(false) {
+        for(const auto &cycle : cycles) {
+            const int n = static_cast<int>(cycle.size());
+            for(int i = 0; i < n; ++i) {
+                assert(0 <= cycle[i] and cycle[i] < m_n);
+                assert(m_perm[cycle[i]] == -1);
+                m_perm[cycle[i]] = cycle[(i + 1) % n];
+            }
+        }
+        for(int i = 0; i < m_n; ++i) {
+            if(m_perm[i] == -1) m_perm[i] = i;
+        }
+        for(int i = 0; i < m_n; ++i) m_inv[m_perm[i]] = i;
+    }
+    explicit Permutation(const std::vector<int> &perm) : m_n(perm.size()), m_perm(perm), m_inv(perm.size(), -1), m_is_inversed(false) {
         for(int i = 0; i < m_n; ++i) {
             assert(0 <= m_perm[i] and m_perm[i] < m_n);
             assert(m_inv[m_perm[i]] == -1);
@@ -201,19 +215,10 @@ public:
         assert(0 <= i and i < order());
         return (is_inversed() ? m_inv[i] : m_perm[i]);
     }
-    template <typename T>
-    Matrix<T> operator*(const Matrix<T> &A) {
-        assert(A.column() == order());
-        Matrix<T> R(A.column(), A.row());
-        for(int i = 0; i < A.column(); ++i) {
-            for(int j = 0; j < A.row(); ++j) R.loc(i, j) = A.loc((*this)[i], j);
-        }
-        return R;
-    }
     Permutation operator*(const Permutation &P) {
         assert(P.order() == order());
         std::vector<int> res(order());
-        for(int i = 0; i < order(); ++i) res[i] = P[(*this)[i]];
+        for(int i = 0; i < order(); ++i) res[i] = (*this)[P[i]];
         return Permutation(res);
     }
 
@@ -238,44 +243,25 @@ public:
         inv((*this)[j]) = j;
     }
     void inverse() { m_is_inversed = !m_is_inversed; }
-    template <typename T>
-    void sort(Matrix<T> &A) const {
-        assert(A.column() == order());
+    template <class Sequence>
+    void sort(Sequence &a) {
+        assert(static_cast<int>(a.size()) == order());
         bool seen[order()] = {};
         for(int i = 0; i < order(); ++i) {
             if(seen[i]) continue;
             int idx = inv(i);
             while(idx != i) {
-                for(int j = 0; j < A.row(); ++j) std::swap(A.loc(i, j), A.loc(idx, j));
+                std::swap(a[i], a[idx]);
                 seen[idx] = true;
                 idx = inv(idx);
             }
             seen[i] = true;
         }
     }
-    void sort(Permutation &P) const {
-        assert(P.order() == order());
-        bool seen[order()] = {};
-        for(int i = 0; i < order(); ++i) {
-            if(seen[i]) continue;
-            int idx = inv(i);
-            while(idx != i) {
-                std::swap(P[i], P[idx]);
-                seen[idx] = true;
-                idx = inv(idx);
-            }
-            seen[i] = true;
-        }
-    }
-    template <typename T>
-    void reverse(Matrix<T> &A) {
+    template <class Sequence>
+    void reverse(Sequence &a) {
         inverse();
-        sort(A);
-        inverse();
-    }
-    void reverse(Permutation &P) {
-        inverse();
-        sort(P);
+        sort(a);
         inverse();
     }
     void init() {
@@ -288,7 +274,7 @@ public:
     auto end() const { return (is_inversed() ? m_inv.end() : m_perm.end()); }
 };
 
-// 逆置換行列．
+// 逆置換．
 Permutation inv_permutaion(const Permutation &P) {
     Permutation inv(P);
     inv.inverse();
