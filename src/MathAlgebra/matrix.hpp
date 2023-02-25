@@ -5,7 +5,6 @@
 #include <cassert>
 #include <cmath>
 #include <numeric>
-#include <tuple>
 #include <vector>
 
 namespace algorithm {
@@ -76,44 +75,44 @@ public:
         R /= a;
         return R;
     }
-
-    friend Matrix operator*(T a, const Matrix &A) { return A * a; }
-    friend Matrix operator*(const Matrix &A, const Matrix &B) {
-        assert(A.row() == B.column());
-        Matrix R(A.column(), B.row(), 0);
-        for(int i = 0; i < A.column(); ++i) {
-            for(int j = 0; j < B.row(); ++j) {
-                for(int k = 0; k < A.row(); ++k) R.loc(i, j) += A.loc(i, k) * B.loc(k, j);
+    Matrix operator*(const Matrix &A) const {
+        assert(row() == A.column());
+        Matrix R(column(), A.row(), 0);
+        for(int i = 0; i < column(); ++i) {
+            for(int j = 0; j < A.row(); ++j) {
+                for(int k = 0; k < row(); ++k) R.loc(i, j) += loc(i, k) * A.loc(k, j);
             }
         }
         return R;
     }
-    friend Matrix operator+(const Matrix<T> &A, const Matrix<T> &B) {
-        assert(A.column() == B.column() and A.row() == B.row());
-        Matrix R(A.column(), A.row());
-        for(int i = 0; i < R.column(); ++i) {
-            for(int j = 0; j < R.row(); ++j) R.loc(i, j) = A.loc(i, j) + B.loc(i, j);
+    Matrix operator+(const Matrix<T> &A) const {
+        assert(A.column() == column() and A.row() == row());
+        Matrix R(column(), row());
+        for(int i = 0; i < column(); ++i) {
+            for(int j = 0; j < row(); ++j) R.loc(i, j) = loc(i, j) + A.loc(i, j);
         }
         return R;
     }
-    friend Matrix operator-(const Matrix<T> &A, const Matrix<T> &B) {
-        assert(A.column() == B.column() and A.row() == B.row());
-        Matrix R(A.column(), A.row());
-        for(int i = 0; i < R.column(); ++i) {
-            for(int j = 0; j < R.row(); ++j) R.loc(i, j) = A.loc(i, j) - B.loc(i, j);
+    Matrix operator-(const Matrix<T> &A) const {
+        assert(A.column() == column() and A.row() == row());
+        Matrix R(column(), row());
+        for(int i = 0; i < column(); ++i) {
+            for(int j = 0; j < row(); ++j) R.loc(i, j) = loc(i, j) - A.loc(i, j);
         }
         return R;
     }
-    friend bool operator==(const Matrix<T> &A, const Matrix<T> &B) {
-        assert(A.column() == B.column() and A.row() == B.row());
-        for(int i = 0; i < A.column(); ++i) {
-            for(int j = 0; j < A.row(); ++j) {
-                if(A.loc(i, j) != B.loc(i, j)) return false;
+    bool operator==(const Matrix<T> &A) const {
+        assert(A.column() == column() and A.row() == row());
+        for(int i = 0; i < column(); ++i) {
+            for(int j = 0; j < row(); ++j) {
+                if(loc(i, j) != A.loc(i, j)) return false;
             }
         }
         return true;
     }
-    friend bool operator!=(const Matrix<T> &A, const Matrix<T> &B) { return !(A == B); }
+    bool operator!=(const Matrix<T> &A) const { return !(*this == A); }
+
+    friend Matrix operator*(T a, const Matrix &A) { return A * a; }
     friend std::ostream &operator<<(std::ostream &os, const Matrix<T> &A) {
         for(int i = 0; i < A.column(); ++i) {
             for(int j = 0; j < A.row(); ++j) os << (i == 0 and j == 0 ? '[' : ' ') << A.loc(i, j);
@@ -216,6 +215,7 @@ public:
         }
     }
 
+    // 置換．
     const int &operator[](int i) const {
         assert(0 <= i and i < order());
         return (m_is_inversed ? m_inv[i] : m_perm[i]);
@@ -238,6 +238,7 @@ public:
 
     // 次数．
     int order() const { return m_n; }
+    // 逆置換．
     const int &inv(int i) const {
         assert(0 <= i and i < order());
         return (m_is_inversed ? m_perm[i] : m_inv[i]);
@@ -257,7 +258,7 @@ public:
     }
     void inverse() { m_is_inversed = !m_is_inversed; }
     template <class Sequence>
-    void sort(Sequence &a) {
+    void sort(Sequence &a) const {
         assert(static_cast<int>(a.size()) == order());
         bool seen[order()] = {};
         for(int i = 0; i < order(); ++i) {
@@ -283,8 +284,8 @@ public:
         bool seen[order()] = {};
         for(int i = 0; i < order(); ++i) {
             if(seen[i]) continue;
-            seen[i] = true;
             std::vector<int> cycle({i});
+            seen[i] = true;
             int idx = (*this)[i];
             while(!seen[idx]) {
                 cycle.push_back(idx);
@@ -338,7 +339,6 @@ public:
     Pivot() : Pivot(0) {}
     explicit Pivot(int n) : m_perm(n) {}
     explicit Pivot(const std::vector<int> &perm) : m_perm(perm) {}
-    explicit Pivot(const Permutation &perm) : m_perm(perm) {}
 
     const int &operator[](int i) const {
         assert(0 <= i and i < order());
@@ -526,8 +526,8 @@ Matrix<T> inv_matrix(const Matrix<T> &A) {
 inline mat rotation_matrix(Type arg) {
     auto sv = std::sin(arg);
     auto cv = std::cos(arg);
-    mat R({{cv, -sv}, {sv, cv}});
-    return R;
+    mat rot({{cv, -sv}, {sv, cv}});
+    return rot;
 }
 
 // 行列累乗．O((logK)*N^3)
@@ -557,14 +557,14 @@ std::pair<Matrix<T>, int> solve_lse(const Matrix<T> &A, const std::vector<T> &b)
     int rank = A.column();
     for(int i = A.column() - 1; i >= 0; --i) {
         bool flag = false;
-        for(int j = 0; j < A.row(); ++j) {
-            if(res.loc(i, j) > EPS) {
+        for(int j = A.row() - 1; j >= 0; --j) {
+            if(std::abs(res.loc(i, j)) > EPS) {
                 flag = true;
                 break;
             }
         }
         if(flag) break;
-        if(res.loc(i, A.row()) > EPS) return {res, 0};
+        if(std::abs(res.loc(i, A.row())) > EPS) return {res, 0};
         rank--;
     }
     return {res, rank};
