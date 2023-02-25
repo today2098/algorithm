@@ -2,6 +2,7 @@
 #define ALGORITHM_MATRIX_FOR_MODINT_HPP 1
 
 #include <cassert>
+#include <tuple>
 #include <vector>
 
 #include "../MathNumberTheory/modint.hpp"
@@ -40,9 +41,9 @@ std::tuple<Pivot, Matrix<Modint<mod> >, Matrix<Modint<mod> >, bool> lu_decomposi
     return {P, L, U, true};
 }
 
-// 掃き出し法．ガウス・ジョルダンの消去法．O(N^3).
+// 掃き出し法．ガウス・ジョルダンの消去法．返り値は行列の階数．O(N^3).
 template <int mod>
-void gaussian_elimination(Matrix<Modint<mod> > &sweep) {
+int gaussian_elimination(Matrix<Modint<mod> > &sweep) {
     int k = 0, l = 0;
     while(k < sweep.column() and l < sweep.row()) {
         int idx = k;
@@ -63,32 +64,34 @@ void gaussian_elimination(Matrix<Modint<mod> > &sweep) {
         }
         k++, l++;
     }
+    return k;
 }
 
 // 連立一次方程式を解く．Linear Simultaneous Equation.
 template <int mod>
-std::pair<Matrix<Modint<mod> >, int> solve_lse(const Matrix<Modint<mod> > &A, const std::vector<Modint<mod> > &b) {
+std::tuple<Matrix<Modint<mod> >, std::vector<int>, int> solve_lse(const Matrix<Modint<mod> > &A, const std::vector<Modint<mod> > &b) {
     assert(A.column() == static_cast<int>(b.size()));
-    Matrix<T> res(A.column(), A.row() + 1);
+    Matrix<Modint<mod> > res(A.column(), A.row() + 1);
     for(int i = 0; i < A.column(); ++i) {
         for(int j = 0; j < A.row(); ++j) res.loc(i, j) = A.loc(i, j);
         res.loc(i, A.row()) = b[i];
     }
-    gaussian_elimination(res);
-    int rank = A.column();
-    for(int i = A.column() - 1; i >= 0; --i) {
-        bool flag = false;
-        for(int j = A.row() - 1; j >= 0; --j) {
+    const int rank = gaussian_elimination(res);
+    std::vector<int> posi;
+    int i = 0, j = -1;
+    for(; i < rank; ++i) {
+        for(j = j + 1; j < A.row(); ++j) {
             if(res.loc(i, j) != 0) {
-                flag = true;
+                posi.push_back(j);
                 break;
             }
         }
-        if(flag) break;
-        if(res.loc(i, A.row()) != 0) return {res, 0};
-        rank--;
+        if(j == A.row()) break;
     }
-    return {res, rank};
+    for(; i < rank; ++i) {
+        if(res.loc(i, A.row()) != 0) return {res, std::vector<int>(), 0};  // 解なし．
+    }
+    return {res, posi, rank};
 }
 
 }  // namespace matrix

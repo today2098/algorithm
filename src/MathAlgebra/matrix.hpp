@@ -5,6 +5,7 @@
 #include <cassert>
 #include <cmath>
 #include <numeric>
+#include <tuple>
 #include <vector>
 
 namespace algorithm {
@@ -33,10 +34,8 @@ public:
 
     Matrix operator+() const { return Matrix(*this); }
     Matrix operator-() const {
-        Matrix R(column(), row());
-        for(int i = 0; i < column(); ++i) {
-            for(int j = 0; j < row(); ++j) R.loc(i, j) = -loc(i, j);
-        }
+        Matrix R(*this);
+        R *= -1;
         return R;
     }
     Matrix &operator*=(T a) {
@@ -87,18 +86,14 @@ public:
     }
     Matrix operator+(const Matrix<T> &A) const {
         assert(A.column() == column() and A.row() == row());
-        Matrix R(column(), row());
-        for(int i = 0; i < column(); ++i) {
-            for(int j = 0; j < row(); ++j) R.loc(i, j) = loc(i, j) + A.loc(i, j);
-        }
+        Matrix R(*this);
+        R += A;
         return R;
     }
     Matrix operator-(const Matrix<T> &A) const {
         assert(A.column() == column() and A.row() == row());
-        Matrix R(column(), row());
-        for(int i = 0; i < column(); ++i) {
-            for(int j = 0; j < row(); ++j) R.loc(i, j) = loc(i, j) - A.loc(i, j);
-        }
+        Matrix R(*this);
+        R -= A;
         return R;
     }
     bool operator==(const Matrix<T> &A) const {
@@ -172,10 +167,8 @@ using mat = Matrix<Type>;
 // 転置行列．
 template <typename T>
 inline Matrix<T> transposed_matrix(const Matrix<T> &A) {
-    Matrix<T> tA(A.row(), A.column());
-    for(int i = 0; i < A.row(); ++i) {
-        for(int j = 0; j < A.column(); ++j) tA.loc(i, j) = A.loc(j, i);
-    }
+    Matrix<T> tA(A);
+    tA.transpose();
     return tA;
 }
 
@@ -474,9 +467,9 @@ T det(const Matrix<T> &A) {
     return res;
 }
 
-// 掃き出し法．ガウス・ジョルダンの消去法．O(N^3).
+// 掃き出し法．ガウス・ジョルダンの消去法．返り値は行列の階数．O(N^3).
 template <typename T>
-void gaussian_elimination(Matrix<T> &sweep) {
+int gaussian_elimination(Matrix<T> &sweep) {
     int k = 0, l = 0;
     while(k < sweep.column() and l < sweep.row()) {
         int idx = k;
@@ -499,13 +492,14 @@ void gaussian_elimination(Matrix<T> &sweep) {
         }
         k++, l++;
     }
+    return k;
 }
 
 // 逆行列．掃き出し法を用いる．O(N^3).
 template <typename T>
 Matrix<T> inv_matrix(const Matrix<T> &A) {
     assert(A.column() == A.row());
-    assert(det(A) != 0);
+    // assert(det(A) != 0);
     const int n = A.column();
     Matrix<T> sweep(n, 2 * n);
     for(int i = 0; i < n; ++i) {
@@ -514,7 +508,8 @@ Matrix<T> inv_matrix(const Matrix<T> &A) {
             sweep.loc(i, j + n) = (i == j ? 1 : 0);
         }
     }
-    gaussian_elimination(sweep);
+    const int rank = gaussian_elimination(sweep);
+    assert(rank == n);
     Matrix<T> inv(n, n);
     for(int i = 0; i < n; ++i) {
         for(int j = 0; j < n; ++j) inv.loc(i, j) = sweep.loc(i, j + n);
@@ -546,28 +541,29 @@ Matrix<T> pow(const Matrix<T> &A, long long k, bool right_side = false) {
 
 // 連立一次方程式を解く．Linear Simultaneous Equation.
 template <typename T>
-std::pair<Matrix<T>, int> solve_lse(const Matrix<T> &A, const std::vector<T> &b) {
+std::tuple<Matrix<T>, std::vector<int>, int> solve_lse(const Matrix<T> &A, const std::vector<T> &b) {
     assert(A.column() == static_cast<int>(b.size()));
     Matrix<T> res(A.column(), A.row() + 1);
     for(int i = 0; i < A.column(); ++i) {
         for(int j = 0; j < A.row(); ++j) res.loc(i, j) = A.loc(i, j);
         res.loc(i, A.row()) = b[i];
     }
-    gaussian_elimination(res);
-    int rank = A.column();
-    for(int i = A.column() - 1; i >= 0; --i) {
-        bool flag = false;
-        for(int j = A.row() - 1; j >= 0; --j) {
+    const int rank = gaussian_elimination(res);
+    std::vector<int> posi;
+    int i = 0, j = -1;
+    for(; i < rank; ++i) {
+        for(j = j + 1; j < A.row(); ++j) {
             if(std::abs(res.loc(i, j)) > EPS) {
-                flag = true;
+                posi.push_back(j);
                 break;
             }
         }
-        if(flag) break;
-        if(std::abs(res.loc(i, A.row())) > EPS) return {res, 0};
-        rank--;
+        if(j == A.row()) break;
     }
-    return {res, rank};
+    for(; i < rank; ++i) {
+        if(std::abs(res.loc(i, A.row())) > EPS) return {res, std::vector<int>(), 0};  // 解なし．
+    }
+    return {res, posi, rank};
 }
 
 }  // namespace matrix
