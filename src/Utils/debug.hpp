@@ -99,3 +99,10 @@ void debug_internal(int l, const char *context, T &&first, Args &&...args) {
 }  // namespace algorithm
 
 #endif
+
+/*
+参考文献：
+- 競技プログラミングで print デバッグ，https://naskya.net/post/0002/（参照2023.3.1）．
+- EnumHack, C++メタ関数のまとめ，Qiita, https://qiita.com/_EnumHack/items/ee2141ad47915c55d9cb（参照2023.3.1）．
+- terukazu, 特定のメンバ関数有無で、呼び出す関数を変えたい，Qiita, https://qiita.com/terukazu/items/e257c05a7b191d32c577（参照2023.3.1）．
+*/
