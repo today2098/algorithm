@@ -78,7 +78,7 @@ public:
             long long b = 1;
             for(int i = 0; i < cnt; ++i) {
                 b *= p;
-                for(int j = 0; j < sz; ++j) res.push_back(res[i] * b);
+                for(int j = 0; j < sz; ++j) res.push_back(res[j] * b);
             }
         }
         std::sort(res.begin(), res.end());
