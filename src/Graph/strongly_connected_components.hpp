@@ -9,14 +9,17 @@ namespace algorithm {
 
 // 強連結成分分解 (SCC:Strongly Connected Components)．
 class SCC {
-    int m_vn;                            // m_vn:=(ノード数).
-    std::vector<std::vector<int> > m_g;  // m_g[v][]:=(ノードvの隣接リスト).
+    using Graph = std::vector<std::vector<int> >;
+
+    int m_vn;   // m_vn:=(ノード数).
+    Graph m_g;  // m_g[v][]:=(ノードvの隣接リスト).
 
     int infinity() const { return 1e9; }
 
 public:
     SCC() : SCC(0) {}
     explicit SCC(int vn) : m_vn(vn), m_g(vn) {}
+    explicit SCC(const Graph &g) : m_vn(g.size()), m_g(g) {}
 
     // ノード数を返す．
     int size() const { return m_vn; }
@@ -28,10 +31,11 @@ public:
     }
     // return pair of (# of SCCs, SCC id of each nodes).
     std::pair<int, std::vector<int> > get_scc_id() const {
-        // ord[v]:=(DFS木におけるノードvの行きがけ順序), low[v]:=(DFS木におけるノードvのlowlink).
-        std::vector<int> ord(m_vn, -1), low(m_vn);
-        std::vector<int> ids(m_vn);  // ids[v]:=(ノードvが属するSCCのID).
-        int num_sccs = 0;            // num_sccs:=(SCCsの数).
+        // ord[v]:=(DFS木におけるノードvの行きがけ順序).
+        // low[v]:=(DFS木において，頂点vから葉方向に0回以上，後退辺を高々1回用いて到達できる頂点wのord[w]の最小値).
+        std::vector<int> ord(size(), -1), low(size());
+        std::vector<int> id(size());  // id[v]:=(ノードvが属するSCCのID).
+        int num_sccs = 0;             // num_sccs:=(SCCsの数).
         int now_ord = 0;
         std::stack<int> visited;
         auto dfs = [&](auto self, int u) -> void {
@@ -50,7 +54,7 @@ public:
                     auto v = visited.top();
                     visited.pop();
                     ord[v] = infinity();
-                    ids[v] = num_sccs;
+                    id[v] = num_sccs;
                     if(v == u) break;
                 }
                 num_sccs++;
@@ -59,13 +63,13 @@ public:
         for(int v = 0; v < size(); ++v) {
             if(ord[v] == -1) dfs(dfs, v);
         }
-        return {num_sccs, ids};
+        return {num_sccs, id};
     }
     // 有向グラフを強連結成分分解する．O(|V|+|E|).
     std::vector<std::vector<int> > decompose() const {
-        const auto &&[num_sccs, ids] = get_scc_id();
+        const auto &&[num_sccs, id] = get_scc_id();
         std::vector<std::vector<int> > sccs(num_sccs);
-        for(int v = 0; v < size(); ++v) sccs[ids[v]].push_back(v);
+        for(int v = 0; v < size(); ++v) sccs[id[v]].push_back(v);
         return sccs;
     }
 };
