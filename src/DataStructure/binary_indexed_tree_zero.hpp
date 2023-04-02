@@ -27,20 +27,21 @@ public:
         build();
     }
 
+    // 要素数を返す．
     int size() const { return m_sz; }
     // k番目の要素にaを足す．O(logN).
     void add(int k, T a) {
         assert(0 <= k and k < size());
         for(; k < size(); k |= k + 1) m_tree[k] += a;
     }
-    // 区間[0,r)の和を求める．O(logN).
+    // 区間[0,r)の総和を求める．O(logN).
     T sum(int r) const {
         assert(0 <= r and r <= size());
         T res = 0;
         for(r = r - 1; r >= 0; r = (r & (r + 1)) - 1) res += m_tree[r];
         return res;
     }
-    // 区間[l,r)の和を求める．O(logN).
+    // 区間[l,r)の総和を求める．O(logN).
     T sum(int l, int r) const {
         assert(0 <= l and l <= r and r <= size());
         return sum(r) - sum(l);
