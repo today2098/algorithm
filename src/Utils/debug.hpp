@@ -68,8 +68,8 @@ void print(const std::tuple<T...> &t) {
 template <typename T, typename std::enable_if_t<has_iterator<T>::value, bool> = false>
 void print(const T &v) {
     std::cerr << "[";
-    for(auto itr = std::begin(v); itr != std::end(v); ++itr) {
-        if(itr != std::begin(v)) std::cerr << " ";
+    for(auto itr = std::cbegin(v); itr != std::cend(v); ++itr) {
+        if(itr != std::cbegin(v)) std::cerr << " ";
         print(*itr);
     }
     std::cerr << "]";
