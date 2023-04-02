@@ -7,7 +7,7 @@
 
 namespace algorithm {
 
-// 連続した整数列の集合を管理するデータ構造．
+// 整数の集合を連続範囲で管理するデータ構造．
 template <typename T>
 class SerialSet {
     std::set<std::pair<T, T> > m_st;  // m_st:=(整数の集合). 連続する整数列[l,r)をpair(l,r)で表現する．
@@ -20,11 +20,9 @@ public:
     }
 
     T infinity() const { return m_inf; }
-    // 整数xを挿入する．
-    bool insert(T x) { return insert(x, x + 1); }
-    // 整数列[l,r)を挿入する．O(logN).
+    // 範囲[l,r)の整数を挿入する．O(logN).
     bool insert(T l, T r) {
-        assert(-m_inf < l and l < r and r <= m_inf);
+        assert(-m_inf < l and l < r and r < m_inf);
         auto itr1 = std::prev(m_st.lower_bound(std::pair<T, T>(l + 1, l + 2)));
         auto [l1, r1] = *itr1;
         if(r <= r1) return false;  // 集合に完全に含まれている場合．
@@ -44,11 +42,11 @@ public:
         }
         return true;
     }
-    // 整数xを削除する．
-    bool erase(T x) { return erase(x, x + 1); }
-    // 範囲[l,r)の整数列を削除する．O(logN).
+    // 整数xを挿入する．O(logN).
+    bool insert(T x) { return insert(x, x + 1); }
+    // 範囲[l,r)の整数を削除する．O(logN).
     bool erase(T l, T r) {
-        assert(-m_inf < l and l < r and r <= m_inf);
+        assert(-m_inf < l and l < r and r < m_inf);
         auto itr1 = std::prev(m_st.lower_bound(std::pair<T, T>(l + 1, l + 2)));
         auto itr3 = m_st.lower_bound(std::pair<T, T>(r, r + 1));
         auto itr2 = std::prev(itr3);
@@ -64,14 +62,16 @@ public:
         if(r < r2) m_st.emplace(r, r2);
         return true;
     }
-    // 整数xが集合に含まれるか判定する．
-    bool contains(T x) const { return contains(x, x + 1); }
-    // 整数列[l,r)が集合に完全に含まれるか判定する．(logN).
+    // 整数xを削除する．O(logN).
+    bool erase(T x) { return erase(x, x + 1); }
+    // 範囲[l,r)の整数が集合に全て含まれるか判定する．O(logN).
     bool contains(T l, T r) const {
         assert(-m_inf < l and l < r and r <= m_inf);
         const auto &[_, pr] = *std::prev(m_st.lower_bound(std::pair<T, T>(l + 1, l + 2)));
         return r <= pr;
     }
+    // 整数xが集合に含まれるか判定する．O(logN).
+    bool contains(T x) const { return contains(x, x + 1); }
     // 集合に含まれないx以上の整数の中で最小の値 (MEX:Minimum EXcluded value) を求める．O(logN).
     T mex(T x) const {
         assert(-m_inf < x and x < m_inf);
@@ -80,8 +80,12 @@ public:
     }
 
     friend std::ostream &operator<<(std::ostream &os, const SerialSet &ob) {
-        for(const auto &[l, r] : ob.m_st) os << "[" << l << ", " << r << ") ";
-        os << std::endl;
+        for(auto itr = ob.m_st.cbegin(); itr != ob.m_st.cend(); ++itr) {
+            const auto &[l, r] = *itr;
+            os << (itr == ob.m_st.cbegin() ? "[ " : ", ") << "[" << l << ", " << r << ")";
+        }
+        os << " ]";
+        return os;
     }
 };
 
