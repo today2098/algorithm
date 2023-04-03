@@ -2,13 +2,11 @@
 My library for kyopro.
 
 
-
 ## Overview
 
 これは競技プログラミングでの利用を想定した，アルゴリズムやデータ構造のライブラリです．
 
 This is library for competitive programming.
-
 
 
 ## Usage
@@ -29,7 +27,6 @@ $ cp .vscode/*.code-snippets /path/to/your/workspace/.vscode/
 I write source code only on header file in order to simplify making snippet.
 
 
-
 ## Description
 
 ### Data Structure
@@ -41,18 +38,21 @@ I write source code only on header file in order to simplify making snippet.
 - SubPersistentUnionFind : 部分永続Union-Find Tree．
 
 
-
-#### Binary Indexed Tree
-
-- BIT : Binary Indexed Tree. 別名「フェニック木」．
-- BIT0 : Binary Indexed Tree (0-based index).
-
-
-
 #### Segment Tree
 
-- SegmentTree : 一点更新・区間取得セグメント木．
+- BIT : Binary Indexed Tree. 別名「フェニック木」．一点加算，区間和取得．
+- BIT0 : Binary Indexed Tree (0-based index).
+- BIT2D : 2次元Binary Indexed Tree．
+- BIT2D0 : 2次元Binary Indexed Tree (0-based index)．
+- SegmentTree : セグメント木．一点更新・区間取得．
+- LazySegmentTree : 遅延セグメント木．区間更新・区間取得．
 
+
+#### Other
+
+- Heap : 二分ヒープ．
+- SerialSet : 整数の集合を連続範囲で管理するデータ構造．ある整数集合においてMEXを求める．計算量は O(logN).
+- BinaryTrie : 非負整数値を扱うTrie木．
 
 
 ### Graph
@@ -63,12 +63,10 @@ I write source code only on header file in order to simplify making snippet.
 - Dijkstra : Dijkstraアルゴリズム．単一始点最短経路 (Single Source Shortest Path, SSSP) を求める．計算量は O(|E|*log|V|)．
 
 
-
 #### Max Flow
 
 - FordFulkerson : Ford-Fulkersonアルゴリズム．
 - Dinic : Dinic法．
-
 
 
 ### Math Number Theory
@@ -79,12 +77,10 @@ I write source code only on header file in order to simplify making snippet.
 - DynamicModint : 動的Modint．
 
 
-
 #### Prime Number
 
 - Sieve : エラトステネスの篩
 - SegmentSieve : 区間篩
-
 
 
 ### Math Combinatorics
@@ -93,7 +89,6 @@ I write source code only on header file in order to simplify making snippet.
 - nPk () : 順列．
 - nCK () : 組み合わせ．
 - nHk () : 重複組み合わせ．
-
 
 
 ## Reference
