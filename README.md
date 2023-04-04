@@ -33,6 +33,8 @@ I write source code only on header file in order to simplify making snippet.
 
 #### Union-Find Tree
 
+素集合データ構造です．
+
 |class|summary|
 |---|---|
 |UnionFind|素集合データ構造．|
@@ -41,6 +43,8 @@ I write source code only on header file in order to simplify making snippet.
 
 
 #### Segment Tree
+
+区間クエリを行うデータ構造です．
 
 |class|summary|
 |---|---|
@@ -65,29 +69,33 @@ I write source code only on header file in order to simplify making snippet.
 
 #### Shortest Path
 
+グラフにおける最短経路問題を解くアルゴリズムです．
+
 |class|summary|
 |---|---|
-|BellmanFord|Bellman-Fordアルゴリズム．単一始点最短経路 (Single Source Shortest Path, SSSP) を求める．O(|V|*|E|).|
-|Dijkstra|Dijkstraアルゴリズム．単一始点最短経路を求める．O(|E|*log|V|).|
+|BellmanFord|Bellman-Fordアルゴリズム．単一始点最短経路 (Single Source Shortest Path, SSSP) を求める．O(\|V\|*\|E\|).|
+|Dijkstra|Dijkstraアルゴリズム．単一始点最短経路を求める．O(\|E\|*log\|V\|).|
 
 
 #### Flow
 
+フロー問題を解くアルゴリズムです．
+
 |class|summary|
 |---|---|
-|FordFulkerson|Ford-Fulkersonアルゴリズム．O(F*|E|).|
-|Dinic|Dinic法．O(|E|*(|V|^2)).|
-|PrimalDual|最小費用流問題を求める．O(F*|E|*log|V|).|
+|FordFulkerson|Ford-Fulkersonアルゴリズム．O(F*\|E\|).|
+|Dinic|Dinic法．O(\|E\|*(\|V\|^2)).|
+|PrimalDual|最小費用流問題を求める．O(F*\|E\|*log\|V\|).|
 
 
 #### Others
 
 |class|summary|
 |---|---|
-|Prim|ある重み付き無向グラフにおける最小全域木のコストを求める．O(|E|*log|V|).|
-|LCA|ある木における二つのノードの最近共通祖先 (Lowest Common Ancestor, LCA) を求める．O(|V|*log|V|).|
-|LowLink|ある無向連結グラフにおける橋と関節点を求める．O(|V|+|E|).|
-|SCC|ある有向連結グラフを強連結成分 (Strongly Connected Components, SCC) に分解する．O(|V|+|E|).|
+|Prim|ある重み付き無向グラフにおける最小全域木のコストを求める．O(\|E\|*log\|V\|).|
+|LCA|ある木における二つのノードの最近共通祖先 (Lowest Common Ancestor, LCA) を求める．O(\|V\|*log\|V\|).|
+|LowLink|ある無向連結グラフにおける橋と関節点を求める．O(\|V\|+\|E\|).|
+|SCC|ある有向連結グラフを強連結成分 (Strongly Connected Components, SCC) に分解する．O(\|V\|+\|E\|).|
 
 
 ### Math Number Theory
@@ -98,24 +106,38 @@ I write source code only on header file in order to simplify making snippet.
 |---|---|
 |Modint||
 |DynamicModint|動的Modint．|
+|mod_pow(n,k,m)|繰返し二乗法（mod付き）．n^k (mod m) を求める．O(logK).|
+|mod_inv(a,m)|逆元．a^-1 (mod m) を求める．|
 
 
 #### Prime Number
 
+素数，約数に関するアルゴリズムです．
+
 |class|summary|
 |---|---|
 |Sieve|エラトステネスの篩|
+|LinerSieve|線形篩|
 |SegmentSieve|区間篩|
+|is_prime(n)|自然数nを素数判定する．|
+|prime_factorize(n)|自然数nを素因数分解する．|
+|igcd(a,b)|自然数a, bの最大公約数を求める．|
+|ilcm(a,b)|自然数a, bの最小公倍数を求める．|
+|calc_divisors(n)|自然数nの約数を列挙する．|
+|extgcd()|拡張ユークリッド互除法．|
+|crt()|中国剰余定理 (Chinese Remainder Theorem)．|
 
 
 ### Math Combinatorics
 
-|class|summary|
+組合せ論に関するアルゴリズムです．
+
+|class, function|summary|
 |---|---|
 |Combination|二項係数（mod付き）．|
-|nPk ()|順列．|
-|nCK ()|組み合わせ．|
-|nHk ()|重複組み合わせ．|
+|nPk()|順列．|
+|nCK()|組み合わせ．|
+|nHk()|重複組み合わせ．|
 
 
 ## Reference
