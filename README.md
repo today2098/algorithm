@@ -48,10 +48,10 @@ I write source code only on header file in order to simplify making snippet.
 - LazySegmentTree : 遅延セグメント木．区間更新・区間取得．
 
 
-#### Other
+#### Others
 
 - Heap : 二分ヒープ．
-- SerialSet : 整数の集合を連続範囲で管理するデータ構造．ある整数集合においてMEXを求める．計算量は O(logN).
+- SerialSet : 整数の集合を連続範囲で管理するデータ構造．ある整数集合においてMEX (Minimum EXcluded value) を求める．O(logN).
 - BinaryTrie : 非負整数値を扱うTrie木．
 
 
@@ -59,14 +59,23 @@ I write source code only on header file in order to simplify making snippet.
 
 #### Shortest Path
 
-- BellmanFord : Bellman-Fordアルゴリズム．単一始点最短経路 (Single Source Shortest Path, SSSP) を求める．計算量は O(|V|*|E|)．
-- Dijkstra : Dijkstraアルゴリズム．単一始点最短経路 (Single Source Shortest Path, SSSP) を求める．計算量は O(|E|*log|V|)．
+- BellmanFord : Bellman-Fordアルゴリズム．単一始点最短経路 (Single Source Shortest Path, SSSP) を求める．O(|V|*|E|).
+- Dijkstra : Dijkstraアルゴリズム．単一始点最短経路を求める．O(|E|*log|V|).
 
 
-#### Max Flow
+#### Flow
 
-- FordFulkerson : Ford-Fulkersonアルゴリズム．
-- Dinic : Dinic法．
+- FordFulkerson : Ford-Fulkersonアルゴリズム．O(F*|E|).
+- Dinic : Dinic法．O(|E|*(|V|^2)).
+- PrimalDual : 最小費用流問題を求める．O(F*|E|*log|V|).
+
+
+#### Others
+
+- Prim : ある重み付き無向グラフにおける最小全域木のコストを求める．O(|E|*log|V|).
+- LCA : ある木における二つのノードの最近共通祖先 (Lowest Common Ancestor, LCA) を求める．O(|V|*log|V|).
+- LowLink : ある無向連結グラフにおける橋と関節点を求める．O(|V|+|E|).
+- SCC : ある有向連結グラフを強連結成分 (Strongly Connected Components, SCC) に分解する．O(|V|+|E|).
 
 
 ### Math Number Theory
