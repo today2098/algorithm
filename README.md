@@ -114,18 +114,18 @@ I write source code only on header file in order to simplify making snippet.
 
 素数，約数に関するアルゴリズムです．
 
-|class|summary|
-|---|---|
-|Sieve|エラトステネスの篩|
-|LinerSieve|線形篩|
-|SegmentSieve|区間篩|
-|is_prime(n)|自然数nを素数判定する．|
-|prime_factorize(n)|自然数nを素因数分解する．|
-|igcd(a,b)|自然数a, bの最大公約数を求める．|
-|ilcm(a,b)|自然数a, bの最小公倍数を求める．|
-|calc_divisors(n)|自然数nの約数を列挙する．|
-|extgcd()|拡張ユークリッド互除法．|
-|crt()|中国剰余定理 (Chinese Remainder Theorem)．|
+|class, function|summary|complexity|
+|---|---|---|
+|Sieve|エラトステネスの篩|O(N*loglogN)|
+|LinerSieve|線形篩|O(N)|
+|SegmentSieve|区間篩||
+|is_prime(n)|素数判定|O(√N)|
+|prime_factorize(n)|素因数分解|O(√N)|
+|igcd(a,b)|最大公約数|O(logN)|
+|ilcm(a,b)|最小公倍数|O(logN)|
+|divisors(n)|約数列挙|O(√N)|
+|extgcd(a,b,x,y)|拡張ユークリッド互除法|O(logN)|
+|crt(b1,m1,b2,m2)|中国剰余定理 (Chinese Remainder Theorem)||
 
 
 ### Math Combinatorics
