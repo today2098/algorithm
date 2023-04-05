@@ -90,12 +90,12 @@ I write source code only on header file in order to simplify making snippet.
 
 #### Others
 
-|class|summary|
-|---|---|
-|Prim|ある重み付き無向グラフにおける最小全域木のコストを求める．O(\|E\|*log\|V\|).|
-|LCA|ある木における二つのノードの最近共通祖先 (Lowest Common Ancestor, LCA) を求める．O(\|V\|*log\|V\|).|
-|LowLink|ある無向連結グラフにおける橋と関節点を求める．O(\|V\|+\|E\|).|
-|SCC|ある有向連結グラフを強連結成分 (Strongly Connected Components, SCC) に分解する．O(\|V\|+\|E\|).|
+|class|summary|complexity|
+|---|---|---|
+|Prim|ある重み付き無向グラフにおける最小全域木のコストを求める．|O(\|E\|*log\|V\|)|
+|LowLink|ある無向連結グラフにおける橋と関節点を求める．|O(\|V\|+\|E\|)|
+|SCC|ある有向連結グラフを強連結成分 (Strongly Connected Components, SCC) に分解する．|O(\|V\|+\|E\|)|
+|LCA|ある木における二つのノードの最近共通祖先 (Lowest Common Ancestor, LCA) を求める．|O(\|V\|*log\|V\|)|
 
 
 ### Math Number Theory
