@@ -135,6 +135,7 @@ I write source code only on header file in order to simplify making snippet.
 |class, function|summary|complexity|
 |---|---|---|
 |Combination|二項係数（mod付き）|O(N)|
+|Montmort|完全順列（mod付き）|O(N)|
 |nPk(n,k)|順列|O(K)|
 |nCK(n,k)|組合せ|O(K)|
 |nHk(n,k)|重複組合せ|O(N)|
