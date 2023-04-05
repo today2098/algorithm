@@ -2702,13 +2702,13 @@
 		],
 		"description": ""
 	},
-	"calc_divisors": {
+	"divisors": {
 		"scope": "cpp",
-		"prefix": "calc_divisors",
+		"prefix": "divisors",
 		"body": [
 			"// 約数列挙．O(√N).",
 			"template <typename Type>",
-			"std::vector<Type> calc_divisors(Type n) {",
+			"std::vector<Type> divisors(Type n) {",
 			"    assert(n >= 0);",
 			"    std::vector<Type> res;  // res[]:=(自然数nの約数の集合).",
 			"    for(Type p = 1; p * p <= n; ++p) {",

@@ -7,17 +7,17 @@
 
 namespace algorithm {
 
-// 最大公約数 (GCD:Greatest Common Divisor)．O(logN).
+// 最大公約数 (GCD: Greatest Common Divisor)．O(logN).
 template <typename Type>
 Type igcd(Type a, Type b) { return (b == 0) ? a : igcd(b, a % b); }
 
-// 最小公倍数 (LCM:Least Common Multiple)．O(logN).
+// 最小公倍数 (LCM: Least Common Multiple)．O(logN).
 template <typename Type>
 Type ilcm(Type a, Type b) { return a / igcd(a, b) * b; }
 
 // 約数列挙．O(√N).
 template <typename Type>
-std::vector<Type> calc_divisors(Type n) {
+std::vector<Type> divisors(Type n) {
     assert(n >= 0);
     std::vector<Type> res;  // res[]:=(自然数nの約数の集合).
     for(Type p = 1; p * p <= n; ++p) {
