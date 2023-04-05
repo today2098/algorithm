@@ -3,6 +3,7 @@
 
 #include <algorithm>
 #include <cassert>
+#include <cmath>
 #include <map>
 #include <numeric>
 #include <vector>
@@ -14,13 +15,6 @@ class Sieve {
     int m_mx;                // m_mx:=(篩にかける最大の自然数).
     std::vector<int> m_lpf;  // m_lpf[n]:=(自然数nの最小の素因数). Least prime factor. m_lpf[n]==n のとき，nは素数．
 
-    int internal_pow(int n, unsigned int k) const {
-        if(k == 0) return 1;
-        auto &&res = internal_pow(n * n, k >> 1);
-        if(k & 1U) res *= n;
-        return res;
-    }
-
 public:
     // constructor. n以下の自然数を篩にかける．O(N*loglogN).
     Sieve() : Sieve(51e4) {}
@@ -29,8 +23,8 @@ public:
         std::iota(m_lpf.begin() + 2, m_lpf.end(), 2);
         for(int p = 2; p * p <= m_mx; ++p) {
             if(m_lpf[p] == p) {
-                for(int n = p * p; n <= m_mx; n += p) {
-                    if(m_lpf[n] == n) m_lpf[n] = p;
+                for(int m = p * p; m <= m_mx; m += p) {
+                    if(m_lpf[m] == m) m_lpf[m] = p;
                 }
             }
         }
@@ -77,7 +71,7 @@ public:
         assert(1 <= n and n <= m_mx);
         const auto &&pf = prime_factorize(n);
         int res = 1;
-        for(const auto &[p, cnt] : pf) res *= internal_pow(p, cnt - 1) * (p - 1);
+        for(const auto &[p, cnt] : pf) res *= std::pow(p, cnt - 1) * (p - 1);
         return res;
     }
 };

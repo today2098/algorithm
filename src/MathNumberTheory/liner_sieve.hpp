@@ -10,22 +10,24 @@ namespace algorithm {
 
 // 線形篩．
 class LinearSieve {
-    int m_mx;                // m_mx:=(篩にかける最大の自然数).
-    std::vector<int> m_lpf;  // m_lpf[n]:=(自然数nの最小の素因数). Least prime factor. m_lpf[n]==nのとき，nは素数．
+    int m_mx;                   // m_mx:=(篩にかける最大の自然数).
+    std::vector<int> m_lpf;     // m_lpf[n]:=(自然数nの最小の素因数). Least prime factor. m_lpf[n]==nのとき，nは素数．
+    std::vector<int> m_primes;  // m_primes[]:=(自然数n以下の素数のリスト).
 
 public:
     // constructor. n以下の自然数を篩にかける．O(N).
     LinearSieve() : LinearSieve(51e4) {}
     explicit LinearSieve(int n) : m_mx(n), m_lpf(n + 1, -1) {
         assert(n >= 0);
-        std::vector<int> primes;
         for(int p = 2; p <= m_mx; ++p) {
             if(m_lpf[p] == -1) {
                 m_lpf[p] = p;
-                primes.push_back(p);
+                m_primes.push_back(p);
             }
-            const int sz = primes.size();
-            for(int i = 0; i < sz and primes[i] <= m_lpf[p] and p * primes[i] <= m_mx; ++i) m_lpf[p * primes[i]] = primes[i];
+            for(auto prime : m_primes) {
+                if(prime * p > m_mx or prime > m_lpf[p]) break;
+                m_lpf[prime * p] = prime;
+            }
         }
     }
 
@@ -39,7 +41,7 @@ public:
         assert(2 <= n and n <= m_mx);
         return m_lpf[n];
     }
-    // 高速素因数分解．O(logN).
+    // 高速素因数分解．osa_k法．O(logN).
     std::map<int, int> prime_factorize(int n) const {
         assert(1 <= n and n <= m_mx);
         std::map<int, int> res;
@@ -65,6 +67,8 @@ public:
         std::sort(res.begin(), res.end());
         return res;
     }
+    // 素数のリストを参照する．O(1).
+    const std::vector<int> &primes() const { return m_primes; }
 };
 
 }  // namespace algorithm

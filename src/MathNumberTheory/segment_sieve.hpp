@@ -15,7 +15,7 @@ class SegmentSieve {
     long long l, r;
     long long sr;                                  // sr:=√r.
     std::vector<long long> small;                  // small[n]:=(区間[2,√r)の自然数nの最小の素因数).
-    std::vector<std::map<long long, int> > large;  // large[n-l][]:=(区間[l,r)の自然数nの区間[2,√r)における素因数).
+    std::vector<std::map<long long, int> > large;  // large[n-l][]:=(区間[l,r)の自然数nの区間[2,√r)におけるいくつかの素因数).
     std::vector<long long> aux;                    // aux[n-l]:=(large[n-l][]の積).
 
     void build() {
@@ -71,8 +71,10 @@ public:
     std::vector<long long> divisors(long long n) const {
         assert(l <= n and n < r);
         std::vector<long long> res({1});
-        if(n == 1) return res;
         const auto &&pf = prime_factorize(n);
+        int capacity = 1;
+        for(const auto &[_, cnt] : pf) capacity *= (cnt + 1);
+        res.reserve(capacity);
         for(const auto &[p, cnt] : pf) {
             const int sz = res.size();
             long long b = 1;
