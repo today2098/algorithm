@@ -132,12 +132,12 @@ I write source code only on header file in order to simplify making snippet.
 
 組合せ論に関するアルゴリズムです．
 
-|class, function|summary|
-|---|---|
-|Combination|二項係数（mod付き）．|
-|nPk()|順列．|
-|nCK()|組み合わせ．|
-|nHk()|重複組み合わせ．|
+|class, function|summary|complexity|
+|---|---|---|
+|Combination|二項係数（mod付き）|O(N)|
+|nPk(n,k)|順列|O(K)|
+|nCK(n,k)|組合せ|O(K)|
+|nHk(n,k)|重複組合せ|O(N)|
 
 
 ## Reference
