@@ -83,7 +83,7 @@ public:
         return m_d[t];
     }
     // ノードsからtへの最短経路を復元する．
-    std::vector<int> get_path(int t) const {
+    std::vector<int> shortest_path(int t) const {
         assert(0 <= t and t < size());
         assert(-infinity() < m_d[t] and m_d[t] < infinity());
         std::vector<int> path;

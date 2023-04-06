@@ -71,10 +71,10 @@ I write source code only on header file in order to simplify making snippet.
 
 グラフにおける最短経路問題を解くアルゴリズムです．
 
-|class|summary|
-|---|---|
-|BellmanFord|Bellman-Fordアルゴリズム．単一始点最短経路 (Single Source Shortest Path, SSSP) を求める．O(\|V\|*\|E\|).|
-|Dijkstra|Dijkstraアルゴリズム．単一始点最短経路を求める．O(\|E\|*log\|V\|).|
+|class|summary|complexity|
+|---|---|---|
+|BellmanFord|Bellman-Fordアルゴリズム．単一始点最短経路 (Single Source Shortest Path, SSSP) を求める．|O(\|V\|*\|E\|)|
+|Dijkstra|Dijkstraアルゴリズム．単一始点最短経路を求める．|O(\|E\|*log\|V\|)|
 
 
 #### Flow
@@ -179,6 +179,16 @@ I write source code only on header file in order to simplify making snippet.
 |z_algorithm(s)|最長共通接頭辞 (LCP: Longest Common Prefix)|O(\|S\|)|
 |string_modulo(s,mod)|文字列剰余|O(\|S\|)|
 |split(s,delim)|文字列分割．指定の文字delimで分割する．||
+
+
+### Others 
+
+その他アルゴリズムです．
+
+|function|summary|complexity|
+|---|---|---|
+|bit_count32(n)|32bitsの数値のビット数をカウントします．||
+|bit_count64(n)|64bitsの数値のビット数をカウントします．||
 
 
 ## Reference
