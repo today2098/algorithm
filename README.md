@@ -35,11 +35,11 @@ I write source code only on header file in order to simplify making snippet.
 
 素集合データ構造です．
 
-|class|summary|
-|---|---|
-|UnionFind|素集合データ構造．|
-|PotentializedUnionFind|重み付きUnion-Find Tree．|
-|SubPersistentUnionFind|部分永続Union-Find Tree．|
+|class|summary|complexity|
+|---|---|---|
+|UnionFind|素集合データ構造||
+|PotentializedUnionFind|重み付きUnion-Find Tree||
+|SubPersistentUnionFind|部分永続Union-Find Tree||
 
 
 #### Segment Tree
@@ -102,12 +102,12 @@ I write source code only on header file in order to simplify making snippet.
 
 #### Modulo
 
-|class|summary|
-|---|---|
-|Modint||
-|DynamicModint|動的Modint．|
-|mod_pow(n,k,m)|繰返し二乗法（mod付き）．n^k (mod m) を求める．O(logK).|
-|mod_inv(a,m)|逆元．a^-1 (mod m) を求める．|
+|class|summary|complexity|
+|---|---|---|
+|Modint|||
+|DynamicModint|動的Modint||
+|mod_pow(n,k,m)|繰返し二乗法（mod付き）．n^k (mod m) を求める．|O(logK)|
+|mod_inv(a,m)|逆元．a^-1 (mod m) を求める．||
 
 
 #### Prime Number
@@ -187,8 +187,8 @@ I write source code only on header file in order to simplify making snippet.
 
 |function|summary|complexity|
 |---|---|---|
-|bit_count32(n)|32bitsの数値のビット数をカウントします．||
-|bit_count64(n)|64bitsの数値のビット数をカウントします．||
+|bit_count32(n)|32bitsの数値のビット数をカウントする．||
+|bit_count64(n)|64bitsの数値のビット数をカウントする．||
 
 
 ## Reference

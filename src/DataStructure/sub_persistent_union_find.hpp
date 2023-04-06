@@ -12,8 +12,8 @@ class SubPersistentUnionFind {
 
     int m_now;  // m_now:=(時刻).
     int m_vn;   // m_vn:=(ノード数).
-    int m_gn;   // m_gn:=(グループ数).
-    // m_par[v][](t,id):=(時刻tにおけるノードvの親番号id). 値idが0未満の場合，vは親となり，値idの絶対値はグループサイズを表す．
+    int m_gn;   // m_gn:=(連結成分数).
+    // m_par[v][](t,id):=(時刻tにおけるノードvの親番号id). 値idが0未満の場合，vは親となり，値idの絶対値は連結成分のサイズを表す．
     std::vector<std::vector<pii> > m_par;
 
     static constexpr int infinity() { return 1e9; }
@@ -26,18 +26,18 @@ public:
 
     // 現在の時刻を返す．
     int now() const { return m_now; }
-    // ノード数を返す．
+    // ノードの総数を返す．
     int vn() const { return m_vn; };
-    // グループ数を返す．
+    // 連結成分数を返す．
     int gn() const { return m_gn; };
-    // 現在におけるノードvの親番号を返す．O(logN).
+    // 現在のノードvの親番号を返す．
     int root(int v) const {
         assert(0 <= v and v < vn());
         auto itr = m_par[v].rbegin();
         if(itr->second < 0) return v;
         return root(itr->second);
     }
-    // 時刻tにおけるノードvの親番号を返す．O(logN).
+    // 時刻tにおけるノードvの親番号を返す．
     int root(int v, int t) const {
         assert(0 <= v and v < vn());
         assert(0 <= t and t < now());
@@ -46,12 +46,12 @@ public:
         if(itr->second < 0) return v;
         return (itr->first == t ? itr->second : root(itr->second, t));
     }
-    // 現在におけるノードvが属するグループのサイズを返す．O(logN).
+    // 現在のノードvが属する連結成分のサイズを返す．
     int size(int v) const {
         assert(0 <= v and v < vn());
         return -m_par[root(v)].rbegin()->second;
     }
-    // 時刻tにおけるノードvが属するグループのサイズを返す．O(logN).
+    // 時刻tにおけるノードvが属する連結成分のサイズを返す．
     int size(int v, int t) const {
         assert(0 <= v and v < vn());
         assert(0 <= t and t < now());
@@ -60,20 +60,20 @@ public:
         if(itr == m_par[par].end() or itr->first > t) itr--;
         return -itr->second;
     }
-    // 現在においてノードuとvが同じグループか判定する．O(logN).
+    // 現在ノードuとvが連結か判定する．
     bool same(int u, int v) const {
         assert(0 <= u and u < vn());
         assert(0 <= v and v < vn());
         return root(u) == root(v);
     }
-    // 時刻tにおいてノードuとvが同じグループか判定する．O(logN).
+    // 時刻tにおいてノードuとvが連結か判定する．
     bool same(int u, int v, int t) const {
         assert(0 <= u and u < vn());
         assert(0 <= v and v < vn());
         assert(0 <= t and t < now());
         return root(u, t) == root(v, t);
     }
-    // ノードu, vが属するそれぞれのグループを結合する．O(logN).
+    // ノードuとvが属する連結成分を繋げる．
     bool unite(int u, int v) {
         assert(0 <= u and u < vn());
         assert(0 <= v and v < vn());

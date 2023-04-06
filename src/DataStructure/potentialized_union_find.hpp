@@ -10,17 +10,17 @@ namespace algorithm {
 template <typename T>
 class PotentializedUnionFind {
     int m_vn;                // m_vn:=(ノード数).
-    int m_gn;                // m_gn:=(グループ数).
-    std::vector<int> m_par;  // m_par[v]:=(ノードvの親番号). 0未満の場合，vは親となり，値の絶対値はグループサイズを表す．
+    int m_gn;                // m_gn:=(連結成分数).
+    std::vector<int> m_par;  // m_par[v]:=(ノードvの親番号). 0未満の場合，vは根であり，値の絶対値は連結成分のサイズを表す．
     std::vector<T> m_p;      // m_p[v]:=(ノードvのポテンシャル).
 
 public:
     PotentializedUnionFind() : PotentializedUnionFind(0) {}
     explicit PotentializedUnionFind(size_t vn) : m_vn(vn), m_gn(vn), m_par(vn, -1), m_p(vn, 0) {}
 
-    // ノード数を返す．
+    // ノードの総数を返す．
     int vn() const { return m_vn; };
-    // グループ数を返す．
+    // 連結成分の数を返す．
     int gn() const { return m_gn; };
     // ノードvの親番号を返す．
     int root(int v) {
@@ -30,7 +30,7 @@ public:
         m_p[v] += m_p[m_par[v]];
         return m_par[v] = res;
     }
-    // ノードvが属するグループのサイズを返す．
+    // ノードvが属する連結成分のサイズを返す．
     int size(int v) {
         assert(0 <= v and v < vn());
         return -m_par[root(v)];
@@ -41,7 +41,7 @@ public:
         root(v);
         return m_p[v];
     }
-    // ノードuとvが同じグループか判定する．
+    // ノードuとvが連結しているか判定する．
     bool same(int u, int v) {
         assert(0 <= u and u < vn());
         assert(0 <= v and v < vn());
@@ -53,7 +53,7 @@ public:
         assert(0 <= v and v < vn());
         return potential(v) - potential(u);
     }
-    // difference(u,v)=dとなるようにノードuとvの親ノードを結合する．
+    // difference(u,v)=dとなるようにノードuとvそれぞれの親ノードを連結する．
     bool unite(int u, int v, T d) {
         assert(0 <= u and u < vn());
         assert(0 <= v and v < vn());
