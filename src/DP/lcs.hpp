@@ -7,9 +7,9 @@
 
 namespace algorithm {
 
-// 最長共通部分列 (LCS:Longest Common Subsequence)．引数はSTLのシーケンスコンテナ．O(|A|*|B|).
-template <class Class>
-Class lcs(const Class &a, const Class &b) {
+// 最長共通部分列 (LCS: Longest Common Subsequence)．引数はSTLのシーケンスコンテナ．O(|A|*|B|).
+template <class Sequence>
+Sequence lcs(const Sequence &a, const Sequence &b) {
     assert(a.size() > 0 and b.size() > 0);
     const int n = a.size(), m = b.size();
     std::vector<std::vector<int> > dp(n + 1, std::vector<int>(m + 1, 0));  // dp[i][j]:=(a[:i]とb[:j]のLCSの長さ).
@@ -19,7 +19,7 @@ Class lcs(const Class &a, const Class &b) {
             else dp[i][j] = std::max(dp[i - 1][j], dp[i][j - 1]);
         }
     }
-    Class sub(dp[n][m], a[0]);  // sub[]:=(配列a, bのLCS).
+    Sequence sub(dp[n][m], a[0]);  // sub[]:=(配列a, bのLCS).
     int i = n, j = m, k = dp[n][m];
     while(k > 0) {
         if(a[i - 1] == b[j - 1]) {
