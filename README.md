@@ -158,4 +158,15 @@ I write source code only on header file in order to simplify making snippet.
 |isqrt(x)|平方根（ニュートン法）||
 
 
+### DP
+
+動的計画法を用いたアルゴリズムです．
+
+|function|summary|complexity|
+|---|---|---|
+|lis(a)|最長増加部分列 (LIS: Longest Increasing Subsequence)|O(\|A\|*log\|A\|)|
+|lcs(a,b)|最長共通部分列 (LCS: Longest Common Subsequence)|O(\|A\|*\|B\|)|
+|edit_distance(s,t)|編集距離 (edit distance)|O(\|S\|*\|T\|)|
+
+
 ## Reference
