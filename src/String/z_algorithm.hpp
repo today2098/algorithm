@@ -5,9 +5,9 @@
 
 namespace algorithm {
 
-// 最長共通接頭辞 (LCP:Longest Common Prefix)．O(|S|).
-template <class Class>
-std::vector<int> z_algorithm(const Class &s) {
+// 最長共通接頭辞 (LCP: Longest Common Prefix)．O(|S|).
+template <class Sequence>
+std::vector<int> z_algorithm(const Sequence &s) {
     const int n = s.size();
     std::vector<int> z(n + 1);  // z[i]:=(sとs[i:]のLCPの長さ).
     z[0] = n, z[n] = 0;

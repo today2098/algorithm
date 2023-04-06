@@ -7,7 +7,8 @@
 namespace algorithm {
 
 // 文字列剰余．O(|S|).
-long long string_modulo(const std::string &s, const int mod) {
+template <typename Type>
+Type string_modulo(const std::string &s, const Type mod) {
     const int n = s.size();
     long long res = 0;
     for(int i = 0; i < n; ++i) {
