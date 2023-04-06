@@ -82,9 +82,9 @@ public:
     friend std::ostream &operator<<(std::ostream &os, const SerialSet &ob) {
         for(auto itr = ob.m_st.cbegin(); itr != ob.m_st.cend(); ++itr) {
             const auto &[l, r] = *itr;
-            os << (itr == ob.m_st.cbegin() ? "[ " : ", ") << "[" << l << ", " << r << ")";
+            os << (itr == ob.m_st.cbegin() ? "[" : " ") << "[" << l << ", " << r << ")";
         }
-        os << " ]";
+        os << "]";
         return os;
     }
 };

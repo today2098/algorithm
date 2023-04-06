@@ -58,11 +58,11 @@ I write source code only on header file in order to simplify making snippet.
 
 #### Others
 
-|class|summary|
-|---|---|
-|Heap|二分ヒープ．|
-|SerialSet|整数の集合を連続範囲で管理するデータ構造．ある整数集合においてMEX (Minimum EXcluded value) を求める．O(logN).|
-|BinaryTrie|非負整数値を扱うTrie木．|
+|class|summary|complexity|
+|---|---|---|
+|BinaryTrie|非負整数値を扱うTrie木|O(B)|
+|SerialSet|整数の集合を連続範囲で管理するデータ構造．ある整数集合においてMEX (Minimum EXcluded value) を求める．|O(logN)|
+|Heap|二分ヒープ|O(N*logN)|
 
 
 ### Graph

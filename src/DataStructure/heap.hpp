@@ -12,16 +12,16 @@ template <typename T>
 class Heap {
     using F = std::function<bool(T &, T &)>;
 
-    F comp;               // bool comp(T&,T&):=(比較演算関数).
-    int sz;               // sz:=(要素数).
-    std::vector<T> tree;  // tree[]:=(二分木). 1-based index.
+    F m_comp;               // bool m_comp(T&,T&):=(比較演算関数).
+    int m_sz;               // m_sz:=(要素数).
+    std::vector<T> m_tree;  // m_tree[]:=(二分木). 1-based index.
 
     int shift_up(int k) {
-        assert(1 <= k and k <= sz);
+        assert(1 <= k and k <= size());
         if(k == 1) return 1;
         int par = k / 2;
-        if(comp(tree[par], tree[k])) return k;
-        std::swap(tree[par], tree[k]);
+        if(m_comp(m_tree[par], m_tree[k])) return k;
+        std::swap(m_tree[par], m_tree[k]);
         return par;
     }
     void all_shift_up(int k) {
@@ -32,16 +32,16 @@ class Heap {
         }
     }
     int shift_down(int k) {
-        assert(1 <= k and k <= sz);
-        if(k > sz / 2) return k;
+        assert(1 <= k and k <= size());
+        if(k > size() / 2) return k;
         int l = 2 * k, r = 2 * k + 1;
-        if(r > sz or comp(tree[l], tree[r])) {
-            if(comp(tree[k], tree[l])) return k;
-            std::swap(tree[k], tree[l]);
+        if(r > size() or m_comp(m_tree[l], m_tree[r])) {
+            if(m_comp(m_tree[k], m_tree[l])) return k;
+            std::swap(m_tree[k], m_tree[l]);
             return l;
         } else {
-            if(comp(tree[k], tree[r])) return k;
-            std::swap(tree[k], tree[r]);
+            if(m_comp(m_tree[k], m_tree[r])) return k;
+            std::swap(m_tree[k], m_tree[r]);
             return r;
         }
     }
@@ -53,51 +53,51 @@ class Heap {
         }
     }
     void heap_sort() {
-        int k = sz / 2;
+        int k = size() / 2;
         for(int i = k; i >= 1; --i) all_shift_down(i);
     }
 
 public:
     // constructor. O(N*logN).
     Heap() : Heap([](const T &a, const T &b) -> bool { return a > b; }, std::vector<T>(0)) {}
-    explicit Heap(const F &comp_) : Heap(comp_, std::vector<T>(0)) {}
+    explicit Heap(const F &comp) : Heap(comp, std::vector<T>(0)) {}
     explicit Heap(const std::vector<T> &v) : Heap([](const T &a, const T &b) -> bool { return a > b; }, v) {}
-    explicit Heap(const F &comp_, const std::vector<T> &v) : comp(comp_), sz(v.size()), tree(v.size() + 1) {
-        if(sz > 0) {
-            std::copy(v.begin(), v.end(), tree.begin() + 1);
+    explicit Heap(const F &comp, const std::vector<T> &v) : m_comp(comp), m_sz(v.size()), m_tree(v.size() + 1) {
+        if(size() > 0) {
+            std::copy(v.begin(), v.end(), m_tree.begin() + 1);
             heap_sort();
         }
     }
     ~Heap() {
-        std::vector<T>().swap(tree);
+        std::vector<T>().swap(m_tree);
     }
 
-    bool empty() const { return sz == 0; }
-    int size() const { return sz; }
+    bool empty() const { return size() == 0; }
+    int size() const { return m_sz; }
     // 要素参照．O(1).
     T top() const {
         assert(!empty());
-        return tree[1];
+        return m_tree[1];
     }
     // 要素追加．O(logN).
     void push(const T &a) {
-        tree.push_back(a);
-        sz++;
-        all_shift_up(sz);
+        m_tree.push_back(a);
+        m_sz++;
+        all_shift_up(size());
     }
     // 要素削除．O(logN).
     T pop() {
         assert(!empty());
-        T res = tree[1];
-        tree[1] = tree[sz];
-        tree.pop_back();
-        sz--;
-        if(sz > 0) all_shift_down(1);
+        T res = m_tree[1];
+        m_tree[1] = m_tree[size()];
+        m_tree.pop_back();
+        m_sz--;
+        if(size() > 0) all_shift_down(1);
         return res;
     }
     // ヒープソート．O(N*logN).
-    void heap_sort(const F &comp_) {
-        comp = comp_;
+    void heap_sort(const F &comp) {
+        m_comp = comp;
         heap_sort();
     }
 };
