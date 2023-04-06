@@ -46,14 +46,14 @@ I write source code only on header file in order to simplify making snippet.
 
 区間クエリを行うデータ構造です．
 
-|class|summary|
-|---|---|
-|BIT|Binary Indexed Tree. 別名「フェニック木」．一点加算，区間和取得．|
-|BIT0|Binary Indexed Tree (0-based index).|
-|BIT2D|2次元Binary Indexed Tree．|
-|BIT2D0|2次元Binary Indexed Tree (0-based index)．|
-|SegmentTree|セグメント木．一点更新・区間取得．|
-|LazySegmentTree|遅延セグメント木．区間更新・区間取得．|
+|class|summary|complexity|
+|---|---|---|
+|BIT|Binary Indexed Tree. 別名「フェニック木」．一点加算，区間和取得．|O(logN)|
+|BIT0|Binary Indexed Tree (0-based index)|O(logN)|
+|BIT2D|2次元Binary Indexed Tree|O((logH)*logW)|
+|BIT2D0|2次元Binary Indexed Tree (0-based index)|O((logH)*logW)|
+|SegmentTree|セグメント木．一点更新・区間取得．|O(logN)|
+|LazySegmentTree|遅延セグメント木．区間更新・区間取得．|O(logN)|
 
 
 #### Others
