@@ -141,4 +141,21 @@ I write source code only on header file in order to simplify making snippet.
 |nHk(n,k)|重複組合せ|O(N)|
 
 
+### Math Algebra
+
+代数学に関するアルゴリズムです．
+
+
+#### Matrix
+
+
+#### Others
+
+|class|summary|complexity|
+|---|---|---|
+|Kitamasa|きたまさ法|O((K^2)*logN)|
+|ipow(n,k)|繰返し二乗法|O(logK)|
+|isqrt(x)|平方根（ニュートン法）||
+
+
 ## Reference
