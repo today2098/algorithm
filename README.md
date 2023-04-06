@@ -169,4 +169,16 @@ I write source code only on header file in order to simplify making snippet.
 |edit_distance(s,t)|編集距離 (edit distance)|O(\|S\|*\|T\|)|
 
 
+### String
+
+文字列に関するアルゴリズムです．
+
+|class, function|summary|complexity|
+|---|---|---|
+|Manacher|最長回文 (Longest Palindromic Substring)|O(\|S\|)|
+|z_algorithm(s)|最長共通接頭辞 (LCP: Longest Common Prefix)|O(\|S\|)|
+|string_modulo(s,mod)|文字列剰余|O(\|S\|)|
+|split(s,delim)|文字列分割．指定の文字delimで分割する．||
+
+
 ## Reference
