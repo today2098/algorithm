@@ -18,23 +18,23 @@ class Dinic {
     };
 
     int m_vn;                             // m_vn:=(ノード数).
-    std::vector<std::vector<Edge> > m_g;  // m_g[v][]:=(ノードvが始点の有向辺リスト).
-    std::vector<int> m_level;             // m_level[v]:=(ノードsからvまでのホップ数).
+    std::vector<std::vector<Edge> > m_g;  // m_g[v][]:=(ノードvが始点の隣接辺リスト).
+    std::vector<int> m_hop;               // m_hop[v]:=(ノードsからvまでのホップ数).
     std::vector<int> m_iter;              // m_iter[v]:=(m_g[v][]の次に調べるべきイテレータ).
     T m_inf;
 
     // ノードsから各ノードへのホップ数を計算する．
     void bfs(int s) {
-        std::fill(m_level.begin(), m_level.end(), -1);
-        m_level[s] = 0;
+        std::fill(m_hop.begin(), m_hop.end(), -1);
+        m_hop[s] = 0;
         std::queue<int> que;
         que.push(s);
         while(!que.empty()) {
             int v = que.front();
             que.pop();
             for(const Edge &e : m_g[v]) {
-                if(e.rest > 0 and m_level[e.to] == -1) {
-                    m_level[e.to] = m_level[v] + 1;
+                if(e.rest > 0 and m_hop[e.to] == -1) {
+                    m_hop[e.to] = m_hop[v] + 1;
                     que.push(e.to);
                 }
             }
@@ -46,7 +46,7 @@ class Dinic {
         const int n = m_g[v].size();
         for(int &i = m_iter[v]; i < n; ++i) {
             Edge &e = m_g[v][i];
-            if(e.rest > 0 and m_level[v] < m_level[e.to]) {
+            if(e.rest > 0 and m_hop[v] < m_hop[e.to]) {
                 T res = dfs(e.to, t, std::min(flow, e.rest));
                 if(res > 0) {
                     e.rest -= res;
@@ -60,7 +60,7 @@ class Dinic {
 
 public:
     Dinic() : Dinic(0) {}
-    explicit Dinic(size_t vn, T inf = 1e9) : m_vn(vn), m_g(vn), m_level(vn), m_iter(vn), m_inf(inf) {}
+    explicit Dinic(size_t vn, T inf = 1e9) : m_vn(vn), m_g(vn), m_hop(vn), m_iter(vn), m_inf(inf) {}
 
     // ノード数を返す．
     int size() const { return m_vn; }
@@ -91,7 +91,7 @@ public:
         T flow = 0;
         while(flow < infinity()) {
             bfs(s);
-            if(m_level[t] == -1) return flow;
+            if(m_hop[t] == -1) return flow;
             std::fill(m_iter.begin(), m_iter.end(), 0);
             T tmp;
             while((tmp = dfs(s, t, infinity())) > 0) flow += tmp;

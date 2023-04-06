@@ -81,11 +81,11 @@ I write source code only on header file in order to simplify making snippet.
 
 フロー問題を解くアルゴリズムです．
 
-|class|summary|
-|---|---|
-|FordFulkerson|Ford-Fulkersonアルゴリズム．O(F*\|E\|).|
-|Dinic|Dinic法．O(\|E\|*(\|V\|^2)).|
-|PrimalDual|最小費用流問題を求める．O(F*\|E\|*log\|V\|).|
+|class|summary|complexity|
+|---|---|---|
+|FordFulkerson|Ford-Fulkersonアルゴリズム．最大流を求める．|O(F*\|E\|)|
+|Dinic|Dinic法．最大流を求める．|O(\|E\|*(\|V\|^2))|
+|PrimalDual|最小費用流を求める．|O(F*\|E\|*log\|V\|)|
 
 
 #### Others

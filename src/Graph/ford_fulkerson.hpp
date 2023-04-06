@@ -17,8 +17,8 @@ class FordFulkerson {
     };
 
     int m_vn;                             // m_vn:=(ノード数).
-    std::vector<std::vector<Edge> > m_g;  // m_g[v][]:=(ノードvが始点の有向辺リスト).
-    bool *m_seen;                         // m_seen[v]:=(DFSでノードvを調べたか).
+    std::vector<std::vector<Edge> > m_g;  // m_g[v][]:=(ノードvが始点の隣接辺リスト).
+    std::vector<bool> m_seen;             // m_seen[v]:=(DFSでノードvを調べたか).
     T m_inf;
 
     // 増加パスを探す．
@@ -40,9 +40,7 @@ class FordFulkerson {
 
 public:
     FordFulkerson() : FordFulkerson(0) {}
-    explicit FordFulkerson(size_t vn, T inf = 1e9) : m_vn(vn), m_g(vn), m_inf(inf) {
-        m_seen = new bool[m_vn]{};
-    }
+    explicit FordFulkerson(size_t vn, T inf = 1e9) : m_vn(vn), m_g(vn), m_seen(vn), m_inf(inf) {}
 
     // ノード数を返す．
     int size() const { return m_vn; }
@@ -63,7 +61,7 @@ public:
         m_g[u].emplace_back(v, cap, m_g[v].size());
         m_g[v].emplace_back(u, cap, m_g[u].size() - 1);
     }
-    // ノードsからtへの最大流を調べる．O(F*|E|).
+    // ノードsからtへの最大流を求める．O(F*|E|).
     T max_flow(int s, int t) {
         assert(0 <= s and s < size());
         assert(0 <= t and t < size());
@@ -72,7 +70,7 @@ public:
         }
         T flow = 0;
         while(flow < infinity()) {
-            std::fill(m_seen, m_seen + m_vn, false);
+            std::fill(m_seen.begin(), m_seen.end(), false);
             T tmp = dfs(s, t, infinity());
             if(tmp == 0) return flow;
             flow += tmp;
