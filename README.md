@@ -54,6 +54,7 @@ I write source code only on header file in order to simplify making snippet.
 |BIT2D0|2次元Binary Indexed Tree (0-based index)|O((logH)*logW)|
 |SegmentTree|セグメント木．一点更新・区間取得．|O(logN)|
 |LazySegmentTree|遅延セグメント木．区間更新・区間取得．|O(logN)|
+|SparseTable|区間取得のみ．結合則 ((A•B)•C=A•(B•C)) と冪等性 (A•A=A) が成り立つ演算（max, min, orなど）による区間クエリを求める．|構築: O(N*logN), クエリ: O(1)|
 
 
 #### Others
