@@ -343,7 +343,7 @@ public:
 };
 
 // 逆置換．
-Permutation inv_permutaion(const Permutation &P) {
+Permutation inv_permutation(const Permutation &P) {
     Permutation inv(P);
     inv.inverse();
     return inv;
