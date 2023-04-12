@@ -36,18 +36,20 @@ public:
     Matrix operator+() const { return Matrix(*this); }
     Matrix operator-() const {
         Matrix R(*this);
-        R *= -1;
+        for(auto &v : R.m_dat) {
+            for(auto &elem : v) elem = -elem;
+        }
         return R;
     }
     Matrix &operator*=(T a) {
-        for(int i = 0; i < column(); ++i) {
-            for(int j = 0; j < row(); ++j) loc(i, j) *= a;
+        for(auto &v : m_dat) {
+            for(auto &elem : v) elem *= a;
         }
         return *this;
     }
     Matrix &operator/=(T a) {
-        for(int i = 0; i < column(); ++i) {
-            for(int j = 0; j < row(); ++j) loc(i, j) /= a;
+        for(auto &v : m_dat) {
+            for(auto &elem : v) elem /= a;
         }
         return *this;
     }
@@ -111,8 +113,8 @@ public:
     friend Matrix operator*(T a, const Matrix &A) { return A * a; }
     friend std::ostream &operator<<(std::ostream &os, const Matrix<T> &A) {
         for(int i = 0; i < A.column(); ++i) {
-            for(int j = 0; j < A.row(); ++j) os << (i == 0 and j == 0 ? '[' : ' ') << A.loc(i, j);
-            os << (i == A.column() - 1 ? ']' : '\n');
+            for(int j = 0; j < A.row(); ++j) os << (i == 0 and j == 0 ? "[" : " ") << A.loc(i, j);
+            os << (i == A.column() - 1 ? "]" : "\n");
         }
         return os;
     }
@@ -173,6 +175,28 @@ inline Matrix<T> transposed_matrix(const Matrix<T> &A) {
     return tA;
 }
 
+// 回転行列．
+inline mat rotation_matrix(Type arg) {
+    auto sv = std::sin(arg);
+    auto cv = std::cos(arg);
+    mat rot({{cv, -sv}, {sv, cv}});
+    return rot;
+}
+
+// 行列累乗．O((logK)*N^3)
+template <typename T>
+Matrix<T> pow(const Matrix<T> &A, long long k, bool right_side = false) {
+    assert(A.row() == A.column() and k >= 0);
+    auto &&R = Matrix<T>::identity_matrix(A.column());
+    auto B = A;
+    while(k > 0) {
+        if(k & 1) R = (right_side ? R * B : B * R);
+        B = B * B;
+        k >>= 1;
+    }
+    return R;
+}
+
 // 置換．
 class Permutation {
     int m_n;                  // m_n:=(次数).
@@ -223,10 +247,10 @@ public:
     }
 
     friend std::ostream &operator<<(std::ostream &os, const Permutation &P) {
-        for(int i = 0; i < P.order(); ++i) os << (i == 0 ? '[' : ' ') << i;
-        os << '\n';
-        for(int i = 0; i < P.order(); ++i) os << ' ' << P[i];
-        os << ']';
+        for(int i = 0; i < P.order(); ++i) os << (i == 0 ? "[" : " ") << i;
+        os << "\n";
+        for(int i = 0; i < P.order(); ++i) os << " " << P[i];
+        os << "]";
         return os;
     }
 
@@ -366,7 +390,8 @@ public:
         return R;
     }
     friend std::ostream &operator<<(std::ostream &os, const Pivot &pivot) {
-        for(int i = 0; i < pivot.order(); ++i) os << pivot[i] << (i < pivot.order() - 1 ? " " : "");
+        for(int i = 0; i < pivot.order(); ++i) os << (i == 0 ? "[" : " ") << pivot[i];
+        os << "]";
         return os;
     }
 
@@ -516,28 +541,6 @@ Matrix<T> inv_matrix(const Matrix<T> &A) {
         for(int j = 0; j < n; ++j) inv.loc(i, j) = sweep.loc(i, j + n);
     }
     return inv;
-}
-
-// 回転行列．
-inline mat rotation_matrix(Type arg) {
-    auto sv = std::sin(arg);
-    auto cv = std::cos(arg);
-    mat rot({{cv, -sv}, {sv, cv}});
-    return rot;
-}
-
-// 行列累乗．O((logK)*N^3)
-template <typename T>
-Matrix<T> pow(const Matrix<T> &A, long long k, bool right_side = false) {
-    assert(A.row() == A.column() and k >= 0);
-    auto &&R = Matrix<T>::identity_matrix(A.column());
-    auto B = A;
-    while(k > 0) {
-        if(k & 1) R = (right_side ? R * B : B * R);
-        B = B * B;
-        k >>= 1;
-    }
-    return R;
 }
 
 // 連立一次方程式を解く．Linear Simultaneous Equation.
