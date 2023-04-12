@@ -149,6 +149,23 @@ I write source code only on header file in order to simplify making snippet.
 
 #### Matrix
 
+|class, function|summary|complexity|
+|---|---|---|
+|Matrix|行列クラス||
+|Permutation|置換クラス||
+|Pivot|置換行列クラス||
+|transposed_matrix(A)|転置行列||
+|rotation_matrix(arg)|回転行列||
+|pow(A,k,right_side)|行列累乗|O((logK)*N^3)|
+|inv_permutation(P)|逆置換||
+|inv_pivot(pivot)|逆置換行列||
+|lu_decomposition(A)|PLU分解|O(N^3)|
+|sarrus(A)|サラスの方法|O(N^2)|
+|det(A)|行列式||
+|gaussian_elimination(sweep)|掃き出し法．ガウス・ジョルダンの消去法．|O(N^3)|
+|inv_matrix(A)|逆行列|O(N^3)|
+|solve_lse(A,b)|連立一次方程式を解く．||
+
 
 #### Others
 
