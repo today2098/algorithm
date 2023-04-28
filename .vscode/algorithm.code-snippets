@@ -2908,6 +2908,25 @@
 		],
 		"description": "素因数分解"
 	},
+	"rotate": {
+		"scope": "cpp",
+		"prefix": "rotate",
+		"body": [
+			"// 2次元配列を時計回り90度回転させる．",
+			"template <typename Type>",
+			"std::vector<std::vector<Type> > rotate(const std::vector<std::vector<Type> > &v) {",
+			"    assert(v.size() > 0);",
+			"    const int h = v.size();",
+			"    const int w = v[0].size();",
+			"    std::vector<std::vector<Type> > res(w, std::vector<Type>(h));",
+			"    for(int i = 0; i < w; ++i) {",
+			"        for(int j = 0; j < h; ++j) res[i][j] = v[h - 1 - j][i];",
+			"    }",
+			"    return res;",
+			"}"
+		],
+		"description": ""
+	},
 	"string_modulo": {
 		"scope": "cpp",
 		"prefix": "string_modulo",

@@ -70,6 +70,19 @@ std::vector<Type> compress(std::vector<Type> &v) {
     return res;
 }
 
+// 2次元配列を時計回り90度回転させる．
+template <typename Type>
+std::vector<std::vector<Type> > rotate(const std::vector<std::vector<Type> > &v) {
+    assert(v.size() > 0);
+    const int h = v.size();
+    const int w = v[0].size();
+    std::vector<std::vector<Type> > res(w, std::vector<Type>(h));
+    for(int i = 0; i < w; ++i) {
+        for(int j = 0; j < h; ++j) res[i][j] = v[h - 1 - j][i];
+    }
+    return res;
+}
+
 }  // namespace algorithm
 
 #endif
