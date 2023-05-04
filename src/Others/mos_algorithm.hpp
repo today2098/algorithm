@@ -20,7 +20,9 @@ class Mo {
         std::sort(query.begin(), query.end(), [width](const std::tuple<int, int, int> &a, const std::tuple<int, int, int> &b) -> bool {
             const auto &[al, ar, _] = a;
             const auto &[bl, br, __] = b;
-            return (al / width == bl / width ? ar < br : al / width < bl / width);
+            int block_a = al / width, block_b = bl / width;
+            if(block_a != block_b) return block_a < block_b;
+            return (block_a & 1 ? ar > br : ar < br);
         });
     }
 
@@ -55,4 +57,6 @@ public:
 参考文献
 - Mo's algorithm，アルゴリズムとデータ構造大全，https://take44444.github.io/Algorithm-Book/range/mo/main.html（参照2023.5.3）．
 - ageprocpp, Mo's algorithm（クエリ平方分割）の話，Qiita, https://qiita.com/ageprocpp/items/34121c58e571ea8c4023（参照2023.5.3）．
+- ei1333, Mo's algorithm, ei1333の日記，HatenaBlog, https://ei1333.hateblo.jp/entry/2017/09/11/211011（参照2023.5.4）.
+- すとれんじゃー，Mo's Algorithmのイメージを視覚的に理解したい，徒然，HatenaBlog, https://strangerxxx.hateblo.jp/entry/20230314/1678795200（参照2023.5.4）.
 */
