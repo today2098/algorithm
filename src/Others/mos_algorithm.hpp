@@ -40,9 +40,9 @@ public:
         sort_query();
         int l = 0, r = 0;
         for(const auto &[nl, nr, idx] : query) {
-            while(l < nl) del_l(l++);
             while(nl < l) add_l(--l);
             while(r < nr) add_r(r++);
+            while(l < nl) del_l(l++);
             while(nr < r) del_r(--r);
             solve(idx);
         }
