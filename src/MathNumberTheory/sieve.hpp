@@ -22,10 +22,9 @@ public:
         assert(n >= 0);
         std::iota(m_lpf.begin() + 2, m_lpf.end(), 2);
         for(int p = 2; p * p <= m_mx; ++p) {
-            if(m_lpf[p] == p) {
-                for(int m = p * p; m <= m_mx; m += p) {
-                    if(m_lpf[m] == m) m_lpf[m] = p;
-                }
+            if(m_lpf[p] != p) continue;
+            for(int q = p * p; q <= m_mx; q += p) {
+                if(m_lpf[q] == q) m_lpf[q] = p;
             }
         }
     }
@@ -66,7 +65,7 @@ public:
         std::sort(res.begin(), res.end());
         return res;
     }
-    // オイラーのファイ関数．n以下でnと互いに素な自然数の個数．
+    // オイラーのファイ関数．n以下でnと互いに素な自然数の個数を求める．
     int totient(int n) const {
         assert(1 <= n and n <= m_mx);
         const auto &&pf = prime_factorize(n);
@@ -74,8 +73,26 @@ public:
         for(const auto &[p, cnt] : pf) res *= std::pow(p, cnt - 1) * (p - 1);
         return res;
     }
+    // メビウス関数．O(N*loglogN).
+    std::vector<int> mebius() const {
+        std::vector<int> res(m_mx + 1, 1);  // res[i]:=μ(i).
+        for(int p = 2; p <= m_mx; ++p) {
+            if(m_lpf[p] != p) continue;
+            res[p] = -1;
+            for(int q = 2 * p; q <= m_mx; q += p) {
+                if((q / p) % p == 0) res[q] = 0;
+                else res[q] = -res[q];
+            }
+        }
+        return res;
+    }
 };
 
 }  // namespace algorithm
 
 #endif
+
+/*
+参考文献
+- drken, エラトステネスの篩の活用法を総特集！ 〜 高速素因数分解・メビウスの反転公式 〜, Qiita, https://qiita.com/drken/items/3beb679e54266f20ab63（参照2023.6.8）.
+*/
