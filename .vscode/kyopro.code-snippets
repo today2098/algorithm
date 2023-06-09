@@ -223,12 +223,12 @@
 		],
 		"description": ""
 	},
-	"chmax, chmin": {
+	"chmin, chmax": {
 		"scope": "cpp",
-		"prefix": "chmax, chmin",
+		"prefix": "chmin, chmax",
 		"body": [
-			"template<typename Type> inline bool chmax(Type &a,const Type &b){if(a<b){a=b;return true;}return false;}",
-			"template<typename Type> inline bool chmin(Type &a,const Type &b){if(a>b){a=b;return true;}return false;}"
+			"template<typename Type> inline bool chmin(Type &a,const Type &b){if(a>b){a=b;return true;}return false;}",
+			"template<typename Type> inline bool chmax(Type &a,const Type &b){if(a<b){a=b;return true;}return false;}"
 		],
 		"description": ""
 	},

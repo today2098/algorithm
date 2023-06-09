@@ -9,8 +9,8 @@
 namespace algorithm {
 
 template <typename Type>
-inline bool chmax(Type &a, const Type &b) {
-    if(a < b) {
+inline bool chmin(Type &a, const Type &b) {
+    if(a > b) {
         a = b;
         return true;
     }
@@ -18,8 +18,8 @@ inline bool chmax(Type &a, const Type &b) {
 }
 
 template <typename Type>
-inline bool chmin(Type &a, const Type &b) {
-    if(a > b) {
+inline bool chmax(Type &a, const Type &b) {
+    if(a < b) {
         a = b;
         return true;
     }
