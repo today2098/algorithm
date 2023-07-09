@@ -40,13 +40,6 @@ public:
         m_tree[k] = a;
         while(k >>= 1) m_tree[k] = m_op(m_tree[k << 1], m_tree[k << 1 | 1]);
     }
-    // k番目の要素をaを加える．O(logN).
-    void add(int k, const T &a) {
-        assert(0 <= k and k < size());
-        k += m_n;
-        m_tree[k] += a;
-        while(k >>= 1) m_tree[k] = m_op(m_tree[k << 1], m_tree[k << 1 | 1]);
-    }
     // 一点取得．O(1).
     T prod(int k) const {
         assert(0 <= k and k < size());
