@@ -487,4 +487,8 @@
 		],
 		"description": "区間更新，区間min取得"
 	},
+	"// I referred to the commentaries.": {
+		"prefix": "// I referred to the commentaries.",
+		"body": "// I referred to the commentaries."
+	}
 }
