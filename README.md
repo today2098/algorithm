@@ -209,6 +209,7 @@ I write source code only on header file in order to simplify making snippet.
 |Mo|Mo's Algorithm|O((N+Q)√N*α)|
 |bit_count32(n)|32bitsの数値のビット数をカウントする．||
 |bit_count64(n)|64bitsの数値のビット数をカウントする．||
+|calc_viewing_range(h)|見晴らし範囲|O(N)|
 
 
 ## Reference
