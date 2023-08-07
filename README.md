@@ -207,6 +207,7 @@ I write source code only on header file in order to simplify making snippet.
 
 |class, function|summary|complexity|
 |---|---|---|
+|Imos2D|二次元いもす法||
 |Mo|Mo's Algorithm|O((N+Q)√N*α)|
 |bit_count32(n)|32bitsの数値のビット数をカウントする．||
 |bit_count64(n)|64bitsの数値のビット数をカウントする．||
