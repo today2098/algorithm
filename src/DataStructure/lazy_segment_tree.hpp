@@ -11,9 +11,9 @@ namespace algorithm {
 // 遅延評価セグメント木．
 template <class S, class F>  // S:モノイドの型, F:写像の型.
 class LazySegTree {
-    using FO = std::function<S(S, S)>;
-    using FM = std::function<S(F, S)>;
-    using FC = std::function<F(F, F)>;
+    using FO = std::function<S(const S &, const S &)>;
+    using FM = std::function<S(const F &, const S &)>;
+    using FC = std::function<F(const F &, const F &)>;
 
     FO m_op;                // S m_op(S,S):=(二項演算関数). S×S→Sを計算する．
     FM m_mapping;           // S m_mapping(F f,S x):=(写像). f(x)を返す．

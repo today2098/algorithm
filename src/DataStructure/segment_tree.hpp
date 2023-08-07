@@ -9,7 +9,7 @@ namespace algorithm {
 
 template <typename T>
 class SegmentTree {
-    using F = std::function<T(T, T)>;
+    using F = std::function<T(const T &, const T &)>;
 
     F m_op;                 // T m_op(T,T):=(二項演算関数).
     T m_e;                  // m_e:=(単位元).
