@@ -672,7 +672,7 @@
 			"                T res = dfs(e.to, t, std::min(flow, e.rest));",
 			"                if(res > 0) {",
 			"                    e.rest -= res;",
-			"                    m_g[e.to][e.rev].cap += res;",
+			"                    m_g[e.to][e.rev].rest += res;",
 			"                    return res;",
 			"                }",
 			"            }",
