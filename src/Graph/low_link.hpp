@@ -8,10 +8,8 @@
 namespace algorithm {
 
 class LowLink {
-    using Graph = std::vector<std::vector<int> >;
-
     int m_vn;                                 // m_vn:=(頂点数).
-    Graph m_g;                                // m_g[v][]:=(頂点vの隣接リスト).
+    std::vector<std::vector<int> > m_g;       // m_g[v][]:=(頂点vの隣接リスト).
     std::vector<int> m_aps;                   // m_aps[]:=(関節点のリスト). Articulations points.
     std::vector<std::pair<int, int> > m_brs;  // m_brs[]:=(橋のリスト). Bridges.
 
@@ -19,7 +17,7 @@ class LowLink {
         ord[u] = low[u] = now++;
         int degree = 0;      // DFS木での頂点uにおける葉方向への出次数．
         bool is_ap = false;  // 頂点uが関節点か否か．
-        for(auto v : m_g[u]) {
+        for(int v : m_g[u]) {
             if(v == parent) continue;
             if(ord[v] == -1) {  // 頂点vが未訪問のとき．
                 degree++;
@@ -41,14 +39,13 @@ class LowLink {
 public:
     LowLink() : LowLink(0) {}
     explicit LowLink(size_t vn) : m_vn(vn), m_g(vn) {}
-    explicit LowLink(const Graph &g) : m_vn(g.size()), m_g(g) {}
 
     // 頂点数を返す．
-    int size() const { return m_vn; }
+    int order() const { return m_vn; }
     // 無向辺を張る．
     void add_edge(int u, int v) {
-        assert(0 <= u and u < size());
-        assert(0 <= v and v < size());
+        assert(0 <= u and u < order());
+        assert(0 <= v and v < order());
         m_g[u].push_back(v);
         m_g[v].push_back(u);
     }
@@ -58,9 +55,9 @@ public:
         m_brs.clear();
         // ord[v]:=(DFS木における頂点vの行きかけ順序).
         // low[v]:=(DFS木において，頂点vから葉方向に0回以上，後退辺を高々1回用いて到達できる頂点wのord[w]の最小値).
-        std::vector<int> ord(size(), -1), low(size());
+        std::vector<int> ord(order(), -1), low(order());
         int now = 0;
-        for(int v = 0; v < size(); ++v) {
+        for(int v = 0; v < order(); ++v) {
             if(ord[v] == -1) dfs(v, -1, ord, low, now);
         }
         std::sort(m_aps.begin(), m_aps.end());
