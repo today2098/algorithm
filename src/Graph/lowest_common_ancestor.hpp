@@ -101,12 +101,12 @@ public:
         if(m_ord[u] == -1 or m_ord[v] == -1) return 0;  // 非連結．
         return m_dist[u] + m_dist[v] - 2 * m_dist[lca(u, v)];
     }
-    // 木の座標圧縮．O(K*logN).
-    std::pair<int, std::vector<std::vector<int> > > auxiliary_tree(std::vector<int> &vs) const {
+    // 木の座標圧縮．O(K*log|V|).
+    std::pair<int, std::map<int, std::vector<int> > > auxiliary_tree(std::vector<int> &vs) const {
         assert(std::find_if(vs.begin(), vs.end(), [&](int v) -> bool {
                    return !(0 <= v and v < order());
                }) == vs.end());
-        std::vector<std::vector<int> > tree(order());
+        std::map<int, std::vector<int> > tree;  // tree[v][]:=(圧縮した木におけるノードvの隣接リスト).
         auto comp = [&](int u, int v) -> bool {
             return m_ord[u] < m_ord[v];
         };
@@ -152,3 +152,8 @@ public:
 }  // namespace algorithm
 
 #endif
+
+/*
+参考文献：
+- yaketake08, LCAをベースに構築するAuxiliary Treeのメモ，HatenaBlog, https://smijake3.hatenablog.com/entry/2019/09/15/200200（参照2023.8.13）．
+*/
