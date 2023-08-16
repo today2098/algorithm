@@ -3,27 +3,28 @@
 
 #include <cassert>
 #include <queue>
+#include <tuple>
 #include <utility>
 #include <vector>
 
 namespace algorithm {
 
-// 木の直径．O(|E|*|V|).
+// 木の直径．O(|V|+|E|).
 std::tuple<int, int, int> calc_tree_diameter(const std::vector<std::vector<int> > &g) {
     if(g.size() == 0) return {-1, -1, -1};
     int endpoint;
     std::vector<int> dist(g.size());
     auto bfs = [&](int s) -> void {
-        std::queue<int> que;
-        que.push(s);
         endpoint = s;
         std::fill(dist.begin(), dist.end(), -1);
         dist[s] = 0;
+        std::queue<int> que;
+        que.push(s);
         while(!que.empty()) {
-            auto u = que.front();
+            int u = que.front();
             que.pop();
             endpoint = u;
-            for(auto v : g[u]) {
+            for(int v : g[u]) {
                 if(dist[v] == -1) {
                     dist[v] = dist[u] + 1;
                     que.push(v);
@@ -44,11 +45,11 @@ std::tuple<Type, int, int> calc_tree_diameter(const std::vector<std::vector<std:
     int endpoint;
     std::vector<Type> dist(g.size());
     auto bfs = [&](int s) -> void {
-        std::priority_queue<std::pair<Type, int> > pque;
-        pque.emplace(0, s);
         endpoint = s;
         std::fill(dist.begin(), dist.end(), -1);
         dist[s] = 0;
+        std::priority_queue<std::pair<Type, int> > pque;
+        pque.emplace(0, s);
         while(!pque.empty()) {
             auto [d, u] = pque.top();
             pque.pop();

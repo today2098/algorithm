@@ -9,7 +9,7 @@ namespace algorithm {
 
 class TopologicalSort {
     int m_n;                             // m_n:=(頂点数).
-    std::vector<std::vector<int> > m_g;  // m_g[v]:=(頂点vの出力辺リスト).
+    std::vector<std::vector<int> > m_g;  // m_g[v]:=(頂点vの隣接リスト).
 
 public:
     TopologicalSort() : TopologicalSort(0) {}
@@ -27,8 +27,8 @@ public:
     std::vector<int> topological_sort() const {
         std::vector<int> res;
         std::vector<int> deg(order(), 0);  // deg[v]:=(頂点vの入次数).
-        for(const std::vector<int> &edge : m_g) {
-            for(int to : edge) deg[to]++;
+        for(const std::vector<int> &edges : m_g) {
+            for(int to : edges) deg[to]++;
         }
         std::queue<int> que;
         for(int i = 0; i < order(); ++i) {
@@ -47,24 +47,24 @@ public:
     }
     // 考え得るトポロジカルソートの解を数え上げる．頂点数の上限目安は20程度．O((2^N)*N*N).
     long long count_up() const {
-        bool is_bad[order()][order()] = {};
+        bool ng[order()][order()] = {};
         for(int from = 0; from < order(); ++from) {
-            for(int to : m_g[from]) is_bad[to][from] = true;
+            for(int to : m_g[from]) ng[to][from] = true;
         }
-        std::vector<long long> dp(1 << m_n, 0);  // bitDP.
+        std::vector<long long> dp(1 << order(), 0);  // bitDP.
         dp[0] = 1;
-        for(int bits = 0; bits < (1 << m_n); ++bits) {
-            for(int i = 0; i < m_n; ++i) {
-                if(!(bits >> i & 1)) {
+        for(int bit = 0; bit < (1 << order()); ++bit) {
+            for(int i = 0; i < order(); ++i) {
+                if(!(bit >> i & 1)) {
                     bool ok = true;
-                    for(int j = 0; j < m_n; ++j) {
-                        if(bits >> j & 1 and is_bad[j][i]) ok = false;
+                    for(int j = 0; j < order(); ++j) {
+                        if(bit >> j & 1 and ng[j][i]) ok = false;
                     }
-                    if(ok) dp[bits | 1 << i] += dp[bits];
+                    if(ok) dp[bit | 1 << i] += dp[bit];
                 }
             }
         }
-        return dp[(1 << m_n) - 1];
+        return dp[(1 << order()) - 1];
     }
 };
 

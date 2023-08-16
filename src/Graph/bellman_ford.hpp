@@ -10,7 +10,7 @@ namespace algorithm {
 template <typename T>
 class BellmanFord {
     int m_vn;                                           // m_vn:=(ノード数).
-    std::vector<std::vector<std::pair<int, T> > > m_g;  // m_g[v][]:=(ノードvが始点である重み付き有向辺のリスト). pair of (to, cost).
+    std::vector<std::vector<std::pair<int, T> > > m_g;  // m_g[v][]:=(ノードvの隣接リスト). pair of (to, cost).
     std::vector<T> m_d;                                 // m_d[t]:=(ノードsからtへの最短距離).
     std::vector<int> m_pre;                             // m_pre[t]:=(ノードtを訪問する直前のノード番号). 逆方向経路．
     T m_inf;
@@ -81,7 +81,7 @@ public:
     std::vector<int> shortest_path(int t) const {
         assert(0 <= t and t < order());
         std::vector<int> path;
-        if(m_d[t] <= -infinity() or infinity() <= m_d[t]) return path;
+        if(!(-infinity() < m_d[t] and m_d[t] < infinity())) return path;
         for(; t != -1; t = m_pre[t]) path.push_back(t);
         std::reverse(path.begin(), path.end());
         return path;

@@ -11,9 +11,9 @@ namespace algorithm {
 template <typename T>
 class Dijkstra {
     int m_vn;                                           // m_vn:=(ノード数).
-    std::vector<std::vector<std::pair<int, T> > > m_g;  // m_g[v][]:=(ノードvが始点である重み付き有向辺のリスト). pair of (to, cost).
+    std::vector<std::vector<std::pair<int, T> > > m_g;  // m_g[v][]:=(ノードvの隣接リスト). pair of (to, cost).
     std::vector<T> m_d;                                 // m_d[t]:=(ノードsからtへの最短距離).
-    std::vector<int> m_pre;                             // m_pre[t]:=(ノードtを訪問する直前のノードの番号). 逆方向経路．
+    std::vector<int> m_pre;                             // m_pre[t]:=(ノードtを訪問する直前のノード番号). 逆方向経路．
     T m_inf;
 
 public:

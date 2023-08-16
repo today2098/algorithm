@@ -11,7 +11,7 @@ namespace algorithm {
 template <typename T>
 class Prim {
     int m_vn;                                           // m_vn:=(ノード数).
-    std::vector<std::vector<std::pair<int, T> > > m_g;  // m_g[v][]:=(ノードvが始点である重み付き有向辺のリスト). pair of (to, cost).
+    std::vector<std::vector<std::pair<int, T> > > m_g;  // m_g[v][]:=(ノードvの隣接リスト). pair of (to, cost).
 
 public:
     Prim() : Prim(0) {}
@@ -27,11 +27,11 @@ public:
         m_g[v].emplace_back(u, cost);
     }
     // 重み付き無向連結グラフにおける最小全域木のコストを求める．O(|E|*log|V|).
-    T prim(int rt = 0) {
-        assert(0 <= rt and rt < order());
+    T prim(int root = 0) {
+        assert(0 <= root and root < order());
         T res = 0;
         std::priority_queue<std::pair<T, int>, std::vector<std::pair<T, int> >, std::greater<std::pair<T, int> > > pque;
-        pque.emplace(0, rt);
+        pque.emplace(0, root);
         bool seen[order()] = {};
         while(!pque.empty()) {
             auto [cost, u] = pque.top();
@@ -39,8 +39,8 @@ public:
             if(seen[u]) continue;
             seen[u] = true;
             res += cost;
-            for(const auto &[to, cost] : m_g[u]) {
-                if(!seen[to]) pque.emplace(cost, to);
+            for(const auto &[v, cost] : m_g[u]) {
+                if(!seen[v]) pque.emplace(cost, v);
             }
         }
         return res;

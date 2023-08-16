@@ -1,5 +1,5 @@
-#ifndef ALGORITHlow_LINK_HPP
-#define ALGORITHlow_LINK_HPP 1
+#ifndef ALGORITHM_LOW_LINK_HPP
+#define ALGORITHM_LOW_LINK_HPP 1
 
 #include <algorithm>
 #include <cassert>

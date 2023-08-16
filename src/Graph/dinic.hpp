@@ -8,7 +8,7 @@
 
 namespace algorithm {
 
-template <typename T>
+template <typename T>  // T:Type of capacity.
 class Dinic {
     struct Edge {
         int to;       // to:=(行き先ノード).
@@ -18,8 +18,43 @@ class Dinic {
     };
 
     int m_vn;                             // m_vn:=(ノード数).
-    std::vector<std::vector<Edge> > m_g;  // m_g[v][]:=(ノードvが始点の隣接辺リスト).
+    std::vector<std::vector<Edge> > m_g;  // m_g[v][]:=(ノードvの隣接リスト).
     T m_inf;
+
+    // ノードsと各ノード間の長さを求める．
+    void bfs(int s, std::vector<int> &d) const {
+        std::fill(d.begin(), d.end(), -1);
+        d[s] = 0;
+        std::queue<int> que;
+        que.push(s);
+        while(!que.empty()) {
+            int v = que.front();
+            que.pop();
+            for(const Edge &e : m_g[v]) {
+                if(e.rest > 0 and d[e.to] == -1) {
+                    d[e.to] = d[v] + 1;
+                    que.push(e.to);
+                }
+            }
+        }
+    }
+    // 増加パスを探す．
+    T dfs(int v, int t, T flow, const std::vector<int> &d, std::vector<int> &iter) {
+        if(v == t) return flow;
+        const int n = m_g[v].size();
+        for(int &i = iter[v]; i < n; ++i) {
+            Edge &e = m_g[v][i];
+            if(e.rest > 0 and d[e.to] > d[v]) {
+                T res = dfs(e.to, t, std::min(flow, e.rest), d, iter);
+                if(res > 0) {
+                    e.rest -= res;
+                    m_g[e.to][e.rev].rest += res;
+                    return res;
+                }
+            }
+        }
+        return 0;
+    }
 
 public:
     Dinic() : Dinic(0) {}
@@ -51,47 +86,15 @@ public:
         for(std::vector<Edge> &es : m_g) {
             for(Edge &e : es) e.rest = e.cap;
         }
-        std::vector<int> hop(order());   // hop[v]:=(ノードsからvまでのホップ数).
-        std::vector<int> iter(order());  // iter[v]:=(m_g[v][]の次に調べるべきイテレータ).
-        auto bfs = [&](int s) -> void {  // ノードsから各ノードへのホップ数を計算する．
-            std::fill(hop.begin(), hop.end(), -1);
-            hop[s] = 0;
-            std::queue<int> que;
-            que.push(s);
-            while(!que.empty()) {
-                int v = que.front();
-                que.pop();
-                for(const Edge &e : m_g[v]) {
-                    if(e.rest > 0 and hop[e.to] == -1) {
-                        hop[e.to] = hop[v] + 1;
-                        que.push(e.to);
-                    }
-                }
-            }
-        };
-        auto dfs = [&](auto self, int v, int t, T flow) -> T {  // 増加パスを探す．
-            if(v == t) return flow;
-            const int n = m_g[v].size();
-            for(int &i = iter[v]; i < n; ++i) {
-                Edge &e = m_g[v][i];
-                if(e.rest > 0 and hop[v] < hop[e.to]) {
-                    T res = self(self, e.to, t, std::min(flow, e.rest));
-                    if(res > 0) {
-                        e.rest -= res;
-                        m_g[e.to][e.rev].rest += res;
-                        return res;
-                    }
-                }
-            }
-            return 0;
-        };
         T flow = 0;
+        std::vector<int> d(order());     // d[v]:=(ノードsからvまでの長さ).
+        std::vector<int> iter(order());  // iter[v]:=(m_g[v][]の次に調べるべきイテレータ).
         while(flow < infinity()) {
-            bfs(s);
-            if(hop[t] == -1) return flow;
+            bfs(s, d);
+            if(d[t] == -1) return flow;
             std::fill(iter.begin(), iter.end(), 0);
             T tmp;
-            while((tmp = dfs(dfs, s, t, infinity())) > 0) flow += tmp;
+            while((tmp = dfs(s, t, infinity(), d, iter)) > 0) flow += tmp;
         }
         return infinity();
     }

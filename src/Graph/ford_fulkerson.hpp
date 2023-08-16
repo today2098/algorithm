@@ -7,7 +7,7 @@
 
 namespace algorithm {
 
-template <typename T>
+template <typename T>  // T:Type of capacity.
 class FordFulkerson {
     struct Edge {
         int to;       // to:=(行き先ノード).
@@ -17,8 +17,25 @@ class FordFulkerson {
     };
 
     int m_vn;                             // m_vn:=(ノード数).
-    std::vector<std::vector<Edge> > m_g;  // m_g[v][]:=(ノードvが始点の隣接辺リスト).
+    std::vector<std::vector<Edge> > m_g;  // m_g[v][]:=(ノードvの隣接リスト).
     T m_inf;
+
+    // 増加パスを探す．
+    T dfs(int v, int t, T flow, std::vector<bool> &seen) {
+        if(v == t) return flow;
+        seen[v] = true;
+        for(Edge &e : m_g[v]) {
+            if(e.rest > 0 and !seen[e.to]) {
+                T res = dfs(e.to, t, std::min(flow, e.rest), seen);
+                if(res > 0) {
+                    e.rest -= res;
+                    m_g[e.to][e.rev].rest += res;
+                    return res;
+                }
+            }
+        }
+        return 0;
+    }
 
 public:
     FordFulkerson() : FordFulkerson(0) {}
@@ -50,26 +67,11 @@ public:
         for(std::vector<Edge> &es : m_g) {
             for(Edge &e : es) e.rest = e.cap;
         }
-        std::vector<bool> seen(order());                        // seen[v]:=(DFSでノードvを調べたか).
-        auto dfs = [&](auto self, int v, int t, T flow) -> T {  // 増加パスを探す．
-            if(v == t) return flow;
-            seen[v] = true;
-            for(Edge &e : m_g[v]) {
-                if(!seen[e.to] and e.rest > 0) {
-                    T res = self(self, e.to, t, std::min(flow, e.rest));
-                    if(res > 0) {
-                        e.rest -= res;
-                        m_g[e.to][e.rev].rest += res;
-                        return res;
-                    }
-                }
-            }
-            return 0;
-        };
         T flow = 0;
+        std::vector<bool> seen(order());  // seen[v]:=(DFSにおいてノードvを調べたか).
         while(flow < infinity()) {
             std::fill(seen.begin(), seen.end(), false);
-            T tmp = dfs(dfs, s, t, infinity());
+            T tmp = dfs(s, t, infinity(), seen);
             if(tmp == 0) return flow;
             flow += tmp;
         }
