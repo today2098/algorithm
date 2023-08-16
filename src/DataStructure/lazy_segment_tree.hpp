@@ -140,7 +140,7 @@ public:
     S prod_all() const { return m_tree[1]; }
     // jud(prod(l,-))=true となる区間の最右位値を二分探索する．
     // ただし要素列には単調性があり，また jud(e)=true であること．O(logN).
-    int most_right(const std::function<bool(S)> &jud, int l) const {
+    int most_right(const std::function<bool(const S &)> &jud, int l) const {
         assert(jud(identity()));
         assert(0 <= l and l <= size());
         if(l == size()) return size();
@@ -165,7 +165,7 @@ public:
     }
     // jud(prod(-,r))=true となる区間の最左位値を二分探索する．
     // ただし要素列には単調性があり，また jud(e)=true であること．O(logN).
-    int most_left(const std::function<bool(S)> &jud, int r) const {
+    int most_left(const std::function<bool(const S &)> &jud, int r) const {
         assert(jud(identity()));
         assert(0 <= r and r <= size());
         if(r == 0) return 0;

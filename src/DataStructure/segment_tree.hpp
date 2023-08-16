@@ -7,24 +7,24 @@
 
 namespace algorithm {
 
-template <typename T>
+template <typename S>
 class SegmentTree {
-    using F = std::function<T(const T &, const T &)>;
+    using F = std::function<S(const S &, const S &)>;
 
-    F m_op;                 // T m_op(T,T):=(二項演算関数).
-    T m_e;                  // m_e:=(単位元).
+    F m_op;                 // S m_op(S,S):=(二項演算関数).
+    S m_e;                  // m_e:=(単位元).
     int m_sz;               // m_sz:=(要素数).
     int m_n;                // m_n:=(葉の数).
-    std::vector<T> m_tree;  // m_tree[]:=(完全二分木). 1-based index.
+    std::vector<S> m_tree;  // m_tree[]:=(完全二分木). 1-based index.
 
 public:
     // constructor. O(N).
     SegmentTree(){};
-    explicit SegmentTree(const F &op, const T &e, size_t n) : m_op(op), m_e(e), m_sz(n), m_n(1) {
+    explicit SegmentTree(const F &op, const S &e, size_t n) : m_op(op), m_e(e), m_sz(n), m_n(1) {
         while(m_n < size()) m_n <<= 1;
         m_tree.assign(2 * m_n, identity());
     }
-    explicit SegmentTree(const F &op, const T &e, std::vector<T> &v) : SegmentTree(op, e, v.size()) {
+    explicit SegmentTree(const F &op, const S &e, const std::vector<S> &v) : SegmentTree(op, e, v.size()) {
         std::copy(v.begin(), v.end(), m_tree.begin() + m_n);
         for(int i = m_n - 1; i >= 1; --i) m_tree[i] = m_op(m_tree[i << 1], m_tree[i << 1 | 1]);
     }
@@ -32,23 +32,23 @@ public:
     // 要素数を返す．
     int size() const { return m_sz; }
     // 単位元を返す．
-    T identity() const { return m_e; }
+    S identity() const { return m_e; }
     // k番目の要素をaに置き換える．O(logN).
-    void set(int k, const T &a) {
+    void set(int k, const S &a) {
         assert(0 <= k and k < size());
         k += m_n;
         m_tree[k] = a;
         while(k >>= 1) m_tree[k] = m_op(m_tree[k << 1], m_tree[k << 1 | 1]);
     }
     // 一点取得．O(1).
-    T prod(int k) const {
+    S prod(int k) const {
         assert(0 <= k and k < size());
         return m_tree[k + m_n];
     }
     // 区間[l,r)の総積 v[l]•v[l+1]•....•v[r-1] を求める．O(logN).
-    T prod(int l, int r) const {
+    S prod(int l, int r) const {
         assert(0 <= l and l <= r and r <= size());
-        T val_l = identity(), val_r = identity();
+        S val_l = identity(), val_r = identity();
         l += m_n, r += m_n;
         while(l < r) {
             if(l & 1) val_l = m_op(val_l, m_tree[l++]);
@@ -58,22 +58,22 @@ public:
         return m_op(val_l, val_r);
     }
     // 区間全体の総積を返す．O(1).
-    T prod_all() const { return m_tree[1]; }
+    S prod_all() const { return m_tree[1]; }
     // jud(prod(l,-))=true となる区間の最右位値を二分探索する．
     // ただし要素列には単調性があり，また jud(e)=true であること．O(logN).
-    int most_right(const std::function<bool(T)> &jud, int l) const {
+    int most_right(const std::function<bool(const S &)> &jud, int l) const {
         assert(jud(identity()) == true);
         assert(0 <= l and l <= size());
         if(l == size()) return size();
-        T val = identity();
+        S val = identity();
         l += m_n;
         do {
             while(!(l & 1)) l >>= 1;
-            T &&tmp = m_op(val, m_tree[l]);
+            S &&tmp = m_op(val, m_tree[l]);
             if(!jud(tmp)) {
                 while(l < m_n) {
                     l <<= 1;
-                    T &&tmp2 = m_op(val, m_tree[l]);
+                    S &&tmp2 = m_op(val, m_tree[l]);
                     if(jud(tmp2)) val = tmp2, l++;
                 }
                 return l - m_n;
@@ -84,20 +84,20 @@ public:
     }
     // jud(prod(-,r))=true となる区間の最左位値を二分探索する．
     // ただし要素列には単調性があり，また jud(e)=true であること．O(logN).
-    int most_left(const std::function<bool(T)> &jud, int r) const {
+    int most_left(const std::function<bool(const S &)> &jud, int r) const {
         assert(jud(identity()) == true);
         assert(0 <= r and r <= size());
         if(r == 0) return 0;
-        T val = identity();
+        S val = identity();
         r += m_n;
         do {
             r--;
             while(r > 1 and r & 1) r >>= 1;
-            T &&tmp = m_op(m_tree[r], val);
+            S &&tmp = m_op(m_tree[r], val);
             if(!jud(tmp)) {
                 while(r < m_n) {
                     r = (r << 1) | 1;
-                    T &&tmp2 = m_op(m_tree[r], val);
+                    S &&tmp2 = m_op(m_tree[r], val);
                     if(jud(tmp2)) val = tmp2, r--;
                 }
                 return r - m_n + 1;
