@@ -380,11 +380,11 @@
 		"prefix": "table",
 		"body": [
 			"template <typename Type>",
-			"inline std::vector<Type> table(size_t n, Type val) { return std::vector<Type>(n, val); }",
+			"inline std::vector<Type> table(size_t n, const Type &val) { return std::vector<Type>(n, val); }",
 			"",
-			"template <class... Args>",
-			"auto table(size_t n, Args &&...args) {",
-			"    auto val = table(std::forward<Args>(args)...);",
+			"template <typename... Args>",
+			"auto table(size_t n, const Args &...args) {",
+			"    auto val = table(args...);",
 			"    return std::vector<decltype(val)>(n, std::move(val));",
 			"}"
 		],
