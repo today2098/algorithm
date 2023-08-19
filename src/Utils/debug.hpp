@@ -39,7 +39,7 @@ template <typename T, typename std::enable_if_t<has_iterator<T>::value, bool> = 
 void print(const T &v);
 template <typename T, typename std::enable_if_t<!has_iterator<T>::value, bool> = false>
 void print(const T &elem);
-template <typename T, class... Args>
+template <typename T, typename... Args>
 void debug_internal(int l, std::string_view context, T &&first, Args &&...args);
 
 void print(const std::string &s) { std::cerr << s; }
@@ -65,7 +65,7 @@ void print(const std::tuple<T...> &t) {
     print_tuple(t, std::make_index_sequence<sizeof...(T)>());
 }
 
-template <typename T, typename std::enable_if_t<has_iterator<T>::value, bool> = false>
+template <class T, typename std::enable_if_t<has_iterator<T>::value, bool> = false>
 void print(const T &v) {
     std::cerr << "[";
     for(auto itr = std::cbegin(v); itr != std::cend(v); ++itr) {
@@ -78,7 +78,7 @@ void print(const T &v) {
 template <typename T, typename std::enable_if_t<!has_iterator<T>::value, bool> = false>
 void print(const T &elem) { std::cerr << elem; }
 
-template <typename T, class... Args>
+template <typename T, typename... Args>
 void debug_internal(int l, std::string_view context, T &&first, Args &&...args) {
     constexpr const char *open_bracket = (sizeof...(args) == 0 ? "" : "(");
     constexpr const char *close_bracket = (sizeof...(args) == 0 ? "" : ")");
