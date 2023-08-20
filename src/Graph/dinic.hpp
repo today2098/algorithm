@@ -80,7 +80,7 @@ public:
         m_pos.emplace_back(from, idx_from);
         return size() - 1;
     }
-    // ノードsからtへの最大流を求める．O(|E|*(|V|^2)).
+    // ノードsからtへの最大流を求める．O((|V|^2)*|E|).
     T max_flow(int s, int t) { return max_flow(s, t, infinity()); }
     T max_flow(int s, int t, T flow) {
         assert(0 <= s and s < order());
@@ -103,6 +103,23 @@ public:
         const auto &[from, idx] = m_pos[i];
         const Edge &e = m_g[from][idx];
         return {from, e.to, e.cap + m_g[e.to][e.rev].cap, m_g[e.to][e.rev].cap};  // tuple of (from, to, cap, flow).
+    }
+    // 最小カットによって，各ノードを分ける．
+    std::vector<bool> min_cut(int s) const {
+        assert(0 <= s and s < order());
+        std::vector<bool> res(order(), false);
+        std::queue<int> que;
+        que.push(s);
+        while(!que.empty()) {
+            int v = que.front();
+            que.pop();
+            if(res[v]) continue;
+            res[v] = true;
+            for(const Edge &e : m_g[v]) {
+                if(e.cap > 0 and !res[e.to]) que.push(e.to);
+            }
+        }
+        return res;
     }
     void reset() {
         for(const auto &[from, idx] : m_pos) {
