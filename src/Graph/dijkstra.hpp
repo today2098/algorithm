@@ -10,7 +10,6 @@ namespace algorithm {
 
 template <typename T>
 class Dijkstra {
-    int m_vn;                                           // m_vn:=(ノード数).
     std::vector<std::vector<std::pair<int, T> > > m_g;  // m_g[v][]:=(ノードvの隣接リスト). pair of (to, cost).
     std::vector<T> m_d;                                 // m_d[t]:=(ノードsからtへの最短距離).
     std::vector<int> m_pre;                             // m_pre[t]:=(ノードtを訪問する直前のノード番号). 逆方向経路．
@@ -18,10 +17,10 @@ class Dijkstra {
 
 public:
     Dijkstra() : Dijkstra(0) {}
-    explicit Dijkstra(size_t vn, T inf = 1e9) : m_vn(vn), m_g(vn), m_d(vn, inf), m_pre(vn, -1), m_inf(inf) {}
+    explicit Dijkstra(size_t vn, T inf = 1e9) : m_g(vn), m_d(vn, inf), m_pre(vn, -1), m_inf(inf) {}
 
     // ノード数を返す．
-    int order() const { return m_vn; }
+    int order() const { return m_g.size(); }
     T infinity() const { return m_inf; }
     // 重み付き有向辺を張る．
     void add_edge(int from, int to, T cost) {
