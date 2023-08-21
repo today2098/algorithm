@@ -3,6 +3,7 @@
 
 #include <algorithm>
 #include <cassert>
+#include <limits>
 #include <queue>
 #include <tuple>
 #include <utility>
@@ -22,10 +23,10 @@ class PrimalDual {
 
     std::vector<std::vector<Edge> > m_g;      // m_g[v][]:=(ノードvの隣接リスト).
     std::vector<std::pair<int, int> > m_pos;  // m_pos[i]:=(i番目の辺情報). pair of (from, index).
-    Cost m_inf;
 
+    static constexpr Cost infinity_cost() { return std::numeric_limits<Cost>::max(); }
     void dijkstra(int s, const std::vector<Cost> &pot, std::vector<Cost> &d, std::vector<int> &prev_v, std::vector<int> &prev_e) {
-        std::fill(d.begin(), d.end(), infinity());
+        std::fill(d.begin(), d.end(), infinity_cost());
         d[s] = 0;
         std::priority_queue<std::pair<Cost, int>, std::vector<std::pair<Cost, int> >, std::greater<std::pair<Cost, int> > > pque;
         pque.emplace(0, s);
@@ -49,13 +50,13 @@ class PrimalDual {
 
 public:
     PrimalDual() : PrimalDual(0) {}
-    explicit PrimalDual(size_t vn, Cost inf = 2e9) : m_g(vn), m_inf(inf) {}
+    explicit PrimalDual(size_t vn) : m_g(vn) {}
 
     // ノード数を返す．
     int order() const { return m_g.size(); }
     // 辺数を返す.
     int size() const { return m_pos.size(); }
-    Cost infinity() const { return m_inf; }
+    static constexpr Flow infinity_flow() { return std::numeric_limits<Flow>::max(); }
     // 容量cap[flows]，単位コストcost[cost/flow]の有向辺を追加する．
     int add_edge(int from, int to, Flow cap, Cost cost) {
         assert(0 <= from and from < order());
@@ -70,31 +71,39 @@ public:
         return size() - 1;
     }
     // ソースからシンクまでの最小費用[costs]（単位コスト[cost/flow]とフロー[flows]の積の総和）を求める．
-    // 返り値は最小費用[costs]と流用[flows]．O(F*|E|*log|V|).
-    std::pair<Cost, Flow> min_cost_flow(int s, int t, Flow flow) {
+    // 返り値は流量[flows]と最小費用[costs]．O(F*|E|*log|V|).
+    std::pair<Flow, Cost> min_cost_flow(int s, int t) { return min_cost_flow(s, t, infinity_flow()); }
+    std::pair<Flow, Cost> min_cost_flow(int s, int t, Flow flow) { return slope(s, t, flow).back(); }
+    std::vector<std::pair<Flow, Cost> > slope(int s, int t) { return slope(s, t, infinity_flow()); }
+    std::vector<std::pair<Flow, Cost> > slope(int s, int t, Flow flow) {
         assert(0 <= s and s < order());
         assert(0 <= t and t < order());
-        Cost sum = 0;
-        Flow rest = flow;
-        std::vector<Cost> d(order());       // d[v]:=(ノートsからvまでの最小費用).
-        std::vector<Cost> pot(order(), 0);  // pot[v]:=(ノードvのポテンシャル).
-        std::vector<int> prev_v(order());   // prev_v[v]:=(ノードvの直前に訪れるノード). 逆方向経路．
-        std::vector<int> prev_e(order());   // prev_e[v]:=(ノードvの直前に通る辺). 逆方向経路．
+        Flow rest = flow;                                   // rest:=(残流量).
+        Cost sum = 0;                                       // sum:=(合計費用).
+        Cost pre_cost = -1;                                 // pre_cost:=(直前のフローにおける単位コスト[cost/flow]).
+        std::vector<std::pair<Flow, Cost> > res({{0, 0}});  // res[]:=(流量とコストの関係の折れ線). 値は狭義単調増加．
+        std::vector<Cost> d(order());                       // d[v]:=(ノートsからvまでの最小費用).
+        std::vector<Cost> pot(order(), 0);                  // pot[v]:=(ノードvのポテンシャル).
+        std::vector<int> prev_v(order());                   // prev_v[v]:=(ノードvの直前に訪れるノード). 逆方向経路．
+        std::vector<int> prev_e(order());                   // prev_e[v]:=(ノードvの直前に通る辺). 逆方向経路．
         while(rest > 0) {
             dijkstra(s, pot, d, prev_v, prev_e);
-            if(d[t] == infinity()) return {sum, flow - rest};  // これ以上流せない場合．
+            if(d[t] == infinity_cost()) break;  // これ以上流せない場合．
             for(int v = 0; v < order(); ++v) pot[v] += d[v];
             Flow tmp = rest;
             for(int v = t; v != s; v = prev_v[v]) tmp = std::min(tmp, m_g[prev_v[v]][prev_e[v]].cap);
-            rest -= tmp;
-            sum += pot[t] * tmp;
             for(int v = t; v != s; v = prev_v[v]) {
                 Edge &e = m_g[prev_v[v]][prev_e[v]];
                 e.cap -= tmp;
                 m_g[v][e.rev].cap += tmp;
             }
+            rest -= tmp;
+            sum += pot[t] * tmp;
+            if(pot[t] == pre_cost) res.pop_back();
+            res.emplace_back(flow - rest, sum);
+            pre_cost = pot[t];
         }
-        return {sum, flow};
+        return res;
     }
     // 辺の情報を返す．
     std::tuple<int, int, Flow, Cost, Flow> get_edge(int i) const {
