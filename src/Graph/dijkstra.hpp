@@ -3,7 +3,9 @@
 
 #include <algorithm>
 #include <cassert>
+#include <limits>
 #include <queue>
+#include <utility>
 #include <vector>
 
 namespace algorithm {
@@ -13,15 +15,14 @@ class Dijkstra {
     std::vector<std::vector<std::pair<int, T> > > m_g;  // m_g[v][]:=(ノードvの隣接リスト). pair of (to, cost).
     std::vector<T> m_d;                                 // m_d[t]:=(ノードsからtへの最短距離).
     std::vector<int> m_pre;                             // m_pre[t]:=(ノードtを訪問する直前のノード番号). 逆方向経路．
-    T m_inf;
 
 public:
     Dijkstra() : Dijkstra(0) {}
-    explicit Dijkstra(size_t vn, T inf = 1e9) : m_g(vn), m_d(vn, inf), m_pre(vn, -1), m_inf(inf) {}
+    explicit Dijkstra(size_t vn) : m_g(vn), m_d(vn, infinity()), m_pre(vn, -1) {}
 
+    static constexpr T infinity() { return std::numeric_limits<T>::max(); }
     // ノード数を返す．
     int order() const { return m_g.size(); }
-    T infinity() const { return m_inf; }
     // 重み付き有向辺を張る．
     void add_edge(int from, int to, T cost) {
         assert(0 <= from and from < order());
