@@ -1,23 +1,24 @@
 #ifndef ALGORITHM_STRONGLY_CONNECTED_COMPONENTS_HPP
 #define ALGORITHM_STRONGLY_CONNECTED_COMPONENTS_HPP 1
 
+#include <algorithm>
 #include <cassert>
 #include <stack>
+#include <utility>
 #include <vector>
 
 namespace algorithm {
 
 // 強連結成分分解 (SCC: Strongly Connected Components)．
 class SCC {
-    int m_vn;                            // m_vn:=(頂点数).
     std::vector<std::vector<int> > m_g;  // m_g[v][]:=(頂点vの隣接リスト).
 
 public:
     SCC() : SCC(0) {}
-    explicit SCC(int vn) : m_vn(vn), m_g(vn) {}
+    explicit SCC(int vn) : m_g(vn) {}
 
     // 頂点数を返す．
-    int order() const { return m_vn; }
+    int order() const { return m_g.size(); }
     // 有向辺を張る．
     void add_edge(int from, int to) {
         assert(0 <= from and from < order());

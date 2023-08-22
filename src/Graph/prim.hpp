@@ -4,21 +4,21 @@
 #include <algorithm>
 #include <cassert>
 #include <queue>
+#include <utility>
 #include <vector>
 
 namespace algorithm {
 
 template <typename T>
 class Prim {
-    int m_vn;                                           // m_vn:=(ノード数).
     std::vector<std::vector<std::pair<int, T> > > m_g;  // m_g[v][]:=(ノードvの隣接リスト). pair of (to, cost).
 
 public:
     Prim() : Prim(0) {}
-    explicit Prim(size_t vn) : m_vn(vn), m_g(vn) {}
+    explicit Prim(size_t vn) : m_g(vn) {}
 
     // ノード数を返す．
-    int order() const { return m_vn; }
+    int order() const { return m_g.size(); }
     // 重み付き無向辺を張る．
     void add_edge(int u, int v, T cost) {
         assert(0 <= u and u < order());

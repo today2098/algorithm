@@ -3,12 +3,12 @@
 
 #include <algorithm>
 #include <cassert>
+#include <utility>
 #include <vector>
 
 namespace algorithm {
 
 class LowLink {
-    int m_vn;                                 // m_vn:=(頂点数).
     std::vector<std::vector<int> > m_g;       // m_g[v][]:=(頂点vの隣接リスト).
     std::vector<int> m_aps;                   // m_aps[]:=(関節点のリスト). Articulations points.
     std::vector<std::pair<int, int> > m_brs;  // m_brs[]:=(橋のリスト). Bridges.
@@ -23,12 +23,12 @@ class LowLink {
                 degree++;
                 dfs(v, u, ord, low, now);
                 low[u] = std::min(low[u], low[v]);
-                if(ord[u] < low[v]) {  // 辺u-vが橋のとき．
+                if(ord[u] < low[v]) {  // 辺(u,v)が橋のとき．
                     if(u < v) m_brs.emplace_back(u, v);
                     else m_brs.emplace_back(v, u);
                 }
                 if(parent != -1 and ord[u] <= low[v]) is_ap = true;  // 根以外で関節点のとき．
-            } else {                                                 // 辺u-vが後退辺のとき．
+            } else {                                                 // 辺(u,v)が後退辺のとき．
                 low[u] = std::min(low[u], ord[v]);
             }
         }
@@ -38,10 +38,10 @@ class LowLink {
 
 public:
     LowLink() : LowLink(0) {}
-    explicit LowLink(size_t vn) : m_vn(vn), m_g(vn) {}
+    explicit LowLink(size_t vn) : m_g(vn) {}
 
     // 頂点数を返す．
-    int order() const { return m_vn; }
+    int order() const { return m_g.size(); }
     // 無向辺を張る．
     void add_edge(int u, int v) {
         assert(0 <= u and u < order());
