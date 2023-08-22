@@ -3,11 +3,12 @@
 
 #include <algorithm>
 #include <cassert>
+#include <limits>
 #include <vector>
 
 namespace algorithm {
 
-template <typename T>  // T:Type of capacity.
+template <typename T>  // T:容量の型.
 class FordFulkerson {
     struct Edge {
         int to;   // to:=(行き先ノード).
@@ -16,10 +17,8 @@ class FordFulkerson {
         explicit Edge(int to_, T cap_, int rev_) : to(to_), cap(cap_), rev(rev_) {}
     };
 
-    int m_vn;                                 // m_vn:=(ノード数).
     std::vector<std::vector<Edge> > m_g;      // m_g[v][]:=(ノードvの隣接リスト).
     std::vector<std::pair<int, int> > m_pos;  // m_pos[i]:=(i番目の辺情報). pair of (from, index).
-    T m_inf;
 
     // 増加パスを探す．
     T dfs(int v, int t, T flow, std::vector<bool> &seen) {
@@ -40,13 +39,13 @@ class FordFulkerson {
 
 public:
     FordFulkerson() : FordFulkerson(0) {}
-    explicit FordFulkerson(size_t vn, T inf = 1e9) : m_vn(vn), m_g(vn), m_inf(inf) {}
+    explicit FordFulkerson(size_t vn) : m_g(vn) {}
 
+    static constexpr T infinity() { return std::numeric_limits<T>::max(); }
     // ノード数を返す．
-    int order() const { return m_vn; }
+    int order() const { return m_g.size(); }
     // 辺数を返す.
     int size() const { return m_pos.size(); }
-    T infinity() const { return m_inf; }
     // 容量capの有向辺を追加する．
     int add_edge(int from, int to, T cap) {
         assert(0 <= from and from < order());
@@ -69,10 +68,10 @@ public:
         while(res < flow) {
             std::fill(seen.begin(), seen.end(), false);
             T tmp = dfs(s, t, flow - res, seen);
-            if(tmp == 0) return res;
+            if(tmp == 0) break;
             res += tmp;
         }
-        return flow;
+        return res;
     }
     // 辺の情報を返す．
     std::tuple<int, int, T, T> get_edge(int i) const {

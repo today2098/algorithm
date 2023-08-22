@@ -52,11 +52,11 @@ public:
     PrimalDual() : PrimalDual(0) {}
     explicit PrimalDual(size_t vn) : m_g(vn) {}
 
+    static constexpr Flow infinity_flow() { return std::numeric_limits<Flow>::max(); }
     // ノード数を返す．
     int order() const { return m_g.size(); }
     // 辺数を返す.
     int size() const { return m_pos.size(); }
-    static constexpr Flow infinity_flow() { return std::numeric_limits<Flow>::max(); }
     // 容量cap[flows]，単位コストcost[cost/flow]の有向辺を追加する．
     int add_edge(int from, int to, Flow cap, Cost cost) {
         assert(0 <= from and from < order());
