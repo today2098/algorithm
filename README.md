@@ -198,6 +198,7 @@ I write source code only on header file in order to simplify making snippet.
 |Manacher|最長回文 (Longest Palindromic Substring)|O(\|S\|)|
 |z_algorithm(s)|最長共通接頭辞 (LCP: Longest Common Prefix)|O(\|S\|)|
 |string_modulo(s,mod)|文字列剰余|O(\|S\|)|
+|run_length_encoding(s)|ランレングス圧縮（連長圧縮）||
 |split(s,delim)|文字列分割．指定の文字delimで分割する．||
 
 
