@@ -8,15 +8,14 @@
 namespace algorithm {
 
 class TopologicalSort {
-    int m_n;                             // m_n:=(頂点数).
     std::vector<std::vector<int> > m_g;  // m_g[v]:=(頂点vの隣接リスト).
 
 public:
     TopologicalSort() : TopologicalSort(0) {}
-    explicit TopologicalSort(size_t n) : m_n(n), m_g(n) {}
+    explicit TopologicalSort(size_t vn) : m_g(vn) {}
 
     // 頂点数を返す．
-    int order() const { return m_n; }
+    int order() const { return m_g.size(); }
     // 有向辺を張る．
     void add_edge(int from, int to) {
         assert(0 <= from and from < order());
@@ -26,6 +25,7 @@ public:
     // 任意のトポロジカルソートの解を求める．O(|E|).
     std::vector<int> topological_sort() const {
         std::vector<int> res;
+        res.reserve(order());
         std::vector<int> deg(order(), 0);  // deg[v]:=(頂点vの入次数).
         for(const std::vector<int> &edges : m_g) {
             for(int to : edges) deg[to]++;
@@ -42,26 +42,21 @@ public:
                 if(--deg[v] == 0) que.push(v);
             }
         }
-        if(res.size() != order()) return std::vector<int>(0);  // 閉路がある場合．
+        if(res.size() != order()) return std::vector<int>();  // 閉路がある場合．
         return res;
     }
-    // 考え得るトポロジカルソートの解を数え上げる．頂点数の上限目安は20程度．O((2^N)*N*N).
-    long long count_up() const {
-        bool ng[order()][order()] = {};
-        for(int from = 0; from < order(); ++from) {
-            for(int to : m_g[from]) ng[to][from] = true;
+    // 考え得るトポロジカルソートの解を数え上げる．頂点数の上限目安は20程度．O(N*(2^N)).
+    template <typename Type = long long>
+    Type count_up() const {
+        std::vector<int> b(order(), 0);
+        for(int v = 0; v < order(); ++v) {
+            for(int to : m_g[v]) b[v] |= (1 << to);
         }
-        std::vector<long long> dp(1 << order(), 0);  // bitDP.
+        std::vector<Type> dp(1 << order(), 0);  // dp[S]:=(頂点集合Sにおける解の通り数).
         dp[0] = 1;
         for(int bit = 0; bit < (1 << order()); ++bit) {
             for(int i = 0; i < order(); ++i) {
-                if(!(bit >> i & 1)) {
-                    bool ok = true;
-                    for(int j = 0; j < order(); ++j) {
-                        if(bit >> j & 1 and ng[j][i]) ok = false;
-                    }
-                    if(ok) dp[bit | 1 << i] += dp[bit];
-                }
+                if(!(bit >> i & 1) and !(bit & b[i])) dp[bit | 1 << i] += dp[bit];
             }
         }
         return dp[(1 << order()) - 1];
