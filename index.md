@@ -198,6 +198,11 @@ data:
     - icon: ':warning:'
       path: src/Utils/timer.hpp
       title: src/Utils/timer.hpp
+  - name: test
+    pages:
+    - icon: ':warning:'
+      path: test/yosupo-shortest_path-dijkstra.cpp
+      title: test/yosupo-shortest_path-dijkstra.cpp
   verificationCategories:
   - name: test
     pages:

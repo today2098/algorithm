@@ -1,7 +1,10 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':warning:'
+    path: test/yosupo-shortest_path-dijkstra.cpp
+    title: test/yosupo-shortest_path-dijkstra.cpp
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
@@ -85,7 +88,8 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: src/Graph/dijkstra.hpp
-  requiredBy: []
+  requiredBy:
+  - test/yosupo-shortest_path-dijkstra.cpp
   timestamp: '2023-08-22 11:35:03+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
