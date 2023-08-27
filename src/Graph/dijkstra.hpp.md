@@ -1,14 +1,14 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy:
-  - icon: ':warning:'
-    path: test/yosupo-shortest_path-dijkstra.cpp
-    title: test/yosupo-shortest_path-dijkstra.cpp
-  _extendedVerifiedWith: []
+  _extendedRequiredBy: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo-shortest_path-dijkstra.test.cpp
+    title: test/yosupo-shortest_path-dijkstra.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"src/Graph/dijkstra.hpp\"\n\n\n\n#include <algorithm>\n#include\
@@ -88,11 +88,11 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: src/Graph/dijkstra.hpp
-  requiredBy:
-  - test/yosupo-shortest_path-dijkstra.cpp
+  requiredBy: []
   timestamp: '2023-08-22 11:35:03+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/yosupo-shortest_path-dijkstra.test.cpp
 documentation_of: src/Graph/dijkstra.hpp
 layout: document
 redirect_from:

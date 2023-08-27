@@ -1,28 +1,30 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':warning:'
+  - icon: ':x:'
     path: src/Graph/bellman_ford.hpp
     title: src/Graph/bellman_ford.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/shortest_path
     links:
     - https://judge.yosupo.jp/problem/shortest_path
-  bundledCode: "#line 1 \"test/yosupo-shortest_path-bellman_ford.cpp\"\n#define PROBLEM\
-    \ \"https://judge.yosupo.jp/problem/shortest_path\"\n\n#include <iostream>\n\n\
-    #line 1 \"src/Graph/bellman_ford.hpp\"\n\n\n\n#include <algorithm>\n#include <cassert>\n\
-    #include <limits>\n#include <vector>\n\nnamespace algorithm {\n\ntemplate <typename\
-    \ T>\nclass BellmanFord {\n    struct Edge {\n        int from, to;\n        T\
-    \ cost;\n        explicit Edge(int from_, int to_, T cost_) : from(from_), to(to_),\
-    \ cost(cost_) {}\n    };\n\n    int m_vn;                   // m_vn:=(\u30CE\u30FC\
-    \u30C9\u6570).\n    std::vector<Edge> m_edges;  // m_edges[]:=(\u8FBA\u30EA\u30B9\
-    \u30C8).\n    std::vector<T> m_d;         // m_d[t]:=(\u30CE\u30FC\u30C9s\u304B\
-    \u3089t\u3078\u306E\u6700\u77ED\u8DDD\u96E2).\n    std::vector<int> m_pre;   \
-    \  // m_pre[t]:=(\u30CE\u30FC\u30C9t\u3092\u8A2A\u554F\u3059\u308B\u76F4\u524D\
+  bundledCode: "#line 1 \"test/yosupo-shortest_path-bellman_ford.test.cpp\"\n#define\
+    \ PROBLEM \"https://judge.yosupo.jp/problem/shortest_path\"\n\n#include <iostream>\n\
+    \n#line 1 \"src/Graph/bellman_ford.hpp\"\n\n\n\n#include <algorithm>\n#include\
+    \ <cassert>\n#include <limits>\n#include <vector>\n\nnamespace algorithm {\n\n\
+    template <typename T>\nclass BellmanFord {\n    struct Edge {\n        int from,\
+    \ to;\n        T cost;\n        explicit Edge(int from_, int to_, T cost_) : from(from_),\
+    \ to(to_), cost(cost_) {}\n    };\n\n    int m_vn;                   // m_vn:=(\u30CE\
+    \u30FC\u30C9\u6570).\n    std::vector<Edge> m_edges;  // m_edges[]:=(\u8FBA\u30EA\
+    \u30B9\u30C8).\n    std::vector<T> m_d;         // m_d[t]:=(\u30CE\u30FC\u30C9\
+    s\u304B\u3089t\u3078\u306E\u6700\u77ED\u8DDD\u96E2).\n    std::vector<int> m_pre;\
+    \     // m_pre[t]:=(\u30CE\u30FC\u30C9t\u3092\u8A2A\u554F\u3059\u308B\u76F4\u524D\
     \u306E\u30CE\u30FC\u30C9\u756A\u53F7). \u9006\u65B9\u5411\u7D4C\u8DEF\uFF0E\n\n\
     public:\n    BellmanFord() : BellmanFord(0) {}\n    explicit BellmanFord(size_t\
     \ vn) : m_vn(vn), m_d(vn, infinity()), m_pre(vn, -1) {}\n\n    static constexpr\
@@ -66,7 +68,7 @@ data:
     \    std::vector<int> path;\n        if(!(-infinity() < m_d[t] and m_d[t] < infinity()))\
     \ return path;\n        for(; t != -1; t = m_pre[t]) path.push_back(t);\n    \
     \    std::reverse(path.begin(), path.end());\n        return path;\n    }\n};\n\
-    \n}  // namespace algorithm\n\n\n#line 6 \"test/yosupo-shortest_path-bellman_ford.cpp\"\
+    \n}  // namespace algorithm\n\n\n#line 6 \"test/yosupo-shortest_path-bellman_ford.test.cpp\"\
     \n\nint main() {\n    int n, m;\n    int s, t;\n    std::cin >> n >> m >> s >>\
     \ t;\n\n    algorithm::BellmanFord<long long> bellman_ford(n);\n    for(int i\
     \ = 0; i < m; ++i) {\n        int a, b;\n        long long c;\n        std::cin\
@@ -89,16 +91,16 @@ data:
     \ std::endl;\n}\n"
   dependsOn:
   - src/Graph/bellman_ford.hpp
-  isVerificationFile: false
-  path: test/yosupo-shortest_path-bellman_ford.cpp
+  isVerificationFile: true
+  path: test/yosupo-shortest_path-bellman_ford.test.cpp
   requiredBy: []
-  timestamp: '2023-08-28 02:02:28+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
+  timestamp: '2023-08-28 02:10:12+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: test/yosupo-shortest_path-bellman_ford.cpp
+documentation_of: test/yosupo-shortest_path-bellman_ford.test.cpp
 layout: document
 redirect_from:
-- /library/test/yosupo-shortest_path-bellman_ford.cpp
-- /library/test/yosupo-shortest_path-bellman_ford.cpp.html
-title: test/yosupo-shortest_path-bellman_ford.cpp
+- /verify/test/yosupo-shortest_path-bellman_ford.test.cpp
+- /verify/test/yosupo-shortest_path-bellman_ford.test.cpp.html
+title: test/yosupo-shortest_path-bellman_ford.test.cpp
 ---

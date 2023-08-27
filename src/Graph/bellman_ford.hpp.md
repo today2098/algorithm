@@ -1,14 +1,14 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy:
-  - icon: ':warning:'
-    path: test/yosupo-shortest_path-bellman_ford.cpp
-    title: test/yosupo-shortest_path-bellman_ford.cpp
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedRequiredBy: []
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/yosupo-shortest_path-bellman_ford.test.cpp
+    title: test/yosupo-shortest_path-bellman_ford.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"src/Graph/bellman_ford.hpp\"\n\n\n\n#include <algorithm>\n\
@@ -122,11 +122,11 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: src/Graph/bellman_ford.hpp
-  requiredBy:
-  - test/yosupo-shortest_path-bellman_ford.cpp
+  requiredBy: []
   timestamp: '2023-08-22 14:19:07+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - test/yosupo-shortest_path-bellman_ford.test.cpp
 documentation_of: src/Graph/bellman_ford.hpp
 layout: document
 redirect_from:
