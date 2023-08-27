@@ -4,8 +4,8 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/yosupo-shortest_path-dijkstra.test.cpp
-    title: test/yosupo-shortest_path-dijkstra.test.cpp
+    path: test/yosupo-shortest_path.test.cpp
+    title: test/yosupo-shortest_path.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -92,11 +92,9 @@ data:
   timestamp: '2023-08-22 11:35:03+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo-shortest_path-dijkstra.test.cpp
+  - test/yosupo-shortest_path.test.cpp
 documentation_of: src/Graph/dijkstra.hpp
 layout: document
-redirect_from:
-- /library/src/Graph/dijkstra.hpp
-- /library/src/Graph/dijkstra.hpp.html
-title: src/Graph/dijkstra.hpp
+title: "Dijkstra's Algorithm\uFF08\u5358\u4E00\u59CB\u70B9\u6700\u77ED\u7D4C\u8DEF\
+  \uFF09"
 ---

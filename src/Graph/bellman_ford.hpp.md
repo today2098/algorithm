@@ -2,13 +2,10 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':x:'
-    path: test/yosupo-shortest_path-bellman_ford.test.cpp
-    title: test/yosupo-shortest_path-bellman_ford.test.cpp
-  _isVerificationFailed: true
+  _extendedVerifiedWith: []
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "#line 1 \"src/Graph/bellman_ford.hpp\"\n\n\n\n#include <algorithm>\n\
@@ -124,13 +121,10 @@ data:
   path: src/Graph/bellman_ford.hpp
   requiredBy: []
   timestamp: '2023-08-22 14:19:07+09:00'
-  verificationStatus: LIBRARY_ALL_WA
-  verifiedWith:
-  - test/yosupo-shortest_path-bellman_ford.test.cpp
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: src/Graph/bellman_ford.hpp
 layout: document
-redirect_from:
-- /library/src/Graph/bellman_ford.hpp
-- /library/src/Graph/bellman_ford.hpp.html
-title: src/Graph/bellman_ford.hpp
+title: "Bellman-Ford Algorithm\uFF08\u5358\u4E00\u59CB\u70B9\u6700\u77ED\u7D4C\u8DEF\
+  \uFF09"
 ---

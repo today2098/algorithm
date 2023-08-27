@@ -66,15 +66,17 @@ data:
       title: src/Geometry/geometry_vector.hpp
   - name: src/Graph
     pages:
-    - icon: ':x:'
+    - icon: ':warning:'
       path: src/Graph/bellman_ford.hpp
-      title: src/Graph/bellman_ford.hpp
+      title: "Bellman-Ford Algorithm\uFF08\u5358\u4E00\u59CB\u70B9\u6700\u77ED\u7D4C\
+        \u8DEF\uFF09"
     - icon: ':warning:'
       path: src/Graph/calc_tree_diameter.hpp
       title: src/Graph/calc_tree_diameter.hpp
     - icon: ':heavy_check_mark:'
       path: src/Graph/dijkstra.hpp
-      title: src/Graph/dijkstra.hpp
+      title: "Dijkstra's Algorithm\uFF08\u5358\u4E00\u59CB\u70B9\u6700\u77ED\u7D4C\
+        \u8DEF\uFF09"
     - icon: ':warning:'
       path: src/Graph/dinic.hpp
       title: src/Graph/dinic.hpp
@@ -204,12 +206,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj-DSL_1_A.test.cpp
       title: test/aoj-DSL_1_A.test.cpp
-    - icon: ':x:'
-      path: test/yosupo-shortest_path-bellman_ford.test.cpp
-      title: test/yosupo-shortest_path-bellman_ford.test.cpp
     - icon: ':heavy_check_mark:'
-      path: test/yosupo-shortest_path-dijkstra.test.cpp
-      title: test/yosupo-shortest_path-dijkstra.test.cpp
+      path: test/yosupo-shortest_path.test.cpp
+      title: test/yosupo-shortest_path.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo-unionfind.test.cpp
       title: test/yosupo-unionfind.test.cpp

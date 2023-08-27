@@ -3,7 +3,8 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: src/Graph/dijkstra.hpp
-    title: src/Graph/dijkstra.hpp
+    title: "Dijkstra's Algorithm\uFF08\u5358\u4E00\u59CB\u70B9\u6700\u77ED\u7D4C\u8DEF\
+      \uFF09"
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -14,9 +15,9 @@ data:
     PROBLEM: https://judge.yosupo.jp/problem/shortest_path
     links:
     - https://judge.yosupo.jp/problem/shortest_path
-  bundledCode: "#line 1 \"test/yosupo-shortest_path-dijkstra.test.cpp\"\n#define PROBLEM\
-    \ \"https://judge.yosupo.jp/problem/shortest_path\"\n\n#include <iostream>\n\n\
-    #line 1 \"src/Graph/dijkstra.hpp\"\n\n\n\n#include <algorithm>\n#include <cassert>\n\
+  bundledCode: "#line 1 \"test/yosupo-shortest_path.test.cpp\"\n#define PROBLEM \"\
+    https://judge.yosupo.jp/problem/shortest_path\"\n\n#include <iostream>\n\n#line\
+    \ 1 \"src/Graph/dijkstra.hpp\"\n\n\n\n#include <algorithm>\n#include <cassert>\n\
     #include <limits>\n#include <queue>\n#include <utility>\n#include <vector>\n\n\
     namespace algorithm {\n\ntemplate <typename T>\nclass Dijkstra {\n    std::vector<std::vector<std::pair<int,\
     \ T> > > m_g;  // m_g[v][]:=(\u30CE\u30FC\u30C9v\u306E\u96A3\u63A5\u30EA\u30B9\
@@ -52,11 +53,11 @@ data:
     \        if(distance(t) == infinity()) return path;\n        for(; t != -1; t\
     \ = m_pre[t]) path.push_back(t);\n        std::reverse(path.begin(), path.end());\n\
     \        return path;\n    }\n};\n\n}  // namespace algorithm\n\n\n#line 6 \"\
-    test/yosupo-shortest_path-dijkstra.test.cpp\"\n\nint main() {\n    int n, m;\n\
-    \    int s, t;\n    std::cin >> n >> m >> s >> t;\n\n    algorithm::Dijkstra<long\
-    \ long> dijkstra(n);\n    for(int i = 0; i < m; ++i) {\n        int a, b;\n  \
-    \      long long c;\n        std::cin >> a >> b >> c;\n\n        dijkstra.add_edge(a,\
-    \ b, c);\n    }\n    dijkstra.dijkstra(s);\n\n    auto x = dijkstra.distance(t);\n\
+    test/yosupo-shortest_path.test.cpp\"\n\nint main() {\n    int n, m;\n    int s,\
+    \ t;\n    std::cin >> n >> m >> s >> t;\n\n    algorithm::Dijkstra<long long>\
+    \ dijkstra(n);\n    for(int i = 0; i < m; ++i) {\n        int a, b;\n        long\
+    \ long c;\n        std::cin >> a >> b >> c;\n\n        dijkstra.add_edge(a, b,\
+    \ c);\n    }\n    dijkstra.dijkstra(s);\n\n    auto x = dijkstra.distance(t);\n\
     \    if(x == dijkstra.infinity()) {\n        std::cout << -1 << std::endl;\n \
     \       return 0;\n    }\n\n    auto path = dijkstra.shortest_path(t);\n    int\
     \ y = path.size() - 1;\n\n    std::cout << x << ' ' << y << std::endl;\n    for(int\
@@ -76,15 +77,15 @@ data:
   dependsOn:
   - src/Graph/dijkstra.hpp
   isVerificationFile: true
-  path: test/yosupo-shortest_path-dijkstra.test.cpp
+  path: test/yosupo-shortest_path.test.cpp
   requiredBy: []
-  timestamp: '2023-08-28 02:10:12+09:00'
+  timestamp: '2023-08-28 08:36:17+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/yosupo-shortest_path-dijkstra.test.cpp
+documentation_of: test/yosupo-shortest_path.test.cpp
 layout: document
 redirect_from:
-- /verify/test/yosupo-shortest_path-dijkstra.test.cpp
-- /verify/test/yosupo-shortest_path-dijkstra.test.cpp.html
-title: test/yosupo-shortest_path-dijkstra.test.cpp
+- /verify/test/yosupo-shortest_path.test.cpp
+- /verify/test/yosupo-shortest_path.test.cpp.html
+title: test/yosupo-shortest_path.test.cpp
 ---
