@@ -1,7 +1,10 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':warning:'
+    path: test/yosupo-shortest_path-bellman_ford.cpp
+    title: test/yosupo-shortest_path-bellman_ford.cpp
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
@@ -119,7 +122,8 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: src/Graph/bellman_ford.hpp
-  requiredBy: []
+  requiredBy:
+  - test/yosupo-shortest_path-bellman_ford.cpp
   timestamp: '2023-08-22 14:19:07+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []

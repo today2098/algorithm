@@ -201,6 +201,9 @@ data:
   - name: test
     pages:
     - icon: ':warning:'
+      path: test/yosupo-shortest_path-bellman_ford.cpp
+      title: test/yosupo-shortest_path-bellman_ford.cpp
+    - icon: ':warning:'
       path: test/yosupo-shortest_path-dijkstra.cpp
       title: test/yosupo-shortest_path-dijkstra.cpp
   verificationCategories:
