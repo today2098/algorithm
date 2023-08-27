@@ -50,7 +50,7 @@ data:
     - icon: ':warning:'
       path: src/DataStructure/sub_persistent_union_find.hpp
       title: src/DataStructure/sub_persistent_union_find.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: src/DataStructure/union_find.hpp
       title: src/DataStructure/union_find.hpp
   - name: src/Geometry
@@ -198,6 +198,11 @@ data:
     - icon: ':warning:'
       path: src/Utils/timer.hpp
       title: src/Utils/timer.hpp
-  verificationCategories: []
+  verificationCategories:
+  - name: test
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/aoj-DSL_1_A.test.cpp
+      title: test/aoj-DSL_1_A.test.cpp
 layout: toppage
 ---

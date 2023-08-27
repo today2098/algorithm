@@ -2,10 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/aoj-DSL_1_A.test.cpp
+    title: test/aoj-DSL_1_A.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"src/DataStructure/union_find.hpp\"\n\n\n\n#include <cassert>\n\
@@ -73,8 +76,9 @@ data:
   path: src/DataStructure/union_find.hpp
   requiredBy: []
   timestamp: '2023-03-02 14:32:42+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/aoj-DSL_1_A.test.cpp
 documentation_of: src/DataStructure/union_find.hpp
 layout: document
 redirect_from:
