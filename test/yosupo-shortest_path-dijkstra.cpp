@@ -1,4 +1,4 @@
-#define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_1_A"
+#define PROBLEM "https://judge.yosupo.jp/problem/shortest_path"
 
 #include <iostream>
 
