@@ -6,6 +6,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj-DSL_1_A.test.cpp
     title: test/aoj-DSL_1_A.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo-unionfind.test.cpp
+    title: test/yosupo-unionfind.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -82,6 +85,7 @@ data:
   timestamp: '2023-08-27 20:40:11+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/yosupo-unionfind.test.cpp
   - test/aoj-DSL_1_A.test.cpp
 documentation_of: src/DataStructure/union_find.hpp
 layout: document
