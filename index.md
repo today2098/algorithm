@@ -52,7 +52,7 @@ data:
       title: src/DataStructure/sub_persistent_union_find.hpp
     - icon: ':heavy_check_mark:'
       path: src/DataStructure/union_find.hpp
-      title: "\u7D20\u96C6\u5408\u30C7\u30FC\u30BF\u69CB\u9020\uFF0E"
+      title: src/DataStructure/union_find.hpp
   - name: src/Geometry
     pages:
     - icon: ':warning:'
