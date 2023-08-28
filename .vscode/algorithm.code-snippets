@@ -565,6 +565,7 @@
 		"scope": "cpp",
 		"prefix": "Dijkstra",
 		"body": [
+			"// Dijkstra's Algorithm.",
 			"template <typename T>",
 			"class Dijkstra {",
 			"    std::vector<std::vector<std::pair<int, T> > > m_g;  // m_g[v][]:=(ノードvの隣接リスト). pair of (to, cost).",
@@ -621,7 +622,7 @@
 			"    }",
 			"};"
 		],
-		"description": "単一始点最短経路"
+		"description": "Dijkstra's Algorithm（単一始点最短経路）"
 	},
 	"Dinic": {
 		"scope": "cpp",
