@@ -38,8 +38,8 @@ I write source code only on header file in order to simplify making snippet.
 |class|summary|complexity|
 |---|---|---|
 |UnionFind|素集合データ構造||
-|PotentializedUnionFind|重み付きUnion-Find Tree||
-|SubPersistentUnionFind|部分永続Union-Find Tree||
+|PotentializedUnionFind|重み付きUnion-Find木||
+|SubPersistentUnionFind|部分永続Union-Find木||
 
 
 #### Segment Tree

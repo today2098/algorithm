@@ -35,9 +35,9 @@ data:
     - icon: ':warning:'
       path: src/DataStructure/lazy_segment_tree.hpp
       title: src/DataStructure/lazy_segment_tree.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: src/DataStructure/potentialized_union_find.hpp
-      title: src/DataStructure/potentialized_union_find.hpp
+      title: "\u91CD\u307F\u4ED8\u304DUnion-Find\u6728"
     - icon: ':warning:'
       path: src/DataStructure/segment_tree.hpp
       title: src/DataStructure/segment_tree.hpp
@@ -66,7 +66,7 @@ data:
       title: src/Geometry/geometry_vector.hpp
   - name: src/Graph
     pages:
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: src/Graph/bellman_ford.hpp
       title: "Bellman-Ford Algorithm\uFF08\u5358\u4E00\u59CB\u70B9\u6700\u77ED\u7D4C\
         \u8DEF\uFF09"
@@ -206,6 +206,15 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj-DSL_1_A.test.cpp
       title: test/aoj-DSL_1_A.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/aoj-DSL_1_B.test.cpp
+      title: test/aoj-DSL_1_B.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/aoj-GRL_1_A.test.cpp
+      title: test/aoj-GRL_1_A.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/aoj-GRL_1_B.test.cpp
+      title: test/aoj-GRL_1_B.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo-shortest_path.test.cpp
       title: test/yosupo-shortest_path.test.cpp
