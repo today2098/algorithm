@@ -37,8 +37,8 @@ class LCA {
 
 public:
     LCA() : LCA(0) {}
-    explicit LCA(size_t vn) : m_l(0), m_g(vn), m_depth(vn, -1), m_dist(vn, infinity()), m_ord(vn, -1) {
-        while((1 << m_l) < vn) m_l++;
+    explicit LCA(size_t vn) : m_l(1), m_g(vn), m_depth(vn, -1), m_dist(vn, infinity()), m_ord(vn, -1) {
+        while(1 << m_l <= (int)vn - 1) m_l++;
         m_par.assign(vn, std::vector<int>(m_l, -1));
     }
 
