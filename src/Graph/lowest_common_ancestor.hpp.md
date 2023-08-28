@@ -2,18 +2,21 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/aoj-GRL_5_C.test.cpp
+    title: test/aoj-GRL_5_C.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links:
     - "https://smijake3.hatenablog.com/entry/2019/09/15/200200\uFF08\u53C2\u71672023.8.13\uFF09\
       \uFF0E"
   bundledCode: "#line 1 \"src/Graph/lowest_common_ancestor.hpp\"\n\n\n\n#include <algorithm>\n\
-    #include <cassert>\n#include <map>\n#include <stack>\n#include <utility>\n#include\
-    \ <vector>\n\nnamespace algorithm {\n\n// \u6700\u8FD1\u5171\u901A\u7956\u5148\
-    \ (LCA: Lowest Common Ancestor)\uFF0E\ntemplate <typename T = int>  // T:Type\
+    #include <cassert>\n#include <limits>\n#include <map>\n#include <stack>\n#include\
+    \ <utility>\n#include <vector>\n\nnamespace algorithm {\n\n// Lowest Common Ancestor\uFF08\
+    \u6700\u8FD1\u5171\u901A\u7956\u5148\uFF09.\ntemplate <typename T = int>  // T:Type\
     \ of cost.\nclass LCA {\n    int m_l;                                        \
     \    // m_l:=ceiling(log2(vn)).\n    std::vector<std::vector<std::pair<int, T>\
     \ > > m_g;  // m_g[v][]:=(\u30CE\u30FC\u30C9v\u306E\u96A3\u63A5\u30EA\u30B9\u30C8\
@@ -107,11 +110,11 @@ data:
     \ Tree\u306E\u30E1\u30E2\uFF0CHatenaBlog, https://smijake3.hatenablog.com/entry/2019/09/15/200200\uFF08\
     \u53C2\u71672023.8.13\uFF09\uFF0E\n*/\n"
   code: "#ifndef ALGORITHM_LOWEST_COMMON_ANCESTOR_HPP\n#define ALGORITHM_LOWEST_COMMON_ANCESTOR_HPP\
-    \ 1\n\n#include <algorithm>\n#include <cassert>\n#include <map>\n#include <stack>\n\
-    #include <utility>\n#include <vector>\n\nnamespace algorithm {\n\n// \u6700\u8FD1\
-    \u5171\u901A\u7956\u5148 (LCA: Lowest Common Ancestor)\uFF0E\ntemplate <typename\
-    \ T = int>  // T:Type of cost.\nclass LCA {\n    int m_l;                    \
-    \                        // m_l:=ceiling(log2(vn)).\n    std::vector<std::vector<std::pair<int,\
+    \ 1\n\n#include <algorithm>\n#include <cassert>\n#include <limits>\n#include <map>\n\
+    #include <stack>\n#include <utility>\n#include <vector>\n\nnamespace algorithm\
+    \ {\n\n// Lowest Common Ancestor\uFF08\u6700\u8FD1\u5171\u901A\u7956\u5148\uFF09\
+    .\ntemplate <typename T = int>  // T:Type of cost.\nclass LCA {\n    int m_l;\
+    \                                            // m_l:=ceiling(log2(vn)).\n    std::vector<std::vector<std::pair<int,\
     \ T> > > m_g;  // m_g[v][]:=(\u30CE\u30FC\u30C9v\u306E\u96A3\u63A5\u30EA\u30B9\
     \u30C8). pair of (to, cost).\n    std::vector<std::vector<int> > m_par;      \
     \         // m_par[v][k]:=(\u30CE\u30FC\u30C9v\u304B\u30892^k\u56DE\u8FBF\u3063\
@@ -206,13 +209,11 @@ data:
   isVerificationFile: false
   path: src/Graph/lowest_common_ancestor.hpp
   requiredBy: []
-  timestamp: '2023-08-22 19:55:19+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  timestamp: '2023-08-28 18:04:20+09:00'
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - test/aoj-GRL_5_C.test.cpp
 documentation_of: src/Graph/lowest_common_ancestor.hpp
 layout: document
-redirect_from:
-- /library/src/Graph/lowest_common_ancestor.hpp
-- /library/src/Graph/lowest_common_ancestor.hpp.html
-title: src/Graph/lowest_common_ancestor.hpp
+title: "Lowest Common Ancestor\uFF08\u6700\u8FD1\u5171\u901A\u7956\u5148\uFF09"
 ---

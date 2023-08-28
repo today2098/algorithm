@@ -70,9 +70,9 @@ data:
       path: src/Graph/bellman_ford.hpp
       title: "Bellman-Ford Algorithm\uFF08\u5358\u4E00\u59CB\u70B9\u6700\u77ED\u7D4C\
         \u8DEF\uFF09"
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: src/Graph/calc_tree_diameter.hpp
-      title: src/Graph/calc_tree_diameter.hpp
+      title: "\u6728\u306E\u76F4\u5F84"
     - icon: ':heavy_check_mark:'
       path: src/Graph/dijkstra.hpp
       title: "Dijkstra's Algorithm\uFF08\u5358\u4E00\u59CB\u70B9\u6700\u77ED\u7D4C\
@@ -86,9 +86,9 @@ data:
     - icon: ':warning:'
       path: src/Graph/low_link.hpp
       title: src/Graph/low_link.hpp
-    - icon: ':warning:'
+    - icon: ':x:'
       path: src/Graph/lowest_common_ancestor.hpp
-      title: src/Graph/lowest_common_ancestor.hpp
+      title: "Lowest Common Ancestor\uFF08\u6700\u8FD1\u5171\u901A\u7956\u5148\uFF09"
     - icon: ':warning:'
       path: src/Graph/prim.hpp
       title: src/Graph/prim.hpp
@@ -221,6 +221,12 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj-GRL_1_B.test.cpp
       title: test/aoj-GRL_1_B.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/aoj-GRL_5_A.test.cpp
+      title: test/aoj-GRL_5_A.test.cpp
+    - icon: ':x:'
+      path: test/aoj-GRL_5_C.test.cpp
+      title: test/aoj-GRL_5_C.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo-shortest_path.test.cpp
       title: test/yosupo-shortest_path.test.cpp
