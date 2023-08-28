@@ -11,7 +11,7 @@
 
 namespace algorithm {
 
-// 最近共通祖先 (LCA: Lowest Common Ancestor)．
+// Lowest Common Ancestor（最近共通祖先）.
 template <typename T = int>  // T:Type of cost.
 class LCA {
     int m_l;                                            // m_l:=ceiling(log2(vn)).

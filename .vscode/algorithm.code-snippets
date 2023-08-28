@@ -261,7 +261,6 @@
 		"scope": "cpp",
 		"prefix": "BellmanFord",
 		"body": [
-			"// Bellman-Ford Algorithm.",
 			"template <typename T>",
 			"class BellmanFord {",
 			"    struct Edge {",
@@ -565,7 +564,6 @@
 		"scope": "cpp",
 		"prefix": "Dijkstra",
 		"body": [
-			"// Dijkstra's Algorithm.",
 			"template <typename T>",
 			"class Dijkstra {",
 			"    std::vector<std::vector<std::pair<int, T> > > m_g;  // m_g[v][]:=(ノードvの隣接リスト). pair of (to, cost).",
@@ -1163,7 +1161,7 @@
 		"scope": "cpp",
 		"prefix": "LCA",
 		"body": [
-			"// 最近共通祖先 (LCA: Lowest Common Ancestor)．",
+			"// Lowest Common Ancestor（最近共通祖先）.",
 			"template <typename T = int>  // T:Type of cost.",
 			"class LCA {",
 			"    int m_l;                                            // m_l:=ceiling(log2(vn)).",
@@ -1307,7 +1305,7 @@
 			"    }",
 			"};"
 		],
-		"description": "最近共通祖先 (LCA: Lowest Common Ancestor)"
+		"description": "Lowest Common Ancestor（最近共通祖先）"
 	},
 	"LazySegTree": {
 		"scope": "cpp",

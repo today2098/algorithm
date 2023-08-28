@@ -8,7 +8,6 @@
 
 namespace algorithm {
 
-// Bellman-Ford Algorithm.
 template <typename T>
 class BellmanFord {
     struct Edge {

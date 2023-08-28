@@ -10,7 +10,6 @@
 
 namespace algorithm {
 
-// Dijkstra's Algorithm.
 template <typename T>
 class Dijkstra {
     std::vector<std::vector<std::pair<int, T> > > m_g;  // m_g[v][]:=(ノードvの隣接リスト). pair of (to, cost).
