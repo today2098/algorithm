@@ -9,15 +9,15 @@
 
 namespace algorithm {
 
-// 強連結成分分解 (SCC: Strongly Connected Components)．
+// 強連結成分分解．
 class SCC {
-    std::vector<std::vector<int> > m_g;  // m_g[v][]:=(頂点vの隣接リスト).
+    std::vector<std::vector<int> > m_g;  // m_g[v][]:=(ノードvの隣接リスト).
 
 public:
     SCC() : SCC(0) {}
     explicit SCC(int vn) : m_g(vn) {}
 
-    // 頂点数を返す．
+    // ノード数を返す．
     int order() const { return m_g.size(); }
     // 有向辺を張る．
     void add_edge(int from, int to) {
@@ -28,14 +28,14 @@ public:
     // return pair of (# of SCCs, SCC id of each nodes).
     std::pair<int, std::vector<int> > scc() const {
         int num_sccs = 0;               // num_sccs:=(SCCsの数).
-        std::vector<int> ids(order());  // ids[v]:=(頂点vが属するSCCのID).
-        // ord[v]:=(DFS木における頂点vの行きがけ順序).
-        // low[v]:=(DFS木において，頂点vから葉方向に0回以上，後退辺を高々1回用いて到達できる頂点wのord[w]の最小値).
+        std::vector<int> ids(order());  // ids[v]:=(ノードvが属するSCCのID).
+        // ord[v]:=(DFS木におけるノードvの行きがけ順序).
+        // low[v]:=(DFS木において，ノードvから葉方向に0回以上，後退辺を高々1回用いて到達できるノードwのord[w]の最小値).
         std::vector<int> ord(order(), -1), low(order());
-        int now_ord = 0;
+        int now = 0;
         std::stack<int> visited;
         auto dfs = [&](auto self, int u) -> void {
-            ord[u] = low[u] = now_ord++;
+            ord[u] = low[u] = now++;
             visited.push(u);
             for(int to : m_g[u]) {
                 if(ord[to] == -1) {
