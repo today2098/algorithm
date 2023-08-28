@@ -1,14 +1,14 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: src/Graph/lowest_common_ancestor.hpp
     title: "Lowest Common Ancestor\uFF08\u6700\u8FD1\u5171\u901A\u7956\u5148\uFF09"
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/5/GRL_5_C
@@ -39,10 +39,10 @@ data:
     \ = parent;\n        m_depth[u] = depth;\n        m_dist[u] = distance;\n    \
     \    for(const auto &[v, cost] : m_g[u]) {\n            if(v == parent) continue;\n\
     \            dfs(v, u, depth + 1, distance + cost, now);\n        }\n    }\n\n\
-    public:\n    LCA() : LCA(0) {}\n    explicit LCA(size_t vn) : m_l(0), m_g(vn),\
-    \ m_depth(vn, -1), m_dist(vn, infinity()), m_ord(vn, -1) {\n        while((1 <<\
-    \ m_l) < vn) m_l++;\n        m_par.assign(vn, std::vector<int>(m_l, -1));\n  \
-    \  }\n\n    static constexpr T infinity() { return std::numeric_limits<T>::max();\
+    public:\n    LCA() : LCA(0) {}\n    explicit LCA(size_t vn) : m_l(1), m_g(vn),\
+    \ m_depth(vn, -1), m_dist(vn, infinity()), m_ord(vn, -1) {\n        while(1 <<\
+    \ m_l <= (int)vn - 1) m_l++;\n        m_par.assign(vn, std::vector<int>(m_l, -1));\n\
+    \    }\n\n    static constexpr T infinity() { return std::numeric_limits<T>::max();\
     \ }\n    // \u30CE\u30FC\u30C9\u6570\u3092\u8FD4\u3059\uFF0E\n    int order()\
     \ const { return m_g.size(); }\n    // \u8FBA\u3092\u5F35\u308B\uFF0E\u30CE\u30FC\
     \u30C9u\u3068v\u306F\u975E\u9023\u7D50\u3067\u3042\u308B\u3053\u3068\uFF0E\n \
@@ -132,8 +132,8 @@ data:
   isVerificationFile: true
   path: test/aoj-GRL_5_C.test.cpp
   requiredBy: []
-  timestamp: '2023-08-28 18:04:20+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-08-28 19:07:10+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj-GRL_5_C.test.cpp
 layout: document

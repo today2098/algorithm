@@ -86,7 +86,7 @@ data:
     - icon: ':warning:'
       path: src/Graph/low_link.hpp
       title: src/Graph/low_link.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: src/Graph/lowest_common_ancestor.hpp
       title: "Lowest Common Ancestor\uFF08\u6700\u8FD1\u5171\u901A\u7956\u5148\uFF09"
     - icon: ':warning:'
@@ -224,7 +224,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj-GRL_5_A.test.cpp
       title: test/aoj-GRL_5_A.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj-GRL_5_C.test.cpp
       title: test/aoj-GRL_5_C.test.cpp
     - icon: ':heavy_check_mark:'
