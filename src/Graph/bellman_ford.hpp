@@ -8,6 +8,7 @@
 
 namespace algorithm {
 
+// Bellman-Ford Algorithm.
 template <typename T>
 class BellmanFord {
     struct Edge {
@@ -47,7 +48,7 @@ public:
                     update = true;
                 }
             }
-            if(!update) return false;  // 負閉路無し．
+            if(!update) return false;  // 負閉路なし．
         }
         return true;  // 負閉路あり．
     }
@@ -67,7 +68,7 @@ public:
                     update = true;
                 }
             }
-            if(!update) return false;  // 負閉路無し．
+            if(!update) return false;  // 負閉路なし．
         }
         for(int i = 0; i < order(); ++i) {
             bool update = false;

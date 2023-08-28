@@ -261,6 +261,7 @@
 		"scope": "cpp",
 		"prefix": "BellmanFord",
 		"body": [
+			"// Bellman-Ford Algorithm.",
 			"template <typename T>",
 			"class BellmanFord {",
 			"    struct Edge {",
@@ -300,7 +301,7 @@
 			"                    update = true;",
 			"                }",
 			"            }",
-			"            if(!update) return false;  // 負閉路無し．",
+			"            if(!update) return false;  // 負閉路なし．",
 			"        }",
 			"        return true;  // 負閉路あり．",
 			"    }",
@@ -320,7 +321,7 @@
 			"                    update = true;",
 			"                }",
 			"            }",
-			"            if(!update) return false;  // 負閉路無し．",
+			"            if(!update) return false;  // 負閉路なし．",
 			"        }",
 			"        for(int i = 0; i < order(); ++i) {",
 			"            bool update = false;",
@@ -351,7 +352,7 @@
 			"    }",
 			"};"
 		],
-		"description": "単一始点最短経路"
+		"description": "Bellman-Ford Algorithm（単一始点最短経路）"
 	},
 	"BinaryTrie": {
 		"scope": "cpp",
