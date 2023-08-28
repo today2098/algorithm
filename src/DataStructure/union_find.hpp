@@ -8,7 +8,6 @@
 
 namespace algorithm {
 
-// Union-Find.
 class UnionFind {
     int m_vn;                // m_vn:=(要素数).
     int m_gn;                // m_gn:=(グループ数).

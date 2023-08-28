@@ -1,6 +1,7 @@
 #ifndef ALGORITHM_SEGMENT_TREE_HPP
 #define ALGORITHM_SEGMENT_TREE_HPP 1
 
+#include <algorithm>
 #include <cassert>
 #include <functional>
 #include <vector>
@@ -9,9 +10,9 @@ namespace algorithm {
 
 template <typename S>
 class SegmentTree {
-    using F = std::function<S(const S &, const S &)>;
+    using Func = std::function<S(const S &, const S &)>;
 
-    F m_op;                 // S m_op(S,S):=(二項演算関数).
+    Func m_op;              // S m_op(S,S):=(二項演算関数).
     S m_e;                  // m_e:=(単位元).
     int m_sz;               // m_sz:=(要素数).
     int m_n;                // m_n:=(葉の数).
@@ -20,11 +21,11 @@ class SegmentTree {
 public:
     // constructor. O(N).
     SegmentTree(){};
-    explicit SegmentTree(const F &op, const S &e, size_t n) : m_op(op), m_e(e), m_sz(n), m_n(1) {
+    explicit SegmentTree(const Func &op, const S &e, size_t n) : m_op(op), m_e(e), m_sz(n), m_n(1) {
         while(m_n < size()) m_n <<= 1;
         m_tree.assign(2 * m_n, identity());
     }
-    explicit SegmentTree(const F &op, const S &e, const std::vector<S> &v) : SegmentTree(op, e, v.size()) {
+    explicit SegmentTree(const Func &op, const S &e, const std::vector<S> &v) : SegmentTree(op, e, v.size()) {
         std::copy(v.begin(), v.end(), m_tree.begin() + m_n);
         for(int i = m_n - 1; i >= 1; --i) m_tree[i] = m_op(m_tree[i << 1], m_tree[i << 1 | 1]);
     }
@@ -59,8 +60,8 @@ public:
     }
     // 区間全体の総積を返す．O(1).
     S prod_all() const { return m_tree[1]; }
-    // jud(prod(l,-))=true となる区間の最右位値を二分探索する．
-    // ただし要素列には単調性があり，また jud(e)=true であること．O(logN).
+    // jud(prod(l,-))==true となる区間の最右位値を二分探索する．
+    // ただし要素列には単調性があり，また jud(e)==true であること．O(logN).
     int most_right(const std::function<bool(const S &)> &jud, int l) const {
         assert(jud(identity()) == true);
         assert(0 <= l and l <= size());
@@ -82,8 +83,8 @@ public:
         } while((l & -l) != l);  // (x&-x)==x のとき，xは2の階乗数．
         return size();
     }
-    // jud(prod(-,r))=true となる区間の最左位値を二分探索する．
-    // ただし要素列には単調性があり，また jud(e)=true であること．O(logN).
+    // jud(prod(-,r))==true となる区間の最左位値を二分探索する．
+    // ただし要素列には単調性があり，また jud(e)==true であること．O(logN).
     int most_left(const std::function<bool(const S &)> &jud, int r) const {
         assert(jud(identity()) == true);
         assert(0 <= r and r <= size());
