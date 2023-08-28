@@ -93,7 +93,8 @@ I write source code only on header file in order to simplify making snippet.
 
 |class|summary|complexity|
 |---|---|---|
-|LCA|最近共通祖先 (LCA: Lowest Common Ancestor)|O(\|V\|*log\|V\|)|
+|LCA|Lowest Common Ancestor（最近共通祖先）|O(\|V\|*log\|V\|)|
+|Prim|Prim's algorithm. 重み付き無向連結グラフにおける最小全域木を求める．|O(\|E\|*log\|V\|)|
 |calc_tree_diameter(g)|木の直径|O(\|V\|)|
 
 
@@ -101,7 +102,6 @@ I write source code only on header file in order to simplify making snippet.
 
 |class|summary|complexity|
 |---|---|---|
-|Prim|ある重み付き無向グラフにおける最小全域木のコストを求める．|O(\|E\|*log\|V\|)|
 |LowLink|ある無向連結グラフにおける橋と関節点を求める．|O(\|V\|+\|E\|)|
 |SCC|ある有向連結グラフを強連結成分 (Strongly Connected Components, SCC) に分解する．|O(\|V\|+\|E\|)|
 |TopologicalSort|任意のトポロジカルソートの解を求め，また考え得る解を数え上げる．|O(\|E\|)|

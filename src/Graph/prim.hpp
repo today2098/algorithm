@@ -1,8 +1,8 @@
 #ifndef ALGORITHM_PRIM_HPP
 #define ALGORITHM_PRIM_HPP 1
 
-#include <algorithm>
 #include <cassert>
+#include <functional>
 #include <queue>
 #include <utility>
 #include <vector>

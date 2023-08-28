@@ -1987,7 +1987,7 @@
 			"    }",
 			"};"
 		],
-		"description": "最小全域木"
+		"description": "Prim's Algorithm（最小全域木）"
 	},
 	"PrimalDual": {
 		"scope": "cpp",
