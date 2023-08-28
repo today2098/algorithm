@@ -8,10 +8,11 @@
 
 namespace algorithm {
 
+// Union-Find.
 class UnionFind {
     int m_vn;                // m_vn:=(要素数).
     int m_gn;                // m_gn:=(グループ数).
-    std::vector<int> m_par;  // m_par[x]:=(ノードxの親). 0未満の場合，xは根であり，値の絶対値は属するグループのサイズを表す．
+    std::vector<int> m_par;  // m_par[x]:=(ノードxの親番号). 0未満の場合，xは根であり，値の絶対値は属するグループのサイズを表す．
 
 public:
     UnionFind() : UnionFind(0) {}
@@ -21,7 +22,7 @@ public:
     int vn() const { return m_vn; };
     // グループ数を返す．
     int gn() const { return m_gn; };
-    // 要素xが属するグループ（根付き木）の根を返す．O(α(N)).
+    // 要素xが属するグループ（根付き木）の根番号を返す．O(α(N)).
     int root(int x) {
         assert(0 <= x and x < vn());
         if(m_par[x] < 0) return x;
