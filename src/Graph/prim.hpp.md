@@ -2,14 +2,17 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/aoj-ALDS1_12_A.test.cpp
+    title: test/aoj-ALDS1_12_A.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"src/Graph/prim.hpp\"\n\n\n\n#include <algorithm>\n#include\
-    \ <cassert>\n#include <queue>\n#include <utility>\n#include <vector>\n\nnamespace\
+  bundledCode: "#line 1 \"src/Graph/prim.hpp\"\n\n\n\n#include <cassert>\n#include\
+    \ <functional>\n#include <queue>\n#include <utility>\n#include <vector>\n\nnamespace\
     \ algorithm {\n\ntemplate <typename T>\nclass Prim {\n    std::vector<std::vector<std::pair<int,\
     \ T> > > m_g;  // m_g[v][]:=(\u30CE\u30FC\u30C9v\u306E\u96A3\u63A5\u30EA\u30B9\
     \u30C8). pair of (to, cost).\n\npublic:\n    Prim() : Prim(0) {}\n    explicit\
@@ -30,9 +33,9 @@ data:
     \   for(const auto &[v, cost] : m_g[u]) {\n                if(!seen[v]) pque.emplace(cost,\
     \ v);\n            }\n        }\n        return res;\n    }\n};\n\n}  // namespace\
     \ algorithm\n\n\n"
-  code: "#ifndef ALGORITHM_PRIM_HPP\n#define ALGORITHM_PRIM_HPP 1\n\n#include <algorithm>\n\
-    #include <cassert>\n#include <queue>\n#include <utility>\n#include <vector>\n\n\
-    namespace algorithm {\n\ntemplate <typename T>\nclass Prim {\n    std::vector<std::vector<std::pair<int,\
+  code: "#ifndef ALGORITHM_PRIM_HPP\n#define ALGORITHM_PRIM_HPP 1\n\n#include <cassert>\n\
+    #include <functional>\n#include <queue>\n#include <utility>\n#include <vector>\n\
+    \nnamespace algorithm {\n\ntemplate <typename T>\nclass Prim {\n    std::vector<std::vector<std::pair<int,\
     \ T> > > m_g;  // m_g[v][]:=(\u30CE\u30FC\u30C9v\u306E\u96A3\u63A5\u30EA\u30B9\
     \u30C8). pair of (to, cost).\n\npublic:\n    Prim() : Prim(0) {}\n    explicit\
     \ Prim(size_t vn) : m_g(vn) {}\n\n    // \u30CE\u30FC\u30C9\u6570\u3092\u8FD4\u3059\
@@ -56,13 +59,15 @@ data:
   isVerificationFile: false
   path: src/Graph/prim.hpp
   requiredBy: []
-  timestamp: '2023-08-22 20:50:53+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  timestamp: '2023-08-28 19:47:15+09:00'
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/aoj-ALDS1_12_A.test.cpp
 documentation_of: src/Graph/prim.hpp
 layout: document
-redirect_from:
-- /library/src/Graph/prim.hpp
-- /library/src/Graph/prim.hpp.html
-title: src/Graph/prim.hpp
+title: Prim's Algorithm
 ---
+
+## 概要
+
+重み付き無向連結グラフにおける最小全域木を求める．

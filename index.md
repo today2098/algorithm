@@ -89,15 +89,15 @@ data:
     - icon: ':heavy_check_mark:'
       path: src/Graph/lowest_common_ancestor.hpp
       title: "Lowest Common Ancestor\uFF08\u6700\u8FD1\u5171\u901A\u7956\u5148\uFF09"
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: src/Graph/prim.hpp
-      title: src/Graph/prim.hpp
+      title: Prim's Algorithm
     - icon: ':warning:'
       path: src/Graph/primal_dual.hpp
       title: src/Graph/primal_dual.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: src/Graph/strongly_connected_components.hpp
-      title: src/Graph/strongly_connected_components.hpp
+      title: "\u5F37\u9023\u7D50\u6210\u5206\u5206\u89E3"
     - icon: ':warning:'
       path: src/Graph/topological_sort.hpp
       title: src/Graph/topological_sort.hpp
@@ -204,6 +204,9 @@ data:
   - name: test
     pages:
     - icon: ':heavy_check_mark:'
+      path: test/aoj-ALDS1_12_A.test.cpp
+      title: test/aoj-ALDS1_12_A.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/aoj-DSL_1_A.test.cpp
       title: test/aoj-DSL_1_A.test.cpp
     - icon: ':heavy_check_mark:'
@@ -221,6 +224,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj-GRL_1_B.test.cpp
       title: test/aoj-GRL_1_B.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/aoj-GRL_3_C.test.cpp
+      title: test/aoj-GRL_3_C.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/aoj-GRL_5_A.test.cpp
       title: test/aoj-GRL_5_A.test.cpp
