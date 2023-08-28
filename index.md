@@ -38,9 +38,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: src/DataStructure/potentialized_union_find.hpp
       title: "\u91CD\u307F\u4ED8\u304DUnion-Find\u6728"
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: src/DataStructure/segment_tree.hpp
-      title: src/DataStructure/segment_tree.hpp
+      title: Segment Tree
     - icon: ':warning:'
       path: src/DataStructure/serial_set.hpp
       title: src/DataStructure/serial_set.hpp
@@ -210,6 +210,12 @@ data:
       path: test/aoj-DSL_1_B.test.cpp
       title: test/aoj-DSL_1_B.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/aoj-DSL_2_A.test.cpp
+      title: test/aoj-DSL_2_A.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/aoj-DSL_2_B-segment_tree.test.cpp
+      title: test/aoj-DSL_2_B-segment_tree.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/aoj-GRL_1_A.test.cpp
       title: test/aoj-GRL_1_A.test.cpp
     - icon: ':heavy_check_mark:'
@@ -218,6 +224,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo-shortest_path.test.cpp
       title: test/yosupo-shortest_path.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo-staticrmq.test.cpp
+      title: test/yosupo-staticrmq.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo-unionfind.test.cpp
       title: test/yosupo-unionfind.test.cpp
