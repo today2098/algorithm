@@ -2868,7 +2868,7 @@
 			"        std::fill(seen.begin(), seen.end(), false);",
 			"        que.push(s);",
 			"        while(!que.empty()) {",
-			"            int u = que.top();",
+			"            int u = que.front();",
 			"            que.pop();",
 			"            seen[u] = true;",
 			"            if(d[u] > diameter) endpoint = u, diameter = d[u];",

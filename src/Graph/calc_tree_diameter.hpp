@@ -1,6 +1,7 @@
 #ifndef ALGORITHM_CALC_TREE_DIAMETER_HPP
 #define ALGORITHM_CALC_TREE_DIAMETER_HPP 1
 
+#include <algorithm>
 #include <cassert>
 #include <queue>
 #include <tuple>
@@ -52,7 +53,7 @@ std::tuple<Type, int, int> calc_tree_diameter(const std::vector<std::vector<std:
         std::fill(seen.begin(), seen.end(), false);
         que.push(s);
         while(!que.empty()) {
-            int u = que.top();
+            int u = que.front();
             que.pop();
             seen[u] = true;
             if(d[u] > diameter) endpoint = u, diameter = d[u];
