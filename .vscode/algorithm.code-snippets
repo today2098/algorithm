@@ -3220,13 +3220,13 @@
 		],
 		"description": "順列，組合せ"
 	},
-	"prime_factorize": {
+	"prime_factorization": {
 		"scope": "cpp",
-		"prefix": "prime_factorize",
+		"prefix": "prime_factorization",
 		"body": [
 			"// 素因数分解．O(√N).",
 			"template <typename Type>",
-			"std::map<Type, int> prime_factorize(Type n) {",
+			"std::map<Type, int> prime_factorization(Type n) {",
 			"    assert(n >= 2);",
 			"    std::map<Type, int> res;  // res[p]:=(自然数nに含まれる素因数pの個数).",
 			"    for(Type p = 2; p * p <= n; ++p) {",
