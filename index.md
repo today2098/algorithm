@@ -91,7 +91,7 @@ data:
       title: "Lowest Common Ancestor\uFF08\u6700\u8FD1\u5171\u901A\u7956\u5148\uFF09"
     - icon: ':heavy_check_mark:'
       path: src/Graph/prim.hpp
-      title: Prim's Algorithm
+      title: "Prim's Algorithm\uFF08\u6700\u5C0F\u5168\u57DF\u6728\uFF09"
     - icon: ':warning:'
       path: src/Graph/primal_dual.hpp
       title: src/Graph/primal_dual.hpp
@@ -138,6 +138,9 @@ data:
       path: src/MathNumberTheory/floor_sum.hpp
       title: src/MathNumberTheory/floor_sum.hpp
     - icon: ':warning:'
+      path: src/MathNumberTheory/is_prime.hpp
+      title: "\u7D20\u6570\u5224\u5B9A"
+    - icon: ':warning:'
       path: src/MathNumberTheory/liner_sieve.hpp
       title: src/MathNumberTheory/liner_sieve.hpp
     - icon: ':warning:'
@@ -146,9 +149,9 @@ data:
     - icon: ':warning:'
       path: src/MathNumberTheory/modint.hpp
       title: src/MathNumberTheory/modint.hpp
-    - icon: ':warning:'
-      path: src/MathNumberTheory/prime.hpp
-      title: src/MathNumberTheory/prime.hpp
+    - icon: ':heavy_check_mark:'
+      path: src/MathNumberTheory/prime_factorization.hpp
+      title: "\u7D20\u56E0\u6570\u5206\u89E3"
     - icon: ':warning:'
       path: src/MathNumberTheory/segment_sieve.hpp
       title: src/MathNumberTheory/segment_sieve.hpp
@@ -233,6 +236,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj-GRL_5_C.test.cpp
       title: test/aoj-GRL_5_C.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/aoj-NTL_1_A.test.cpp
+      title: test/aoj-NTL_1_A.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo-shortest_path.test.cpp
       title: test/yosupo-shortest_path.test.cpp

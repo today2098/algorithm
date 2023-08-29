@@ -3,7 +3,7 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: src/Graph/prim.hpp
-    title: Prim's Algorithm
+    title: "Prim's Algorithm\uFF08\u6700\u5C0F\u5168\u57DF\u6728\uFF09"
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
