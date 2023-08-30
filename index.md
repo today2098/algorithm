@@ -101,63 +101,68 @@ data:
     - icon: ':warning:'
       path: src/Graph/topological_sort.hpp
       title: src/Graph/topological_sort.hpp
-  - name: src/MathAlgebra
+  - name: src/Math/Algebra
     pages:
     - icon: ':warning:'
-      path: src/MathAlgebra/ipow_isqrt.hpp
-      title: src/MathAlgebra/ipow_isqrt.hpp
+      path: src/Math/Algebra/ipow_isqrt.hpp
+      title: src/Math/Algebra/ipow_isqrt.hpp
     - icon: ':warning:'
-      path: src/MathAlgebra/kitamasa.hpp
-      title: src/MathAlgebra/kitamasa.hpp
+      path: src/Math/Algebra/kitamasa.hpp
+      title: src/Math/Algebra/kitamasa.hpp
     - icon: ':warning:'
-      path: src/MathAlgebra/matrix.hpp
-      title: src/MathAlgebra/matrix.hpp
+      path: src/Math/Algebra/matrix.hpp
+      title: src/Math/Algebra/matrix.hpp
     - icon: ':warning:'
-      path: src/MathAlgebra/matrix_for_modint.hpp
-      title: src/MathAlgebra/matrix_for_modint.hpp
-  - name: src/MathCombinatorics
+      path: src/Math/Algebra/matrix_for_modint.hpp
+      title: src/Math/Algebra/matrix_for_modint.hpp
+  - name: src/Math/Combinatorics
     pages:
     - icon: ':warning:'
-      path: src/MathCombinatorics/combination.hpp
-      title: src/MathCombinatorics/combination.hpp
+      path: src/Math/Combinatorics/combination.hpp
+      title: src/Math/Combinatorics/combination.hpp
     - icon: ':warning:'
-      path: src/MathCombinatorics/montmort.hpp
-      title: src/MathCombinatorics/montmort.hpp
-  - name: src/MathNumberTheory
+      path: src/Math/Combinatorics/montmort.hpp
+      title: src/Math/Combinatorics/montmort.hpp
+  - name: src/Math/ModularArithmetic
     pages:
     - icon: ':warning:'
-      path: src/MathNumberTheory/divisor.hpp
-      title: src/MathNumberTheory/divisor.hpp
+      path: src/Math/ModularArithmetic/dynamic_modint.hpp
+      title: src/Math/ModularArithmetic/dynamic_modint.hpp
     - icon: ':warning:'
-      path: src/MathNumberTheory/dynamic_modint.hpp
-      title: src/MathNumberTheory/dynamic_modint.hpp
+      path: src/Math/ModularArithmetic/mod_inv.hpp
+      title: "\u30E2\u30B8\u30E5\u30E9\u9006\u6570\uFF08\u4E57\u6CD5\u9006\u5143\uFF09"
+    - icon: ':heavy_check_mark:'
+      path: src/Math/ModularArithmetic/mod_pow.hpp
+      title: "\u7E70\u308A\u8FD4\u3057\u4E8C\u4E57\u6CD5\uFF08mod\u4ED8\u304D\uFF09"
     - icon: ':warning:'
-      path: src/MathNumberTheory/extgcd.hpp
-      title: src/MathNumberTheory/extgcd.hpp
+      path: src/Math/ModularArithmetic/modint.hpp
+      title: src/Math/ModularArithmetic/modint.hpp
+  - name: src/Math/NumberTheory
+    pages:
     - icon: ':warning:'
-      path: src/MathNumberTheory/floor_sum.hpp
-      title: src/MathNumberTheory/floor_sum.hpp
+      path: src/Math/NumberTheory/divisor.hpp
+      title: src/Math/NumberTheory/divisor.hpp
     - icon: ':warning:'
-      path: src/MathNumberTheory/is_prime.hpp
+      path: src/Math/NumberTheory/extgcd.hpp
+      title: src/Math/NumberTheory/extgcd.hpp
+    - icon: ':warning:'
+      path: src/Math/NumberTheory/floor_sum.hpp
+      title: src/Math/NumberTheory/floor_sum.hpp
+    - icon: ':warning:'
+      path: src/Math/NumberTheory/is_prime.hpp
       title: "\u7D20\u6570\u5224\u5B9A"
     - icon: ':warning:'
-      path: src/MathNumberTheory/liner_sieve.hpp
-      title: src/MathNumberTheory/liner_sieve.hpp
+      path: src/Math/NumberTheory/liner_sieve.hpp
+      title: src/Math/NumberTheory/liner_sieve.hpp
     - icon: ':warning:'
-      path: src/MathNumberTheory/mod_pow.hpp
-      title: src/MathNumberTheory/mod_pow.hpp
-    - icon: ':warning:'
-      path: src/MathNumberTheory/modint.hpp
-      title: src/MathNumberTheory/modint.hpp
-    - icon: ':heavy_check_mark:'
-      path: src/MathNumberTheory/prime_factorization.hpp
+      path: src/Math/NumberTheory/prime_factorization.hpp
       title: "\u7D20\u56E0\u6570\u5206\u89E3"
     - icon: ':warning:'
-      path: src/MathNumberTheory/segment_sieve.hpp
-      title: src/MathNumberTheory/segment_sieve.hpp
+      path: src/Math/NumberTheory/segment_sieve.hpp
+      title: src/Math/NumberTheory/segment_sieve.hpp
     - icon: ':warning:'
-      path: src/MathNumberTheory/sieve.hpp
-      title: src/MathNumberTheory/sieve.hpp
+      path: src/Math/NumberTheory/sieve.hpp
+      title: src/Math/NumberTheory/sieve.hpp
   - name: src/Others
     pages:
     - icon: ':warning:'
@@ -236,9 +241,12 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj-GRL_5_C.test.cpp
       title: test/aoj-GRL_5_C.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/aoj-NTL_1_A.test.cpp
       title: test/aoj-NTL_1_A.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/aoj-NTL_1_B.test.cpp
+      title: test/aoj-NTL_1_B.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo-shortest_path.test.cpp
       title: test/yosupo-shortest_path.test.cpp

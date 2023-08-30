@@ -8,7 +8,7 @@ data:
   _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"src/MathCombinatorics/montmort.hpp\"\n\n#define ALGORTIHM_MONTMORT_HPP\
+  bundledCode: "#line 1 \"src/Math/Combinatorics/montmort.hpp\"\n\n#define ALGORTIHM_MONTMORT_HPP\
     \ 1\n\n#include <cassert>\n#include <cmath>\n#include <vector>\n\nnamespace algorithm\
     \ {\n\n// \u5B8C\u5168\u9806\u5217\uFF08mod\u4ED8\u304D\uFF09\uFF0E\ntemplate\
     \ <int mod>\nclass Montmort {\n    int m_sz;\n    std::vector<long long> m_montmort;\
@@ -51,15 +51,15 @@ data:
     \ }\n};\n\n}  // namespace algorithm\n\n#endif\n"
   dependsOn: []
   isVerificationFile: false
-  path: src/MathCombinatorics/montmort.hpp
+  path: src/Math/Combinatorics/montmort.hpp
   requiredBy: []
-  timestamp: '2023-04-06 05:32:10+09:00'
+  timestamp: '2023-08-30 11:28:55+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: src/MathCombinatorics/montmort.hpp
+documentation_of: src/Math/Combinatorics/montmort.hpp
 layout: document
 redirect_from:
-- /library/src/MathCombinatorics/montmort.hpp
-- /library/src/MathCombinatorics/montmort.hpp.html
-title: src/MathCombinatorics/montmort.hpp
+- /library/src/Math/Combinatorics/montmort.hpp
+- /library/src/Math/Combinatorics/montmort.hpp.html
+title: src/Math/Combinatorics/montmort.hpp
 ---

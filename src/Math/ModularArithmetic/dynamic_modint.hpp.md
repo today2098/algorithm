@@ -8,11 +8,11 @@ data:
   _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"src/MathNumberTheory/dynamic_modint.hpp\"\n\n\n\n#include\
-    \ <cassert>\n#include <iostream>\n\nnamespace algorithm {\n\ntemplate <int id>\n\
-    class DynamicModint {\n    static int mod;\n    long long val;\n\npublic:\n  \
-    \  DynamicModint() : DynamicModint(0) {}\n    DynamicModint(long long val_) :\
-    \ val(val_) {\n        assert(mod >= 1);\n        val %= mod;\n        if(val\
+  bundledCode: "#line 1 \"src/Math/ModularArithmetic/dynamic_modint.hpp\"\n\n\n\n\
+    #include <cassert>\n#include <iostream>\n\nnamespace algorithm {\n\ntemplate <int\
+    \ id>\nclass DynamicModint {\n    static int mod;\n    long long val;\n\npublic:\n\
+    \    DynamicModint() : DynamicModint(0) {}\n    DynamicModint(long long val_)\
+    \ : val(val_) {\n        assert(mod >= 1);\n        val %= mod;\n        if(val\
     \ < 0) val += mod;\n    }\n\n    DynamicModint operator+() const { return DynamicModint(*this);\
     \ }\n    DynamicModint operator-() const { return DynamicModint(0) - (*this);\
     \ }\n    DynamicModint &operator++() {\n        val++;\n        if(val == mod)\
@@ -98,15 +98,15 @@ data:
     \n}  // namespace algorithm\n\n#endif\n"
   dependsOn: []
   isVerificationFile: false
-  path: src/MathNumberTheory/dynamic_modint.hpp
+  path: src/Math/ModularArithmetic/dynamic_modint.hpp
   requiredBy: []
-  timestamp: '2022-11-27 15:49:48+09:00'
+  timestamp: '2023-08-30 11:28:55+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: src/MathNumberTheory/dynamic_modint.hpp
+documentation_of: src/Math/ModularArithmetic/dynamic_modint.hpp
 layout: document
 redirect_from:
-- /library/src/MathNumberTheory/dynamic_modint.hpp
-- /library/src/MathNumberTheory/dynamic_modint.hpp.html
-title: src/MathNumberTheory/dynamic_modint.hpp
+- /library/src/Math/ModularArithmetic/dynamic_modint.hpp
+- /library/src/Math/ModularArithmetic/dynamic_modint.hpp.html
+title: src/Math/ModularArithmetic/dynamic_modint.hpp
 ---

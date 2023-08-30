@@ -12,7 +12,7 @@ data:
       \uFF0E"
     - "https://qiita.com/drken/items/b97ff231e43bce50199a\uFF08\u53C2\u71672023.2.2\uFF09\
       \uFF0E"
-  bundledCode: "#line 1 \"src/MathNumberTheory/extgcd.hpp\"\n\n\n\n#include <cassert>\n\
+  bundledCode: "#line 1 \"src/Math/NumberTheory/extgcd.hpp\"\n\n\n\n#include <cassert>\n\
     #include <vector>\n\nnamespace algorithm {\n\n// \u62E1\u5F35\u30E6\u30FC\u30AF\
     \u30EA\u30C3\u30C9\u306E\u4E92\u9664\u6CD5\uFF0E\n// ax+by=GCD(a,b) \u3092\u6E80\
     \u305F\u3059\u6574\u6570\u306E\u7D44(x,y)\u3092\u6C42\u3081\uFF0CGCD(a,b)\u3092\
@@ -83,15 +83,15 @@ data:
     \u53C2\u71672022.9.16\uFF09\uFF0E\n*/\n"
   dependsOn: []
   isVerificationFile: false
-  path: src/MathNumberTheory/extgcd.hpp
+  path: src/Math/NumberTheory/extgcd.hpp
   requiredBy: []
-  timestamp: '2023-02-02 14:01:06+09:00'
+  timestamp: '2023-08-30 11:28:55+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: src/MathNumberTheory/extgcd.hpp
+documentation_of: src/Math/NumberTheory/extgcd.hpp
 layout: document
 redirect_from:
-- /library/src/MathNumberTheory/extgcd.hpp
-- /library/src/MathNumberTheory/extgcd.hpp.html
-title: src/MathNumberTheory/extgcd.hpp
+- /library/src/Math/NumberTheory/extgcd.hpp
+- /library/src/Math/NumberTheory/extgcd.hpp.html
+title: src/Math/NumberTheory/extgcd.hpp
 ---

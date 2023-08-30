@@ -9,7 +9,7 @@ data:
   attributes:
     links:
     - "https://qiita.com/rsk0315_h4x/items/ff3b542a4468679fb409\uFF08\u53C2\u7167"
-  bundledCode: "#line 1 \"src/MathNumberTheory/segment_sieve.hpp\"\n\n\n\n#include\
+  bundledCode: "#line 1 \"src/Math/NumberTheory/segment_sieve.hpp\"\n\n\n\n#include\
     \ <algorithm>\n#include <cassert>\n#include <cmath>\n#include <map>\n#include\
     \ <numeric>\n#include <vector>\n\nnamespace algorithm {\n\n// \u533A\u9593\u7BE9\
     \uFF0E\nclass SegmentSieve {\n    long long l, r;\n    long long sr;         \
@@ -101,15 +101,15 @@ data:
     \u53C2\u7167 2022.9.10\uFF09\uFF0E\n*/\n"
   dependsOn: []
   isVerificationFile: false
-  path: src/MathNumberTheory/segment_sieve.hpp
+  path: src/Math/NumberTheory/segment_sieve.hpp
   requiredBy: []
-  timestamp: '2023-04-05 18:41:51+09:00'
+  timestamp: '2023-08-30 11:28:55+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: src/MathNumberTheory/segment_sieve.hpp
+documentation_of: src/Math/NumberTheory/segment_sieve.hpp
 layout: document
 redirect_from:
-- /library/src/MathNumberTheory/segment_sieve.hpp
-- /library/src/MathNumberTheory/segment_sieve.hpp.html
-title: src/MathNumberTheory/segment_sieve.hpp
+- /library/src/Math/NumberTheory/segment_sieve.hpp
+- /library/src/Math/NumberTheory/segment_sieve.hpp.html
+title: src/Math/NumberTheory/segment_sieve.hpp
 ---

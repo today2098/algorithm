@@ -10,7 +10,7 @@ data:
     links:
     - "https://qiita.com/drken/items/3beb679e54266f20ab63\uFF08\u53C2\u71672023.6.8\uFF09\
       ."
-  bundledCode: "#line 1 \"src/MathNumberTheory/sieve.hpp\"\n\n\n\n#include <algorithm>\n\
+  bundledCode: "#line 1 \"src/Math/NumberTheory/sieve.hpp\"\n\n\n\n#include <algorithm>\n\
     #include <cassert>\n#include <cmath>\n#include <map>\n#include <numeric>\n#include\
     \ <vector>\n\nnamespace algorithm {\n\n// \u30A8\u30E9\u30C8\u30B9\u30C6\u30CD\
     \u30B9\u306E\u7BE9\uFF0E\nclass Sieve {\n    int m_mx;                // m_mx:=(\u7BE9\
@@ -105,15 +105,15 @@ data:
     .\n*/\n"
   dependsOn: []
   isVerificationFile: false
-  path: src/MathNumberTheory/sieve.hpp
+  path: src/Math/NumberTheory/sieve.hpp
   requiredBy: []
-  timestamp: '2023-06-08 14:17:46+09:00'
+  timestamp: '2023-08-30 11:28:55+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: src/MathNumberTheory/sieve.hpp
+documentation_of: src/Math/NumberTheory/sieve.hpp
 layout: document
 redirect_from:
-- /library/src/MathNumberTheory/sieve.hpp
-- /library/src/MathNumberTheory/sieve.hpp.html
-title: src/MathNumberTheory/sieve.hpp
+- /library/src/Math/NumberTheory/sieve.hpp
+- /library/src/Math/NumberTheory/sieve.hpp.html
+title: src/Math/NumberTheory/sieve.hpp
 ---

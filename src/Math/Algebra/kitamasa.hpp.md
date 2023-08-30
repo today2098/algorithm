@@ -8,7 +8,7 @@ data:
   _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"src/MathAlgebra/kitamasa.hpp\"\n\n\n\n#include <cassert>\n\
+  bundledCode: "#line 1 \"src/Math/Algebra/kitamasa.hpp\"\n\n\n\n#include <cassert>\n\
     #include <vector>\n\nnamespace algorithm {\n\n// \u304D\u305F\u307E\u3055\u6CD5\
     \uFF0E\u7DDA\u5F62\u6F38\u5316\u5F0F a[n]=d[0]*a[n-k]+d[1]*a[n-k+1]+....+d[k-1]*a[n-1]\
     \ \u3092\u6C42\u3081\u308B\uFF0EO((K^2)*logN).\ntemplate <typename T = long long>\n\
@@ -62,15 +62,15 @@ data:
     \  // namespace algorithm\n\n#endif\n"
   dependsOn: []
   isVerificationFile: false
-  path: src/MathAlgebra/kitamasa.hpp
+  path: src/Math/Algebra/kitamasa.hpp
   requiredBy: []
-  timestamp: '2023-04-06 08:46:20+09:00'
+  timestamp: '2023-08-30 11:28:55+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: src/MathAlgebra/kitamasa.hpp
+documentation_of: src/Math/Algebra/kitamasa.hpp
 layout: document
 redirect_from:
-- /library/src/MathAlgebra/kitamasa.hpp
-- /library/src/MathAlgebra/kitamasa.hpp.html
-title: src/MathAlgebra/kitamasa.hpp
+- /library/src/Math/Algebra/kitamasa.hpp
+- /library/src/Math/Algebra/kitamasa.hpp.html
+title: src/Math/Algebra/kitamasa.hpp
 ---

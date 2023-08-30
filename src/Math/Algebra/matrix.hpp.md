@@ -1,10 +1,7 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy:
-  - icon: ':warning:'
-    path: src/MathAlgebra/matrix_for_modint.hpp
-    title: src/MathAlgebra/matrix_for_modint.hpp
+  _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
@@ -12,7 +9,7 @@ data:
   attributes:
     links:
     - "https://daeudaeu.com/c-mat-inverse/\uFF08\u53C2\u71672023.2.20\uFF09\uFF0E"
-  bundledCode: "#line 1 \"src/MathAlgebra/matrix.hpp\"\n\n\n\n#include <algorithm>\n\
+  bundledCode: "#line 1 \"src/Math/Algebra/matrix.hpp\"\n\n\n\n#include <algorithm>\n\
     #include <cassert>\n#include <cmath>\n#include <numeric>\n#include <ostream>\n\
     #include <tuple>\n#include <vector>\n\nnamespace algorithm {\n\nnamespace matrix\
     \ {\n\nusing Type = double;\n\nconstexpr Type EPS = 1e-10;\n\ntemplate <typename\
@@ -516,16 +513,15 @@ data:
     2023.2.20\uFF09\uFF0E\n*/\n"
   dependsOn: []
   isVerificationFile: false
-  path: src/MathAlgebra/matrix.hpp
-  requiredBy:
-  - src/MathAlgebra/matrix_for_modint.hpp
-  timestamp: '2023-04-12 19:02:46+09:00'
+  path: src/Math/Algebra/matrix.hpp
+  requiredBy: []
+  timestamp: '2023-08-30 11:28:55+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: src/MathAlgebra/matrix.hpp
+documentation_of: src/Math/Algebra/matrix.hpp
 layout: document
 redirect_from:
-- /library/src/MathAlgebra/matrix.hpp
-- /library/src/MathAlgebra/matrix.hpp.html
-title: src/MathAlgebra/matrix.hpp
+- /library/src/Math/Algebra/matrix.hpp
+- /library/src/Math/Algebra/matrix.hpp.html
+title: src/Math/Algebra/matrix.hpp
 ---

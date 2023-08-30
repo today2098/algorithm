@@ -2,17 +2,14 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/aoj-NTL_1_A.test.cpp
-    title: test/aoj-NTL_1_A.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     document_title: "\u7D20\u56E0\u6570\u5206\u89E3"
     links: []
-  bundledCode: "#line 1 \"src/MathNumberTheory/prime_factorization.hpp\"\n/**\n *\
+  bundledCode: "#line 1 \"src/Math/NumberTheory/prime_factorization.hpp\"\n/**\n *\
     \ @brief \u7D20\u56E0\u6570\u5206\u89E3\n */\n\n#ifndef ALGORITHM_PRIME_FACTORIZATION_HPP\n\
     #define ALGORITHM_PRIME_FACTORIZATION_HPP 1\n\n#include <cassert>\n#include <map>\n\
     \nnamespace algorithm {\n\n// \u7D20\u56E0\u6570\u5206\u89E3\uFF0EO(\u221AN).\n\
@@ -33,16 +30,15 @@ data:
     }\n\n}  // namespace algorithm\n\n#endif\n"
   dependsOn: []
   isVerificationFile: false
-  path: src/MathNumberTheory/prime_factorization.hpp
+  path: src/Math/NumberTheory/prime_factorization.hpp
   requiredBy: []
-  timestamp: '2023-08-29 12:58:54+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/aoj-NTL_1_A.test.cpp
-documentation_of: src/MathNumberTheory/prime_factorization.hpp
+  timestamp: '2023-08-30 11:28:55+09:00'
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
+documentation_of: src/Math/NumberTheory/prime_factorization.hpp
 layout: document
 redirect_from:
-- /library/src/MathNumberTheory/prime_factorization.hpp
-- /library/src/MathNumberTheory/prime_factorization.hpp.html
+- /library/src/Math/NumberTheory/prime_factorization.hpp
+- /library/src/Math/NumberTheory/prime_factorization.hpp.html
 title: "\u7D20\u56E0\u6570\u5206\u89E3"
 ---

@@ -16,7 +16,7 @@ data:
       \uFF0E"
     - "https://twitter.com/kyopro_friends/status/1304063876019793921\uFF08\u53C2\u7167\
       2023.2.15\uFF09\uFF0E"
-  bundledCode: "#line 1 \"src/MathNumberTheory/floor_sum.hpp\"\n\n\n\n#include <cassert>\n\
+  bundledCode: "#line 1 \"src/Math/NumberTheory/floor_sum.hpp\"\n\n\n\n#include <cassert>\n\
     \nnamespace algorithm {\n\n// sum_{x=0}^{n-1} floor((a*x+b)/m)\u3092\u6C42\u3081\
     \u308B\uFF0EO(logA+logM).\nlong long floor_sum(long long n, long long m, long\
     \ long a, long long b) {\n    assert(0 <= n and n < (1LL << 32));\n    assert(1\
@@ -58,15 +58,15 @@ data:
     \u53C2\u71672023.2.15\uFF09\uFF0E\n*/\n"
   dependsOn: []
   isVerificationFile: false
-  path: src/MathNumberTheory/floor_sum.hpp
+  path: src/Math/NumberTheory/floor_sum.hpp
   requiredBy: []
-  timestamp: '2023-02-15 15:50:38+09:00'
+  timestamp: '2023-08-30 11:28:55+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: src/MathNumberTheory/floor_sum.hpp
+documentation_of: src/Math/NumberTheory/floor_sum.hpp
 layout: document
 redirect_from:
-- /library/src/MathNumberTheory/floor_sum.hpp
-- /library/src/MathNumberTheory/floor_sum.hpp.html
-title: src/MathNumberTheory/floor_sum.hpp
+- /library/src/Math/NumberTheory/floor_sum.hpp
+- /library/src/Math/NumberTheory/floor_sum.hpp.html
+title: src/Math/NumberTheory/floor_sum.hpp
 ---

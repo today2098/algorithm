@@ -1,28 +1,25 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy:
-  - icon: ':warning:'
-    path: src/MathAlgebra/matrix_for_modint.hpp
-    title: src/MathAlgebra/matrix_for_modint.hpp
+  _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"src/MathNumberTheory/modint.hpp\"\n\n\n\n#include <cassert>\n\
-    #include <iostream>\n\nnamespace algorithm {\n\ntemplate <int mod>\nclass Modint\
-    \ {\n    long long val;\n\npublic:\n    Modint() : Modint(0) {}\n    Modint(long\
-    \ long val_) : val(val_) {\n        static_assert(mod >= 1);\n        if(!(0 <=\
-    \ val and val < mod)) {\n            val %= mod;\n            if(val < 0) val\
-    \ += mod;\n        }\n    }\n\n    Modint operator+() const { return Modint(*this);\
-    \ }\n    Modint operator-() const { return Modint(0) - (*this); }\n    Modint\
-    \ &operator++() {\n        val++;\n        if(val == mod) val = 0;\n        return\
-    \ *this;\n    }\n    Modint &operator--() {\n        if(val == 0) val = mod;\n\
-    \        val--;\n        return *this;\n    }\n    Modint operator++(int) {\n\
-    \        Modint res = *this;\n        ++(*this);\n        return res;\n    }\n\
-    \    Modint operator--(int) {\n        Modint res = *this;\n        --(*this);\n\
+  bundledCode: "#line 1 \"src/Math/ModularArithmetic/modint.hpp\"\n\n\n\n#include\
+    \ <cassert>\n#include <iostream>\n\nnamespace algorithm {\n\ntemplate <int mod>\n\
+    class Modint {\n    long long val;\n\npublic:\n    Modint() : Modint(0) {}\n \
+    \   Modint(long long val_) : val(val_) {\n        static_assert(mod >= 1);\n \
+    \       if(!(0 <= val and val < mod)) {\n            val %= mod;\n           \
+    \ if(val < 0) val += mod;\n        }\n    }\n\n    Modint operator+() const {\
+    \ return Modint(*this); }\n    Modint operator-() const { return Modint(0) - (*this);\
+    \ }\n    Modint &operator++() {\n        val++;\n        if(val == mod) val =\
+    \ 0;\n        return *this;\n    }\n    Modint &operator--() {\n        if(val\
+    \ == 0) val = mod;\n        val--;\n        return *this;\n    }\n    Modint operator++(int)\
+    \ {\n        Modint res = *this;\n        ++(*this);\n        return res;\n  \
+    \  }\n    Modint operator--(int) {\n        Modint res = *this;\n        --(*this);\n\
     \        return res;\n    }\n    Modint &operator+=(const Modint &a) {\n     \
     \   val += a.val;\n        if(val >= mod) val -= mod;\n        return *this;\n\
     \    }\n    Modint &operator-=(const Modint &a) {\n        val -= a.val;\n   \
@@ -93,16 +90,15 @@ data:
     #endif\n"
   dependsOn: []
   isVerificationFile: false
-  path: src/MathNumberTheory/modint.hpp
-  requiredBy:
-  - src/MathAlgebra/matrix_for_modint.hpp
-  timestamp: '2022-11-27 13:52:26+09:00'
+  path: src/Math/ModularArithmetic/modint.hpp
+  requiredBy: []
+  timestamp: '2023-08-30 11:28:55+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: src/MathNumberTheory/modint.hpp
+documentation_of: src/Math/ModularArithmetic/modint.hpp
 layout: document
 redirect_from:
-- /library/src/MathNumberTheory/modint.hpp
-- /library/src/MathNumberTheory/modint.hpp.html
-title: src/MathNumberTheory/modint.hpp
+- /library/src/Math/ModularArithmetic/modint.hpp
+- /library/src/Math/ModularArithmetic/modint.hpp.html
+title: src/Math/ModularArithmetic/modint.hpp
 ---

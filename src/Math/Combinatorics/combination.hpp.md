@@ -8,7 +8,7 @@ data:
   _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"src/MathCombinatorics/combination.hpp\"\n\n\n\n#include\
+  bundledCode: "#line 1 \"src/Math/Combinatorics/combination.hpp\"\n\n\n\n#include\
     \ <cassert>\n#include <vector>\n\nnamespace algorithm {\n\n// \u4E8C\u9805\u4FC2\
     \u6570\uFF08mod\u4ED8\u304D\uFF09\uFF0E\ntemplate <int mod>\nclass Combination\
     \ {\n    int m_sz;                       // m_sz:=(\u8981\u7D20\u6570). \u5236\
@@ -82,15 +82,15 @@ data:
     \ n - 1); }\n\n}  // namespace algorithm\n\n#endif\n"
   dependsOn: []
   isVerificationFile: false
-  path: src/MathCombinatorics/combination.hpp
+  path: src/Math/Combinatorics/combination.hpp
   requiredBy: []
-  timestamp: '2023-04-06 05:12:48+09:00'
+  timestamp: '2023-08-30 11:28:55+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: src/MathCombinatorics/combination.hpp
+documentation_of: src/Math/Combinatorics/combination.hpp
 layout: document
 redirect_from:
-- /library/src/MathCombinatorics/combination.hpp
-- /library/src/MathCombinatorics/combination.hpp.html
-title: src/MathCombinatorics/combination.hpp
+- /library/src/Math/Combinatorics/combination.hpp
+- /library/src/Math/Combinatorics/combination.hpp.html
+title: src/Math/Combinatorics/combination.hpp
 ---

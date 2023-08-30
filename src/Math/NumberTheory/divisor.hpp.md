@@ -8,7 +8,7 @@ data:
   _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"src/MathNumberTheory/divisor.hpp\"\n\n\n\n#include <algorithm>\n\
+  bundledCode: "#line 1 \"src/Math/NumberTheory/divisor.hpp\"\n\n\n\n#include <algorithm>\n\
     #include <cassert>\n#include <vector>\n\nnamespace algorithm {\n\n// \u6700\u5927\
     \u516C\u7D04\u6570 (GCD: Greatest Common Divisor)\uFF0EO(logN).\ntemplate <typename\
     \ Type>\nType igcd(Type a, Type b) { return (b == 0) ? a : igcd(b, a % b); }\n\
@@ -36,15 +36,15 @@ data:
     \n}  // namespace algorithm\n\n#endif\n"
   dependsOn: []
   isVerificationFile: false
-  path: src/MathNumberTheory/divisor.hpp
+  path: src/Math/NumberTheory/divisor.hpp
   requiredBy: []
-  timestamp: '2023-04-05 20:00:47+09:00'
+  timestamp: '2023-08-30 11:28:55+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: src/MathNumberTheory/divisor.hpp
+documentation_of: src/Math/NumberTheory/divisor.hpp
 layout: document
 redirect_from:
-- /library/src/MathNumberTheory/divisor.hpp
-- /library/src/MathNumberTheory/divisor.hpp.html
-title: src/MathNumberTheory/divisor.hpp
+- /library/src/Math/NumberTheory/divisor.hpp
+- /library/src/Math/NumberTheory/divisor.hpp.html
+title: src/Math/NumberTheory/divisor.hpp
 ---
