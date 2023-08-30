@@ -3159,41 +3159,46 @@
 		"description": "最長増加部分列 (LIS: Longest Increasing Subsequence)"
 	},
 	"mod_inv": {
-		"scope": "cpp",
 		"prefix": "mod_inv",
 		"body": [
-			"// 逆元．a^-1 (mod m)を求める．ただし，aとmは互いに素であること．",
+			"// モジュラ逆数（乗法逆元）．",
+			"// a^-1 (mod m) を求める．ただし，aとmは互いに素であること．",
 			"long long mod_inv(long long a, int m) {",
-			"    assert(m >= 1 and std::gcd(a, m) == 1);",
+			"    assert(m >= 2);",
 			"    long long b = m, u = 1, v = 0;",
-			"    while(b) {",
+			"    while(b != 0) {",
 			"        long long t = a / b;",
-			"        a -= t * b, u -= t * v;",
+			"        a -= b * t, u -= v * t;",
 			"        std::swap(a, b), std::swap(u, v);",
 			"    }",
-			"    return (u % m + m) % m;",
+			"    // assert((\"a and m need to be coprime.\", a == 1));",
+			"    u %= m;",
+			"    if(u < 0) u += m;",
+			"    return u;",
 			"}"
 		],
-		"description": "逆元"
+		"description": "モジュラ逆数（乗法逆元）"
 	},
 	"mod_pow": {
 		"scope": "cpp",
 		"prefix": "mod_pow",
 		"body": [
-			"// 繰返し二乗法（mod付き）．n^k (mod m)を求める．O(logK).",
-			"long long mod_pow(long long n, long long k, int m) {",
-			"    assert(k >= 0 and m >= 1);",
-			"    n %= m;",
+			"// 繰り返し二乗法（mod付き）．",
+			"// a^k (mod m) を求める．O(logK).",
+			"long long mod_pow(long long a, long long k, int m) {",
+			"    assert(k >= 0);",
+			"    assert(m >= 1);",
 			"    long long res = 1;",
+			"    a %= m;",
 			"    while(k > 0) {",
-			"        if(k & 1LL) res = res * n % m;",
-			"        n = n * n % m;",
+			"        if(k & 1LL) res = res * a % m;",
+			"        a = a * a % m;",
 			"        k >>= 1;",
 			"    }",
 			"    return res;",
 			"}"
 		],
-		"description": "繰返し二乗法（mod付き）"
+		"description": "繰り返し二乗法（mod付き）"
 	},
 	"nPk, nCk, nHk": {
 		"scope": "cpp",
