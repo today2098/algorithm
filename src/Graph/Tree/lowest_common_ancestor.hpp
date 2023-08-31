@@ -1,6 +1,6 @@
 /**
  * @brief Lowest Common Ancestor（最近共通祖先）
- * @docs docs/Graph/Tree/lowest_common_ancestor.md
+ * @docs //docs/Graph/Tree/lowest_common_ancestor.md
  */
 
 #ifndef ALGORITHM_LOWEST_COMMON_ANCESTOR_HPP
@@ -163,8 +163,3 @@ public:
 }  // namespace algorithm
 
 #endif
-
-/*
-参考文献：
-- yaketake08, LCAをベースに構築するAuxiliary Treeのメモ，HatenaBlog, https://smijake3.hatenablog.com/entry/2019/09/15/200200（参照2023.8.13）．
-*/

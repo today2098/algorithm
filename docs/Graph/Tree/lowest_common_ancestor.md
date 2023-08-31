@@ -1,4 +1,3 @@
-<!-- ---
-title: Lowest Common Ancestor（最近共通祖先）
-documentation_of: //src/Graph/Tree/lowest_common_ancestor.hpp
---- -->
+## 参考文献
+
+- yaketake08. "LCAをベースに構築するAuxiliary Treeのメモ". Hatena Blog. <https://smijake3.hatenablog.com/entry/2019/09/15/200200>.
