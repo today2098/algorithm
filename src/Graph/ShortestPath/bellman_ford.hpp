@@ -44,7 +44,7 @@ public:
     // グラフ全体から負閉路を検出する．O(|V|*|E|).
     bool find_negative_cycle() const {
         std::vector<T> nd(order(), 0);
-        for(int i = 0; i < order(); ++i) {
+        for(int i = 0, n = order(); i < n; ++i) {
             bool update = false;
             for(const auto &[from, to, cost] : m_edges) {
                 if(nd[to] > nd[from] + cost) {
@@ -62,7 +62,7 @@ public:
         std::fill(m_d.begin(), m_d.end(), infinity());
         m_d[s] = 0;
         std::fill(m_pre.begin(), m_pre.end(), -1);
-        for(int i = 0; i < order(); ++i) {
+        for(int i = 0, n = order(); i < n; ++i) {
             bool update = false;
             for(const auto &[from, to, cost] : m_edges) {
                 if(m_d[from] == infinity()) continue;
@@ -74,7 +74,7 @@ public:
             }
             if(!update) return false;  // 負閉路なし．
         }
-        for(int i = 0; i < order(); ++i) {
+        for(int i = 0, n = order(); i < n; ++i) {
             bool update = false;
             for(const auto &[from, to, cost] : m_edges) {
                 if(m_d[from] == infinity() or m_d[to] == -infinity()) continue;
