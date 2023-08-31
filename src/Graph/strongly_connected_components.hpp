@@ -35,7 +35,7 @@ public:
         int num_sccs = 0;               // num_sccs:=(SCCsの数).
         std::vector<int> ids(order());  // ids[v]:=(ノードvが属するSCCのID).
         // ord[v]:=(DFS木におけるノードvの行きがけ順序).
-        // low[v]:=(DFS木において，ノードvから葉方向に0回以上，後退辺を高々1回用いて到達できるノードwのord[w]の最小値).
+        // low[v]:=(DFS木において，ノードvから葉方向に0回以上，後退辺を高々1回用いて到達できるノードwでのord[w]の最小値).
         std::vector<int> ord(order(), -1), low(order());
         int now = 0;
         std::stack<int> visited;
@@ -61,7 +61,7 @@ public:
                 num_sccs++;
             }
         };
-        for(int v = 0; v < order(); ++v) {
+        for(int v = 0, n = order(); v < n; ++v) {
             if(ord[v] == -1) dfs(dfs, v);
         }
         return {num_sccs, ids};
@@ -70,7 +70,7 @@ public:
     std::vector<std::vector<int> > decompose() const {
         const auto &&[num_sccs, ids] = scc();
         std::vector<std::vector<int> > sccs(num_sccs);
-        for(int v = 0; v < order(); ++v) sccs[ids[v]].push_back(v);
+        for(int v = 0, n = order(); v < n; ++v) sccs[ids[v]].push_back(v);
         return sccs;
     }
 };
