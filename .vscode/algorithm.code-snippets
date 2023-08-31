@@ -2468,7 +2468,7 @@
 		"scope": "cpp",
 		"prefix": "Sieve",
 		"body": [
-			"// エラトステネスの篩．",
+			"// Sieve of Eratosthenes（エラトステネスの篩）.",
 			"class Sieve {",
 			"    int m_mx;                // m_mx:=(篩にかける最大の自然数).",
 			"    std::vector<int> m_lpf;  // m_lpf[n]:=(自然数nの最小の素因数). Least prime factor. m_lpf[n]==n のとき，nは素数．",
@@ -2498,7 +2498,7 @@
 			"        return m_lpf[n];",
 			"    }",
 			"    // 高速素因数分解．O(logN).",
-			"    std::map<int, int> prime_factorize(int n) const {",
+			"    std::map<int, int> prime_factorization(int n) const {",
 			"        assert(1 <= n and n <= m_mx);",
 			"        std::map<int, int> res;",
 			"        while(n > 1) {",
@@ -2511,7 +2511,7 @@
 			"    std::vector<int> divisors(int n) const {",
 			"        assert(1 <= n and n <= m_mx);",
 			"        std::vector<int> res({1});",
-			"        const auto &&pf = prime_factorize(n);",
+			"        const auto &&pf = prime_factorization(n);",
 			"        for(const auto &[p, cnt] : pf) {",
 			"            const int sz = res.size();",
 			"            int b = 1;",
@@ -2526,7 +2526,7 @@
 			"    // オイラーのファイ関数．n以下でnと互いに素な自然数の個数を求める．",
 			"    int totient(int n) const {",
 			"        assert(1 <= n and n <= m_mx);",
-			"        const auto &&pf = prime_factorize(n);",
+			"        const auto &&pf = prime_factorization(n);",
 			"        int res = 1;",
 			"        for(const auto &[p, cnt] : pf) res *= std::pow(p, cnt - 1) * (p - 1);",
 			"        return res;",
@@ -2546,7 +2546,7 @@
 			"    }",
 			"};"
 		],
-		"description": "エラトステネスの篩"
+		"description": "Sieve of Eratosthenes（エラトステネスの篩）"
 	},
 	"SparseTable": {
 		"scope": "cpp",

@@ -1,3 +1,8 @@
+/**
+ * @brief Sieve of Eratosthenes（エラトステネスの篩）
+ * @docs docs/Math/NumberTheory/sieve.md
+ */
+
 #ifndef ALGORITHM_SIEVE_HPP
 #define ALGORITHM_SIEVE_HPP 1
 
@@ -10,7 +15,7 @@
 
 namespace algorithm {
 
-// エラトステネスの篩．
+// Sieve of Eratosthenes（エラトステネスの篩）.
 class Sieve {
     int m_mx;                // m_mx:=(篩にかける最大の自然数).
     std::vector<int> m_lpf;  // m_lpf[n]:=(自然数nの最小の素因数). Least prime factor. m_lpf[n]==n のとき，nは素数．
@@ -40,7 +45,7 @@ public:
         return m_lpf[n];
     }
     // 高速素因数分解．O(logN).
-    std::map<int, int> prime_factorize(int n) const {
+    std::map<int, int> prime_factorization(int n) const {
         assert(1 <= n and n <= m_mx);
         std::map<int, int> res;
         while(n > 1) {
@@ -53,7 +58,7 @@ public:
     std::vector<int> divisors(int n) const {
         assert(1 <= n and n <= m_mx);
         std::vector<int> res({1});
-        const auto &&pf = prime_factorize(n);
+        const auto &&pf = prime_factorization(n);
         for(const auto &[p, cnt] : pf) {
             const int sz = res.size();
             int b = 1;
@@ -68,7 +73,7 @@ public:
     // オイラーのファイ関数．n以下でnと互いに素な自然数の個数を求める．
     int totient(int n) const {
         assert(1 <= n and n <= m_mx);
-        const auto &&pf = prime_factorize(n);
+        const auto &&pf = prime_factorization(n);
         int res = 1;
         for(const auto &[p, cnt] : pf) res *= std::pow(p, cnt - 1) * (p - 1);
         return res;
@@ -91,8 +96,3 @@ public:
 }  // namespace algorithm
 
 #endif
-
-/*
-参考文献
-- drken, エラトステネスの篩の活用法を総特集！ 〜 高速素因数分解・メビウスの反転公式 〜, Qiita, https://qiita.com/drken/items/3beb679e54266f20ab63（参照2023.6.8）.
-*/
