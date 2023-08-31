@@ -12,20 +12,42 @@ data:
     - icon: ':warning:'
       path: src/DP/lis.hpp
       title: src/DP/lis.hpp
-  - name: src/DataStructure
+  - name: src/DataStructure/SegmentTree
     pages:
     - icon: ':warning:'
-      path: src/DataStructure/binary_indexed_tree.hpp
-      title: src/DataStructure/binary_indexed_tree.hpp
+      path: src/DataStructure/SegmentTree/binary_indexed_tree.hpp
+      title: src/DataStructure/SegmentTree/binary_indexed_tree.hpp
     - icon: ':warning:'
-      path: src/DataStructure/binary_indexed_tree_2d.hpp
-      title: src/DataStructure/binary_indexed_tree_2d.hpp
+      path: src/DataStructure/SegmentTree/binary_indexed_tree_2d.hpp
+      title: src/DataStructure/SegmentTree/binary_indexed_tree_2d.hpp
     - icon: ':warning:'
-      path: src/DataStructure/binary_indexed_tree_2d_zero.hpp
-      title: src/DataStructure/binary_indexed_tree_2d_zero.hpp
+      path: src/DataStructure/SegmentTree/binary_indexed_tree_2d_zero.hpp
+      title: src/DataStructure/SegmentTree/binary_indexed_tree_2d_zero.hpp
     - icon: ':warning:'
-      path: src/DataStructure/binary_indexed_tree_zero.hpp
-      title: src/DataStructure/binary_indexed_tree_zero.hpp
+      path: src/DataStructure/SegmentTree/binary_indexed_tree_zero.hpp
+      title: src/DataStructure/SegmentTree/binary_indexed_tree_zero.hpp
+    - icon: ':warning:'
+      path: src/DataStructure/SegmentTree/lazy_segment_tree.hpp
+      title: src/DataStructure/SegmentTree/lazy_segment_tree.hpp
+    - icon: ':heavy_check_mark:'
+      path: src/DataStructure/SegmentTree/segment_tree.hpp
+      title: Segment Tree
+    - icon: ':warning:'
+      path: src/DataStructure/SegmentTree/sparse_table.hpp
+      title: src/DataStructure/SegmentTree/sparse_table.hpp
+  - name: src/DataStructure/UnionFind
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: src/DataStructure/UnionFind/potentialized_union_find.hpp
+      title: "\u91CD\u307F\u4ED8\u304DUnion-Find\u6728"
+    - icon: ':warning:'
+      path: src/DataStructure/UnionFind/sub_persistent_union_find.hpp
+      title: src/DataStructure/UnionFind/sub_persistent_union_find.hpp
+    - icon: ':heavy_check_mark:'
+      path: src/DataStructure/UnionFind/union_find.hpp
+      title: "Union-Find\uFF08\u7D20\u96C6\u5408\u30C7\u30FC\u30BF\u69CB\u9020\uFF09"
+  - name: src/DataStructure
+    pages:
     - icon: ':warning:'
       path: src/DataStructure/binary_trie.hpp
       title: src/DataStructure/binary_trie.hpp
@@ -33,26 +55,8 @@ data:
       path: src/DataStructure/heap.hpp
       title: src/DataStructure/heap.hpp
     - icon: ':warning:'
-      path: src/DataStructure/lazy_segment_tree.hpp
-      title: src/DataStructure/lazy_segment_tree.hpp
-    - icon: ':heavy_check_mark:'
-      path: src/DataStructure/potentialized_union_find.hpp
-      title: "\u91CD\u307F\u4ED8\u304DUnion-Find\u6728"
-    - icon: ':heavy_check_mark:'
-      path: src/DataStructure/segment_tree.hpp
-      title: Segment Tree
-    - icon: ':warning:'
       path: src/DataStructure/serial_set.hpp
       title: src/DataStructure/serial_set.hpp
-    - icon: ':warning:'
-      path: src/DataStructure/sparse_table.hpp
-      title: src/DataStructure/sparse_table.hpp
-    - icon: ':warning:'
-      path: src/DataStructure/sub_persistent_union_find.hpp
-      title: src/DataStructure/sub_persistent_union_find.hpp
-    - icon: ':heavy_check_mark:'
-      path: src/DataStructure/union_find.hpp
-      title: "Union-Find\uFF08\u7D20\u96C6\u5408\u30C7\u30FC\u30BF\u69CB\u9020\uFF09"
   - name: src/Geometry
     pages:
     - icon: ':warning:'
@@ -64,37 +68,43 @@ data:
     - icon: ':warning:'
       path: src/Geometry/geometry_vector.hpp
       title: src/Geometry/geometry_vector.hpp
-  - name: src/Graph
+  - name: src/Graph/Flow
+    pages:
+    - icon: ':warning:'
+      path: src/Graph/Flow/dinic.hpp
+      title: src/Graph/Flow/dinic.hpp
+    - icon: ':warning:'
+      path: src/Graph/Flow/ford_fulkerson.hpp
+      title: src/Graph/Flow/ford_fulkerson.hpp
+    - icon: ':warning:'
+      path: src/Graph/Flow/primal_dual.hpp
+      title: src/Graph/Flow/primal_dual.hpp
+  - name: src/Graph/ShortestPath
     pages:
     - icon: ':heavy_check_mark:'
-      path: src/Graph/bellman_ford.hpp
+      path: src/Graph/ShortestPath/bellman_ford.hpp
       title: "Bellman-Ford Algorithm\uFF08\u5358\u4E00\u59CB\u70B9\u6700\u77ED\u7D4C\
         \u8DEF\uFF09"
     - icon: ':heavy_check_mark:'
-      path: src/Graph/calc_tree_diameter.hpp
-      title: "\u6728\u306E\u76F4\u5F84"
-    - icon: ':heavy_check_mark:'
-      path: src/Graph/dijkstra.hpp
+      path: src/Graph/ShortestPath/dijkstra.hpp
       title: "Dijkstra's Algorithm\uFF08\u5358\u4E00\u59CB\u70B9\u6700\u77ED\u7D4C\
         \u8DEF\uFF09"
-    - icon: ':warning:'
-      path: src/Graph/dinic.hpp
-      title: src/Graph/dinic.hpp
-    - icon: ':warning:'
-      path: src/Graph/ford_fulkerson.hpp
-      title: src/Graph/ford_fulkerson.hpp
+  - name: src/Graph/Tree
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: src/Graph/Tree/calc_tree_diameter.hpp
+      title: "\u6728\u306E\u76F4\u5F84"
+    - icon: ':heavy_check_mark:'
+      path: src/Graph/Tree/lowest_common_ancestor.hpp
+      title: "Lowest Common Ancestor\uFF08\u6700\u8FD1\u5171\u901A\u7956\u5148\uFF09"
+  - name: src/Graph
+    pages:
     - icon: ':warning:'
       path: src/Graph/low_link.hpp
       title: src/Graph/low_link.hpp
     - icon: ':heavy_check_mark:'
-      path: src/Graph/lowest_common_ancestor.hpp
-      title: "Lowest Common Ancestor\uFF08\u6700\u8FD1\u5171\u901A\u7956\u5148\uFF09"
-    - icon: ':heavy_check_mark:'
       path: src/Graph/prim.hpp
       title: "Prim's Algorithm\uFF08\u6700\u5C0F\u5168\u57DF\u6728\uFF09"
-    - icon: ':warning:'
-      path: src/Graph/primal_dual.hpp
-      title: src/Graph/primal_dual.hpp
     - icon: ':heavy_check_mark:'
       path: src/Graph/strongly_connected_components.hpp
       title: "\u5F37\u9023\u7D50\u6210\u5206\u5206\u89E3"
@@ -103,9 +113,6 @@ data:
       title: src/Graph/topological_sort.hpp
   - name: src/Math/Algebra
     pages:
-    - icon: ':warning:'
-      path: src/Math/Algebra/ipow_isqrt.hpp
-      title: src/Math/Algebra/ipow_isqrt.hpp
     - icon: ':warning:'
       path: src/Math/Algebra/kitamasa.hpp
       title: src/Math/Algebra/kitamasa.hpp
@@ -154,7 +161,7 @@ data:
     - icon: ':warning:'
       path: src/Math/NumberTheory/liner_sieve.hpp
       title: src/Math/NumberTheory/liner_sieve.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: src/Math/NumberTheory/prime_factorization.hpp
       title: "\u7D20\u56E0\u6570\u5206\u89E3"
     - icon: ':warning:'
@@ -163,6 +170,11 @@ data:
     - icon: ':warning:'
       path: src/Math/NumberTheory/sieve.hpp
       title: src/Math/NumberTheory/sieve.hpp
+  - name: src/Math
+    pages:
+    - icon: ':warning:'
+      path: src/Math/ipow_isqrt.hpp
+      title: src/Math/ipow_isqrt.hpp
   - name: src/Others
     pages:
     - icon: ':warning:'
@@ -241,7 +253,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj-GRL_5_C.test.cpp
       title: test/aoj-GRL_5_C.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj-NTL_1_A.test.cpp
       title: test/aoj-NTL_1_A.test.cpp
     - icon: ':heavy_check_mark:'

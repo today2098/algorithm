@@ -16,7 +16,9 @@ data:
     - https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/3/GRL_3_C
   bundledCode: "#line 1 \"test/aoj-GRL_3_C.test.cpp\"\n#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/3/GRL_3_C\"\
     \n\n#include <iostream>\n\n#line 1 \"src/Graph/strongly_connected_components.hpp\"\
-    \n\n\n\n#include <algorithm>\n#include <cassert>\n#include <stack>\n#include <utility>\n\
+    \n/**\n * @brief \u5F37\u9023\u7D50\u6210\u5206\u5206\u89E3\n * @docs docs/Graph/strongly_connected_components.md\n\
+    \ */\n\n#ifndef ALGORITHM_STRONGLY_CONNECTED_COMPONENTS_HPP\n#define ALGORITHM_STRONGLY_CONNECTED_COMPONENTS_HPP\
+    \ 1\n\n#include <algorithm>\n#include <cassert>\n#include <stack>\n#include <utility>\n\
     #include <vector>\n\nnamespace algorithm {\n\n// \u5F37\u9023\u7D50\u6210\u5206\
     \u5206\u89E3\uFF0E\nclass SCC {\n    std::vector<std::vector<int> > m_g;  // m_g[v][]:=(\u30CE\
     \u30FC\u30C9v\u306E\u96A3\u63A5\u30EA\u30B9\u30C8).\n\npublic:\n    SCC() : SCC(0)\
@@ -51,13 +53,13 @@ data:
     \ > decompose() const {\n        const auto &&[num_sccs, ids] = scc();\n     \
     \   std::vector<std::vector<int> > sccs(num_sccs);\n        for(int v = 0; v <\
     \ order(); ++v) sccs[ids[v]].push_back(v);\n        return sccs;\n    }\n};\n\n\
-    }  // namespace algorithm\n\n\n#line 6 \"test/aoj-GRL_3_C.test.cpp\"\n\nint main()\
-    \ {\n    int n, m;\n    std::cin >> n >> m;\n\n    algorithm::SCC scc(n);\n  \
-    \  for(int i = 0; i < m; ++i) {\n        int s, t;\n        std::cin >> s >> t;\n\
-    \n        scc.add_edge(s, t);\n    }\n    auto &&[_, ids] = scc.scc();\n\n   \
-    \ int q;\n    std::cin >> q;\n\n    while(q--) {\n        int u, v;\n        std::cin\
-    \ >> u >> v;\n\n        std::cout << (ids[u] == ids[v]) << std::endl;\n    }\n\
-    }\n"
+    }  // namespace algorithm\n\n#endif\n#line 6 \"test/aoj-GRL_3_C.test.cpp\"\n\n\
+    int main() {\n    int n, m;\n    std::cin >> n >> m;\n\n    algorithm::SCC scc(n);\n\
+    \    for(int i = 0; i < m; ++i) {\n        int s, t;\n        std::cin >> s >>\
+    \ t;\n\n        scc.add_edge(s, t);\n    }\n    auto &&[_, ids] = scc.scc();\n\
+    \n    int q;\n    std::cin >> q;\n\n    while(q--) {\n        int u, v;\n    \
+    \    std::cin >> u >> v;\n\n        std::cout << (ids[u] == ids[v]) << std::endl;\n\
+    \    }\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/3/GRL_3_C\"\
     \n\n#include <iostream>\n\n#include \"../src/Graph/strongly_connected_components.hpp\"\
     \n\nint main() {\n    int n, m;\n    std::cin >> n >> m;\n\n    algorithm::SCC\
@@ -71,7 +73,7 @@ data:
   isVerificationFile: true
   path: test/aoj-GRL_3_C.test.cpp
   requiredBy: []
-  timestamp: '2023-08-28 20:14:54+09:00'
+  timestamp: '2023-08-31 14:17:44+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj-GRL_3_C.test.cpp

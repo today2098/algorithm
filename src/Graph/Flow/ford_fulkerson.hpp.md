@@ -8,7 +8,7 @@ data:
   _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"src/Graph/ford_fulkerson.hpp\"\n\n\n\n#include <algorithm>\n\
+  bundledCode: "#line 1 \"src/Graph/Flow/ford_fulkerson.hpp\"\n\n\n\n#include <algorithm>\n\
     #include <cassert>\n#include <limits>\n#include <vector>\n\nnamespace algorithm\
     \ {\n\ntemplate <typename T>  // T:\u5BB9\u91CF\u306E\u578B.\nclass FordFulkerson\
     \ {\n    struct Edge {\n        int to;   // to:=(\u884C\u304D\u5148\u30CE\u30FC\
@@ -114,15 +114,15 @@ data:
     \        }\n    }\n};\n\n}  // namespace algorithm\n\n#endif\n"
   dependsOn: []
   isVerificationFile: false
-  path: src/Graph/ford_fulkerson.hpp
+  path: src/Graph/Flow/ford_fulkerson.hpp
   requiredBy: []
-  timestamp: '2023-08-22 14:48:26+09:00'
+  timestamp: '2023-08-31 11:52:00+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: src/Graph/ford_fulkerson.hpp
+documentation_of: src/Graph/Flow/ford_fulkerson.hpp
 layout: document
 redirect_from:
-- /library/src/Graph/ford_fulkerson.hpp
-- /library/src/Graph/ford_fulkerson.hpp.html
-title: src/Graph/ford_fulkerson.hpp
+- /library/src/Graph/Flow/ford_fulkerson.hpp
+- /library/src/Graph/Flow/ford_fulkerson.hpp.html
+title: src/Graph/Flow/ford_fulkerson.hpp
 ---

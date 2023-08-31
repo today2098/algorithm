@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: src/DataStructure/potentialized_union_find.hpp
+    path: src/DataStructure/UnionFind/potentialized_union_find.hpp
     title: "\u91CD\u307F\u4ED8\u304DUnion-Find\u6728"
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
@@ -15,8 +15,10 @@ data:
     links:
     - https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/all/DSL_1_B
   bundledCode: "#line 1 \"test/aoj-DSL_1_B.test.cpp\"\n#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/all/DSL_1_B\"\
-    \n\n#include <iostream>\n\n#line 1 \"src/DataStructure/potentialized_union_find.hpp\"\
-    \n\n\n\n#include <algorithm>\n#include <cassert>\n#include <utility>\n#include\
+    \n\n#include <iostream>\n\n#line 1 \"src/DataStructure/UnionFind/potentialized_union_find.hpp\"\
+    \n/**\n * @brief \u91CD\u307F\u4ED8\u304DUnion-Find\u6728\n * @docs docs/DataStructure/UnionFind/potentialized_union_find.md\n\
+    \ */\n\n#ifndef ALGORITHM_POTENTIALIZED_UNION_FIND_HPP\n#define ALGORITHM_POTENTIALIZED_UNION_FIND_HPP\
+    \ 1\n\n#include <algorithm>\n#include <cassert>\n#include <utility>\n#include\
     \ <vector>\n\nnamespace algorithm {\n\n// \u91CD\u307F\u4ED8\u304DUnion-Find\u6728\
     \uFF0E\ntemplate <typename T>  // T:Type of potential.\nclass PotentializedUnionFind\
     \ {\n    int m_vn;                // m_vn:=(\u8981\u7D20\u6570).\n    int m_gn;\
@@ -59,8 +61,8 @@ data:
     \ m_par[y] = x;\n        m_p[y] = d;\n        m_gn--;\n        return true;\n\
     \    }\n    void reset() {\n        m_gn = vn();\n        std::fill(m_par.begin(),\
     \ m_par.end(), -1);\n        std::fill(m_p.begin(), m_p.end(), 0);\n    }\n};\n\
-    \n}  // namespace algorithm\n\n\n#line 6 \"test/aoj-DSL_1_B.test.cpp\"\n\nint\
-    \ main() {\n    int n;\n    int q;\n    std::cin >> n >> q;\n\n    algorithm::PotentializedUnionFind<int>\
+    \n}  // namespace algorithm\n\n#endif\n#line 6 \"test/aoj-DSL_1_B.test.cpp\"\n\
+    \nint main() {\n    int n;\n    int q;\n    std::cin >> n >> q;\n\n    algorithm::PotentializedUnionFind<int>\
     \ uf(n);\n    while(q--) {\n        int t;\n        std::cin >> t;\n\n       \
     \ if(t == 0) {\n            int x, y;\n            int z;\n            std::cin\
     \ >> x >> y >> z;\n\n            uf.unite(x, y, z);\n        } else {\n      \
@@ -68,7 +70,7 @@ data:
     \ y)) std::cout << uf.difference(x, y) << std::endl;\n            else std::cout\
     \ << '?' << std::endl;\n        }\n    }\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/all/DSL_1_B\"\
-    \n\n#include <iostream>\n\n#include \"../src/DataStructure/potentialized_union_find.hpp\"\
+    \n\n#include <iostream>\n\n#include \"../src/DataStructure/UnionFind/potentialized_union_find.hpp\"\
     \n\nint main() {\n    int n;\n    int q;\n    std::cin >> n >> q;\n\n    algorithm::PotentializedUnionFind<int>\
     \ uf(n);\n    while(q--) {\n        int t;\n        std::cin >> t;\n\n       \
     \ if(t == 0) {\n            int x, y;\n            int z;\n            std::cin\
@@ -77,11 +79,11 @@ data:
     \ y)) std::cout << uf.difference(x, y) << std::endl;\n            else std::cout\
     \ << '?' << std::endl;\n        }\n    }\n}\n"
   dependsOn:
-  - src/DataStructure/potentialized_union_find.hpp
+  - src/DataStructure/UnionFind/potentialized_union_find.hpp
   isVerificationFile: true
   path: test/aoj-DSL_1_B.test.cpp
   requiredBy: []
-  timestamp: '2023-08-28 12:44:48+09:00'
+  timestamp: '2023-08-31 14:17:44+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj-DSL_1_B.test.cpp

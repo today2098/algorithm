@@ -10,13 +10,17 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
+    _deprecated_at_docs: docs/DataStructure/UnionFind/potentialized_union_find.md
+    document_title: "\u91CD\u307F\u4ED8\u304DUnion-Find\u6728"
     links: []
-  bundledCode: "#line 1 \"src/DataStructure/potentialized_union_find.hpp\"\n\n\n\n\
-    #include <algorithm>\n#include <cassert>\n#include <utility>\n#include <vector>\n\
-    \nnamespace algorithm {\n\n// \u91CD\u307F\u4ED8\u304DUnion-Find\u6728\uFF0E\n\
-    template <typename T>  // T:Type of potential.\nclass PotentializedUnionFind {\n\
-    \    int m_vn;                // m_vn:=(\u8981\u7D20\u6570).\n    int m_gn;  \
-    \              // m_gn:=(\u30B0\u30EB\u30FC\u30D7\u6570).\n    std::vector<int>\
+  bundledCode: "#line 1 \"src/DataStructure/UnionFind/potentialized_union_find.hpp\"\
+    \n/**\n * @brief \u91CD\u307F\u4ED8\u304DUnion-Find\u6728\n * @docs docs/DataStructure/UnionFind/potentialized_union_find.md\n\
+    \ */\n\n#ifndef ALGORITHM_POTENTIALIZED_UNION_FIND_HPP\n#define ALGORITHM_POTENTIALIZED_UNION_FIND_HPP\
+    \ 1\n\n#include <algorithm>\n#include <cassert>\n#include <utility>\n#include\
+    \ <vector>\n\nnamespace algorithm {\n\n// \u91CD\u307F\u4ED8\u304DUnion-Find\u6728\
+    \uFF0E\ntemplate <typename T>  // T:Type of potential.\nclass PotentializedUnionFind\
+    \ {\n    int m_vn;                // m_vn:=(\u8981\u7D20\u6570).\n    int m_gn;\
+    \                // m_gn:=(\u30B0\u30EB\u30FC\u30D7\u6570).\n    std::vector<int>\
     \ m_par;  // m_par[x]:=(\u30CE\u30FC\u30C9x\u306E\u89AA\u756A\u53F7). 0\u672A\u6E80\
     \u306E\u5834\u5408\uFF0Cx\u306F\u6839\u3067\u3042\u308A\uFF0C\u5024\u306E\u7D76\
     \u5BFE\u5024\u306F\u5C5E\u3059\u308B\u30B0\u30EB\u30FC\u30D7\u306E\u30B5\u30A4\
@@ -55,8 +59,9 @@ data:
     \ m_par[y] = x;\n        m_p[y] = d;\n        m_gn--;\n        return true;\n\
     \    }\n    void reset() {\n        m_gn = vn();\n        std::fill(m_par.begin(),\
     \ m_par.end(), -1);\n        std::fill(m_p.begin(), m_p.end(), 0);\n    }\n};\n\
-    \n}  // namespace algorithm\n\n\n"
-  code: "#ifndef ALGORITHM_POTENTIALIZED_UNION_FIND_HPP\n#define ALGORITHM_POTENTIALIZED_UNION_FIND_HPP\
+    \n}  // namespace algorithm\n\n#endif\n"
+  code: "/**\n * @brief \u91CD\u307F\u4ED8\u304DUnion-Find\u6728\n * @docs docs/DataStructure/UnionFind/potentialized_union_find.md\n\
+    \ */\n\n#ifndef ALGORITHM_POTENTIALIZED_UNION_FIND_HPP\n#define ALGORITHM_POTENTIALIZED_UNION_FIND_HPP\
     \ 1\n\n#include <algorithm>\n#include <cassert>\n#include <utility>\n#include\
     \ <vector>\n\nnamespace algorithm {\n\n// \u91CD\u307F\u4ED8\u304DUnion-Find\u6728\
     \uFF0E\ntemplate <typename T>  // T:Type of potential.\nclass PotentializedUnionFind\
@@ -103,13 +108,20 @@ data:
     \n}  // namespace algorithm\n\n#endif\n"
   dependsOn: []
   isVerificationFile: false
-  path: src/DataStructure/potentialized_union_find.hpp
+  path: src/DataStructure/UnionFind/potentialized_union_find.hpp
   requiredBy: []
-  timestamp: '2023-08-28 12:33:26+09:00'
+  timestamp: '2023-08-31 14:17:44+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj-DSL_1_B.test.cpp
-documentation_of: src/DataStructure/potentialized_union_find.hpp
+documentation_of: src/DataStructure/UnionFind/potentialized_union_find.hpp
 layout: document
+redirect_from:
+- /library/src/DataStructure/UnionFind/potentialized_union_find.hpp
+- /library/src/DataStructure/UnionFind/potentialized_union_find.hpp.html
 title: "\u91CD\u307F\u4ED8\u304DUnion-Find\u6728"
 ---
+<!-- ---
+title: 重み付きUnion-Find木
+documentation_of: //src/DataStructure/potentialized_union_find.hpp
+--- -->

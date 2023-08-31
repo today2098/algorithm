@@ -10,11 +10,15 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
+    _deprecated_at_docs: docs/Graph/Tree/calc_tree_diameter.md
+    document_title: "\u6728\u306E\u76F4\u5F84"
     links: []
-  bundledCode: "#line 1 \"src/Graph/calc_tree_diameter.hpp\"\n\n\n\n#include <algorithm>\n\
-    #include <cassert>\n#include <queue>\n#include <tuple>\n#include <utility>\n#include\
-    \ <vector>\n\nnamespace algorithm {\n\n// \u6728\u306E\u76F4\u5F84\u3092\u6C42\
-    \u3081\u308B\uFF0EO(|V|).\nstd::tuple<int, int, int> calc_tree_diameter(const\
+  bundledCode: "#line 1 \"src/Graph/Tree/calc_tree_diameter.hpp\"\n/**\n * @brief\
+    \ \u6728\u306E\u76F4\u5F84\n * @docs docs/Graph/Tree/calc_tree_diameter.md\n */\n\
+    \n#ifndef ALGORITHM_CALC_TREE_DIAMETER_HPP\n#define ALGORITHM_CALC_TREE_DIAMETER_HPP\
+    \ 1\n\n#include <algorithm>\n#include <cassert>\n#include <queue>\n#include <tuple>\n\
+    #include <utility>\n#include <vector>\n\nnamespace algorithm {\n\n// \u6728\u306E\
+    \u76F4\u5F84\u3092\u6C42\u3081\u308B\uFF0EO(|V|).\nstd::tuple<int, int, int> calc_tree_diameter(const\
     \ std::vector<std::vector<int> > &g) {\n    if(g.size() == 0) return {-1, -1,\
     \ -1};\n    int endpoint;\n    std::vector<int> d(g.size());\n    std::queue<int>\
     \ que;\n    auto bfs = [&](int s) -> void {\n        endpoint = s;\n        std::fill(d.begin(),\
@@ -38,8 +42,9 @@ data:
     \             que.emplace(v);\n            }\n        }\n    };\n    bfs(0);\n\
     \    int tmp = endpoint;\n    bfs(endpoint);\n    return {diameter, tmp, endpoint};\
     \  // tuple of (diameter, endpoint1, endpoint2).\n}\n\n}  // namespace algorithm\n\
-    \n\n"
-  code: "#ifndef ALGORITHM_CALC_TREE_DIAMETER_HPP\n#define ALGORITHM_CALC_TREE_DIAMETER_HPP\
+    \n#endif\n"
+  code: "/**\n * @brief \u6728\u306E\u76F4\u5F84\n * @docs docs/Graph/Tree/calc_tree_diameter.md\n\
+    \ */\n\n#ifndef ALGORITHM_CALC_TREE_DIAMETER_HPP\n#define ALGORITHM_CALC_TREE_DIAMETER_HPP\
     \ 1\n\n#include <algorithm>\n#include <cassert>\n#include <queue>\n#include <tuple>\n\
     #include <utility>\n#include <vector>\n\nnamespace algorithm {\n\n// \u6728\u306E\
     \u76F4\u5F84\u3092\u6C42\u3081\u308B\uFF0EO(|V|).\nstd::tuple<int, int, int> calc_tree_diameter(const\
@@ -69,13 +74,20 @@ data:
     \n#endif\n"
   dependsOn: []
   isVerificationFile: false
-  path: src/Graph/calc_tree_diameter.hpp
+  path: src/Graph/Tree/calc_tree_diameter.hpp
   requiredBy: []
-  timestamp: '2023-08-28 17:19:06+09:00'
+  timestamp: '2023-08-31 14:17:44+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj-GRL_5_A.test.cpp
-documentation_of: src/Graph/calc_tree_diameter.hpp
+documentation_of: src/Graph/Tree/calc_tree_diameter.hpp
 layout: document
+redirect_from:
+- /library/src/Graph/Tree/calc_tree_diameter.hpp
+- /library/src/Graph/Tree/calc_tree_diameter.hpp.html
 title: "\u6728\u306E\u76F4\u5F84"
 ---
+<!-- ---
+title: 木の直径
+documentation_of: //src/Graph/Tree/calc_tree_diameter.hpp
+--- -->

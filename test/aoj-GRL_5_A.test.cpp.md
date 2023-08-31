@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: src/Graph/calc_tree_diameter.hpp
+    path: src/Graph/Tree/calc_tree_diameter.hpp
     title: "\u6728\u306E\u76F4\u5F84"
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
@@ -15,8 +15,10 @@ data:
     links:
     - https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/5/GRL_5_A
   bundledCode: "#line 1 \"test/aoj-GRL_5_A.test.cpp\"\n#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/5/GRL_5_A\"\
-    \n\n#include <iostream>\n\n#line 1 \"src/Graph/calc_tree_diameter.hpp\"\n\n\n\n\
-    #include <algorithm>\n#include <cassert>\n#include <queue>\n#include <tuple>\n\
+    \n\n#include <iostream>\n\n#line 1 \"src/Graph/Tree/calc_tree_diameter.hpp\"\n\
+    /**\n * @brief \u6728\u306E\u76F4\u5F84\n * @docs docs/Graph/Tree/calc_tree_diameter.md\n\
+    \ */\n\n#ifndef ALGORITHM_CALC_TREE_DIAMETER_HPP\n#define ALGORITHM_CALC_TREE_DIAMETER_HPP\
+    \ 1\n\n#include <algorithm>\n#include <cassert>\n#include <queue>\n#include <tuple>\n\
     #include <utility>\n#include <vector>\n\nnamespace algorithm {\n\n// \u6728\u306E\
     \u76F4\u5F84\u3092\u6C42\u3081\u308B\uFF0EO(|V|).\nstd::tuple<int, int, int> calc_tree_diameter(const\
     \ std::vector<std::vector<int> > &g) {\n    if(g.size() == 0) return {-1, -1,\
@@ -42,25 +44,25 @@ data:
     \             que.emplace(v);\n            }\n        }\n    };\n    bfs(0);\n\
     \    int tmp = endpoint;\n    bfs(endpoint);\n    return {diameter, tmp, endpoint};\
     \  // tuple of (diameter, endpoint1, endpoint2).\n}\n\n}  // namespace algorithm\n\
-    \n\n#line 6 \"test/aoj-GRL_5_A.test.cpp\"\n\nint main() {\n    int n;\n    std::cin\
-    \ >> n;\n\n    std::vector<std::vector<std::pair<int, int> > > g(n);\n    for(int\
-    \ i = 0; i < n - 1; ++i) {\n        int s, t;\n        int w;\n        std::cin\
-    \ >> s >> t >> w;\n\n        g[s].emplace_back(t, w);\n        g[t].emplace_back(s,\
+    \n#endif\n#line 6 \"test/aoj-GRL_5_A.test.cpp\"\n\nint main() {\n    int n;\n\
+    \    std::cin >> n;\n\n    std::vector<std::vector<std::pair<int, int> > > g(n);\n\
+    \    for(int i = 0; i < n - 1; ++i) {\n        int s, t;\n        int w;\n   \
+    \     std::cin >> s >> t >> w;\n\n        g[s].emplace_back(t, w);\n        g[t].emplace_back(s,\
     \ w);\n    }\n\n    auto &&[ans, _, __] = algorithm::calc_tree_diameter(g);\n\
     \    std::cout << ans << std::endl;\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/5/GRL_5_A\"\
-    \n\n#include <iostream>\n\n#include \"../src/Graph/calc_tree_diameter.hpp\"\n\n\
-    int main() {\n    int n;\n    std::cin >> n;\n\n    std::vector<std::vector<std::pair<int,\
+    \n\n#include <iostream>\n\n#include \"../src/Graph/Tree/calc_tree_diameter.hpp\"\
+    \n\nint main() {\n    int n;\n    std::cin >> n;\n\n    std::vector<std::vector<std::pair<int,\
     \ int> > > g(n);\n    for(int i = 0; i < n - 1; ++i) {\n        int s, t;\n  \
     \      int w;\n        std::cin >> s >> t >> w;\n\n        g[s].emplace_back(t,\
     \ w);\n        g[t].emplace_back(s, w);\n    }\n\n    auto &&[ans, _, __] = algorithm::calc_tree_diameter(g);\n\
     \    std::cout << ans << std::endl;\n}\n"
   dependsOn:
-  - src/Graph/calc_tree_diameter.hpp
+  - src/Graph/Tree/calc_tree_diameter.hpp
   isVerificationFile: true
   path: test/aoj-GRL_5_A.test.cpp
   requiredBy: []
-  timestamp: '2023-08-28 17:19:58+09:00'
+  timestamp: '2023-08-31 14:17:44+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj-GRL_5_A.test.cpp

@@ -10,11 +10,15 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
+    _deprecated_at_docs: docs/Graph/strongly_connected_components.md
+    document_title: "\u5F37\u9023\u7D50\u6210\u5206\u5206\u89E3"
     links: []
-  bundledCode: "#line 1 \"src/Graph/strongly_connected_components.hpp\"\n\n\n\n#include\
-    \ <algorithm>\n#include <cassert>\n#include <stack>\n#include <utility>\n#include\
-    \ <vector>\n\nnamespace algorithm {\n\n// \u5F37\u9023\u7D50\u6210\u5206\u5206\
-    \u89E3\uFF0E\nclass SCC {\n    std::vector<std::vector<int> > m_g;  // m_g[v][]:=(\u30CE\
+  bundledCode: "#line 1 \"src/Graph/strongly_connected_components.hpp\"\n/**\n * @brief\
+    \ \u5F37\u9023\u7D50\u6210\u5206\u5206\u89E3\n * @docs docs/Graph/strongly_connected_components.md\n\
+    \ */\n\n#ifndef ALGORITHM_STRONGLY_CONNECTED_COMPONENTS_HPP\n#define ALGORITHM_STRONGLY_CONNECTED_COMPONENTS_HPP\
+    \ 1\n\n#include <algorithm>\n#include <cassert>\n#include <stack>\n#include <utility>\n\
+    #include <vector>\n\nnamespace algorithm {\n\n// \u5F37\u9023\u7D50\u6210\u5206\
+    \u5206\u89E3\uFF0E\nclass SCC {\n    std::vector<std::vector<int> > m_g;  // m_g[v][]:=(\u30CE\
     \u30FC\u30C9v\u306E\u96A3\u63A5\u30EA\u30B9\u30C8).\n\npublic:\n    SCC() : SCC(0)\
     \ {}\n    explicit SCC(int vn) : m_g(vn) {}\n\n    // \u30CE\u30FC\u30C9\u6570\
     \u3092\u8FD4\u3059\uFF0E\n    int order() const { return m_g.size(); }\n    //\
@@ -47,8 +51,9 @@ data:
     \ > decompose() const {\n        const auto &&[num_sccs, ids] = scc();\n     \
     \   std::vector<std::vector<int> > sccs(num_sccs);\n        for(int v = 0; v <\
     \ order(); ++v) sccs[ids[v]].push_back(v);\n        return sccs;\n    }\n};\n\n\
-    }  // namespace algorithm\n\n\n"
-  code: "#ifndef ALGORITHM_STRONGLY_CONNECTED_COMPONENTS_HPP\n#define ALGORITHM_STRONGLY_CONNECTED_COMPONENTS_HPP\
+    }  // namespace algorithm\n\n#endif\n"
+  code: "/**\n * @brief \u5F37\u9023\u7D50\u6210\u5206\u5206\u89E3\n * @docs docs/Graph/strongly_connected_components.md\n\
+    \ */\n\n#ifndef ALGORITHM_STRONGLY_CONNECTED_COMPONENTS_HPP\n#define ALGORITHM_STRONGLY_CONNECTED_COMPONENTS_HPP\
     \ 1\n\n#include <algorithm>\n#include <cassert>\n#include <stack>\n#include <utility>\n\
     #include <vector>\n\nnamespace algorithm {\n\n// \u5F37\u9023\u7D50\u6210\u5206\
     \u5206\u89E3\uFF0E\nclass SCC {\n    std::vector<std::vector<int> > m_g;  // m_g[v][]:=(\u30CE\
@@ -89,14 +94,21 @@ data:
   isVerificationFile: false
   path: src/Graph/strongly_connected_components.hpp
   requiredBy: []
-  timestamp: '2023-08-28 20:09:18+09:00'
+  timestamp: '2023-08-31 14:17:44+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj-GRL_3_C.test.cpp
 documentation_of: src/Graph/strongly_connected_components.hpp
 layout: document
+redirect_from:
+- /library/src/Graph/strongly_connected_components.hpp
+- /library/src/Graph/strongly_connected_components.hpp.html
 title: "\u5F37\u9023\u7D50\u6210\u5206\u5206\u89E3"
 ---
+<!-- ---
+title: 強連結成分分解
+documentation_of: //src/Graph/strongly_connected_components.hpp
+--- -->
 
 
 ## 概要

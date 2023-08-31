@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: src/Graph/bellman_ford.hpp
+    path: src/Graph/ShortestPath/bellman_ford.hpp
     title: "Bellman-Ford Algorithm\uFF08\u5358\u4E00\u59CB\u70B9\u6700\u77ED\u7D4C\
       \u8DEF\uFF09"
   _extendedRequiredBy: []
@@ -16,7 +16,10 @@ data:
     links:
     - https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/1/GRL_1_B
   bundledCode: "#line 1 \"test/aoj-GRL_1_B.test.cpp\"\n#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/1/GRL_1_B\"\
-    \n\n#include <iostream>\n\n#line 1 \"src/Graph/bellman_ford.hpp\"\n\n\n\n#include\
+    \n\n#include <iostream>\n\n#line 1 \"src/Graph/ShortestPath/bellman_ford.hpp\"\
+    \n/**\n * @brief Bellman-Ford Algorithm\uFF08\u5358\u4E00\u59CB\u70B9\u6700\u77ED\
+    \u7D4C\u8DEF\uFF09\n * @docs docs/Graph/ShortestPath/bellman_ford.md\n */\n\n\
+    #ifndef ALGORITHM_BELLMAN_FORD_HPP\n#define ALGORITHM_BELLMAN_FORD_HPP 1\n\n#include\
     \ <algorithm>\n#include <cassert>\n#include <limits>\n#include <vector>\n\nnamespace\
     \ algorithm {\n\ntemplate <typename T>\nclass BellmanFord {\n    struct Edge {\n\
     \        int from, to;\n        T cost;\n        explicit Edge(int from_, int\
@@ -69,31 +72,33 @@ data:
     \    std::vector<int> path;\n        if(!(-infinity() < m_d[t] and m_d[t] < infinity()))\
     \ return path;\n        for(; t != -1; t = m_pre[t]) path.push_back(t);\n    \
     \    std::reverse(path.begin(), path.end());\n        return path;\n    }\n};\n\
-    \n}  // namespace algorithm\n\n\n#line 6 \"test/aoj-GRL_1_B.test.cpp\"\n\nint\
-    \ main() {\n    int n, m;\n    int r;\n    std::cin >> n >> m >> r;\n\n    algorithm::BellmanFord<int>\
-    \ bellman_ford(n);\n    for(int i = 0; i < m; ++i) {\n        int s, t;\n    \
-    \    int d;\n        std::cin >> s >> t >> d;\n        bellman_ford.add_edge(s,\
-    \ t, d);\n    }\n\n    auto res = bellman_ford.bellman_ford(r);\n    if(res) {\n\
-    \        std::cout << \"NEGATIVE CYCLE\" << std::endl;\n        return 0;\n  \
-    \  }\n\n    for(int i = 0; i < n; ++i) {\n        auto ans = bellman_ford.distance(i);\n\
-    \        if(ans == bellman_ford.infinity()) std::cout << \"INF\" << std::endl;\n\
-    \        else std::cout << ans << std::endl;\n    }\n}\n"
+    \n}  // namespace algorithm\n\n#endif\n#line 6 \"test/aoj-GRL_1_B.test.cpp\"\n\
+    \nint main() {\n    int n, m;\n    int r;\n    std::cin >> n >> m >> r;\n\n  \
+    \  algorithm::BellmanFord<int> bellman_ford(n);\n    for(int i = 0; i < m; ++i)\
+    \ {\n        int s, t;\n        int d;\n        std::cin >> s >> t >> d;\n\n \
+    \       bellman_ford.add_edge(s, t, d);\n    }\n\n    auto &&res = bellman_ford.bellman_ford(r);\n\
+    \    if(res) {\n        std::cout << \"NEGATIVE CYCLE\" << std::endl;\n      \
+    \  return 0;\n    }\n\n    for(int i = 0; i < n; ++i) {\n        auto &&ans =\
+    \ bellman_ford.distance(i);\n\n        if(ans == bellman_ford.infinity()) std::cout\
+    \ << \"INF\" << std::endl;\n        else std::cout << ans << std::endl;\n    }\n\
+    }\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/1/GRL_1_B\"\
-    \n\n#include <iostream>\n\n#include \"../src/Graph/bellman_ford.hpp\"\n\nint main()\
-    \ {\n    int n, m;\n    int r;\n    std::cin >> n >> m >> r;\n\n    algorithm::BellmanFord<int>\
-    \ bellman_ford(n);\n    for(int i = 0; i < m; ++i) {\n        int s, t;\n    \
-    \    int d;\n        std::cin >> s >> t >> d;\n        bellman_ford.add_edge(s,\
-    \ t, d);\n    }\n\n    auto res = bellman_ford.bellman_ford(r);\n    if(res) {\n\
-    \        std::cout << \"NEGATIVE CYCLE\" << std::endl;\n        return 0;\n  \
-    \  }\n\n    for(int i = 0; i < n; ++i) {\n        auto ans = bellman_ford.distance(i);\n\
-    \        if(ans == bellman_ford.infinity()) std::cout << \"INF\" << std::endl;\n\
-    \        else std::cout << ans << std::endl;\n    }\n}\n"
+    \n\n#include <iostream>\n\n#include \"../src/Graph/ShortestPath/bellman_ford.hpp\"\
+    \n\nint main() {\n    int n, m;\n    int r;\n    std::cin >> n >> m >> r;\n\n\
+    \    algorithm::BellmanFord<int> bellman_ford(n);\n    for(int i = 0; i < m; ++i)\
+    \ {\n        int s, t;\n        int d;\n        std::cin >> s >> t >> d;\n\n \
+    \       bellman_ford.add_edge(s, t, d);\n    }\n\n    auto &&res = bellman_ford.bellman_ford(r);\n\
+    \    if(res) {\n        std::cout << \"NEGATIVE CYCLE\" << std::endl;\n      \
+    \  return 0;\n    }\n\n    for(int i = 0; i < n; ++i) {\n        auto &&ans =\
+    \ bellman_ford.distance(i);\n\n        if(ans == bellman_ford.infinity()) std::cout\
+    \ << \"INF\" << std::endl;\n        else std::cout << ans << std::endl;\n    }\n\
+    }\n"
   dependsOn:
-  - src/Graph/bellman_ford.hpp
+  - src/Graph/ShortestPath/bellman_ford.hpp
   isVerificationFile: true
   path: test/aoj-GRL_1_B.test.cpp
   requiredBy: []
-  timestamp: '2023-08-28 18:04:20+09:00'
+  timestamp: '2023-08-31 14:17:44+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj-GRL_1_B.test.cpp

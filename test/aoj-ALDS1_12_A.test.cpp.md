@@ -15,7 +15,9 @@ data:
     links:
     - https://onlinejudge.u-aizu.ac.jp/courses/lesson/1/ALDS1/12/ALDS1_12_A
   bundledCode: "#line 1 \"test/aoj-ALDS1_12_A.test.cpp\"\n#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/lesson/1/ALDS1/12/ALDS1_12_A\"\
-    \n\n#include <iostream>\n\n#line 1 \"src/Graph/prim.hpp\"\n\n\n\n#include <cassert>\n\
+    \n\n#include <iostream>\n\n#line 1 \"src/Graph/prim.hpp\"\n/**\n * @brief Prim's\
+    \ Algorithm\uFF08\u6700\u5C0F\u5168\u57DF\u6728\uFF09\n * @docs docs/Graph/prim.md\n\
+    \ */\n\n#ifndef ALGORITHM_PRIM_HPP\n#define ALGORITHM_PRIM_HPP 1\n\n#include <cassert>\n\
     #include <functional>\n#include <queue>\n#include <utility>\n#include <vector>\n\
     \nnamespace algorithm {\n\ntemplate <typename T>\nclass Prim {\n    std::vector<std::vector<std::pair<int,\
     \ T> > > m_g;  // m_g[v][]:=(\u30CE\u30FC\u30C9v\u306E\u96A3\u63A5\u30EA\u30B9\
@@ -36,11 +38,12 @@ data:
     \ continue;\n            seen[u] = true;\n            res += cost;\n         \
     \   for(const auto &[v, cost] : m_g[u]) {\n                if(!seen[v]) pque.emplace(cost,\
     \ v);\n            }\n        }\n        return res;\n    }\n};\n\n}  // namespace\
-    \ algorithm\n\n\n#line 6 \"test/aoj-ALDS1_12_A.test.cpp\"\n\nint main() {\n  \
-    \  int n;\n    std::cin >> n;\n\n    algorithm::Prim<int> prim(n);\n    for(int\
-    \ i = 0; i < n; ++i) {\n        for(int j = 0; j < n; ++j) {\n            int\
-    \ a;\n            std::cin >> a;\n\n            if(i < j and a != -1) prim.add_edge(i,\
-    \ j, a);\n        }\n    }\n\n    std::cout << prim.prim() << std::endl;\n}\n"
+    \ algorithm\n\n#endif\n#line 6 \"test/aoj-ALDS1_12_A.test.cpp\"\n\nint main()\
+    \ {\n    int n;\n    std::cin >> n;\n\n    algorithm::Prim<int> prim(n);\n   \
+    \ for(int i = 0; i < n; ++i) {\n        for(int j = 0; j < n; ++j) {\n       \
+    \     int a;\n            std::cin >> a;\n\n            if(i < j and a != -1)\
+    \ prim.add_edge(i, j, a);\n        }\n    }\n\n    std::cout << prim.prim() <<\
+    \ std::endl;\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/lesson/1/ALDS1/12/ALDS1_12_A\"\
     \n\n#include <iostream>\n\n#include \"../src/Graph/prim.hpp\"\n\nint main() {\n\
     \    int n;\n    std::cin >> n;\n\n    algorithm::Prim<int> prim(n);\n    for(int\
@@ -52,7 +55,7 @@ data:
   isVerificationFile: true
   path: test/aoj-ALDS1_12_A.test.cpp
   requiredBy: []
-  timestamp: '2023-08-28 19:47:15+09:00'
+  timestamp: '2023-08-31 14:17:44+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj-ALDS1_12_A.test.cpp

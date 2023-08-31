@@ -8,14 +8,14 @@ data:
   _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"src/DataStructure/binary_indexed_tree_2d_zero.hpp\"\n\n\n\
-    \n#include <algorithm>\n#include <cassert>\n#include <vector>\n\nnamespace algorithm\
-    \ {\n\n// Binary Indexed Tree 2D (0-based index).\ntemplate <typename T>\nclass\
-    \ BIT2D0 {\n    int m_h, m_w;\n    std::vector<std::vector<T> > m_dat;  // 0-based\
-    \ index.\n\n    void build() {\n        for(int i = 0; i < height(); ++i) {\n\
-    \            for(int j = 0; j < width(); ++j) {\n                int ni = i |\
-    \ (i + 1), nj = j | (j + 1);\n                bool flag1 = (ni < height()), flag2\
-    \ = (nj < width());\n                if(flag1) m_dat[ni][j] += m_dat[i][j];\n\
+  bundledCode: "#line 1 \"src/DataStructure/SegmentTree/binary_indexed_tree_2d_zero.hpp\"\
+    \n\n\n\n#include <algorithm>\n#include <cassert>\n#include <vector>\n\nnamespace\
+    \ algorithm {\n\n// Binary Indexed Tree 2D (0-based index).\ntemplate <typename\
+    \ T>\nclass BIT2D0 {\n    int m_h, m_w;\n    std::vector<std::vector<T> > m_dat;\
+    \  // 0-based index.\n\n    void build() {\n        for(int i = 0; i < height();\
+    \ ++i) {\n            for(int j = 0; j < width(); ++j) {\n                int\
+    \ ni = i | (i + 1), nj = j | (j + 1);\n                bool flag1 = (ni < height()),\
+    \ flag2 = (nj < width());\n                if(flag1) m_dat[ni][j] += m_dat[i][j];\n\
     \                if(flag2) m_dat[i][nj] += m_dat[i][j];\n                if(flag1\
     \ and flag2) m_dat[ni][nj] -= m_dat[i][j];\n            }\n        }\n    }\n\n\
     public:\n    // constructor. O(H*W).\n    BIT2D0() : BIT2D0(0, 0) {}\n    explicit\
@@ -76,15 +76,15 @@ data:
     \n#endif\n"
   dependsOn: []
   isVerificationFile: false
-  path: src/DataStructure/binary_indexed_tree_2d_zero.hpp
+  path: src/DataStructure/SegmentTree/binary_indexed_tree_2d_zero.hpp
   requiredBy: []
-  timestamp: '2023-05-30 11:52:38+09:00'
+  timestamp: '2023-08-31 11:59:12+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: src/DataStructure/binary_indexed_tree_2d_zero.hpp
+documentation_of: src/DataStructure/SegmentTree/binary_indexed_tree_2d_zero.hpp
 layout: document
 redirect_from:
-- /library/src/DataStructure/binary_indexed_tree_2d_zero.hpp
-- /library/src/DataStructure/binary_indexed_tree_2d_zero.hpp.html
-title: src/DataStructure/binary_indexed_tree_2d_zero.hpp
+- /library/src/DataStructure/SegmentTree/binary_indexed_tree_2d_zero.hpp
+- /library/src/DataStructure/SegmentTree/binary_indexed_tree_2d_zero.hpp.html
+title: src/DataStructure/SegmentTree/binary_indexed_tree_2d_zero.hpp
 ---

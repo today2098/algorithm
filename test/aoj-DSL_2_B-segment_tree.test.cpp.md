@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: src/DataStructure/segment_tree.hpp
+    path: src/DataStructure/SegmentTree/segment_tree.hpp
     title: Segment Tree
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
@@ -16,19 +16,21 @@ data:
     - https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/all/DSL_2_B
   bundledCode: "#line 1 \"test/aoj-DSL_2_B-segment_tree.test.cpp\"\n#define PROBLEM\
     \ \"https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/all/DSL_2_B\"\n\n#include\
-    \ <iostream>\n\n#line 1 \"src/DataStructure/segment_tree.hpp\"\n\n\n\n#include\
-    \ <algorithm>\n#include <cassert>\n#include <functional>\n#include <vector>\n\n\
-    namespace algorithm {\n\ntemplate <typename S>\nclass SegmentTree {\n    using\
-    \ Func = std::function<S(const S &, const S &)>;\n\n    Func m_op;           \
-    \   // S m_op(S,S):=(\u4E8C\u9805\u6F14\u7B97\u95A2\u6570).\n    S m_e;      \
-    \            // m_e:=(\u5358\u4F4D\u5143).\n    int m_sz;               // m_sz:=(\u8981\
-    \u7D20\u6570).\n    int m_n;                // m_n:=(\u8449\u306E\u6570).\n  \
-    \  std::vector<S> m_tree;  // m_tree[]:=(\u5B8C\u5168\u4E8C\u5206\u6728). 1-based\
-    \ index.\n\npublic:\n    // constructor. O(N).\n    SegmentTree(){};\n    explicit\
-    \ SegmentTree(const Func &op, const S &e, size_t n) : m_op(op), m_e(e), m_sz(n),\
-    \ m_n(1) {\n        while(m_n < size()) m_n <<= 1;\n        m_tree.assign(2 *\
-    \ m_n, identity());\n    }\n    explicit SegmentTree(const Func &op, const S &e,\
-    \ const std::vector<S> &v) : SegmentTree(op, e, v.size()) {\n        std::copy(v.begin(),\
+    \ <iostream>\n\n#line 1 \"src/DataStructure/SegmentTree/segment_tree.hpp\"\n/**\n\
+    \ * @brief Segment Tree\n * @docs docs/DataStructure/SegmentTree/segment_tree.md\n\
+    \ */\n\n#ifndef ALGORITHM_SEGMENT_TREE_HPP\n#define ALGORITHM_SEGMENT_TREE_HPP\
+    \ 1\n\n#include <algorithm>\n#include <cassert>\n#include <functional>\n#include\
+    \ <vector>\n\nnamespace algorithm {\n\ntemplate <typename S>\nclass SegmentTree\
+    \ {\n    using Func = std::function<S(const S &, const S &)>;\n\n    Func m_op;\
+    \              // S m_op(S,S):=(\u4E8C\u9805\u6F14\u7B97\u95A2\u6570).\n    S\
+    \ m_e;                  // m_e:=(\u5358\u4F4D\u5143).\n    int m_sz;         \
+    \      // m_sz:=(\u8981\u7D20\u6570).\n    int m_n;                // m_n:=(\u8449\
+    \u306E\u6570).\n    std::vector<S> m_tree;  // m_tree[]:=(\u5B8C\u5168\u4E8C\u5206\
+    \u6728). 1-based index.\n\npublic:\n    // constructor. O(N).\n    SegmentTree(){};\n\
+    \    explicit SegmentTree(const Func &op, const S &e, size_t n) : m_op(op), m_e(e),\
+    \ m_sz(n), m_n(1) {\n        while(m_n < size()) m_n <<= 1;\n        m_tree.assign(2\
+    \ * m_n, identity());\n    }\n    explicit SegmentTree(const Func &op, const S\
+    \ &e, const std::vector<S> &v) : SegmentTree(op, e, v.size()) {\n        std::copy(v.begin(),\
     \ v.end(), m_tree.begin() + m_n);\n        for(int i = m_n - 1; i >= 1; --i) m_tree[i]\
     \ = m_op(m_tree[i << 1], m_tree[i << 1 | 1]);\n    }\n\n    // \u8981\u7D20\u6570\
     \u3092\u8FD4\u3059\uFF0E\n    int size() const { return m_sz; }\n    // \u5358\
@@ -80,29 +82,28 @@ data:
     \            os << (l == 1 ? \"[\" : \" \");\n            for(int i = l; i < r;\
     \ ++i) os << (i == l ? \"[\" : \" \") << segtree.m_tree[i];\n            os <<\
     \ \"]\";\n            l <<= 1, r <<= 1;\n        }\n        os << \"]\";\n   \
-    \     return os;\n    }\n};\n\n}  // namespace algorithm\n\n\n#line 6 \"test/aoj-DSL_2_B-segment_tree.test.cpp\"\
-    \n\nint main() {\n    int n;\n    int q;\n    std::cin >> n >> q;\n\n    using\
-    \ T = int;\n    const T e = 0;\n    auto op = [](T a, T b) -> T { return a + b;\
-    \ };\n    algorithm::SegmentTree<T> segtree(op, e, n);\n    while(q--) {\n   \
-    \     int com;\n        int x;\n        int y;\n        std::cin >> com >> x >>\
-    \ y;\n\n        if(com == 0) {\n            x--;\n            segtree.set(x, segtree.prod(x)\
-    \ + y);\n        } else {\n            x--;\n            std::cout << segtree.prod(x,\
-    \ y) << std::endl;\n        }\n    }\n}\n"
+    \     return os;\n    }\n};\n\n}  // namespace algorithm\n\n#endif\n#line 6 \"\
+    test/aoj-DSL_2_B-segment_tree.test.cpp\"\n\nint main() {\n    int n;\n    int\
+    \ q;\n    std::cin >> n >> q;\n\n    using T = int;\n    constexpr T e = 0;\n\
+    \    auto op = [](T a, T b) -> T { return a + b; };\n    algorithm::SegmentTree<T>\
+    \ segtree(op, e, n);\n\n    while(q--) {\n        int com;\n        int x;\n \
+    \       int y;\n        std::cin >> com >> x >> y;\n        x--;\n\n        if(com\
+    \ == 0) segtree.set(x, segtree.prod(x) + y);\n        else std::cout << segtree.prod(x,\
+    \ y) << std::endl;\n    }\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/all/DSL_2_B\"\
-    \n\n#include <iostream>\n\n#include \"../src/DataStructure/segment_tree.hpp\"\n\
-    \nint main() {\n    int n;\n    int q;\n    std::cin >> n >> q;\n\n    using T\
-    \ = int;\n    const T e = 0;\n    auto op = [](T a, T b) -> T { return a + b;\
-    \ };\n    algorithm::SegmentTree<T> segtree(op, e, n);\n    while(q--) {\n   \
-    \     int com;\n        int x;\n        int y;\n        std::cin >> com >> x >>\
-    \ y;\n\n        if(com == 0) {\n            x--;\n            segtree.set(x, segtree.prod(x)\
-    \ + y);\n        } else {\n            x--;\n            std::cout << segtree.prod(x,\
-    \ y) << std::endl;\n        }\n    }\n}\n"
+    \n\n#include <iostream>\n\n#include \"../src/DataStructure/SegmentTree/segment_tree.hpp\"\
+    \n\nint main() {\n    int n;\n    int q;\n    std::cin >> n >> q;\n\n    using\
+    \ T = int;\n    constexpr T e = 0;\n    auto op = [](T a, T b) -> T { return a\
+    \ + b; };\n    algorithm::SegmentTree<T> segtree(op, e, n);\n\n    while(q--)\
+    \ {\n        int com;\n        int x;\n        int y;\n        std::cin >> com\
+    \ >> x >> y;\n        x--;\n\n        if(com == 0) segtree.set(x, segtree.prod(x)\
+    \ + y);\n        else std::cout << segtree.prod(x, y) << std::endl;\n    }\n}\n"
   dependsOn:
-  - src/DataStructure/segment_tree.hpp
+  - src/DataStructure/SegmentTree/segment_tree.hpp
   isVerificationFile: true
   path: test/aoj-DSL_2_B-segment_tree.test.cpp
   requiredBy: []
-  timestamp: '2023-08-28 13:53:45+09:00'
+  timestamp: '2023-08-31 14:17:44+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj-DSL_2_B-segment_tree.test.cpp

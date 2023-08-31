@@ -8,22 +8,22 @@ data:
   _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"src/DataStructure/lazy_segment_tree.hpp\"\n\n\n\n#include\
-    \ <algorithm>\n#include <cassert>\n#include <functional>\n#include <vector>\n\n\
-    namespace algorithm {\n\n// \u9045\u5EF6\u8A55\u4FA1\u30BB\u30B0\u30E1\u30F3\u30C8\
-    \u6728\uFF0E\ntemplate <class S, class F>  // S:\u30E2\u30CE\u30A4\u30C9\u306E\
-    \u578B, F:\u5199\u50CF\u306E\u578B.\nclass LazySegTree {\n    using FO = std::function<S(const\
-    \ S &, const S &)>;\n    using FM = std::function<S(const F &, const S &)>;\n\
-    \    using FC = std::function<F(const F &, const F &)>;\n\n    FO m_op;      \
-    \          // S m_op(S,S):=(\u4E8C\u9805\u6F14\u7B97\u95A2\u6570). S\xD7S\u2192\
-    S\u3092\u8A08\u7B97\u3059\u308B\uFF0E\n    FM m_mapping;           // S m_mapping(F\
-    \ f,S x):=(\u5199\u50CF). f(x)\u3092\u8FD4\u3059\uFF0E\n    FC m_composition;\
-    \       // F m_composition(F f,F g):=(\u5199\u50CF\u306E\u5408\u6210). f\u2218\
-    g\u3092\u8FD4\u3059\uFF0E\n    S m_e;                  // m_e:=(\u5358\u4F4D\u5143\
-    ).\n    F m_id;                 // m_id:=(\u6052\u7B49\u5199\u50CF).\n    int\
-    \ m_sz;               // m_sz:=(\u8981\u7D20\u6570).\n    int m_n;           \
-    \     // m_n:=(\u4E8C\u5206\u6728\u306E\u8449\u6570).\n    int m_depth;      \
-    \      // m_depth:=(\u4E8C\u5206\u6728\u306E\u6DF1\u3055).\n    std::vector<S>\
+  bundledCode: "#line 1 \"src/DataStructure/SegmentTree/lazy_segment_tree.hpp\"\n\n\
+    \n\n#include <algorithm>\n#include <cassert>\n#include <functional>\n#include\
+    \ <vector>\n\nnamespace algorithm {\n\n// \u9045\u5EF6\u8A55\u4FA1\u30BB\u30B0\
+    \u30E1\u30F3\u30C8\u6728\uFF0E\ntemplate <class S, class F>  // S:\u30E2\u30CE\
+    \u30A4\u30C9\u306E\u578B, F:\u5199\u50CF\u306E\u578B.\nclass LazySegTree {\n \
+    \   using FO = std::function<S(const S &, const S &)>;\n    using FM = std::function<S(const\
+    \ F &, const S &)>;\n    using FC = std::function<F(const F &, const F &)>;\n\n\
+    \    FO m_op;                // S m_op(S,S):=(\u4E8C\u9805\u6F14\u7B97\u95A2\u6570\
+    ). S\xD7S\u2192S\u3092\u8A08\u7B97\u3059\u308B\uFF0E\n    FM m_mapping;      \
+    \     // S m_mapping(F f,S x):=(\u5199\u50CF). f(x)\u3092\u8FD4\u3059\uFF0E\n\
+    \    FC m_composition;       // F m_composition(F f,F g):=(\u5199\u50CF\u306E\u5408\
+    \u6210). f\u2218g\u3092\u8FD4\u3059\uFF0E\n    S m_e;                  // m_e:=(\u5358\
+    \u4F4D\u5143).\n    F m_id;                 // m_id:=(\u6052\u7B49\u5199\u50CF\
+    ).\n    int m_sz;               // m_sz:=(\u8981\u7D20\u6570).\n    int m_n; \
+    \               // m_n:=(\u4E8C\u5206\u6728\u306E\u8449\u6570).\n    int m_depth;\
+    \            // m_depth:=(\u4E8C\u5206\u6728\u306E\u6DF1\u3055).\n    std::vector<S>\
     \ m_tree;  // m_tree(2n)[]:=(\u5B8C\u5168\u4E8C\u5206\u6728). 1-based index.\n\
     \    std::vector<F> m_lazy;  // m_lazy(n)[k]:=(m_tree[k]\u306E\u5B50 (m_tree[2k],\
     \ m_tree[2k+1]) \u306B\u5BFE\u3059\u308B\u9045\u5EF6\u8A55\u4FA1).\n\n    void\
@@ -234,15 +234,15 @@ data:
     \ mapping_identity());\n    }\n};\n\n}  // namespace algorithm\n\n#endif\n"
   dependsOn: []
   isVerificationFile: false
-  path: src/DataStructure/lazy_segment_tree.hpp
+  path: src/DataStructure/SegmentTree/lazy_segment_tree.hpp
   requiredBy: []
-  timestamp: '2023-08-16 14:43:21+09:00'
+  timestamp: '2023-08-31 11:59:12+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: src/DataStructure/lazy_segment_tree.hpp
+documentation_of: src/DataStructure/SegmentTree/lazy_segment_tree.hpp
 layout: document
 redirect_from:
-- /library/src/DataStructure/lazy_segment_tree.hpp
-- /library/src/DataStructure/lazy_segment_tree.hpp.html
-title: src/DataStructure/lazy_segment_tree.hpp
+- /library/src/DataStructure/SegmentTree/lazy_segment_tree.hpp
+- /library/src/DataStructure/SegmentTree/lazy_segment_tree.hpp.html
+title: src/DataStructure/SegmentTree/lazy_segment_tree.hpp
 ---

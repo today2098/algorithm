@@ -8,7 +8,7 @@ data:
   _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"src/Graph/primal_dual.hpp\"\n\n\n\n#include <algorithm>\n\
+  bundledCode: "#line 1 \"src/Graph/Flow/primal_dual.hpp\"\n\n\n\n#include <algorithm>\n\
     #include <cassert>\n#include <limits>\n#include <queue>\n#include <tuple>\n#include\
     \ <utility>\n#include <vector>\n\nnamespace algorithm {\n\ntemplate <typename\
     \ Flow, typename Cost>  // Flow:\u5BB9\u91CF\u306E\u578B, Cost:\u30B3\u30B9\u30C8\
@@ -175,15 +175,15 @@ data:
     \   }\n    }\n};\n\n}  // namespace algorithm\n\n#endif\n"
   dependsOn: []
   isVerificationFile: false
-  path: src/Graph/primal_dual.hpp
+  path: src/Graph/Flow/primal_dual.hpp
   requiredBy: []
-  timestamp: '2023-08-22 14:48:26+09:00'
+  timestamp: '2023-08-31 11:52:00+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: src/Graph/primal_dual.hpp
+documentation_of: src/Graph/Flow/primal_dual.hpp
 layout: document
 redirect_from:
-- /library/src/Graph/primal_dual.hpp
-- /library/src/Graph/primal_dual.hpp.html
-title: src/Graph/primal_dual.hpp
+- /library/src/Graph/Flow/primal_dual.hpp
+- /library/src/Graph/Flow/primal_dual.hpp.html
+title: src/Graph/Flow/primal_dual.hpp
 ---

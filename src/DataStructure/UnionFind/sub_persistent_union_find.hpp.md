@@ -8,11 +8,11 @@ data:
   _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"src/DataStructure/sub_persistent_union_find.hpp\"\n\n\n\n\
-    #include <cassert>\n#include <vector>\n\nnamespace algorithm {\n\n// \u90E8\u5206\
-    \u6C38\u7D9AUnion-Find Tree\uFF0E\nclass SubPersistentUnionFind {\n    using pii\
-    \ = std::pair<int, int>;\n\n    int m_now;  // m_now:=(\u6642\u523B).\n    int\
-    \ m_vn;   // m_vn:=(\u30CE\u30FC\u30C9\u6570).\n    int m_gn;   // m_gn:=(\u9023\
+  bundledCode: "#line 1 \"src/DataStructure/UnionFind/sub_persistent_union_find.hpp\"\
+    \n\n\n\n#include <cassert>\n#include <vector>\n\nnamespace algorithm {\n\n// \u90E8\
+    \u5206\u6C38\u7D9AUnion-Find Tree\uFF0E\nclass SubPersistentUnionFind {\n    using\
+    \ pii = std::pair<int, int>;\n\n    int m_now;  // m_now:=(\u6642\u523B).\n  \
+    \  int m_vn;   // m_vn:=(\u30CE\u30FC\u30C9\u6570).\n    int m_gn;   // m_gn:=(\u9023\
     \u7D50\u6210\u5206\u6570).\n    // m_par[v][](t,id):=(\u6642\u523Bt\u306B\u304A\
     \u3051\u308B\u30CE\u30FC\u30C9v\u306E\u89AA\u756A\u53F7id). \u5024id\u304C0\u672A\
     \u6E80\u306E\u5834\u5408\uFF0Cv\u306F\u89AA\u3068\u306A\u308A\uFF0C\u5024id\u306E\
@@ -120,15 +120,15 @@ data:
     \    }\n};\n\n}  // namespace algorithm\n\n#endif\n"
   dependsOn: []
   isVerificationFile: false
-  path: src/DataStructure/sub_persistent_union_find.hpp
+  path: src/DataStructure/UnionFind/sub_persistent_union_find.hpp
   requiredBy: []
-  timestamp: '2023-04-06 23:09:19+09:00'
+  timestamp: '2023-08-31 11:59:12+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: src/DataStructure/sub_persistent_union_find.hpp
+documentation_of: src/DataStructure/UnionFind/sub_persistent_union_find.hpp
 layout: document
 redirect_from:
-- /library/src/DataStructure/sub_persistent_union_find.hpp
-- /library/src/DataStructure/sub_persistent_union_find.hpp.html
-title: src/DataStructure/sub_persistent_union_find.hpp
+- /library/src/DataStructure/UnionFind/sub_persistent_union_find.hpp
+- /library/src/DataStructure/UnionFind/sub_persistent_union_find.hpp.html
+title: src/DataStructure/UnionFind/sub_persistent_union_find.hpp
 ---

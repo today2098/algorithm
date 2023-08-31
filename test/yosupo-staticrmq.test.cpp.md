@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: src/DataStructure/segment_tree.hpp
+    path: src/DataStructure/SegmentTree/segment_tree.hpp
     title: Segment Tree
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
@@ -16,8 +16,10 @@ data:
     - https://judge.yosupo.jp/problem/staticrmq
   bundledCode: "#line 1 \"test/yosupo-staticrmq.test.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/staticrmq\"\
     \n\n#include <algorithm>\n#include <iostream>\n#include <vector>\n\n#line 1 \"\
-    src/DataStructure/segment_tree.hpp\"\n\n\n\n#line 5 \"src/DataStructure/segment_tree.hpp\"\
-    \n#include <cassert>\n#include <functional>\n#line 8 \"src/DataStructure/segment_tree.hpp\"\
+    src/DataStructure/SegmentTree/segment_tree.hpp\"\n/**\n * @brief Segment Tree\n\
+    \ * @docs docs/DataStructure/SegmentTree/segment_tree.md\n */\n\n#ifndef ALGORITHM_SEGMENT_TREE_HPP\n\
+    #define ALGORITHM_SEGMENT_TREE_HPP 1\n\n#line 10 \"src/DataStructure/SegmentTree/segment_tree.hpp\"\
+    \n#include <cassert>\n#include <functional>\n#line 13 \"src/DataStructure/SegmentTree/segment_tree.hpp\"\
     \n\nnamespace algorithm {\n\ntemplate <typename S>\nclass SegmentTree {\n    using\
     \ Func = std::function<S(const S &, const S &)>;\n\n    Func m_op;           \
     \   // S m_op(S,S):=(\u4E8C\u9805\u6F14\u7B97\u95A2\u6570).\n    S m_e;      \
@@ -80,27 +82,27 @@ data:
     \            os << (l == 1 ? \"[\" : \" \");\n            for(int i = l; i < r;\
     \ ++i) os << (i == l ? \"[\" : \" \") << segtree.m_tree[i];\n            os <<\
     \ \"]\";\n            l <<= 1, r <<= 1;\n        }\n        os << \"]\";\n   \
-    \     return os;\n    }\n};\n\n}  // namespace algorithm\n\n\n#line 8 \"test/yosupo-staticrmq.test.cpp\"\
-    \n\nint main() {\n    int n;\n    int q;\n    std::cin >> n >> q;\n\n    std::vector<int>\
-    \ a(n);\n    for(int &in : a) std::cin >> in;\n\n    using T = int;\n    const\
-    \ T e = 1e9 + 1;\n    auto op = [](T a, T b) -> T { return std::min(a, b); };\n\
-    \    algorithm::SegmentTree<T> segtree(op, e, a);\n    while(q--) {\n        int\
-    \ l, r;\n        std::cin >> l >> r;\n\n        std::cout << segtree.prod(l, r)\
-    \ << std::endl;\n    }\n}\n"
+    \     return os;\n    }\n};\n\n}  // namespace algorithm\n\n#endif\n#line 8 \"\
+    test/yosupo-staticrmq.test.cpp\"\n\nint main() {\n    int n;\n    int q;\n   \
+    \ std::cin >> n >> q;\n\n    std::vector<int> a(n);\n    for(int &in : a) std::cin\
+    \ >> in;\n\n    using T = int;\n    constexpr T e = 1e9 + 1;\n    auto op = [](T\
+    \ a, T b) -> T { return std::min(a, b); };\n    algorithm::SegmentTree<T> segtree(op,\
+    \ e, a);\n\n    while(q--) {\n        int l, r;\n        std::cin >> l >> r;\n\
+    \n        std::cout << segtree.prod(l, r) << std::endl;\n    }\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/staticrmq\"\n\n#include\
-    \ <algorithm>\n#include <iostream>\n#include <vector>\n\n#include \"../src/DataStructure/segment_tree.hpp\"\
+    \ <algorithm>\n#include <iostream>\n#include <vector>\n\n#include \"../src/DataStructure/SegmentTree/segment_tree.hpp\"\
     \n\nint main() {\n    int n;\n    int q;\n    std::cin >> n >> q;\n\n    std::vector<int>\
-    \ a(n);\n    for(int &in : a) std::cin >> in;\n\n    using T = int;\n    const\
+    \ a(n);\n    for(int &in : a) std::cin >> in;\n\n    using T = int;\n    constexpr\
     \ T e = 1e9 + 1;\n    auto op = [](T a, T b) -> T { return std::min(a, b); };\n\
-    \    algorithm::SegmentTree<T> segtree(op, e, a);\n    while(q--) {\n        int\
-    \ l, r;\n        std::cin >> l >> r;\n\n        std::cout << segtree.prod(l, r)\
-    \ << std::endl;\n    }\n}\n"
+    \    algorithm::SegmentTree<T> segtree(op, e, a);\n\n    while(q--) {\n      \
+    \  int l, r;\n        std::cin >> l >> r;\n\n        std::cout << segtree.prod(l,\
+    \ r) << std::endl;\n    }\n}\n"
   dependsOn:
-  - src/DataStructure/segment_tree.hpp
+  - src/DataStructure/SegmentTree/segment_tree.hpp
   isVerificationFile: true
   path: test/yosupo-staticrmq.test.cpp
   requiredBy: []
-  timestamp: '2023-08-28 13:53:45+09:00'
+  timestamp: '2023-08-31 14:17:44+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo-staticrmq.test.cpp

@@ -2,10 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/aoj-NTL_1_A.test.cpp
+    title: test/aoj-NTL_1_A.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     document_title: "\u7D20\u56E0\u6570\u5206\u89E3"
     links: []
@@ -33,8 +36,9 @@ data:
   path: src/Math/NumberTheory/prime_factorization.hpp
   requiredBy: []
   timestamp: '2023-08-30 11:28:55+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/aoj-NTL_1_A.test.cpp
 documentation_of: src/Math/NumberTheory/prime_factorization.hpp
 layout: document
 redirect_from:

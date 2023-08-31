@@ -8,15 +8,15 @@ data:
   _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"src/DataStructure/sparse_table.hpp\"\n\n\n\n#include <cassert>\n\
-    #include <vector>\n\nnamespace algorithm {\n\n// \u7D50\u5408\u5247 ((A\u2022\
-    B)\u2022C=A\u2022(B\u2022C)) \u3068\u51AA\u7B49\u6027 (A\u2022A=A) \u304C\u6210\
-    \u308A\u7ACB\u3064\u6F14\u7B97\uFF08min, max, or\u306A\u3069\uFF09\u306B\u3088\
-    \u308B\u533A\u9593\u30AF\u30A8\u30EA\u3092\u6C42\u3081\u308B\uFF0E\ntemplate <typename\
-    \ S>\nclass SparseTable {\n    using F = std::function<S(const S &, const S &)>;\n\
-    \n    F m_op;                                // S m_op(S,S):=(\u4E8C\u9805\u6F14\
-    \u7B97\u95A2\u6570).\n    int m_sz;                              // m_sz:=(\u8981\
-    \u7D20\u6570).\n    std::vector<int> m_log;                // m_log[x]:=(2^k<=x\
+  bundledCode: "#line 1 \"src/DataStructure/SegmentTree/sparse_table.hpp\"\n\n\n\n\
+    #include <cassert>\n#include <vector>\n\nnamespace algorithm {\n\n// \u7D50\u5408\
+    \u5247 ((A\u2022B)\u2022C=A\u2022(B\u2022C)) \u3068\u51AA\u7B49\u6027 (A\u2022\
+    A=A) \u304C\u6210\u308A\u7ACB\u3064\u6F14\u7B97\uFF08min, max, or\u306A\u3069\uFF09\
+    \u306B\u3088\u308B\u533A\u9593\u30AF\u30A8\u30EA\u3092\u6C42\u3081\u308B\uFF0E\
+    \ntemplate <typename S>\nclass SparseTable {\n    using F = std::function<S(const\
+    \ S &, const S &)>;\n\n    F m_op;                                // S m_op(S,S):=(\u4E8C\
+    \u9805\u6F14\u7B97\u95A2\u6570).\n    int m_sz;                              //\
+    \ m_sz:=(\u8981\u7D20\u6570).\n    std::vector<int> m_log;                // m_log[x]:=(2^k<=x\
     \ \u3068\u306A\u308B\u6700\u5927\u306E\u6574\u6570k).\n    std::vector<std::vector<S>\
     \ > m_table;  // m_table[k][i]:=(\u9577\u3055\u304C2^k\u3067\uFF0C\u5DE6\u7AEF\
     \u304Ci\u3067\u3042\u308B\u533A\u9593\u306E\u30AF\u30A8\u30EA).\n\npublic:\n \
@@ -60,15 +60,15 @@ data:
     \ << m_log[length])]);\n    }\n};\n\n}  // namespace algorithm\n\n#endif\n"
   dependsOn: []
   isVerificationFile: false
-  path: src/DataStructure/sparse_table.hpp
+  path: src/DataStructure/SegmentTree/sparse_table.hpp
   requiredBy: []
-  timestamp: '2023-08-16 14:54:01+09:00'
+  timestamp: '2023-08-31 11:59:12+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: src/DataStructure/sparse_table.hpp
+documentation_of: src/DataStructure/SegmentTree/sparse_table.hpp
 layout: document
 redirect_from:
-- /library/src/DataStructure/sparse_table.hpp
-- /library/src/DataStructure/sparse_table.hpp.html
-title: src/DataStructure/sparse_table.hpp
+- /library/src/DataStructure/SegmentTree/sparse_table.hpp
+- /library/src/DataStructure/SegmentTree/sparse_table.hpp.html
+title: src/DataStructure/SegmentTree/sparse_table.hpp
 ---
