@@ -17,7 +17,7 @@ data:
   bundledCode: "#line 1 \"test/aoj-GRL_5_C.test.cpp\"\n#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/5/GRL_5_C\"\
     \n\n#include <iostream>\n\n#line 1 \"src/Graph/Tree/lowest_common_ancestor.hpp\"\
     \n/**\n * @brief Lowest Common Ancestor\uFF08\u6700\u8FD1\u5171\u901A\u7956\u5148\
-    \uFF09\n * @docs //docs/Graph/Tree/lowest_common_ancestor.md\n */\n\n#ifndef ALGORITHM_LOWEST_COMMON_ANCESTOR_HPP\n\
+    \uFF09\n * @docs docs/Graph/Tree/lowest_common_ancestor.md\n */\n\n#ifndef ALGORITHM_LOWEST_COMMON_ANCESTOR_HPP\n\
     #define ALGORITHM_LOWEST_COMMON_ANCESTOR_HPP 1\n\n#include <algorithm>\n#include\
     \ <cassert>\n#include <limits>\n#include <map>\n#include <stack>\n#include <utility>\n\
     #include <vector>\n\nnamespace algorithm {\n\n// Lowest Common Ancestor\uFF08\u6700\
@@ -132,7 +132,7 @@ data:
   isVerificationFile: true
   path: test/aoj-GRL_5_C.test.cpp
   requiredBy: []
-  timestamp: '2023-08-31 17:36:25+09:00'
+  timestamp: '2023-08-31 17:50:36+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj-GRL_5_C.test.cpp

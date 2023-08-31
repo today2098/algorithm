@@ -105,7 +105,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: src/Graph/prim.hpp
       title: "Prim's Algorithm\uFF08\u6700\u5C0F\u5168\u57DF\u6728\uFF09"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: src/Graph/strongly_connected_components.hpp
       title: "\u5F37\u9023\u7D50\u6210\u5206\u5206\u89E3"
     - icon: ':warning:'
@@ -263,9 +263,6 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo-factorize-sieve.test.cpp
       title: test/yosupo-factorize-sieve.test.cpp
-    - icon: ':x:'
-      path: test/yosupo-scc.test.cpp
-      title: test/yosupo-scc.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo-shortest_path.test.cpp
       title: test/yosupo-shortest_path.test.cpp

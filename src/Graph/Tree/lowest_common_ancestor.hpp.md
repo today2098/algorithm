@@ -10,13 +10,13 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    _deprecated_at_docs: //docs/Graph/Tree/lowest_common_ancestor.md
+    _deprecated_at_docs: docs/Graph/Tree/lowest_common_ancestor.md
     document_title: "Lowest Common Ancestor\uFF08\u6700\u8FD1\u5171\u901A\u7956\u5148\
       \uFF09"
     links: []
   bundledCode: "#line 1 \"src/Graph/Tree/lowest_common_ancestor.hpp\"\n/**\n * @brief\
     \ Lowest Common Ancestor\uFF08\u6700\u8FD1\u5171\u901A\u7956\u5148\uFF09\n * @docs\
-    \ //docs/Graph/Tree/lowest_common_ancestor.md\n */\n\n#ifndef ALGORITHM_LOWEST_COMMON_ANCESTOR_HPP\n\
+    \ docs/Graph/Tree/lowest_common_ancestor.md\n */\n\n#ifndef ALGORITHM_LOWEST_COMMON_ANCESTOR_HPP\n\
     #define ALGORITHM_LOWEST_COMMON_ANCESTOR_HPP 1\n\n#include <algorithm>\n#include\
     \ <cassert>\n#include <limits>\n#include <map>\n#include <stack>\n#include <utility>\n\
     #include <vector>\n\nnamespace algorithm {\n\n// Lowest Common Ancestor\uFF08\u6700\
@@ -111,7 +111,7 @@ data:
     \ vs.end(), comp);\n        return {st.top(), res};  // pair of (root, tree).\n\
     \    }\n};\n\n}  // namespace algorithm\n\n#endif\n"
   code: "/**\n * @brief Lowest Common Ancestor\uFF08\u6700\u8FD1\u5171\u901A\u7956\
-    \u5148\uFF09\n * @docs //docs/Graph/Tree/lowest_common_ancestor.md\n */\n\n#ifndef\
+    \u5148\uFF09\n * @docs docs/Graph/Tree/lowest_common_ancestor.md\n */\n\n#ifndef\
     \ ALGORITHM_LOWEST_COMMON_ANCESTOR_HPP\n#define ALGORITHM_LOWEST_COMMON_ANCESTOR_HPP\
     \ 1\n\n#include <algorithm>\n#include <cassert>\n#include <limits>\n#include <map>\n\
     #include <stack>\n#include <utility>\n#include <vector>\n\nnamespace algorithm\
@@ -209,7 +209,7 @@ data:
   isVerificationFile: false
   path: src/Graph/Tree/lowest_common_ancestor.hpp
   requiredBy: []
-  timestamp: '2023-08-31 17:36:25+09:00'
+  timestamp: '2023-08-31 17:50:36+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj-GRL_5_C.test.cpp
@@ -220,3 +220,6 @@ redirect_from:
 - /library/src/Graph/Tree/lowest_common_ancestor.hpp.html
 title: "Lowest Common Ancestor\uFF08\u6700\u8FD1\u5171\u901A\u7956\u5148\uFF09"
 ---
+## 参考文献
+
+- yaketake08. "LCAをベースに構築するAuxiliary Treeのメモ". Hatena Blog. <https://smijake3.hatenablog.com/entry/2019/09/15/200200>.

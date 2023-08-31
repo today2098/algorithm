@@ -6,12 +6,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj-GRL_3_C.test.cpp
     title: test/aoj-GRL_3_C.test.cpp
-  - icon: ':x:'
-    path: test/yosupo-scc.test.cpp
-    title: test/yosupo-scc.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     _deprecated_at_docs: docs/Graph/strongly_connected_components.md
     document_title: "\u5F37\u9023\u7D50\u6210\u5206\u5206\u89E3"
@@ -98,10 +95,9 @@ data:
   path: src/Graph/strongly_connected_components.hpp
   requiredBy: []
   timestamp: '2023-08-31 15:05:45+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj-GRL_3_C.test.cpp
-  - test/yosupo-scc.test.cpp
 documentation_of: src/Graph/strongly_connected_components.hpp
 layout: document
 redirect_from:
