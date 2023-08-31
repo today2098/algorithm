@@ -1,7 +1,7 @@
----
+<!-- ---
 title: 強連結成分分解
 documentation_of: //src/Graph/strongly_connected_components.hpp
----
+--- -->
 
 
 ## 概要

@@ -1,7 +1,7 @@
----
+<!-- ---
 title: Prim's Algorithm（最小全域木）
 documentation_of: //src/Graph/prim.hpp
----
+--- -->
 
 
 ## 概要

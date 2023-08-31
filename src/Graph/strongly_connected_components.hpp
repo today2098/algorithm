@@ -1,3 +1,8 @@
+/**
+ * @brief 強連結成分分解
+ * @docs docs/Graph/strongly_connected_components.md
+ */
+
 #ifndef ALGORITHM_STRONGLY_CONNECTED_COMPONENTS_HPP
 #define ALGORITHM_STRONGLY_CONNECTED_COMPONENTS_HPP 1
 

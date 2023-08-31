@@ -1,3 +1,8 @@
+/**
+ * @brief 重み付きUnion-Find木
+ * @docs docs/DataStructure/UnionFind/potentialized_union_find.md
+ */
+
 #ifndef ALGORITHM_POTENTIALIZED_UNION_FIND_HPP
 #define ALGORITHM_POTENTIALIZED_UNION_FIND_HPP 1
 

@@ -1,3 +1,8 @@
+/**
+ * @brief Dijkstra's Algorithm（単一始点最短経路）
+ * @docs docs/Graph/ShortestPath/dijkstra.md
+ */
+
 #ifndef ALGORITHM_DIJKSTRA_HPP
 #define ALGORITHM_DIJKSTRA_HPP 1
 

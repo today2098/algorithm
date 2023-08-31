@@ -1,3 +1,8 @@
+/**
+ * @brief 木の直径
+ * @docs docs/Graph/Tree/calc_tree_diameter.md
+ */
+
 #ifndef ALGORITHM_CALC_TREE_DIAMETER_HPP
 #define ALGORITHM_CALC_TREE_DIAMETER_HPP 1
 

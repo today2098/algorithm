@@ -1,3 +1,8 @@
+/**
+ * @brief Segment Tree
+ * @docs docs/DataStructure/SegmentTree/segment_tree.md
+ */
+
 #ifndef ALGORITHM_SEGMENT_TREE_HPP
 #define ALGORITHM_SEGMENT_TREE_HPP 1
 

@@ -1,3 +1,8 @@
+/**
+ * @brief Prim's Algorithm（最小全域木）
+ * @docs docs/Graph/prim.md
+ */
+
 #ifndef ALGORITHM_PRIM_HPP
 #define ALGORITHM_PRIM_HPP 1
 

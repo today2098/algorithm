@@ -1,3 +1,8 @@
+/**
+ * @brief Union-Find（素集合データ構造）
+ * @docs docs/DataStructure/UnionFind/union_find.md
+ */
+
 #ifndef ALGORITHM_UNION_FIND_HPP
 #define ALGORITHM_UNION_FIND_HPP 1
 
