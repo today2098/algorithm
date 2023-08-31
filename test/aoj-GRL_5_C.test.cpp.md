@@ -17,7 +17,7 @@ data:
   bundledCode: "#line 1 \"test/aoj-GRL_5_C.test.cpp\"\n#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/5/GRL_5_C\"\
     \n\n#include <iostream>\n\n#line 1 \"src/Graph/Tree/lowest_common_ancestor.hpp\"\
     \n/**\n * @brief Lowest Common Ancestor\uFF08\u6700\u8FD1\u5171\u901A\u7956\u5148\
-    \uFF09\n * @docs docs/Graph/Tree/lowest_common_ancestor.md\n */\n\n#ifndef ALGORITHM_LOWEST_COMMON_ANCESTOR_HPP\n\
+    \uFF09\n * @docs //docs/Graph/Tree/lowest_common_ancestor.md\n */\n\n#ifndef ALGORITHM_LOWEST_COMMON_ANCESTOR_HPP\n\
     #define ALGORITHM_LOWEST_COMMON_ANCESTOR_HPP 1\n\n#include <algorithm>\n#include\
     \ <cassert>\n#include <limits>\n#include <map>\n#include <stack>\n#include <utility>\n\
     #include <vector>\n\nnamespace algorithm {\n\n// Lowest Common Ancestor\uFF08\u6700\
@@ -110,11 +110,8 @@ data:
     \ > 1) {\n            int v = st.top();\n            st.pop();\n            res[st.top()].push_back(v);\n\
     \            res[v].push_back(st.top());\n        }\n        std::sort(vs.begin(),\
     \ vs.end(), comp);\n        return {st.top(), res};  // pair of (root, tree).\n\
-    \    }\n};\n\n}  // namespace algorithm\n\n#endif\n\n/*\n\u53C2\u8003\u6587\u732E\
-    \uFF1A\n- yaketake08, LCA\u3092\u30D9\u30FC\u30B9\u306B\u69CB\u7BC9\u3059\u308B\
-    Auxiliary Tree\u306E\u30E1\u30E2\uFF0CHatenaBlog, https://smijake3.hatenablog.com/entry/2019/09/15/200200\uFF08\
-    \u53C2\u71672023.8.13\uFF09\uFF0E\n*/\n#line 6 \"test/aoj-GRL_5_C.test.cpp\"\n\
-    \nint main() {\n    int n;\n    std::cin >> n;\n\n    algorithm::LCA lca(n);\n\
+    \    }\n};\n\n}  // namespace algorithm\n\n#endif\n#line 6 \"test/aoj-GRL_5_C.test.cpp\"\
+    \n\nint main() {\n    int n;\n    std::cin >> n;\n\n    algorithm::LCA lca(n);\n\
     \    for(int i = 0; i < n; ++i) {\n        int k;\n        std::cin >> k;\n\n\
     \        for(int j = 0; j < k; ++j) {\n            int c;\n            std::cin\
     \ >> c;\n            lca.add_edge(i, c);\n        }\n    }\n    lca.build();\n\
@@ -135,7 +132,7 @@ data:
   isVerificationFile: true
   path: test/aoj-GRL_5_C.test.cpp
   requiredBy: []
-  timestamp: '2023-08-31 14:17:44+09:00'
+  timestamp: '2023-08-31 17:36:25+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj-GRL_5_C.test.cpp

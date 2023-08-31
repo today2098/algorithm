@@ -10,15 +10,13 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    _deprecated_at_docs: docs/Graph/Tree/lowest_common_ancestor.md
+    _deprecated_at_docs: //docs/Graph/Tree/lowest_common_ancestor.md
     document_title: "Lowest Common Ancestor\uFF08\u6700\u8FD1\u5171\u901A\u7956\u5148\
       \uFF09"
-    links:
-    - "https://smijake3.hatenablog.com/entry/2019/09/15/200200\uFF08\u53C2\u71672023.8.13\uFF09\
-      \uFF0E"
+    links: []
   bundledCode: "#line 1 \"src/Graph/Tree/lowest_common_ancestor.hpp\"\n/**\n * @brief\
     \ Lowest Common Ancestor\uFF08\u6700\u8FD1\u5171\u901A\u7956\u5148\uFF09\n * @docs\
-    \ docs/Graph/Tree/lowest_common_ancestor.md\n */\n\n#ifndef ALGORITHM_LOWEST_COMMON_ANCESTOR_HPP\n\
+    \ //docs/Graph/Tree/lowest_common_ancestor.md\n */\n\n#ifndef ALGORITHM_LOWEST_COMMON_ANCESTOR_HPP\n\
     #define ALGORITHM_LOWEST_COMMON_ANCESTOR_HPP 1\n\n#include <algorithm>\n#include\
     \ <cassert>\n#include <limits>\n#include <map>\n#include <stack>\n#include <utility>\n\
     #include <vector>\n\nnamespace algorithm {\n\n// Lowest Common Ancestor\uFF08\u6700\
@@ -111,12 +109,9 @@ data:
     \ > 1) {\n            int v = st.top();\n            st.pop();\n            res[st.top()].push_back(v);\n\
     \            res[v].push_back(st.top());\n        }\n        std::sort(vs.begin(),\
     \ vs.end(), comp);\n        return {st.top(), res};  // pair of (root, tree).\n\
-    \    }\n};\n\n}  // namespace algorithm\n\n#endif\n\n/*\n\u53C2\u8003\u6587\u732E\
-    \uFF1A\n- yaketake08, LCA\u3092\u30D9\u30FC\u30B9\u306B\u69CB\u7BC9\u3059\u308B\
-    Auxiliary Tree\u306E\u30E1\u30E2\uFF0CHatenaBlog, https://smijake3.hatenablog.com/entry/2019/09/15/200200\uFF08\
-    \u53C2\u71672023.8.13\uFF09\uFF0E\n*/\n"
+    \    }\n};\n\n}  // namespace algorithm\n\n#endif\n"
   code: "/**\n * @brief Lowest Common Ancestor\uFF08\u6700\u8FD1\u5171\u901A\u7956\
-    \u5148\uFF09\n * @docs docs/Graph/Tree/lowest_common_ancestor.md\n */\n\n#ifndef\
+    \u5148\uFF09\n * @docs //docs/Graph/Tree/lowest_common_ancestor.md\n */\n\n#ifndef\
     \ ALGORITHM_LOWEST_COMMON_ANCESTOR_HPP\n#define ALGORITHM_LOWEST_COMMON_ANCESTOR_HPP\
     \ 1\n\n#include <algorithm>\n#include <cassert>\n#include <limits>\n#include <map>\n\
     #include <stack>\n#include <utility>\n#include <vector>\n\nnamespace algorithm\
@@ -209,15 +204,12 @@ data:
     \ > 1) {\n            int v = st.top();\n            st.pop();\n            res[st.top()].push_back(v);\n\
     \            res[v].push_back(st.top());\n        }\n        std::sort(vs.begin(),\
     \ vs.end(), comp);\n        return {st.top(), res};  // pair of (root, tree).\n\
-    \    }\n};\n\n}  // namespace algorithm\n\n#endif\n\n/*\n\u53C2\u8003\u6587\u732E\
-    \uFF1A\n- yaketake08, LCA\u3092\u30D9\u30FC\u30B9\u306B\u69CB\u7BC9\u3059\u308B\
-    Auxiliary Tree\u306E\u30E1\u30E2\uFF0CHatenaBlog, https://smijake3.hatenablog.com/entry/2019/09/15/200200\uFF08\
-    \u53C2\u71672023.8.13\uFF09\uFF0E\n*/\n"
+    \    }\n};\n\n}  // namespace algorithm\n\n#endif\n"
   dependsOn: []
   isVerificationFile: false
   path: src/Graph/Tree/lowest_common_ancestor.hpp
   requiredBy: []
-  timestamp: '2023-08-31 14:17:44+09:00'
+  timestamp: '2023-08-31 17:36:25+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj-GRL_5_C.test.cpp
@@ -228,7 +220,3 @@ redirect_from:
 - /library/src/Graph/Tree/lowest_common_ancestor.hpp.html
 title: "Lowest Common Ancestor\uFF08\u6700\u8FD1\u5171\u901A\u7956\u5148\uFF09"
 ---
-<!-- ---
-title: Lowest Common Ancestor（最近共通祖先）
-documentation_of: //src/Graph/Tree/lowest_common_ancestor.hpp
---- -->
