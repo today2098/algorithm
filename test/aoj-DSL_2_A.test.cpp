@@ -3,17 +3,18 @@
 #include <algorithm>
 #include <iostream>
 
-#include "../src/DataStructure/segment_tree.hpp"
+#include "../src/DataStructure/SegmentTree/segment_tree.hpp"
 
 int main() {
     int n;
     int q;
     std::cin >> n >> q;
 
-    using T = int;
-    const T e = (1 << 31) - 1;
+    using T = long long;
+    constexpr T e = (1LL << 31) - 1;
     auto op = [](T a, T b) -> T { return std::min(a, b); };
     algorithm::SegmentTree<T> segtree(op, e, n);
+
     while(q--) {
         int com;
         int x;

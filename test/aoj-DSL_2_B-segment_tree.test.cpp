@@ -2,7 +2,7 @@
 
 #include <iostream>
 
-#include "../src/DataStructure/segment_tree.hpp"
+#include "../src/DataStructure/SegmentTree/segment_tree.hpp"
 
 int main() {
     int n;
@@ -10,21 +10,18 @@ int main() {
     std::cin >> n >> q;
 
     using T = int;
-    const T e = 0;
+    constexpr T e = 0;
     auto op = [](T a, T b) -> T { return a + b; };
     algorithm::SegmentTree<T> segtree(op, e, n);
+
     while(q--) {
         int com;
         int x;
         int y;
         std::cin >> com >> x >> y;
+        x--;
 
-        if(com == 0) {
-            x--;
-            segtree.set(x, segtree.prod(x) + y);
-        } else {
-            x--;
-            std::cout << segtree.prod(x, y) << std::endl;
-        }
+        if(com == 0) segtree.set(x, segtree.prod(x) + y);
+        else std::cout << segtree.prod(x, y) << std::endl;
     }
 }

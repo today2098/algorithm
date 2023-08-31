@@ -2,7 +2,7 @@
 
 #include <iostream>
 
-#include "../src/Graph/dijkstra.hpp"
+#include "../src/Graph/ShortestPath/dijkstra.hpp"
 
 int main() {
     int n, m;
@@ -14,12 +14,14 @@ int main() {
         int s, t;
         int d;
         std::cin >> s >> t >> d;
+
         dijkstra.add_edge(s, t, d);
     }
     dijkstra.dijkstra(r);
 
     for(int i = 0; i < n; ++i) {
-        auto ans = dijkstra.distance(i);
+        auto &&ans = dijkstra.distance(i);
+
         if(ans == dijkstra.infinity()) std::cout << "INF" << std::endl;
         else std::cout << ans << std::endl;
     }

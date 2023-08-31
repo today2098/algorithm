@@ -2,7 +2,7 @@
 
 #include <iostream>
 
-#include "../src/Graph/dijkstra.hpp"
+#include "../src/Graph/ShortestPath/dijkstra.hpp"
 
 int main() {
     int n, m;
@@ -19,13 +19,13 @@ int main() {
     }
     dijkstra.dijkstra(s);
 
-    auto x = dijkstra.distance(t);
+    auto &&x = dijkstra.distance(t);
     if(x == dijkstra.infinity()) {
         std::cout << -1 << std::endl;
         return 0;
     }
 
-    auto path = dijkstra.shortest_path(t);
+    auto &&path = dijkstra.shortest_path(t);
     int y = path.size() - 1;
 
     std::cout << x << ' ' << y << std::endl;

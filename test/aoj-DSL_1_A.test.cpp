@@ -2,7 +2,7 @@
 
 #include <iostream>
 
-#include "../src/DataStructure/union_find.hpp"
+#include "../src/DataStructure/UnionFind/union_find.hpp"
 
 int main() {
     int n;

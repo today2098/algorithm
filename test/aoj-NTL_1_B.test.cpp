@@ -5,10 +5,10 @@
 #include "../src/Math/ModularArithmetic/mod_pow.hpp"
 
 int main() {
-    const int mod = 1e9 + 7;
+    constexpr int MOD = 1e9 + 7;
 
     int m, n;
     std::cin >> m >> n;
 
-    std::cout << algorithm::mod_pow(m, n, mod) << std::endl;
+    std::cout << algorithm::mod_pow(m, n, MOD) << std::endl;
 }

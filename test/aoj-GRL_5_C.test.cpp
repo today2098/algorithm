@@ -2,7 +2,7 @@
 
 #include <iostream>
 
-#include "../src/Graph/lowest_common_ancestor.hpp"
+#include "../src/Graph/Tree/lowest_common_ancestor.hpp"
 
 int main() {
     int n;
@@ -27,7 +27,6 @@ int main() {
     while(q--) {
         int u, v;
         std::cin >> u >> v;
-
         std::cout << lca.lca(u, v) << std::endl;
     }
 }

@@ -2,7 +2,7 @@
 
 #include <iostream>
 
-#include "../src/Graph/bellman_ford.hpp"
+#include "../src/Graph/ShortestPath/bellman_ford.hpp"
 
 int main() {
     int n, m;
@@ -14,17 +14,19 @@ int main() {
         int s, t;
         int d;
         std::cin >> s >> t >> d;
+
         bellman_ford.add_edge(s, t, d);
     }
 
-    auto res = bellman_ford.bellman_ford(r);
+    auto &&res = bellman_ford.bellman_ford(r);
     if(res) {
         std::cout << "NEGATIVE CYCLE" << std::endl;
         return 0;
     }
 
     for(int i = 0; i < n; ++i) {
-        auto ans = bellman_ford.distance(i);
+        auto &&ans = bellman_ford.distance(i);
+
         if(ans == bellman_ford.infinity()) std::cout << "INF" << std::endl;
         else std::cout << ans << std::endl;
     }

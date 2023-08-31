@@ -2,7 +2,7 @@
 
 #include <iostream>
 
-#include "../src/Graph/calc_tree_diameter.hpp"
+#include "../src/Graph/Tree/calc_tree_diameter.hpp"
 
 int main() {
     int n;
