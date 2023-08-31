@@ -1,6 +1,6 @@
 /**
  * @brief Lowest Common Ancestor（最近共通祖先）
- * @docs //docs/Graph/Tree/lowest_common_ancestor.md
+ * @docs docs/Graph/Tree/lowest_common_ancestor.md
  */
 
 #ifndef ALGORITHM_LOWEST_COMMON_ANCESTOR_HPP
