@@ -1,0 +1,14 @@
+<!-- ---
+title: Sieve of Eratosthenes（エラトステネスの篩）
+documentation_of: //src/Math/NumberTheory/sieve.hpp
+--- -->
+
+
+## 概要
+
+$1$ 以上 $N$ 以下の自然数を発見する．
+
+
+## 参考文献
+
+- drken. "エラトステネスの篩の活用法を総特集！ 〜 高速素因数分解・メビウスの反転公式 〜". Qiita. https://qiita.com/drken/items/3beb679e54266f20ab63.

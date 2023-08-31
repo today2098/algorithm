@@ -40,28 +40,28 @@ data:
     \ to < order());\n        m_edges.emplace_back(from, to, cost);\n    }\n    //\
     \ \u30B0\u30E9\u30D5\u5168\u4F53\u304B\u3089\u8CA0\u9589\u8DEF\u3092\u691C\u51FA\
     \u3059\u308B\uFF0EO(|V|*|E|).\n    bool find_negative_cycle() const {\n      \
-    \  std::vector<T> nd(order(), 0);\n        for(int i = 0; i < order(); ++i) {\n\
-    \            bool update = false;\n            for(const auto &[from, to, cost]\
-    \ : m_edges) {\n                if(nd[to] > nd[from] + cost) {\n             \
-    \       nd[to] = nd[from] + cost;\n                    update = true;\n      \
-    \          }\n            }\n            if(!update) return false;  // \u8CA0\u9589\
-    \u8DEF\u306A\u3057\uFF0E\n        }\n        return true;  // \u8CA0\u9589\u8DEF\
-    \u3042\u308A\uFF0E\n    }\n    // \u30CE\u30FC\u30C9s\u304B\u3089\u5404\u30CE\u30FC\
-    \u30C9\u3078\u306E\u6700\u77ED\u8DDD\u96E2\u3092\u6C42\u3081\u308B\uFF0EO(|V|*|E|).\n\
-    \    bool bellman_ford(int s) {\n        assert(0 <= s and s < order());\n   \
-    \     std::fill(m_d.begin(), m_d.end(), infinity());\n        m_d[s] = 0;\n  \
-    \      std::fill(m_pre.begin(), m_pre.end(), -1);\n        for(int i = 0; i <\
-    \ order(); ++i) {\n            bool update = false;\n            for(const auto\
-    \ &[from, to, cost] : m_edges) {\n                if(m_d[from] == infinity())\
+    \  std::vector<T> nd(order(), 0);\n        for(int i = 0, n = order(); i < n;\
+    \ ++i) {\n            bool update = false;\n            for(const auto &[from,\
+    \ to, cost] : m_edges) {\n                if(nd[to] > nd[from] + cost) {\n   \
+    \                 nd[to] = nd[from] + cost;\n                    update = true;\n\
+    \                }\n            }\n            if(!update) return false;  // \u8CA0\
+    \u9589\u8DEF\u306A\u3057\uFF0E\n        }\n        return true;  // \u8CA0\u9589\
+    \u8DEF\u3042\u308A\uFF0E\n    }\n    // \u30CE\u30FC\u30C9s\u304B\u3089\u5404\u30CE\
+    \u30FC\u30C9\u3078\u306E\u6700\u77ED\u8DDD\u96E2\u3092\u6C42\u3081\u308B\uFF0E\
+    O(|V|*|E|).\n    bool bellman_ford(int s) {\n        assert(0 <= s and s < order());\n\
+    \        std::fill(m_d.begin(), m_d.end(), infinity());\n        m_d[s] = 0;\n\
+    \        std::fill(m_pre.begin(), m_pre.end(), -1);\n        for(int i = 0, n\
+    \ = order(); i < n; ++i) {\n            bool update = false;\n            for(const\
+    \ auto &[from, to, cost] : m_edges) {\n                if(m_d[from] == infinity())\
     \ continue;\n                if(m_d[to] > m_d[from] + cost) {\n              \
     \      m_d[to] = m_d[from] + cost;\n                    m_pre[to] = from;\n  \
     \                  update = true;\n                }\n            }\n        \
     \    if(!update) return false;  // \u8CA0\u9589\u8DEF\u306A\u3057\uFF0E\n    \
-    \    }\n        for(int i = 0; i < order(); ++i) {\n            bool update =\
-    \ false;\n            for(const auto &[from, to, cost] : m_edges) {\n        \
-    \        if(m_d[from] == infinity() or m_d[to] == -infinity()) continue;\n   \
-    \             if(m_d[from] == -infinity() or m_d[to] > m_d[from] + cost) {\n \
-    \                   m_d[to] = -infinity();\n                    update = true;\n\
+    \    }\n        for(int i = 0, n = order(); i < n; ++i) {\n            bool update\
+    \ = false;\n            for(const auto &[from, to, cost] : m_edges) {\n      \
+    \          if(m_d[from] == infinity() or m_d[to] == -infinity()) continue;\n \
+    \               if(m_d[from] == -infinity() or m_d[to] > m_d[from] + cost) {\n\
+    \                    m_d[to] = -infinity();\n                    update = true;\n\
     \                }\n            }\n            if(!update) break;\n        }\n\
     \        return true;  // \u8CA0\u9589\u8DEF\u3042\u308A\uFF0E\n    }\n    //\
     \ \u30CE\u30FC\u30C9s\u304B\u3089t\u3078\u306E\u6700\u77ED\u8DDD\u96E2\u3092\u8FD4\
@@ -98,7 +98,7 @@ data:
   isVerificationFile: true
   path: test/aoj-GRL_1_B.test.cpp
   requiredBy: []
-  timestamp: '2023-08-31 14:17:44+09:00'
+  timestamp: '2023-08-31 15:14:24+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj-GRL_1_B.test.cpp

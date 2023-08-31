@@ -105,7 +105,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: src/Graph/prim.hpp
       title: "Prim's Algorithm\uFF08\u6700\u5C0F\u5168\u57DF\u6728\uFF09"
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: src/Graph/strongly_connected_components.hpp
       title: "\u5F37\u9023\u7D50\u6210\u5206\u5206\u89E3"
     - icon: ':warning:'
@@ -167,9 +167,10 @@ data:
     - icon: ':warning:'
       path: src/Math/NumberTheory/segment_sieve.hpp
       title: src/Math/NumberTheory/segment_sieve.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: src/Math/NumberTheory/sieve.hpp
-      title: src/Math/NumberTheory/sieve.hpp
+      title: "Sieve of Eratosthenes\uFF08\u30A8\u30E9\u30C8\u30B9\u30C6\u30CD\u30B9\
+        \u306E\u7BE9\uFF09"
   - name: src/Math
     pages:
     - icon: ':warning:'
@@ -259,6 +260,12 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj-NTL_1_B.test.cpp
       title: test/aoj-NTL_1_B.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo-factorize-sieve.test.cpp
+      title: test/yosupo-factorize-sieve.test.cpp
+    - icon: ':x:'
+      path: test/yosupo-scc.test.cpp
+      title: test/yosupo-scc.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo-shortest_path.test.cpp
       title: test/yosupo-shortest_path.test.cpp

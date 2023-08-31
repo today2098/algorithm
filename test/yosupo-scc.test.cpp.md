@@ -6,15 +6,15 @@ data:
     title: "\u5F37\u9023\u7D50\u6210\u5206\u5206\u89E3"
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/3/GRL_3_C
+    PROBLEM: https://judge.yosupo.jp/problem/scc
     links:
-    - https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/3/GRL_3_C
-  bundledCode: "#line 1 \"test/aoj-GRL_3_C.test.cpp\"\n#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/3/GRL_3_C\"\
+    - https://judge.yosupo.jp/problem/scc
+  bundledCode: "#line 1 \"test/yosupo-scc.test.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/scc\"\
     \n\n#include <iostream>\n\n#line 1 \"src/Graph/strongly_connected_components.hpp\"\
     \n/**\n * @brief \u5F37\u9023\u7D50\u6210\u5206\u5206\u89E3\n * @docs docs/Graph/strongly_connected_components.md\n\
     \ */\n\n#ifndef ALGORITHM_STRONGLY_CONNECTED_COMPONENTS_HPP\n#define ALGORITHM_STRONGLY_CONNECTED_COMPONENTS_HPP\
@@ -54,32 +54,33 @@ data:
     \ ids] = scc();\n        std::vector<std::vector<int> > sccs(num_sccs);\n    \
     \    for(int v = 0, n = order(); v < n; ++v) sccs[ids[v]].push_back(v);\n    \
     \    return sccs;\n    }\n};\n\n}  // namespace algorithm\n\n#endif\n#line 6 \"\
-    test/aoj-GRL_3_C.test.cpp\"\n\nint main() {\n    int n, m;\n    std::cin >> n\
-    \ >> m;\n\n    algorithm::SCC scc(n);\n    for(int i = 0; i < m; ++i) {\n    \
-    \    int s, t;\n        std::cin >> s >> t;\n\n        scc.add_edge(s, t);\n \
-    \   }\n    auto &&[_, ids] = scc.scc();\n\n    int q;\n    std::cin >> q;\n\n\
-    \    while(q--) {\n        int u, v;\n        std::cin >> u >> v;\n\n        std::cout\
-    \ << (ids[u] == ids[v]) << std::endl;\n    }\n}\n"
-  code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/3/GRL_3_C\"\
-    \n\n#include <iostream>\n\n#include \"../src/Graph/strongly_connected_components.hpp\"\
-    \n\nint main() {\n    int n, m;\n    std::cin >> n >> m;\n\n    algorithm::SCC\
-    \ scc(n);\n    for(int i = 0; i < m; ++i) {\n        int s, t;\n        std::cin\
-    \ >> s >> t;\n\n        scc.add_edge(s, t);\n    }\n    auto &&[_, ids] = scc.scc();\n\
-    \n    int q;\n    std::cin >> q;\n\n    while(q--) {\n        int u, v;\n    \
-    \    std::cin >> u >> v;\n\n        std::cout << (ids[u] == ids[v]) << std::endl;\n\
-    \    }\n}\n"
+    test/yosupo-scc.test.cpp\"\n\nint main() {\n    int n, m;\n    std::cin >> n >>\
+    \ m;\n\n    algorithm::SCC scc(n);\n    for(int i = 0; i < m; ++i) {\n       \
+    \ int a, b;\n        std::cin >> a >> b;\n\n        scc.add_edge(a, b);\n    }\n\
+    \n    auto &&res = scc.decompose();\n\n    std::cout << res.size() << '\\n';\n\
+    \    for(const auto &vs : res) {\n        std::cout << vs.size();\n        for(const\
+    \ auto &v : vs) std::cout << ' ' << v;\n        std::cout << std::endl;\n    }\n\
+    }\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/scc\"\n\n#include <iostream>\n\
+    \n#include \"../src/Graph/strongly_connected_components.hpp\"\n\nint main() {\n\
+    \    int n, m;\n    std::cin >> n >> m;\n\n    algorithm::SCC scc(n);\n    for(int\
+    \ i = 0; i < m; ++i) {\n        int a, b;\n        std::cin >> a >> b;\n\n   \
+    \     scc.add_edge(a, b);\n    }\n\n    auto &&res = scc.decompose();\n\n    std::cout\
+    \ << res.size() << '\\n';\n    for(const auto &vs : res) {\n        std::cout\
+    \ << vs.size();\n        for(const auto &v : vs) std::cout << ' ' << v;\n    \
+    \    std::cout << std::endl;\n    }\n}\n"
   dependsOn:
   - src/Graph/strongly_connected_components.hpp
   isVerificationFile: true
-  path: test/aoj-GRL_3_C.test.cpp
+  path: test/yosupo-scc.test.cpp
   requiredBy: []
   timestamp: '2023-08-31 15:05:45+09:00'
-  verificationStatus: TEST_ACCEPTED
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: test/aoj-GRL_3_C.test.cpp
+documentation_of: test/yosupo-scc.test.cpp
 layout: document
 redirect_from:
-- /verify/test/aoj-GRL_3_C.test.cpp
-- /verify/test/aoj-GRL_3_C.test.cpp.html
-title: test/aoj-GRL_3_C.test.cpp
+- /verify/test/yosupo-scc.test.cpp
+- /verify/test/yosupo-scc.test.cpp.html
+title: test/yosupo-scc.test.cpp
 ---

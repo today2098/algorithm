@@ -6,9 +6,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj-GRL_3_C.test.cpp
     title: test/aoj-GRL_3_C.test.cpp
-  _isVerificationFailed: false
+  - icon: ':x:'
+    path: test/yosupo-scc.test.cpp
+    title: test/yosupo-scc.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     _deprecated_at_docs: docs/Graph/strongly_connected_components.md
     document_title: "\u5F37\u9023\u7D50\u6210\u5206\u5206\u89E3"
@@ -33,7 +36,7 @@ data:
     \        // low[v]:=(DFS\u6728\u306B\u304A\u3044\u3066\uFF0C\u30CE\u30FC\u30C9\
     v\u304B\u3089\u8449\u65B9\u5411\u306B0\u56DE\u4EE5\u4E0A\uFF0C\u5F8C\u9000\u8FBA\
     \u3092\u9AD8\u30051\u56DE\u7528\u3044\u3066\u5230\u9054\u3067\u304D\u308B\u30CE\
-    \u30FC\u30C9w\u306Eord[w]\u306E\u6700\u5C0F\u5024).\n        std::vector<int>\
+    \u30FC\u30C9w\u3067\u306Eord[w]\u306E\u6700\u5C0F\u5024).\n        std::vector<int>\
     \ ord(order(), -1), low(order());\n        int now = 0;\n        std::stack<int>\
     \ visited;\n        auto dfs = [&](auto self, int u) -> void {\n            ord[u]\
     \ = low[u] = now++;\n            visited.push(u);\n            for(int to : m_g[u])\
@@ -44,14 +47,14 @@ data:
     \ {\n                    int v = visited.top();\n                    visited.pop();\n\
     \                    ord[v] = order();  // inf.\n                    ids[v] =\
     \ num_sccs;\n                    if(v == u) break;\n                }\n      \
-    \          num_sccs++;\n            }\n        };\n        for(int v = 0; v <\
-    \ order(); ++v) {\n            if(ord[v] == -1) dfs(dfs, v);\n        }\n    \
-    \    return {num_sccs, ids};\n    }\n    // \u6709\u5411\u30B0\u30E9\u30D5\u3092\
-    \u5F37\u9023\u7D50\u6210\u5206\u5206\u89E3\u3059\u308B\uFF0EO(|V|+|E|).\n    std::vector<std::vector<int>\
-    \ > decompose() const {\n        const auto &&[num_sccs, ids] = scc();\n     \
-    \   std::vector<std::vector<int> > sccs(num_sccs);\n        for(int v = 0; v <\
-    \ order(); ++v) sccs[ids[v]].push_back(v);\n        return sccs;\n    }\n};\n\n\
-    }  // namespace algorithm\n\n#endif\n"
+    \          num_sccs++;\n            }\n        };\n        for(int v = 0, n =\
+    \ order(); v < n; ++v) {\n            if(ord[v] == -1) dfs(dfs, v);\n        }\n\
+    \        return {num_sccs, ids};\n    }\n    // \u6709\u5411\u30B0\u30E9\u30D5\
+    \u3092\u5F37\u9023\u7D50\u6210\u5206\u5206\u89E3\u3059\u308B\uFF0EO(|V|+|E|).\n\
+    \    std::vector<std::vector<int> > decompose() const {\n        const auto &&[num_sccs,\
+    \ ids] = scc();\n        std::vector<std::vector<int> > sccs(num_sccs);\n    \
+    \    for(int v = 0, n = order(); v < n; ++v) sccs[ids[v]].push_back(v);\n    \
+    \    return sccs;\n    }\n};\n\n}  // namespace algorithm\n\n#endif\n"
   code: "/**\n * @brief \u5F37\u9023\u7D50\u6210\u5206\u5206\u89E3\n * @docs docs/Graph/strongly_connected_components.md\n\
     \ */\n\n#ifndef ALGORITHM_STRONGLY_CONNECTED_COMPONENTS_HPP\n#define ALGORITHM_STRONGLY_CONNECTED_COMPONENTS_HPP\
     \ 1\n\n#include <algorithm>\n#include <cassert>\n#include <stack>\n#include <utility>\n\
@@ -71,7 +74,7 @@ data:
     \        // low[v]:=(DFS\u6728\u306B\u304A\u3044\u3066\uFF0C\u30CE\u30FC\u30C9\
     v\u304B\u3089\u8449\u65B9\u5411\u306B0\u56DE\u4EE5\u4E0A\uFF0C\u5F8C\u9000\u8FBA\
     \u3092\u9AD8\u30051\u56DE\u7528\u3044\u3066\u5230\u9054\u3067\u304D\u308B\u30CE\
-    \u30FC\u30C9w\u306Eord[w]\u306E\u6700\u5C0F\u5024).\n        std::vector<int>\
+    \u30FC\u30C9w\u3067\u306Eord[w]\u306E\u6700\u5C0F\u5024).\n        std::vector<int>\
     \ ord(order(), -1), low(order());\n        int now = 0;\n        std::stack<int>\
     \ visited;\n        auto dfs = [&](auto self, int u) -> void {\n            ord[u]\
     \ = low[u] = now++;\n            visited.push(u);\n            for(int to : m_g[u])\
@@ -82,22 +85,23 @@ data:
     \ {\n                    int v = visited.top();\n                    visited.pop();\n\
     \                    ord[v] = order();  // inf.\n                    ids[v] =\
     \ num_sccs;\n                    if(v == u) break;\n                }\n      \
-    \          num_sccs++;\n            }\n        };\n        for(int v = 0; v <\
-    \ order(); ++v) {\n            if(ord[v] == -1) dfs(dfs, v);\n        }\n    \
-    \    return {num_sccs, ids};\n    }\n    // \u6709\u5411\u30B0\u30E9\u30D5\u3092\
-    \u5F37\u9023\u7D50\u6210\u5206\u5206\u89E3\u3059\u308B\uFF0EO(|V|+|E|).\n    std::vector<std::vector<int>\
-    \ > decompose() const {\n        const auto &&[num_sccs, ids] = scc();\n     \
-    \   std::vector<std::vector<int> > sccs(num_sccs);\n        for(int v = 0; v <\
-    \ order(); ++v) sccs[ids[v]].push_back(v);\n        return sccs;\n    }\n};\n\n\
-    }  // namespace algorithm\n\n#endif\n"
+    \          num_sccs++;\n            }\n        };\n        for(int v = 0, n =\
+    \ order(); v < n; ++v) {\n            if(ord[v] == -1) dfs(dfs, v);\n        }\n\
+    \        return {num_sccs, ids};\n    }\n    // \u6709\u5411\u30B0\u30E9\u30D5\
+    \u3092\u5F37\u9023\u7D50\u6210\u5206\u5206\u89E3\u3059\u308B\uFF0EO(|V|+|E|).\n\
+    \    std::vector<std::vector<int> > decompose() const {\n        const auto &&[num_sccs,\
+    \ ids] = scc();\n        std::vector<std::vector<int> > sccs(num_sccs);\n    \
+    \    for(int v = 0, n = order(); v < n; ++v) sccs[ids[v]].push_back(v);\n    \
+    \    return sccs;\n    }\n};\n\n}  // namespace algorithm\n\n#endif\n"
   dependsOn: []
   isVerificationFile: false
   path: src/Graph/strongly_connected_components.hpp
   requiredBy: []
-  timestamp: '2023-08-31 14:17:44+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2023-08-31 15:05:45+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/aoj-GRL_3_C.test.cpp
+  - test/yosupo-scc.test.cpp
 documentation_of: src/Graph/strongly_connected_components.hpp
 layout: document
 redirect_from:
