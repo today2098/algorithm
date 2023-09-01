@@ -1,3 +1,8 @@
+/**
+ * @brief Dinic's Algorithm（最大流）
+ * @docs docs/Graph/Flow/dinic.md
+ */
+
 #ifndef ALGORITHM_DINIC_HPP
 #define ALGORITHM_DINIC_HPP 1
 
@@ -21,9 +26,9 @@ class Dinic {
     };
 
     std::vector<std::vector<Edge> > m_g;      // m_g[v][]:=(ノードvの隣接リスト).
-    std::vector<std::pair<int, int> > m_pos;  // m_pos[i]:=(i番目の辺情報). pair of (from, index).
+    std::vector<std::pair<int, int> > m_pos;  // m_pos[i]:=(i番目の辺の情報). pair of (from, index).
 
-    // ノードsと各ノード間の長さを求める．
+    // ノードsと各ノード間の増加パスの長さを求める．
     void bfs(int s, std::vector<int> &d) const {
         std::fill(d.begin(), d.end(), -1);
         d[s] = 0;
@@ -85,7 +90,7 @@ public:
         assert(0 <= s and s < order());
         assert(0 <= t and t < order());
         T res = 0;
-        std::vector<int> d(order());     // d[v]:=(ノードsからvまでの長さ).
+        std::vector<int> d(order());     // d[v]:=(ノードs, v間の増加パスの長さ).
         std::vector<int> iter(order());  // iter[v]:=(m_g[v][]の次に調べるべきイテレータ).
         while(res < flow) {
             bfs(s, d);
@@ -103,7 +108,7 @@ public:
         const Edge &e = m_g[from][idx];
         return {from, e.to, e.cap + m_g[e.to][e.rev].cap, m_g[e.to][e.rev].cap};  // tuple of (from, to, cap, flow).
     }
-    // 最小カットによって，各ノードを分ける．
+    // 最小カットにより，グラフ上のノードを分割する．
     std::vector<bool> min_cut(int s) const {
         assert(0 <= s and s < order());
         std::vector<bool> res(order(), false);

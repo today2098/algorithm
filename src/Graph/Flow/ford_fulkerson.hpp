@@ -1,9 +1,15 @@
+/**
+ * @brief Ford-Fulkerson Algorithm（最大流）
+ * @docs docs/Graph/ford_fulkerson.md
+ */
+
 #ifndef ALGORITHM_FORD_FULKERSON_HPP
 #define ALGORITHM_FORD_FULKERSON_HPP 1
 
 #include <algorithm>
 #include <cassert>
 #include <limits>
+#include <utility>
 #include <vector>
 
 namespace algorithm {
@@ -18,7 +24,7 @@ class FordFulkerson {
     };
 
     std::vector<std::vector<Edge> > m_g;      // m_g[v][]:=(ノードvの隣接リスト).
-    std::vector<std::pair<int, int> > m_pos;  // m_pos[i]:=(i番目の辺情報). pair of (from, index).
+    std::vector<std::pair<int, int> > m_pos;  // m_pos[i]:=(i番目の辺の情報). pair of (from, index).
 
     // 増加パスを探す．
     T dfs(int v, int t, T flow, std::vector<bool> &seen) {
@@ -80,7 +86,7 @@ public:
         const Edge &e = m_g[from][idx];
         return {from, e.to, e.cap + m_g[e.to][e.rev].cap, m_g[e.to][e.rev].cap};  // tuple of (from, to, cap, flow).
     }
-    // 最小カットによって，各ノードを分ける．
+    // 最小カットにより，グラフ上のノードを分割する．
     std::vector<bool> min_cut(int s) const {
         assert(0 <= s and s < order());
         std::vector<bool> res(order(), false);
