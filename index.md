@@ -187,9 +187,9 @@ data:
     - icon: ':warning:'
       path: src/Others/imos_2d.hpp
       title: src/Others/imos_2d.hpp
-    - icon: ':warning:'
-      path: src/Others/mos_algorithm.hpp
-      title: src/Others/mos_algorithm.hpp
+    - icon: ':heavy_check_mark:'
+      path: src/Others/mo_algorithm.hpp
+      title: "Mo's Algorithm\uFF08\u30AF\u30A8\u30EA\u5E73\u65B9\u5206\u5272\uFF09"
   - name: src/String
     pages:
     - icon: ':warning:'
@@ -224,6 +224,12 @@ data:
   verificationCategories:
   - name: test
     pages:
+    - icon: ':heavy_check_mark:'
+      path: test/aoj-0425.test.cpp
+      title: test/aoj-0425.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/aoj-1276-sieve.test.cpp
+      title: test/aoj-1276-sieve.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/aoj-ALDS1_12_A.test.cpp
       title: test/aoj-ALDS1_12_A.test.cpp
@@ -260,9 +266,6 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj-NTL_1_B.test.cpp
       title: test/aoj-NTL_1_B.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/yosupo-factorize-sieve.test.cpp
-      title: test/yosupo-factorize-sieve.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo-shortest_path.test.cpp
       title: test/yosupo-shortest_path.test.cpp

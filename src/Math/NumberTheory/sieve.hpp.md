@@ -4,8 +4,8 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/yosupo-factorize-sieve.test.cpp
-    title: test/yosupo-factorize-sieve.test.cpp
+    path: test/aoj-1276-sieve.test.cpp
+    title: test/aoj-1276-sieve.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -111,7 +111,7 @@ data:
   timestamp: '2023-08-31 16:56:16+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo-factorize-sieve.test.cpp
+  - test/aoj-1276-sieve.test.cpp
 documentation_of: src/Math/NumberTheory/sieve.hpp
 layout: document
 redirect_from:

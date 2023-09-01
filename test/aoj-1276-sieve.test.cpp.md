@@ -15,9 +15,8 @@ data:
     PROBLEM: https://onlinejudge.u-aizu.ac.jp/challenges/sources/ICPC/Regional/1276
     links:
     - https://onlinejudge.u-aizu.ac.jp/challenges/sources/ICPC/Regional/1276
-  bundledCode: "#line 1 \"test/yosupo-factorize-sieve.test.cpp\"\n#define PROBLEM\
-    \ \"https://onlinejudge.u-aizu.ac.jp/challenges/sources/ICPC/Regional/1276\"\n\
-    \n#include <algorithm>\n#include <iostream>\n#include <iterator>\n#include <vector>\n\
+  bundledCode: "#line 1 \"test/aoj-1276-sieve.test.cpp\"\n#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/challenges/sources/ICPC/Regional/1276\"\
+    \n\n#include <algorithm>\n#include <iostream>\n#include <iterator>\n#include <vector>\n\
     \n#line 1 \"src/Math/NumberTheory/sieve.hpp\"\n/**\n * @brief Sieve of Eratosthenes\uFF08\
     \u30A8\u30E9\u30C8\u30B9\u30C6\u30CD\u30B9\u306E\u7BE9\uFF09\n * @docs docs/Math/NumberTheory/sieve.md\n\
     \ */\n\n#ifndef ALGORITHM_SIEVE_HPP\n#define ALGORITHM_SIEVE_HPP 1\n\n#line 10\
@@ -62,7 +61,7 @@ data:
     \ continue;\n            res[p] = -1;\n            for(int q = 2 * p; q <= m_mx;\
     \ q += p) {\n                if((q / p) % p == 0) res[q] = 0;\n              \
     \  else res[q] = -res[q];\n            }\n        }\n        return res;\n   \
-    \ }\n};\n\n}  // namespace algorithm\n\n#endif\n#line 9 \"test/yosupo-factorize-sieve.test.cpp\"\
+    \ }\n};\n\n}  // namespace algorithm\n\n#endif\n#line 9 \"test/aoj-1276-sieve.test.cpp\"\
     \n\nint main() {\n    constexpr int MX = 1299709;\n    algorithm::Sieve sieve(MX);\n\
     \n    std::vector<int> primes;\n    primes.reserve(100000);\n    for(int p = 2;\
     \ p <= MX; ++p) {\n        if(sieve.is_prime(p)) primes.push_back(p);\n    }\n\
@@ -82,15 +81,15 @@ data:
   dependsOn:
   - src/Math/NumberTheory/sieve.hpp
   isVerificationFile: true
-  path: test/yosupo-factorize-sieve.test.cpp
+  path: test/aoj-1276-sieve.test.cpp
   requiredBy: []
-  timestamp: '2023-08-31 17:03:16+09:00'
+  timestamp: '2023-08-31 19:44:59+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/yosupo-factorize-sieve.test.cpp
+documentation_of: test/aoj-1276-sieve.test.cpp
 layout: document
 redirect_from:
-- /verify/test/yosupo-factorize-sieve.test.cpp
-- /verify/test/yosupo-factorize-sieve.test.cpp.html
-title: test/yosupo-factorize-sieve.test.cpp
+- /verify/test/aoj-1276-sieve.test.cpp
+- /verify/test/aoj-1276-sieve.test.cpp.html
+title: test/aoj-1276-sieve.test.cpp
 ---
