@@ -1,45 +1,54 @@
-#ifndef ALGORITHM_MOS_ALGORITHM_HPP
-#define ALGORITHM_MOS_ALGORITHM_HPP 1
+/**
+ * @brief Mo's Algorithm（クエリ平方分割）
+ * @docs docs/Others/mo_algorithm.md
+ */
+
+#ifndef ALGORITHM_MO_HPP
+#define ALGORITHM_MO_HPP 1
 
 #include <algorithm>
 #include <cassert>
 #include <cmath>
+#include <tuple>
 #include <vector>
 
 namespace algorithm {
 
-// Mo's Algorithm.
+// Mo's Algorithm（クエリ平方分割）.
 class Mo {
-    int n;
-    int q;
-    std::vector<std::tuple<int, int, int> > query;
+    int m_len;                                        // m_len:=(区間の長さ).
+    int m_q;                                          // m_q:=(クエリ数).
+    std::vector<std::tuple<int, int, int> > m_query;  // m_query[i]:=(i番目の区間クエリ). tuple of (left, right, index).
 
-    // クエリ平方分割．
     void sort_query() {
-        int width = std::sqrt(n);
-        std::sort(query.begin(), query.end(), [width](const std::tuple<int, int, int> &a, const std::tuple<int, int, int> &b) -> bool {
+        int width = std::sqrt(m_len);
+        auto comp = [width](const std::tuple<int, int, int> &a, const std::tuple<int, int, int> &b) -> bool {
             const auto &[al, ar, _] = a;
             const auto &[bl, br, __] = b;
-            int block_a = al / width, block_b = bl / width;
-            if(block_a != block_b) return block_a < block_b;
-            return (block_a & 1 ? ar > br : ar < br);
-        });
+            int a_block = al / width, b_block = bl / width;
+            if(a_block == b_block) return (a_block & 1 ? ar > br : ar < br);
+            return a_block < b_block;
+        };
+        std::sort(m_query.begin(), m_query.end(), comp);
     }
 
 public:
     Mo() : Mo(0) {}
-    explicit Mo(int n_) : n(n_), q(0) {}
+    explicit Mo(int n) : m_len(n), m_q(0) {}
 
+    // 区間[l,r)のクエリを追加する．
     void insert(int l, int r) {
-        assert(0 <= l and l < r and r <= n);
-        query.emplace_back(l, r, q++);
+        assert(0 <= l and l < r and r <= m_len);
+        m_query.emplace_back(l, r, m_q++);
     }
-    // 各クエリを実行する．F1~5はラムダ式．O((N+Q)√N*α).
+    // 各クエリを実行する．引数はラムダ式．O(α(N+Q)√N).
+    template <typename F1, typename F2, typename F3>
+    void execute(const F1 &add, const F2 &del, const F3 &solve) { execute(add, del, add, del, solve); }
     template <typename F1, typename F2, typename F3, typename F4, typename F5>
-    void execute(F1 &&add_l, F2 &&add_r, F3 &&del_l, F4 &&del_r, F5 &&solve) {
+    void execute(const F1 &add_l, const F2 &del_l, const F3 &add_r, const F4 &del_r, const F5 &solve) {
         sort_query();
         int l = 0, r = 0;
-        for(const auto &[nl, nr, idx] : query) {
+        for(const auto &[nl, nr, idx] : m_query) {
             while(nl < l) add_l(--l);
             while(r < nr) add_r(r++);
             while(l < nl) del_l(l++);
@@ -47,16 +56,12 @@ public:
             solve(idx);
         }
     }
+    void reset() {
+        m_query.clear();
+        m_q = 0;
+    }
 };
 
 }  // namespace algorithm
 
 #endif
-
-/*
-参考文献
-- Mo's algorithm，アルゴリズムとデータ構造大全，https://take44444.github.io/Algorithm-Book/range/mo/main.html（参照2023.5.3）．
-- ageprocpp, Mo's algorithm（クエリ平方分割）の話，Qiita, https://qiita.com/ageprocpp/items/34121c58e571ea8c4023（参照2023.5.3）．
-- ei1333, Mo's algorithm, ei1333の日記，HatenaBlog, https://ei1333.hateblo.jp/entry/2017/09/11/211011（参照2023.5.4）.
-- すとれんじゃー，Mo's Algorithmのイメージを視覚的に理解したい，徒然，HatenaBlog, https://strangerxxx.hateblo.jp/entry/20230314/1678795200（参照2023.5.4）.
-*/
