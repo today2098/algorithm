@@ -72,10 +72,10 @@ data:
     pages:
     - icon: ':warning:'
       path: src/Graph/Flow/dinic.hpp
-      title: src/Graph/Flow/dinic.hpp
+      title: "Dinic's Algorithm\uFF08\u6700\u5927\u6D41\uFF09"
     - icon: ':warning:'
       path: src/Graph/Flow/ford_fulkerson.hpp
-      title: src/Graph/Flow/ford_fulkerson.hpp
+      title: "Ford-Fulkerson Algorithm\uFF08\u6700\u5927\u6D41\uFF09"
     - icon: ':warning:'
       path: src/Graph/Flow/primal_dual.hpp
       title: src/Graph/Flow/primal_dual.hpp
