@@ -7,11 +7,11 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    _deprecated_at_docs: docs/Graph/ford_fulkerson.md
+    _deprecated_at_docs: docs/Graph/Flow/ford_fulkerson.md
     document_title: "Ford-Fulkerson Algorithm\uFF08\u6700\u5927\u6D41\uFF09"
     links: []
   bundledCode: "#line 1 \"src/Graph/Flow/ford_fulkerson.hpp\"\n/**\n * @brief Ford-Fulkerson\
-    \ Algorithm\uFF08\u6700\u5927\u6D41\uFF09\n * @docs docs/Graph/ford_fulkerson.md\n\
+    \ Algorithm\uFF08\u6700\u5927\u6D41\uFF09\n * @docs docs/Graph/Flow/ford_fulkerson.md\n\
     \ */\n\n#ifndef ALGORITHM_FORD_FULKERSON_HPP\n#define ALGORITHM_FORD_FULKERSON_HPP\
     \ 1\n\n#include <algorithm>\n#include <cassert>\n#include <limits>\n#include <utility>\n\
     #include <vector>\n\nnamespace algorithm {\n\ntemplate <typename T>  // T:\u5BB9\
@@ -66,7 +66,7 @@ data:
     \      e.cap = e.cap + m_g[e.to][e.rev].cap;\n            m_g[e.to][e.rev].cap\
     \ = 0;\n        }\n    }\n};\n\n}  // namespace algorithm\n\n#endif\n"
   code: "/**\n * @brief Ford-Fulkerson Algorithm\uFF08\u6700\u5927\u6D41\uFF09\n *\
-    \ @docs docs/Graph/ford_fulkerson.md\n */\n\n#ifndef ALGORITHM_FORD_FULKERSON_HPP\n\
+    \ @docs docs/Graph/Flow/ford_fulkerson.md\n */\n\n#ifndef ALGORITHM_FORD_FULKERSON_HPP\n\
     #define ALGORITHM_FORD_FULKERSON_HPP 1\n\n#include <algorithm>\n#include <cassert>\n\
     #include <limits>\n#include <utility>\n#include <vector>\n\nnamespace algorithm\
     \ {\n\ntemplate <typename T>  // T:\u5BB9\u91CF\u306E\u578B.\nclass FordFulkerson\
@@ -123,7 +123,7 @@ data:
   isVerificationFile: false
   path: src/Graph/Flow/ford_fulkerson.hpp
   requiredBy: []
-  timestamp: '2023-09-02 01:17:16+09:00'
+  timestamp: '2023-09-02 01:30:35+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: src/Graph/Flow/ford_fulkerson.hpp
@@ -133,3 +133,24 @@ redirect_from:
 - /library/src/Graph/Flow/ford_fulkerson.hpp.html
 title: "Ford-Fulkerson Algorithm\uFF08\u6700\u5927\u6D41\uFF09"
 ---
+## 概要
+
+最大流問題を解く貪欲なアルゴリズム．
+1956年に L. R. Ford Jr. と D. R. Fulkerson により発表された．
+
+アルゴリズムの流れは次の通り．
+
+1. DFS により，残余グラフ上の増加パスを探す．
+1. 発見した増加パスにフローを流せるだけ流し，残余グラフを更新する．
+1. 残余グラフ上から増加パスが無くなるまで上記を繰り返す．
+
+最大流値を $F$ とすると，上記処理の反復回数は $F$ 回に抑えられる．
+また，各反復時において DFS に $O(|E|)$ の計算量を要する．
+よって，全体の計算量は $O(F|E|)$ となる．
+
+
+## 参考文献
+
+- 大槻兼資. "第16章 グラフ(4)：ネットワークフロー". 問題解決力を鍛える！ アルゴリズムとデータ構造. 秋葉拓哉監修. 講談社, 2020, p.283-309. 
+- "Ford–Fulkerson algorithm". Wikipedia. <https://en.wikipedia.org/wiki/Ford%E2%80%93Fulkerson_algorithm>.
+- "フォード・ファルカーソンのアルゴリズム". Wikipedia. <https://ja.wikipedia.org/wiki/フォード・ファルカーソンのアルゴリズム>.
