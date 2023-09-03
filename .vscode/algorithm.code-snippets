@@ -3314,6 +3314,21 @@
 		],
 		"description": "文字列剰余"
 	},
+	"table": {
+		"scope": "cpp",
+		"prefix": "table",
+		"body": [
+			"template <typename Type>",
+			"inline std::vector<Type> table(size_t n, const Type &val) { return std::vector<Type>(n, val); }",
+			"",
+			"template <typename... Args>",
+			"auto table(size_t n, const Args &...args) {",
+			"    auto val = table(args...);",
+			"    return std::vector<decltype(val)>(n, std::move(val));",
+			"}"
+		],
+		"description": ""
+	},
 	"z_algorithm": {
 		"scope": "cpp",
 		"prefix": "z_algorithm",

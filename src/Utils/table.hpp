@@ -1,6 +1,7 @@
 #ifndef ALGORITHM_TABLE_HPP
 #define ALGORITHM_TABLE_HPP 1
 
+#include <utility>
 #include <vector>
 
 namespace algorithm {
