@@ -1,6 +1,11 @@
+/**
+ * @brief Binary Indexed Tree
+ */
+
 #ifndef ALGORITHM_BINARY_INDEXED_TREE_HPP
 #define ALGORITHM_BINARY_INDEXED_TREE_HPP 1
 
+#include <algorithm>
 #include <cassert>
 #include <vector>
 
@@ -22,7 +27,9 @@ class BIT {
 public:
     // constructor. O(N).
     BIT() : BIT(0){};
-    explicit BIT(size_t n) : m_sz(n), m_tree(n + 1, 0) {}
+    explicit BIT(size_t n, T a = 0) : m_sz(n), m_tree(n + 1, a) {
+        if(a != 0) build();
+    }
     explicit BIT(const std::vector<T> &v) : m_sz(v.size()), m_tree(v.size() + 1) {
         std::copy(v.begin(), v.end(), m_tree.begin() + 1);
         build();
@@ -33,13 +40,13 @@ public:
     // k番目の要素にaを足す．O(logN).
     void add(int k, T a) {
         assert(1 <= k and k <= size());
-        for(; k <= size(); k += (k & -k)) m_tree[k] += a;
+        for(; k <= size(); k += k & -k) m_tree[k] += a;
     }
     // 区間[1,r]の総和を求める．O(logN).
     T sum(int r) const {
         assert(0 <= r and r <= size());
         T res = 0;
-        for(; r > 0; r -= (r & -r)) res += m_tree[r];
+        for(; r > 0; r -= r & -r) res += m_tree[r];
         return res;
     }
     // 区間[l,r]の総和を求める．O(logN).
@@ -50,8 +57,7 @@ public:
     // 全要素をaで埋める．O(N).
     void fill(T a = 0) {
         std::fill(m_tree.begin() + 1, m_tree.end(), a);
-        if(a == 0) return;
-        build();
+        if(a != 0) build();
     }
 };
 

@@ -1,6 +1,11 @@
+/**
+ * @brief Binary Indexed Tree (0-based index)
+ */
+
 #ifndef ALGORITHM_BINARY_INDEXED_TREE_ZERO_HPP
 #define ALGORITHM_BINARY_INDEXED_TREE_ZERO_HPP 1
 
+#include <algorithm>
 #include <cassert>
 #include <vector>
 
@@ -14,7 +19,7 @@ class BIT0 {
 
     void build() {
         for(int i = 0; i < size() - 1; ++i) {
-            int j = (i | (i + 1));
+            int j = i | i + 1;
             if(j < size()) m_tree[j] += m_tree[i];
         }
     }
@@ -22,7 +27,9 @@ class BIT0 {
 public:
     // constructor. O(N).
     BIT0() : BIT0(0){};
-    explicit BIT0(size_t n) : m_sz(n), m_tree(n, 0) {}
+    explicit BIT0(size_t n, T a = 0) : m_sz(n), m_tree(n, a) {
+        if(a != 0) build();
+    }
     explicit BIT0(const std::vector<T> &v) : m_sz(v.size()), m_tree(v) {
         build();
     }
@@ -38,7 +45,7 @@ public:
     T sum(int r) const {
         assert(0 <= r and r <= size());
         T res = 0;
-        for(r = r - 1; r >= 0; r = (r & (r + 1)) - 1) res += m_tree[r];
+        for(r = r - 1; r >= 0; r = (r & r + 1) - 1) res += m_tree[r];
         return res;
     }
     // 区間[l,r)の総和を求める．O(logN).
@@ -49,8 +56,7 @@ public:
     // 全要素をaで埋める．O(N).
     void fill(T a = 0) {
         std::fill(m_tree.begin(), m_tree.end(), a);
-        if(a == 0) return;
-        build();
+        if(a != 0) build();
     }
 };
 
