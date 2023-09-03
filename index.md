@@ -16,16 +16,16 @@ data:
     pages:
     - icon: ':warning:'
       path: src/DataStructure/SegmentTree/binary_indexed_tree.hpp
-      title: src/DataStructure/SegmentTree/binary_indexed_tree.hpp
+      title: Binary Indexed Tree
     - icon: ':warning:'
       path: src/DataStructure/SegmentTree/binary_indexed_tree_2d.hpp
       title: src/DataStructure/SegmentTree/binary_indexed_tree_2d.hpp
     - icon: ':warning:'
       path: src/DataStructure/SegmentTree/binary_indexed_tree_2d_zero.hpp
       title: src/DataStructure/SegmentTree/binary_indexed_tree_2d_zero.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: src/DataStructure/SegmentTree/binary_indexed_tree_zero.hpp
-      title: src/DataStructure/SegmentTree/binary_indexed_tree_zero.hpp
+      title: Binary Indexed Tree (0-based index)
     - icon: ':warning:'
       path: src/DataStructure/SegmentTree/lazy_segment_tree.hpp
       title: src/DataStructure/SegmentTree/lazy_segment_tree.hpp
@@ -266,6 +266,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj-NTL_1_B.test.cpp
       title: test/aoj-NTL_1_B.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo-point_add_range_sum-binary_indexed_tree_zero.test.cpp
+      title: test/yosupo-point_add_range_sum-binary_indexed_tree_zero.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo-shortest_path.test.cpp
       title: test/yosupo-shortest_path.test.cpp
