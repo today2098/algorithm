@@ -10,8 +10,9 @@ data:
       path: src/DP/lcs.hpp
       title: src/DP/lcs.hpp
     - icon: ':warning:'
-      path: src/DP/lis.hpp
-      title: src/DP/lis.hpp
+      path: src/DP/longest_increasing_subsequence.hpp
+      title: "Longest Increasing Subsequence\uFF08\u6700\u9577\u5897\u52A0\u90E8\u5206\
+        \u5217\uFF09"
   - name: src/DataStructure/SegmentTree
     pages:
     - icon: ':warning:'
@@ -32,9 +33,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: src/DataStructure/SegmentTree/segment_tree.hpp
       title: Segment Tree
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: src/DataStructure/SegmentTree/sparse_table.hpp
-      title: src/DataStructure/SegmentTree/sparse_table.hpp
+      title: Sparse Table
   - name: src/DataStructure/UnionFind
     pages:
     - icon: ':heavy_check_mark:'
@@ -273,8 +274,11 @@ data:
       path: test/yosupo-shortest_path.test.cpp
       title: test/yosupo-shortest_path.test.cpp
     - icon: ':heavy_check_mark:'
-      path: test/yosupo-staticrmq.test.cpp
-      title: test/yosupo-staticrmq.test.cpp
+      path: test/yosupo-staticrmq-segment_tree.test.cpp
+      title: test/yosupo-staticrmq-segment_tree.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo-staticrmq-sparse_table.test.cpp
+      title: test/yosupo-staticrmq-sparse_table.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo-unionfind.test.cpp
       title: test/yosupo-unionfind.test.cpp

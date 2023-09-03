@@ -10,8 +10,8 @@ data:
     path: test/aoj-DSL_2_B-segment_tree.test.cpp
     title: test/aoj-DSL_2_B-segment_tree.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/yosupo-staticrmq.test.cpp
-    title: test/yosupo-staticrmq.test.cpp
+    path: test/yosupo-staticrmq-segment_tree.test.cpp
+    title: test/yosupo-staticrmq-segment_tree.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -161,7 +161,7 @@ data:
   verifiedWith:
   - test/aoj-DSL_2_B-segment_tree.test.cpp
   - test/aoj-DSL_2_A.test.cpp
-  - test/yosupo-staticrmq.test.cpp
+  - test/yosupo-staticrmq-segment_tree.test.cpp
 documentation_of: src/DataStructure/SegmentTree/segment_tree.hpp
 layout: document
 redirect_from:
