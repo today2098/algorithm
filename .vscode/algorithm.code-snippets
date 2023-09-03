@@ -3147,25 +3147,25 @@
 		"scope": "cpp",
 		"prefix": "lis",
 		"body": [
-			"// 最長増加部分列 (LIS: Longest Increasing Subsequence) の長さを求める．O(N*logN).",
+			"// Longest Increasing Subsequence（最長増加部分列）の長さを求める．O(N*logN).",
 			"template <typename Type, typename Func = std::function<bool(const Type &, const Type &)> >",
 			"std::vector<int> lis(",
 			"    const std::vector<Type> &v,",
 			"    const Func &comp = [](const Type &a, const Type &b) -> bool { return a < b; }) {",
 			"    const int n = v.size();",
-			"    std::vector<int> res(n);  // res[i]:=(v[:i+1]の最長増加部分列の長さ).",
-			"    std::vector<Type> dp;",
-			"    dp.reserve(n);",
+			"    std::vector<int> res(n + 1, 0);  // res[i]:=(v[:i]における最長増加部分列の長さ).",
+			"    std::vector<Type> sub;",
+			"    sub.reserve(n);",
 			"    for(int i = 0; i < n; ++i) {",
-			"        auto itr = std::lower_bound(dp.begin(), dp.end(), v[i], comp);",
-			"        if(itr == dp.end()) dp.push_back(v[i]);",
+			"        auto itr = std::lower_bound(sub.begin(), sub.end(), v[i], comp);",
+			"        if(itr == sub.end()) sub.push_back(v[i]);",
 			"        else *itr = v[i];",
-			"        res[i] = dp.size();",
+			"        res[i + 1] = sub.size();",
 			"    }",
 			"    return res;",
 			"}"
 		],
-		"description": "最長増加部分列 (LIS: Longest Increasing Subsequence)"
+		"description": "Longest Increasing Subsequence（最長増加部分列）"
 	},
 	"mod_inv": {
 		"prefix": "mod_inv",
