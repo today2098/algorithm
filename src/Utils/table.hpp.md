@@ -2,31 +2,38 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/aoj-3110.test.cpp
+    title: test/aoj-3110.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
+    _deprecated_at_docs: docs/Utils/table.md
     links: []
-  bundledCode: "#line 1 \"src/Utils/table.hpp\"\n\n\n\n#include <vector>\n\nnamespace\
+  bundledCode: "#line 1 \"src/Utils/table.hpp\"\n/**\n * @docs docs/Utils/table.md\n\
+    \ */\n\n#ifndef ALGORITHM_TABLE_HPP\n#define ALGORITHM_TABLE_HPP 1\n\n#include\
+    \ <utility>\n#include <vector>\n\nnamespace algorithm {\n\ntemplate <typename\
+    \ Type>\ninline std::vector<Type> table(size_t n, const Type &val) { return std::vector<Type>(n,\
+    \ val); }\n\ntemplate <typename... Args>\nauto table(size_t n, const Args &...args)\
+    \ {\n    auto val = table(args...);\n    return std::vector<decltype(val)>(n,\
+    \ std::move(val));\n}\n\n}  // namespace algorithm\n\n#endif\n"
+  code: "/**\n * @docs docs/Utils/table.md\n */\n\n#ifndef ALGORITHM_TABLE_HPP\n#define\
+    \ ALGORITHM_TABLE_HPP 1\n\n#include <utility>\n#include <vector>\n\nnamespace\
     \ algorithm {\n\ntemplate <typename Type>\ninline std::vector<Type> table(size_t\
     \ n, const Type &val) { return std::vector<Type>(n, val); }\n\ntemplate <typename...\
     \ Args>\nauto table(size_t n, const Args &...args) {\n    auto val = table(args...);\n\
     \    return std::vector<decltype(val)>(n, std::move(val));\n}\n\n}  // namespace\
-    \ algorithm\n\n\n"
-  code: "#ifndef ALGORITHM_TABLE_HPP\n#define ALGORITHM_TABLE_HPP 1\n\n#include <vector>\n\
-    \nnamespace algorithm {\n\ntemplate <typename Type>\ninline std::vector<Type>\
-    \ table(size_t n, const Type &val) { return std::vector<Type>(n, val); }\n\ntemplate\
-    \ <typename... Args>\nauto table(size_t n, const Args &...args) {\n    auto val\
-    \ = table(args...);\n    return std::vector<decltype(val)>(n, std::move(val));\n\
-    }\n\n}  // namespace algorithm\n\n#endif\n"
+    \ algorithm\n\n#endif\n"
   dependsOn: []
   isVerificationFile: false
   path: src/Utils/table.hpp
   requiredBy: []
-  timestamp: '2023-08-19 16:18:03+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  timestamp: '2023-09-04 17:33:16+09:00'
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - test/aoj-3110.test.cpp
 documentation_of: src/Utils/table.hpp
 layout: document
 redirect_from:
@@ -34,3 +41,6 @@ redirect_from:
 - /library/src/Utils/table.hpp.html
 title: src/Utils/table.hpp
 ---
+## 概要
+
+`std::vector` による多次元配列を作成する．

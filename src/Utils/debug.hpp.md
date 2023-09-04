@@ -2,114 +2,131 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/aoj-3110.test.cpp
+    title: test/aoj-3110.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
-    links:
-    - "https://naskya.net/post/0002/\uFF08\u53C2\u71672023.3.1\uFF09\uFF0E"
-    - "https://qiita.com/_EnumHack/items/ee2141ad47915c55d9cb\uFF08\u53C2\u71672023.3.1\uFF09\
-      \uFF0E"
-    - "https://qiita.com/terukazu/items/e257c05a7b191d32c577\uFF08\u53C2\u71672023.3.1\uFF09\
-      \uFF0E"
-  bundledCode: "#line 1 \"src/Utils/debug.hpp\"\n\n\n\n#include <iostream>\n#include\
-    \ <string>\n#include <type_traits>\n#include <utility>\n\nnamespace algorithm\
-    \ {\n\n// #define DEBUG\n\n#ifdef DEBUG\n\n#define debug(...) debug::debug_internal(__LINE__,\
-    \ #__VA_ARGS__, __VA_ARGS__)\n\nnamespace debug {\n\nstruct has_iterator_impl\
-    \ {\n    template <class T>\n    static std::true_type check(typename T::iterator\
-    \ *);\n\n    template <class T>\n    static std::false_type check(...);\n};\n\n\
-    template <class T>\nclass has_iterator : public decltype(has_iterator_impl::check<T>(nullptr))\
-    \ {};\n\n// Prototype declaration\nvoid print(const std::string &s);\ntemplate\
-    \ <typename T, typename U>\nvoid print(const std::pair<T, U> &p);\ntemplate <class\
-    \ T, std::size_t... Idx>\nvoid print_tuple(const T &t, std::index_sequence<Idx...>);\n\
-    template <typename... T>\nvoid print(const std::tuple<T...> &t);\ntemplate <typename\
+    _deprecated_at_docs: docs/Utils/debug.md
+    links: []
+  bundledCode: "#line 1 \"src/Utils/debug.hpp\"\n/**\n * @docs docs/Utils/debug.md\n\
+    \ */\n\n#ifndef ALGORITHM_DEBUG_HPP\n#define ALGORITHM_DEBUG_HPP 1\n\n#include\
+    \ <iostream>\n#include <iterator>\n#include <queue>\n#include <stack>\n#include\
+    \ <string>\n#include <tuple>\n#include <type_traits>\n#include <utility>\n\nnamespace\
+    \ algorithm {\n\n// #define DEBUG\n\n#ifdef DEBUG\n\n#define debug(...) debug::debug_internal(__LINE__,\
+    \ #__VA_ARGS__, __VA_ARGS__)\n\nnamespace debug {\n\nconstexpr std::ostream &os\
+    \ = std::cerr;\n\nstruct has_iterator_impl {\n    template <class T>\n    static\
+    \ constexpr std::true_type check(typename T::iterator *);\n\n    template <class\
+    \ T>\n    static constexpr std::false_type check(...);\n};\n\ntemplate <class\
+    \ T>\nclass has_iterator : public decltype(has_iterator_impl::check<T>(nullptr))\
+    \ {};\n\n// Prototype declaration.\nvoid print(const std::string &s);\nvoid print(const\
+    \ std::string_view &s);\ntemplate <typename T, typename U>\nvoid print(const std::pair<T,\
+    \ U> &p);\ntemplate <class T, std::size_t... Idx>\nvoid print_tuple(const T &t,\
+    \ std::index_sequence<Idx...>);\ntemplate <typename... T>\nvoid print(const std::tuple<T...>\
+    \ &t);\ntemplate <typename T>\nvoid print(const std::stack<T> &st);\ntemplate\
+    \ <typename T>\nvoid print(const std::queue<T> &que);\ntemplate <typename T, typename...\
+    \ U>\nvoid print(const std::priority_queue<T, U...> &pque);\ntemplate <typename\
     \ T, typename std::enable_if_t<has_iterator<T>::value, bool> = false>\nvoid print(const\
     \ T &v);\ntemplate <typename T, typename std::enable_if_t<!has_iterator<T>::value,\
     \ bool> = false>\nvoid print(const T &elem);\ntemplate <typename T, typename...\
     \ Args>\nvoid debug_internal(int l, std::string_view context, T &&first, Args\
-    \ &&...args);\n\nvoid print(const std::string &s) { std::cerr << s; }\n\ntemplate\
-    \ <typename T, typename U>\nvoid print(const std::pair<T, U> &p) {\n    std::cerr\
-    \ << \"{\";\n    print(p.first);\n    std::cerr << \", \";\n    print(p.second);\n\
-    \    std::cerr << \"}\";\n}\n\ntemplate <class T, std::size_t... Idx>\nvoid print_tuple(const\
-    \ T &t, std::index_sequence<Idx...>) {\n    std::cerr << \"{\";\n    ((std::cerr\
-    \ << (Idx == 0 ? \"\" : \", \"), print(std::get<Idx>(t))), ...);\n    std::cerr\
-    \ << \"}\";\n}\n\ntemplate <typename... T>\nvoid print(const std::tuple<T...>\
+    \ &&...args);\n\nvoid print(const std::string &s) { os << s; }\n\nvoid print(const\
+    \ std::string_view &s) { os << s; }\n\ntemplate <typename T, typename U>\nvoid\
+    \ print(const std::pair<T, U> &p) {\n    os << \"{\";\n    print(p.first);\n \
+    \   os << \", \";\n    print(p.second);\n    os << \"}\";\n}\n\ntemplate <class\
+    \ T, std::size_t... Idx>\nvoid print_tuple(const T &t, std::index_sequence<Idx...>)\
+    \ {\n    os << \"{\";\n    ((os << (Idx == 0 ? \"\" : \", \"), print(std::get<Idx>(t))),\
+    \ ...);\n    os << \"}\";\n}\n\ntemplate <typename... T>\nvoid print(const std::tuple<T...>\
     \ &t) {\n    print_tuple(t, std::make_index_sequence<sizeof...(T)>());\n}\n\n\
-    template <class T, typename std::enable_if_t<has_iterator<T>::value, bool> = false>\n\
-    void print(const T &v) {\n    std::cerr << \"[\";\n    for(auto itr = std::cbegin(v);\
-    \ itr != std::cend(v); ++itr) {\n        if(itr != std::cbegin(v)) std::cerr <<\
-    \ \" \";\n        print(*itr);\n    }\n    std::cerr << \"]\";\n}\n\ntemplate\
-    \ <typename T, typename std::enable_if_t<!has_iterator<T>::value, bool> = false>\n\
-    void print(const T &elem) { std::cerr << elem; }\n\ntemplate <typename T, typename...\
-    \ Args>\nvoid debug_internal(int l, std::string_view context, T &&first, Args\
-    \ &&...args) {\n    constexpr const char *open_bracket = (sizeof...(args) == 0\
-    \ ? \"\" : \"(\");\n    constexpr const char *close_bracket = (sizeof...(args)\
-    \ == 0 ? \"\" : \")\");\n    std::cerr << \"[L\" << l << \"] \" << open_bracket\
-    \ << context << close_bracket << \": \" << open_bracket;\n    print(std::forward<T>(first));\n\
-    \    ((std::cerr << \", \", print(std::forward<Args>(args))), ...);\n    std::cerr\
-    \ << close_bracket << std::endl;\n}\n\n}  // namespace debug\n\n#else\n\n#define\
-    \ debug(...) static_cast<void>(0)\n\n#endif\n\n}  // namespace algorithm\n\n\n\
-    \n/*\n\u53C2\u8003\u6587\u732E\uFF1A\n- \u7AF6\u6280\u30D7\u30ED\u30B0\u30E9\u30DF\
-    \u30F3\u30B0\u3067 print \u30C7\u30D0\u30C3\u30B0\uFF0Chttps://naskya.net/post/0002/\uFF08\
-    \u53C2\u71672023.3.1\uFF09\uFF0E\n- EnumHack, C++\u30E1\u30BF\u95A2\u6570\u306E\
-    \u307E\u3068\u3081\uFF0CQiita, https://qiita.com/_EnumHack/items/ee2141ad47915c55d9cb\uFF08\
-    \u53C2\u71672023.3.1\uFF09\uFF0E\n- terukazu, \u7279\u5B9A\u306E\u30E1\u30F3\u30D0\
-    \u95A2\u6570\u6709\u7121\u3067\u3001\u547C\u3073\u51FA\u3059\u95A2\u6570\u3092\
-    \u5909\u3048\u305F\u3044\uFF0CQiita, https://qiita.com/terukazu/items/e257c05a7b191d32c577\uFF08\
-    \u53C2\u71672023.3.1\uFF09\uFF0E\n*/\n"
-  code: "#ifndef ALGORITHM_DEBUG_HPP\n#define ALGORITHM_DEBUG_HPP 1\n\n#include <iostream>\n\
-    #include <string>\n#include <type_traits>\n#include <utility>\n\nnamespace algorithm\
-    \ {\n\n// #define DEBUG\n\n#ifdef DEBUG\n\n#define debug(...) debug::debug_internal(__LINE__,\
-    \ #__VA_ARGS__, __VA_ARGS__)\n\nnamespace debug {\n\nstruct has_iterator_impl\
-    \ {\n    template <class T>\n    static std::true_type check(typename T::iterator\
-    \ *);\n\n    template <class T>\n    static std::false_type check(...);\n};\n\n\
-    template <class T>\nclass has_iterator : public decltype(has_iterator_impl::check<T>(nullptr))\
-    \ {};\n\n// Prototype declaration\nvoid print(const std::string &s);\ntemplate\
-    \ <typename T, typename U>\nvoid print(const std::pair<T, U> &p);\ntemplate <class\
-    \ T, std::size_t... Idx>\nvoid print_tuple(const T &t, std::index_sequence<Idx...>);\n\
-    template <typename... T>\nvoid print(const std::tuple<T...> &t);\ntemplate <typename\
+    template <typename T>\nvoid print(const std::stack<T> &st) {\n    std::stack<T>\
+    \ tmp = st;\n    os << \"[\";\n    while(!tmp.empty()) {\n        T elem = tmp.top();\n\
+    \        tmp.pop();\n        print(elem);\n        if(!tmp.empty()) os << \" \"\
+    ;\n    }\n    os << \"]\";\n}\n\ntemplate <typename T>\nvoid print(const std::queue<T>\
+    \ &que) {\n    std::queue<T> tmp = que;\n    os << \"[\";\n    while(!tmp.empty())\
+    \ {\n        T elem = tmp.front();\n        tmp.pop();\n        print(elem);\n\
+    \        if(!tmp.empty()) os << \" \";\n    }\n    os << \"]\";\n}\n\ntemplate\
+    \ <typename T, typename... U>\nvoid print(const std::priority_queue<T, U...> &pque)\
+    \ {\n    std::priority_queue<T, U...> tmp = pque;\n    os << \"[\";\n    while(!tmp.empty())\
+    \ {\n        T elem = tmp.top();\n        tmp.pop();\n        print(elem);\n \
+    \       if(!tmp.empty()) os << \" \";\n    }\n    os << \"]\";\n}\n\ntemplate\
+    \ <class T, typename std::enable_if_t<has_iterator<T>::value, bool> = false>\n\
+    void print(const T &v) {\n    os << \"[\";\n    for(auto itr = std::cbegin(v);\
+    \ itr != std::cend(v); ++itr) {\n        if(itr != std::cbegin(v)) os << \" \"\
+    ;\n        print(*itr);\n    }\n    os << \"]\";\n}\n\ntemplate <typename T, typename\
+    \ std::enable_if_t<!has_iterator<T>::value, bool> = false>\nvoid print(const T\
+    \ &elem) { os << elem; }\n\ntemplate <typename T, typename... Args>\nvoid debug_internal(int\
+    \ l, std::string_view context, T &&first, Args &&...args) {\n    constexpr const\
+    \ char *open_bracket = (sizeof...(args) == 0 ? \"\" : \"(\");\n    constexpr const\
+    \ char *close_bracket = (sizeof...(args) == 0 ? \"\" : \")\");\n    os << \"[L\"\
+    \ << l << \"] \" << open_bracket << context << close_bracket << \": \" << open_bracket;\n\
+    \    print(std::forward<T>(first));\n    ((os << \", \", print(std::forward<Args>(args))),\
+    \ ...);\n    os << close_bracket << std::endl;\n}\n\n}  // namespace debug\n\n\
+    #else\n\n#define debug(...) static_cast<void>(0)\n\n#endif\n\n}  // namespace\
+    \ algorithm\n\n#endif\n"
+  code: "/**\n * @docs docs/Utils/debug.md\n */\n\n#ifndef ALGORITHM_DEBUG_HPP\n#define\
+    \ ALGORITHM_DEBUG_HPP 1\n\n#include <iostream>\n#include <iterator>\n#include\
+    \ <queue>\n#include <stack>\n#include <string>\n#include <tuple>\n#include <type_traits>\n\
+    #include <utility>\n\nnamespace algorithm {\n\n// #define DEBUG\n\n#ifdef DEBUG\n\
+    \n#define debug(...) debug::debug_internal(__LINE__, #__VA_ARGS__, __VA_ARGS__)\n\
+    \nnamespace debug {\n\nconstexpr std::ostream &os = std::cerr;\n\nstruct has_iterator_impl\
+    \ {\n    template <class T>\n    static constexpr std::true_type check(typename\
+    \ T::iterator *);\n\n    template <class T>\n    static constexpr std::false_type\
+    \ check(...);\n};\n\ntemplate <class T>\nclass has_iterator : public decltype(has_iterator_impl::check<T>(nullptr))\
+    \ {};\n\n// Prototype declaration.\nvoid print(const std::string &s);\nvoid print(const\
+    \ std::string_view &s);\ntemplate <typename T, typename U>\nvoid print(const std::pair<T,\
+    \ U> &p);\ntemplate <class T, std::size_t... Idx>\nvoid print_tuple(const T &t,\
+    \ std::index_sequence<Idx...>);\ntemplate <typename... T>\nvoid print(const std::tuple<T...>\
+    \ &t);\ntemplate <typename T>\nvoid print(const std::stack<T> &st);\ntemplate\
+    \ <typename T>\nvoid print(const std::queue<T> &que);\ntemplate <typename T, typename...\
+    \ U>\nvoid print(const std::priority_queue<T, U...> &pque);\ntemplate <typename\
     \ T, typename std::enable_if_t<has_iterator<T>::value, bool> = false>\nvoid print(const\
     \ T &v);\ntemplate <typename T, typename std::enable_if_t<!has_iterator<T>::value,\
     \ bool> = false>\nvoid print(const T &elem);\ntemplate <typename T, typename...\
     \ Args>\nvoid debug_internal(int l, std::string_view context, T &&first, Args\
-    \ &&...args);\n\nvoid print(const std::string &s) { std::cerr << s; }\n\ntemplate\
-    \ <typename T, typename U>\nvoid print(const std::pair<T, U> &p) {\n    std::cerr\
-    \ << \"{\";\n    print(p.first);\n    std::cerr << \", \";\n    print(p.second);\n\
-    \    std::cerr << \"}\";\n}\n\ntemplate <class T, std::size_t... Idx>\nvoid print_tuple(const\
-    \ T &t, std::index_sequence<Idx...>) {\n    std::cerr << \"{\";\n    ((std::cerr\
-    \ << (Idx == 0 ? \"\" : \", \"), print(std::get<Idx>(t))), ...);\n    std::cerr\
-    \ << \"}\";\n}\n\ntemplate <typename... T>\nvoid print(const std::tuple<T...>\
+    \ &&...args);\n\nvoid print(const std::string &s) { os << s; }\n\nvoid print(const\
+    \ std::string_view &s) { os << s; }\n\ntemplate <typename T, typename U>\nvoid\
+    \ print(const std::pair<T, U> &p) {\n    os << \"{\";\n    print(p.first);\n \
+    \   os << \", \";\n    print(p.second);\n    os << \"}\";\n}\n\ntemplate <class\
+    \ T, std::size_t... Idx>\nvoid print_tuple(const T &t, std::index_sequence<Idx...>)\
+    \ {\n    os << \"{\";\n    ((os << (Idx == 0 ? \"\" : \", \"), print(std::get<Idx>(t))),\
+    \ ...);\n    os << \"}\";\n}\n\ntemplate <typename... T>\nvoid print(const std::tuple<T...>\
     \ &t) {\n    print_tuple(t, std::make_index_sequence<sizeof...(T)>());\n}\n\n\
-    template <class T, typename std::enable_if_t<has_iterator<T>::value, bool> = false>\n\
-    void print(const T &v) {\n    std::cerr << \"[\";\n    for(auto itr = std::cbegin(v);\
-    \ itr != std::cend(v); ++itr) {\n        if(itr != std::cbegin(v)) std::cerr <<\
-    \ \" \";\n        print(*itr);\n    }\n    std::cerr << \"]\";\n}\n\ntemplate\
-    \ <typename T, typename std::enable_if_t<!has_iterator<T>::value, bool> = false>\n\
-    void print(const T &elem) { std::cerr << elem; }\n\ntemplate <typename T, typename...\
-    \ Args>\nvoid debug_internal(int l, std::string_view context, T &&first, Args\
-    \ &&...args) {\n    constexpr const char *open_bracket = (sizeof...(args) == 0\
-    \ ? \"\" : \"(\");\n    constexpr const char *close_bracket = (sizeof...(args)\
-    \ == 0 ? \"\" : \")\");\n    std::cerr << \"[L\" << l << \"] \" << open_bracket\
-    \ << context << close_bracket << \": \" << open_bracket;\n    print(std::forward<T>(first));\n\
-    \    ((std::cerr << \", \", print(std::forward<Args>(args))), ...);\n    std::cerr\
-    \ << close_bracket << std::endl;\n}\n\n}  // namespace debug\n\n#else\n\n#define\
-    \ debug(...) static_cast<void>(0)\n\n#endif\n\n}  // namespace algorithm\n\n#endif\n\
-    \n/*\n\u53C2\u8003\u6587\u732E\uFF1A\n- \u7AF6\u6280\u30D7\u30ED\u30B0\u30E9\u30DF\
-    \u30F3\u30B0\u3067 print \u30C7\u30D0\u30C3\u30B0\uFF0Chttps://naskya.net/post/0002/\uFF08\
-    \u53C2\u71672023.3.1\uFF09\uFF0E\n- EnumHack, C++\u30E1\u30BF\u95A2\u6570\u306E\
-    \u307E\u3068\u3081\uFF0CQiita, https://qiita.com/_EnumHack/items/ee2141ad47915c55d9cb\uFF08\
-    \u53C2\u71672023.3.1\uFF09\uFF0E\n- terukazu, \u7279\u5B9A\u306E\u30E1\u30F3\u30D0\
-    \u95A2\u6570\u6709\u7121\u3067\u3001\u547C\u3073\u51FA\u3059\u95A2\u6570\u3092\
-    \u5909\u3048\u305F\u3044\uFF0CQiita, https://qiita.com/terukazu/items/e257c05a7b191d32c577\uFF08\
-    \u53C2\u71672023.3.1\uFF09\uFF0E\n*/\n"
+    template <typename T>\nvoid print(const std::stack<T> &st) {\n    std::stack<T>\
+    \ tmp = st;\n    os << \"[\";\n    while(!tmp.empty()) {\n        T elem = tmp.top();\n\
+    \        tmp.pop();\n        print(elem);\n        if(!tmp.empty()) os << \" \"\
+    ;\n    }\n    os << \"]\";\n}\n\ntemplate <typename T>\nvoid print(const std::queue<T>\
+    \ &que) {\n    std::queue<T> tmp = que;\n    os << \"[\";\n    while(!tmp.empty())\
+    \ {\n        T elem = tmp.front();\n        tmp.pop();\n        print(elem);\n\
+    \        if(!tmp.empty()) os << \" \";\n    }\n    os << \"]\";\n}\n\ntemplate\
+    \ <typename T, typename... U>\nvoid print(const std::priority_queue<T, U...> &pque)\
+    \ {\n    std::priority_queue<T, U...> tmp = pque;\n    os << \"[\";\n    while(!tmp.empty())\
+    \ {\n        T elem = tmp.top();\n        tmp.pop();\n        print(elem);\n \
+    \       if(!tmp.empty()) os << \" \";\n    }\n    os << \"]\";\n}\n\ntemplate\
+    \ <class T, typename std::enable_if_t<has_iterator<T>::value, bool> = false>\n\
+    void print(const T &v) {\n    os << \"[\";\n    for(auto itr = std::cbegin(v);\
+    \ itr != std::cend(v); ++itr) {\n        if(itr != std::cbegin(v)) os << \" \"\
+    ;\n        print(*itr);\n    }\n    os << \"]\";\n}\n\ntemplate <typename T, typename\
+    \ std::enable_if_t<!has_iterator<T>::value, bool> = false>\nvoid print(const T\
+    \ &elem) { os << elem; }\n\ntemplate <typename T, typename... Args>\nvoid debug_internal(int\
+    \ l, std::string_view context, T &&first, Args &&...args) {\n    constexpr const\
+    \ char *open_bracket = (sizeof...(args) == 0 ? \"\" : \"(\");\n    constexpr const\
+    \ char *close_bracket = (sizeof...(args) == 0 ? \"\" : \")\");\n    os << \"[L\"\
+    \ << l << \"] \" << open_bracket << context << close_bracket << \": \" << open_bracket;\n\
+    \    print(std::forward<T>(first));\n    ((os << \", \", print(std::forward<Args>(args))),\
+    \ ...);\n    os << close_bracket << std::endl;\n}\n\n}  // namespace debug\n\n\
+    #else\n\n#define debug(...) static_cast<void>(0)\n\n#endif\n\n}  // namespace\
+    \ algorithm\n\n#endif\n"
   dependsOn: []
   isVerificationFile: false
   path: src/Utils/debug.hpp
   requiredBy: []
-  timestamp: '2023-08-19 16:15:46+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  timestamp: '2023-09-04 16:46:00+09:00'
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - test/aoj-3110.test.cpp
 documentation_of: src/Utils/debug.hpp
 layout: document
 redirect_from:
@@ -117,3 +134,51 @@ redirect_from:
 - /library/src/Utils/debug.hpp.html
 title: src/Utils/debug.hpp
 ---
+## 概要
+
+ローカル環境のみで実行される debug マクロ関数．
+引数にある変数，オブジェクトを標準エラー出力 (`std::cerr`) に出力する．
+
+対応している変数，オブジェクトは次の通り．
+
+- スカラー型の変数
+- 出力演算子が定義されているクラスのオブジェクト
+- iterator が実装されているクラス（STL のコンテナクラスなど）のオブジェクト
+- `std::string`, `std::string_view`, `std::pair`, `std::tuple`, `std::stack`, `std::queue`, `std::priority_queue`
+
+使用する際は，コンパイル時に「`-D=DEBUG`」と指定する．
+
+使用例は次の通り．
+変数名とその値，行番号を対応させて出力する．
+また可変長引数にも対応している．
+
+```main.cpp
+int a = 0;
+double b = 3.14;
+std::string s = "Hello, world!";
+std::pair<int, double> p({1, 1.41});
+std::vector<int> v({1, 1, 2, 3, 5});
+std::vector<std::vector<int> > vv({{0, 1}, {1, 0}});
+
+debug(a, b, s);
+debug(p);
+debug(v);
+debug(vv);
+`````
+
+```bash
+$ g++ main.cpp -std=c++17 -D=DEBUG -o debug.out
+$ ./debug
+[L50] (a, b, s): (0, 3.14, Hello, world!)
+[L51] p: {1, 1.41}
+[L52] v: [1 1 2 3 5]
+[L53] vv: [[0 1] [1 0]]
+``````
+
+
+## 参考文献
+
+- "SFINAE". Wikipedia. <https://ja.wikipedia.org/wiki/SFINAE>.
+- _EnumHack. "C++メタ関数のまとめ". Qiita. <https://qiita.com/_EnumHack/items/ee2141ad47915c55d9cb>.
+- terukazu. "特定のメンバ関数有無で、呼び出す関数を変えたい". Qiita. <https://qiita.com/terukazu/items/e257c05a7b191d32c577>.
+- "競技プログラミングで print デバッグ". <https://naskya.net/post/0002/>.

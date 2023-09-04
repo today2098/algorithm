@@ -71,7 +71,7 @@ data:
       title: src/Geometry/geometry_vector.hpp
   - name: src/Graph/Flow
     pages:
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: src/Graph/Flow/dinic.hpp
       title: "Dinic's Algorithm\uFF08\u6700\u5927\u6D41\uFF09"
     - icon: ':warning:'
@@ -142,9 +142,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: src/Math/ModularArithmetic/mod_pow.hpp
       title: "\u7E70\u308A\u8FD4\u3057\u4E8C\u4E57\u6CD5\uFF08mod\u4ED8\u304D\uFF09"
-    - icon: ':warning:'
+    - icon: ':x:'
       path: src/Math/ModularArithmetic/modint.hpp
-      title: src/Math/ModularArithmetic/modint.hpp
+      title: Modint
   - name: src/Math/NumberTheory
     pages:
     - icon: ':warning:'
@@ -213,15 +213,20 @@ data:
     - icon: ':warning:'
       path: src/Utils/convert.hpp
       title: src/Utils/convert.hpp
-    - icon: ':warning:'
+    - icon: ':x:'
       path: src/Utils/debug.hpp
       title: src/Utils/debug.hpp
-    - icon: ':warning:'
+    - icon: ':x:'
       path: src/Utils/table.hpp
       title: src/Utils/table.hpp
     - icon: ':warning:'
       path: src/Utils/timer.hpp
       title: src/Utils/timer.hpp
+  - name: test
+    pages:
+    - icon: ':warning:'
+      path: test/aoj-GRL_6_A.test-ford_fulkerson.cpp
+      title: test/aoj-GRL_6_A.test-ford_fulkerson.cpp
   verificationCategories:
   - name: test
     pages:
@@ -231,6 +236,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj-1276-sieve.test.cpp
       title: test/aoj-1276-sieve.test.cpp
+    - icon: ':x:'
+      path: test/aoj-3110.test.cpp
+      title: test/aoj-3110.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/aoj-ALDS1_12_A.test.cpp
       title: test/aoj-ALDS1_12_A.test.cpp
@@ -261,6 +269,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj-GRL_5_C.test.cpp
       title: test/aoj-GRL_5_C.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/aoj-GRL_6_A-dinic.test.cpp
+      title: test/aoj-GRL_6_A-dinic.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/aoj-NTL_1_A.test.cpp
       title: test/aoj-NTL_1_A.test.cpp
