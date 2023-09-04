@@ -1,14 +1,14 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy:
-  - icon: ':warning:'
-    path: test/aoj-GRL_6_A.test-ford_fulkerson.cpp
-    title: test/aoj-GRL_6_A.test-ford_fulkerson.cpp
-  _extendedVerifiedWith: []
+  _extendedRequiredBy: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/aoj-GRL_6_A-ford_fulkerson.test.cpp
+    title: test/aoj-GRL_6_A-ford_fulkerson.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     _deprecated_at_docs: docs/Graph/Flow/ford_fulkerson.md
     document_title: "Ford-Fulkerson Algorithm\uFF08\u6700\u5927\u6D41\uFF09"
@@ -126,11 +126,11 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: src/Graph/Flow/ford_fulkerson.hpp
-  requiredBy:
-  - test/aoj-GRL_6_A.test-ford_fulkerson.cpp
+  requiredBy: []
   timestamp: '2023-09-03 23:04:25+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/aoj-GRL_6_A-ford_fulkerson.test.cpp
 documentation_of: src/Graph/Flow/ford_fulkerson.hpp
 layout: document
 redirect_from:

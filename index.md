@@ -3,13 +3,13 @@ data:
   libraryCategories:
   - name: src/DP
     pages:
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: src/DP/edit_distance.hpp
-      title: src/DP/edit_distance.hpp
+      title: "Edit Distance\uFF08\u7DE8\u96C6\u8DDD\u96E2\uFF09"
     - icon: ':warning:'
       path: src/DP/lcs.hpp
       title: src/DP/lcs.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: src/DP/longest_increasing_subsequence.hpp
       title: "Longest Increasing Subsequence\uFF08\u6700\u9577\u5897\u52A0\u90E8\u5206\
         \u5217\uFF09"
@@ -74,7 +74,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: src/Graph/Flow/dinic.hpp
       title: "Dinic's Algorithm\uFF08\u6700\u5927\u6D41\uFF09"
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: src/Graph/Flow/ford_fulkerson.hpp
       title: "Ford-Fulkerson Algorithm\uFF08\u6700\u5927\u6D41\uFF09"
     - icon: ':warning:'
@@ -222,11 +222,6 @@ data:
     - icon: ':warning:'
       path: src/Utils/timer.hpp
       title: src/Utils/timer.hpp
-  - name: test
-    pages:
-    - icon: ':warning:'
-      path: test/aoj-GRL_6_A.test-ford_fulkerson.cpp
-      title: test/aoj-GRL_6_A.test-ford_fulkerson.cpp
   verificationCategories:
   - name: test
     pages:
@@ -242,6 +237,12 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj-ALDS1_12_A.test.cpp
       title: test/aoj-ALDS1_12_A.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/aoj-DPL_1_D.test.cpp
+      title: test/aoj-DPL_1_D.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/aoj-DPL_1_E.test.cpp
+      title: test/aoj-DPL_1_E.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/aoj-DSL_1_A.test.cpp
       title: test/aoj-DSL_1_A.test.cpp
@@ -272,6 +273,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj-GRL_6_A-dinic.test.cpp
       title: test/aoj-GRL_6_A-dinic.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/aoj-GRL_6_A-ford_fulkerson.test.cpp
+      title: test/aoj-GRL_6_A-ford_fulkerson.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/aoj-NTL_1_A.test.cpp
       title: test/aoj-NTL_1_A.test.cpp

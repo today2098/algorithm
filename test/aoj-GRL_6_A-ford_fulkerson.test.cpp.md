@@ -1,18 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: src/Graph/Flow/ford_fulkerson.hpp
     title: "Ford-Fulkerson Algorithm\uFF08\u6700\u5927\u6D41\uFF09"
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_6_A
     links:
     - https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_6_A
-  bundledCode: "#line 1 \"test/aoj-GRL_6_A.test-ford_fulkerson.cpp\"\n#define PROBLEM\
+  bundledCode: "#line 1 \"test/aoj-GRL_6_A-ford_fulkerson.test.cpp\"\n#define PROBLEM\
     \ \"https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_6_A\"\n\n#include\
     \ <iostream>\n\n#line 1 \"src/Graph/Flow/ford_fulkerson.hpp\"\n/**\n * @brief\
     \ Ford-Fulkerson Algorithm\uFF08\u6700\u5927\u6D41\uFF09\n * @docs docs/Graph/Flow/ford_fulkerson.md\n\
@@ -69,7 +71,7 @@ data:
     \ auto &[from, idx] : m_pos) {\n            Edge &e = m_g[from][idx];\n      \
     \      e.cap = e.cap + m_g[e.to][e.rev].cap;\n            m_g[e.to][e.rev].cap\
     \ = 0;\n        }\n    }\n};\n\n}  // namespace algorithm\n\n#endif\n#line 6 \"\
-    test/aoj-GRL_6_A.test-ford_fulkerson.cpp\"\n\nint main() {\n    int n, m;\n  \
+    test/aoj-GRL_6_A-ford_fulkerson.test.cpp\"\n\nint main() {\n    int n, m;\n  \
     \  std::cin >> n >> m;\n\n    algorithm::FordFulkerson<int> ford_fulkerson(n);\n\
     \    int s = 0, t = n - 1;\n    for(int i = 0; i < m; ++i) {\n        int u, v;\n\
     \        int c;\n        std::cin >> u >> v >> c;\n\n        ford_fulkerson.add_edge(u,\
@@ -84,16 +86,16 @@ data:
     \ t) << std::endl;\n}\n"
   dependsOn:
   - src/Graph/Flow/ford_fulkerson.hpp
-  isVerificationFile: false
-  path: test/aoj-GRL_6_A.test-ford_fulkerson.cpp
+  isVerificationFile: true
+  path: test/aoj-GRL_6_A-ford_fulkerson.test.cpp
   requiredBy: []
-  timestamp: '2023-09-03 23:04:25+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
+  timestamp: '2023-09-04 20:29:18+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/aoj-GRL_6_A.test-ford_fulkerson.cpp
+documentation_of: test/aoj-GRL_6_A-ford_fulkerson.test.cpp
 layout: document
 redirect_from:
-- /library/test/aoj-GRL_6_A.test-ford_fulkerson.cpp
-- /library/test/aoj-GRL_6_A.test-ford_fulkerson.cpp.html
-title: test/aoj-GRL_6_A.test-ford_fulkerson.cpp
+- /verify/test/aoj-GRL_6_A-ford_fulkerson.test.cpp
+- /verify/test/aoj-GRL_6_A-ford_fulkerson.test.cpp.html
+title: test/aoj-GRL_6_A-ford_fulkerson.test.cpp
 ---

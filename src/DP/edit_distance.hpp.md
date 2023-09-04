@@ -2,48 +2,57 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/aoj-DPL_1_E.test.cpp
+    title: test/aoj-DPL_1_E.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
+    document_title: "Edit Distance\uFF08\u7DE8\u96C6\u8DDD\u96E2\uFF09"
     links: []
-  bundledCode: "#line 1 \"src/DP/edit_distance.hpp\"\n\n\n\n#include <algorithm>\n\
-    #include <vector>\n\nnamespace algorithm {\n\n// \u7DE8\u96C6\u8DDD\u96E2 (edit\
-    \ distance)\uFF0E\u5F15\u6570\u306FSTL\u306E\u30B7\u30FC\u30B1\u30F3\u30B9\u30B3\
-    \u30F3\u30C6\u30CA\uFF0EO(|S|*|T|).\ntemplate <class Sequence>\nint edit_distance(const\
-    \ Sequence &s, const Sequence &t) {\n    const int m = s.size(), n = t.size();\n\
-    \    std::vector<std::vector<int> > dp(m + 1, std::vector<int>(n + 1));  // dp[i][j]:=(s[:i]\u3068\
-    t[:j]\u306E\u7DE8\u96C6\u8DDD\u96E2).\n    dp[0][0] = 0;\n    for(int i = 1; i\
-    \ <= m; ++i) dp[i][0] = i;\n    for(int j = 1; j <= n; ++j) dp[0][j] = j;\n  \
-    \  for(int i = 1; i <= m; ++i) {\n        for(int j = 1; j <= n; ++j) {\n    \
-    \        dp[i][j] = std::min({dp[i - 1][j] + 1, dp[i][j - 1] + 1, dp[i - 1][j\
-    \ - 1] + (s[i - 1] == t[j - 1] ? 0 : 1)});\n        }\n    }\n    return dp[m][n];\n\
-    }\n\n}  // namespace algorithm\n\n\n"
-  code: "#ifndef ALGORITHM_EDIT_DISTANCE_HPP\n#define ALGORITHM_EDIT_DISTANCE_HPP\
-    \ 1\n\n#include <algorithm>\n#include <vector>\n\nnamespace algorithm {\n\n//\
-    \ \u7DE8\u96C6\u8DDD\u96E2 (edit distance)\uFF0E\u5F15\u6570\u306FSTL\u306E\u30B7\
-    \u30FC\u30B1\u30F3\u30B9\u30B3\u30F3\u30C6\u30CA\uFF0EO(|S|*|T|).\ntemplate <class\
-    \ Sequence>\nint edit_distance(const Sequence &s, const Sequence &t) {\n    const\
-    \ int m = s.size(), n = t.size();\n    std::vector<std::vector<int> > dp(m + 1,\
-    \ std::vector<int>(n + 1));  // dp[i][j]:=(s[:i]\u3068t[:j]\u306E\u7DE8\u96C6\u8DDD\
-    \u96E2).\n    dp[0][0] = 0;\n    for(int i = 1; i <= m; ++i) dp[i][0] = i;\n \
-    \   for(int j = 1; j <= n; ++j) dp[0][j] = j;\n    for(int i = 1; i <= m; ++i)\
-    \ {\n        for(int j = 1; j <= n; ++j) {\n            dp[i][j] = std::min({dp[i\
-    \ - 1][j] + 1, dp[i][j - 1] + 1, dp[i - 1][j - 1] + (s[i - 1] == t[j - 1] ? 0\
-    \ : 1)});\n        }\n    }\n    return dp[m][n];\n}\n\n}  // namespace algorithm\n\
-    \n#endif\n"
+  bundledCode: "#line 1 \"src/DP/edit_distance.hpp\"\n/**\n * @brief Edit Distance\uFF08\
+    \u7DE8\u96C6\u8DDD\u96E2\uFF09\n */\n\n#ifndef ALGORITHM_EDIT_DISTANCE_HPP\n#define\
+    \ ALGORITHM_EDIT_DISTANCE_HPP 1\n\n#include <algorithm>\n#include <vector>\n\n\
+    namespace algorithm {\n\n// Edit Distance\uFF08\u7DE8\u96C6\u8DDD\u96E2\uFF09\
+    .\n// \u5F15\u6570\u306FSTL\u306E\u30B7\u30FC\u30B1\u30F3\u30B9\u30B3\u30F3\u30C6\
+    \u30CA\u3067\u3042\u308B\u3053\u3068\uFF0EO(|S|*|T|).\ntemplate <class Sequence>\n\
+    std::vector<std::vector<int> > edit_distance(const Sequence &s, const Sequence\
+    \ &t) {\n    const int n = s.size(), m = t.size();\n    // dp[i][j]:=(s[:i]\u3068\
+    t[:j]\u306E\u7DE8\u96C6\u8DDD\u96E2).\n    std::vector<std::vector<int> > dp(n\
+    \ + 1, std::vector<int>(m + 1, 0));\n    for(int i = 1; i <= n; ++i) dp[i][0]\
+    \ = i;\n    for(int j = 1; j <= m; ++j) dp[0][j] = j;\n    for(int i = 1; i <=\
+    \ n; ++i) {\n        for(int j = 1; j <= m; ++j) {\n            dp[i][j] = std::min({dp[i\
+    \ - 1][j] + 1,\n                                 dp[i][j - 1] + 1,\n         \
+    \                        dp[i - 1][j - 1] + (s[i - 1] == t[j - 1] ? 0 : 1)});\n\
+    \        }\n    }\n    return dp;\n}\n\n}  // namespace algorithm\n\n#endif\n"
+  code: "/**\n * @brief Edit Distance\uFF08\u7DE8\u96C6\u8DDD\u96E2\uFF09\n */\n\n\
+    #ifndef ALGORITHM_EDIT_DISTANCE_HPP\n#define ALGORITHM_EDIT_DISTANCE_HPP 1\n\n\
+    #include <algorithm>\n#include <vector>\n\nnamespace algorithm {\n\n// Edit Distance\uFF08\
+    \u7DE8\u96C6\u8DDD\u96E2\uFF09.\n// \u5F15\u6570\u306FSTL\u306E\u30B7\u30FC\u30B1\
+    \u30F3\u30B9\u30B3\u30F3\u30C6\u30CA\u3067\u3042\u308B\u3053\u3068\uFF0EO(|S|*|T|).\n\
+    template <class Sequence>\nstd::vector<std::vector<int> > edit_distance(const\
+    \ Sequence &s, const Sequence &t) {\n    const int n = s.size(), m = t.size();\n\
+    \    // dp[i][j]:=(s[:i]\u3068t[:j]\u306E\u7DE8\u96C6\u8DDD\u96E2).\n    std::vector<std::vector<int>\
+    \ > dp(n + 1, std::vector<int>(m + 1, 0));\n    for(int i = 1; i <= n; ++i) dp[i][0]\
+    \ = i;\n    for(int j = 1; j <= m; ++j) dp[0][j] = j;\n    for(int i = 1; i <=\
+    \ n; ++i) {\n        for(int j = 1; j <= m; ++j) {\n            dp[i][j] = std::min({dp[i\
+    \ - 1][j] + 1,\n                                 dp[i][j - 1] + 1,\n         \
+    \                        dp[i - 1][j - 1] + (s[i - 1] == t[j - 1] ? 0 : 1)});\n\
+    \        }\n    }\n    return dp;\n}\n\n}  // namespace algorithm\n\n#endif\n"
   dependsOn: []
   isVerificationFile: false
   path: src/DP/edit_distance.hpp
   requiredBy: []
-  timestamp: '2023-04-06 11:39:14+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  timestamp: '2023-09-04 21:09:09+09:00'
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/aoj-DPL_1_E.test.cpp
 documentation_of: src/DP/edit_distance.hpp
 layout: document
 redirect_from:
 - /library/src/DP/edit_distance.hpp
 - /library/src/DP/edit_distance.hpp.html
-title: src/DP/edit_distance.hpp
+title: "Edit Distance\uFF08\u7DE8\u96C6\u8DDD\u96E2\uFF09"
 ---
