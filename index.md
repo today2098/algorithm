@@ -142,7 +142,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: src/Math/ModularArithmetic/mod_pow.hpp
       title: "\u7E70\u308A\u8FD4\u3057\u4E8C\u4E57\u6CD5\uFF08mod\u4ED8\u304D\uFF09"
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: src/Math/ModularArithmetic/modint.hpp
       title: Modint
   - name: src/Math/NumberTheory
@@ -213,10 +213,10 @@ data:
     - icon: ':warning:'
       path: src/Utils/convert.hpp
       title: src/Utils/convert.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: src/Utils/debug.hpp
       title: src/Utils/debug.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: src/Utils/table.hpp
       title: src/Utils/table.hpp
     - icon: ':warning:'
@@ -236,7 +236,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj-1276-sieve.test.cpp
       title: test/aoj-1276-sieve.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj-3110.test.cpp
       title: test/aoj-3110.test.cpp
     - icon: ':heavy_check_mark:'

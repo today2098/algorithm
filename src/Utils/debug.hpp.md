@@ -3,25 +3,25 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj-3110.test.cpp
     title: test/aoj-3110.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     _deprecated_at_docs: docs/Utils/debug.md
     links: []
   bundledCode: "#line 1 \"src/Utils/debug.hpp\"\n/**\n * @docs docs/Utils/debug.md\n\
     \ */\n\n#ifndef ALGORITHM_DEBUG_HPP\n#define ALGORITHM_DEBUG_HPP 1\n\n#include\
     \ <iostream>\n#include <iterator>\n#include <queue>\n#include <stack>\n#include\
-    \ <string>\n#include <tuple>\n#include <type_traits>\n#include <utility>\n\nnamespace\
-    \ algorithm {\n\n// #define DEBUG\n\n#ifdef DEBUG\n\n#define debug(...) debug::debug_internal(__LINE__,\
-    \ #__VA_ARGS__, __VA_ARGS__)\n\nnamespace debug {\n\nconstexpr std::ostream &os\
-    \ = std::cerr;\n\nstruct has_iterator_impl {\n    template <class T>\n    static\
-    \ constexpr std::true_type check(typename T::iterator *);\n\n    template <class\
-    \ T>\n    static constexpr std::false_type check(...);\n};\n\ntemplate <class\
-    \ T>\nclass has_iterator : public decltype(has_iterator_impl::check<T>(nullptr))\
+    \ <string>\n#include <tuple>\n#include <type_traits>\n#include <utility>\n\n//\
+    \ #define DEBUG\n\n#ifdef DEBUG\n\n#define debug(...) algorithm::debug::debug_internal(__LINE__,\
+    \ #__VA_ARGS__, __VA_ARGS__)\n\nnamespace algorithm {\n\nnamespace debug {\n\n\
+    constexpr std::ostream &os = std::cerr;\n\nstruct has_iterator_impl {\n    template\
+    \ <class T>\n    static constexpr std::true_type check(typename T::iterator *);\n\
+    \n    template <class T>\n    static constexpr std::false_type check(...);\n};\n\
+    \ntemplate <class T>\nclass has_iterator : public decltype(has_iterator_impl::check<T>(nullptr))\
     \ {};\n\n// Prototype declaration.\nvoid print(const std::string &s);\nvoid print(const\
     \ std::string_view &s);\ntemplate <typename T, typename U>\nvoid print(const std::pair<T,\
     \ U> &p);\ntemplate <class T, std::size_t... Idx>\nvoid print_tuple(const T &t,\
@@ -64,17 +64,17 @@ data:
     \ << l << \"] \" << open_bracket << context << close_bracket << \": \" << open_bracket;\n\
     \    print(std::forward<T>(first));\n    ((os << \", \", print(std::forward<Args>(args))),\
     \ ...);\n    os << close_bracket << std::endl;\n}\n\n}  // namespace debug\n\n\
-    #else\n\n#define debug(...) static_cast<void>(0)\n\n#endif\n\n}  // namespace\
-    \ algorithm\n\n#endif\n"
+    }  // namespace algorithm\n\n#else\n\n#define debug(...) static_cast<void>(0)\n\
+    \n#endif\n\n#endif\n"
   code: "/**\n * @docs docs/Utils/debug.md\n */\n\n#ifndef ALGORITHM_DEBUG_HPP\n#define\
     \ ALGORITHM_DEBUG_HPP 1\n\n#include <iostream>\n#include <iterator>\n#include\
     \ <queue>\n#include <stack>\n#include <string>\n#include <tuple>\n#include <type_traits>\n\
-    #include <utility>\n\nnamespace algorithm {\n\n// #define DEBUG\n\n#ifdef DEBUG\n\
-    \n#define debug(...) debug::debug_internal(__LINE__, #__VA_ARGS__, __VA_ARGS__)\n\
-    \nnamespace debug {\n\nconstexpr std::ostream &os = std::cerr;\n\nstruct has_iterator_impl\
-    \ {\n    template <class T>\n    static constexpr std::true_type check(typename\
-    \ T::iterator *);\n\n    template <class T>\n    static constexpr std::false_type\
-    \ check(...);\n};\n\ntemplate <class T>\nclass has_iterator : public decltype(has_iterator_impl::check<T>(nullptr))\
+    #include <utility>\n\n// #define DEBUG\n\n#ifdef DEBUG\n\n#define debug(...) algorithm::debug::debug_internal(__LINE__,\
+    \ #__VA_ARGS__, __VA_ARGS__)\n\nnamespace algorithm {\n\nnamespace debug {\n\n\
+    constexpr std::ostream &os = std::cerr;\n\nstruct has_iterator_impl {\n    template\
+    \ <class T>\n    static constexpr std::true_type check(typename T::iterator *);\n\
+    \n    template <class T>\n    static constexpr std::false_type check(...);\n};\n\
+    \ntemplate <class T>\nclass has_iterator : public decltype(has_iterator_impl::check<T>(nullptr))\
     \ {};\n\n// Prototype declaration.\nvoid print(const std::string &s);\nvoid print(const\
     \ std::string_view &s);\ntemplate <typename T, typename U>\nvoid print(const std::pair<T,\
     \ U> &p);\ntemplate <class T, std::size_t... Idx>\nvoid print_tuple(const T &t,\
@@ -117,14 +117,14 @@ data:
     \ << l << \"] \" << open_bracket << context << close_bracket << \": \" << open_bracket;\n\
     \    print(std::forward<T>(first));\n    ((os << \", \", print(std::forward<Args>(args))),\
     \ ...);\n    os << close_bracket << std::endl;\n}\n\n}  // namespace debug\n\n\
-    #else\n\n#define debug(...) static_cast<void>(0)\n\n#endif\n\n}  // namespace\
-    \ algorithm\n\n#endif\n"
+    }  // namespace algorithm\n\n#else\n\n#define debug(...) static_cast<void>(0)\n\
+    \n#endif\n\n#endif\n"
   dependsOn: []
   isVerificationFile: false
   path: src/Utils/debug.hpp
   requiredBy: []
-  timestamp: '2023-09-04 16:46:00+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2023-09-04 17:57:10+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj-3110.test.cpp
 documentation_of: src/Utils/debug.hpp
