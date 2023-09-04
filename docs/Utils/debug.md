@@ -22,12 +22,10 @@ double b = 3.14;
 std::string s = "Hello, world!";
 std::pair<int, double> p({1, 1.41});
 std::vector<int> v({1, 1, 2, 3, 5});
-std::vector<std::vector<int> > vv({{0, 1}, {1, 0}});
 
 debug(a, b, s);
 debug(p);
 debug(v);
-debug(vv);
 `````
 
 ```bash
@@ -36,7 +34,6 @@ $ ./debug
 [L50] (a, b, s): (0, 3.14, Hello, world!)
 [L51] p: {1, 1.41}
 [L52] v: [1 1 2 3 5]
-[L53] vv: [[0 1] [1 0]]
 ``````
 
 
