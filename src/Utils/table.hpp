@@ -1,3 +1,7 @@
+/**
+ * @docs docs/Utils/table.md
+ */
+
 #ifndef ALGORITHM_TABLE_HPP
 #define ALGORITHM_TABLE_HPP 1
 
