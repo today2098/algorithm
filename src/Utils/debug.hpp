@@ -14,13 +14,13 @@
 #include <type_traits>
 #include <utility>
 
-namespace algorithm {
-
 // #define DEBUG
 
 #ifdef DEBUG
 
-#define debug(...) debug::debug_internal(__LINE__, #__VA_ARGS__, __VA_ARGS__)
+#define debug(...) algorithm::debug::debug_internal(__LINE__, #__VA_ARGS__, __VA_ARGS__)
+
+namespace algorithm {
 
 namespace debug {
 
@@ -148,12 +148,12 @@ void debug_internal(int l, std::string_view context, T &&first, Args &&...args) 
 
 }  // namespace debug
 
+}  // namespace algorithm
+
 #else
 
 #define debug(...) static_cast<void>(0)
 
 #endif
-
-}  // namespace algorithm
 
 #endif

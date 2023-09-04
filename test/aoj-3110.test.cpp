@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include <string>
+#include <vector>
 
 #include "../src/Math/ModularArithmetic/modint.hpp"
 #include "../src/Utils/debug.hpp"
@@ -13,7 +14,7 @@ int main() {
 
     std::vector<int> acc(10, 0);
     for(int i = 1; i < 10; ++i) acc[i] = acc[i - 1] + i;
-    algorithm::debug(acc);
+    debug(acc);
 
     const int n = s.size();
     auto &&dp = algorithm::table(n + 1, 2, algorithm::mint1000000007(0));
@@ -45,7 +46,7 @@ int main() {
                 dp2[i + 1][1] += dp2[i][1] * 10 + b * dp[i][1];
             }
         }
-        algorithm::debug(i + 1, dp[i + 1], dp2[i + 1]);
+        debug(i + 1, dp[i + 1], dp2[i + 1]);
     }
 
     auto ans = dp2[n][0] + dp2[n][1];
