@@ -43,8 +43,8 @@ void print(const std::string &s);
 void print(const std::string_view &s);
 template <typename T, typename U>
 void print(const std::pair<T, U> &p);
-template <class T, std::size_t... Idx>
-void print_tuple(const T &t, std::index_sequence<Idx...>);
+template <class T, std::size_t... Idxes>
+void print_tuple(const T &t, std::index_sequence<Idxes...>);
 template <typename... T>
 void print(const std::tuple<T...> &t);
 template <typename... T>
@@ -53,7 +53,7 @@ template <typename... T>
 void print(const std::queue<T...> &que);
 template <typename... T>
 void print(const std::priority_queue<T...> &pque);
-template <typename T, typename std::enable_if_t<has_iterator<T>::value, bool> = false>
+template <class T, typename std::enable_if_t<has_iterator<T>::value, bool> = false>
 void print(const T &v);
 template <typename T, typename std::enable_if_t<!has_iterator<T>::value, bool> = false>
 void print(const T &elem);
@@ -73,10 +73,10 @@ void print(const std::pair<T, U> &p) {
     os << "}";
 }
 
-template <class T, std::size_t... Idx>
-void print_tuple(const T &t, std::index_sequence<Idx...>) {
+template <class T, std::size_t... Idxes>
+void print_tuple(const T &t, std::index_sequence<Idxes...>) {
     os << "{";
-    ((os << (Idx == 0 ? "" : ", "), print(std::get<Idx>(t))), ...);
+    ((os << (Idxes == 0 ? "" : ", "), print(std::get<Idxes>(t))), ...);
     os << "}";
 }
 
