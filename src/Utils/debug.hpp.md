@@ -15,8 +15,8 @@ data:
   bundledCode: "#line 1 \"src/Utils/debug.hpp\"\n/**\n * @docs docs/Utils/debug.md\n\
     \ */\n\n#ifndef ALGORITHM_DEBUG_HPP\n#define ALGORITHM_DEBUG_HPP 1\n\n#include\
     \ <iostream>\n#include <iterator>\n#include <queue>\n#include <stack>\n#include\
-    \ <string>\n#include <tuple>\n#include <type_traits>\n#include <utility>\n\n//\
-    \ #define DEBUG\n\n#ifdef DEBUG\n\n#define debug(...) algorithm::debug::debug_internal(__LINE__,\
+    \ <string>\n#include <string_view>\n#include <tuple>\n#include <type_traits>\n\
+    #include <utility>\n\n// #define DEBUG\n\n#ifdef DEBUG\n\n#define debug(...) algorithm::debug::debug_internal(__LINE__,\
     \ #__VA_ARGS__, __VA_ARGS__)\n\nnamespace algorithm {\n\nnamespace debug {\n\n\
     constexpr std::ostream &os = std::cerr;\n\nstruct has_iterator_impl {\n    template\
     \ <class T>\n    static constexpr std::true_type check(typename T::iterator *);\n\
@@ -26,10 +26,10 @@ data:
     \ std::string_view &s);\ntemplate <typename T, typename U>\nvoid print(const std::pair<T,\
     \ U> &p);\ntemplate <class T, std::size_t... Idx>\nvoid print_tuple(const T &t,\
     \ std::index_sequence<Idx...>);\ntemplate <typename... T>\nvoid print(const std::tuple<T...>\
-    \ &t);\ntemplate <typename T>\nvoid print(const std::stack<T> &st);\ntemplate\
-    \ <typename T>\nvoid print(const std::queue<T> &que);\ntemplate <typename T, typename...\
-    \ U>\nvoid print(const std::priority_queue<T, U...> &pque);\ntemplate <typename\
-    \ T, typename std::enable_if_t<has_iterator<T>::value, bool> = false>\nvoid print(const\
+    \ &t);\ntemplate <typename... T>\nvoid print(const std::stack<T...> &st);\ntemplate\
+    \ <typename... T>\nvoid print(const std::queue<T...> &que);\ntemplate <typename...\
+    \ T>\nvoid print(const std::priority_queue<T...> &pque);\ntemplate <typename T,\
+    \ typename std::enable_if_t<has_iterator<T>::value, bool> = false>\nvoid print(const\
     \ T &v);\ntemplate <typename T, typename std::enable_if_t<!has_iterator<T>::value,\
     \ bool> = false>\nvoid print(const T &elem);\ntemplate <typename T, typename...\
     \ Args>\nvoid debug_internal(int l, std::string_view context, T &&first, Args\
@@ -41,19 +41,18 @@ data:
     \ {\n    os << \"{\";\n    ((os << (Idx == 0 ? \"\" : \", \"), print(std::get<Idx>(t))),\
     \ ...);\n    os << \"}\";\n}\n\ntemplate <typename... T>\nvoid print(const std::tuple<T...>\
     \ &t) {\n    print_tuple(t, std::make_index_sequence<sizeof...(T)>());\n}\n\n\
-    template <typename T>\nvoid print(const std::stack<T> &st) {\n    std::stack<T>\
-    \ tmp = st;\n    os << \"[\";\n    while(!tmp.empty()) {\n        T elem = tmp.top();\n\
-    \        tmp.pop();\n        print(elem);\n        if(!tmp.empty()) os << \" \"\
-    ;\n    }\n    os << \"]\";\n}\n\ntemplate <typename T>\nvoid print(const std::queue<T>\
-    \ &que) {\n    std::queue<T> tmp = que;\n    os << \"[\";\n    while(!tmp.empty())\
-    \ {\n        T elem = tmp.front();\n        tmp.pop();\n        print(elem);\n\
-    \        if(!tmp.empty()) os << \" \";\n    }\n    os << \"]\";\n}\n\ntemplate\
-    \ <typename T, typename... U>\nvoid print(const std::priority_queue<T, U...> &pque)\
-    \ {\n    std::priority_queue<T, U...> tmp = pque;\n    os << \"[\";\n    while(!tmp.empty())\
-    \ {\n        T elem = tmp.top();\n        tmp.pop();\n        print(elem);\n \
-    \       if(!tmp.empty()) os << \" \";\n    }\n    os << \"]\";\n}\n\ntemplate\
-    \ <class T, typename std::enable_if_t<has_iterator<T>::value, bool> = false>\n\
-    void print(const T &v) {\n    os << \"[\";\n    for(auto itr = std::cbegin(v);\
+    template <typename... T>\nvoid print(const std::stack<T...> &st) {\n    std::stack<T...>\
+    \ tmp = st;\n    os << \"[\";\n    while(!tmp.empty()) {\n        print(tmp.top());\n\
+    \        tmp.pop();\n        if(!tmp.empty()) os << \" \";\n    }\n    os << \"\
+    ]\";\n}\n\ntemplate <typename... T>\nvoid print(const std::queue<T...> &que) {\n\
+    \    std::queue<T...> tmp = que;\n    os << \"[\";\n    while(!tmp.empty()) {\n\
+    \        print(tmp.front());\n        tmp.pop();\n        if(!tmp.empty()) os\
+    \ << \" \";\n    }\n    os << \"]\";\n}\n\ntemplate <typename... T>\nvoid print(const\
+    \ std::priority_queue<T...> &pque) {\n    std::priority_queue<T...> tmp = pque;\n\
+    \    os << \"[\";\n    while(!tmp.empty()) {\n        print(tmp.top());\n    \
+    \    tmp.pop();\n        if(!tmp.empty()) os << \" \";\n    }\n    os << \"]\"\
+    ;\n}\n\ntemplate <class T, typename std::enable_if_t<has_iterator<T>::value, bool>\
+    \ = false>\nvoid print(const T &v) {\n    os << \"[\";\n    for(auto itr = std::cbegin(v);\
     \ itr != std::cend(v); ++itr) {\n        if(itr != std::cbegin(v)) os << \" \"\
     ;\n        print(*itr);\n    }\n    os << \"]\";\n}\n\ntemplate <typename T, typename\
     \ std::enable_if_t<!has_iterator<T>::value, bool> = false>\nvoid print(const T\
@@ -68,8 +67,9 @@ data:
     \n#endif\n\n#endif\n"
   code: "/**\n * @docs docs/Utils/debug.md\n */\n\n#ifndef ALGORITHM_DEBUG_HPP\n#define\
     \ ALGORITHM_DEBUG_HPP 1\n\n#include <iostream>\n#include <iterator>\n#include\
-    \ <queue>\n#include <stack>\n#include <string>\n#include <tuple>\n#include <type_traits>\n\
-    #include <utility>\n\n// #define DEBUG\n\n#ifdef DEBUG\n\n#define debug(...) algorithm::debug::debug_internal(__LINE__,\
+    \ <queue>\n#include <stack>\n#include <string>\n#include <string_view>\n#include\
+    \ <tuple>\n#include <type_traits>\n#include <utility>\n\n// #define DEBUG\n\n\
+    #ifdef DEBUG\n\n#define debug(...) algorithm::debug::debug_internal(__LINE__,\
     \ #__VA_ARGS__, __VA_ARGS__)\n\nnamespace algorithm {\n\nnamespace debug {\n\n\
     constexpr std::ostream &os = std::cerr;\n\nstruct has_iterator_impl {\n    template\
     \ <class T>\n    static constexpr std::true_type check(typename T::iterator *);\n\
@@ -79,10 +79,10 @@ data:
     \ std::string_view &s);\ntemplate <typename T, typename U>\nvoid print(const std::pair<T,\
     \ U> &p);\ntemplate <class T, std::size_t... Idx>\nvoid print_tuple(const T &t,\
     \ std::index_sequence<Idx...>);\ntemplate <typename... T>\nvoid print(const std::tuple<T...>\
-    \ &t);\ntemplate <typename T>\nvoid print(const std::stack<T> &st);\ntemplate\
-    \ <typename T>\nvoid print(const std::queue<T> &que);\ntemplate <typename T, typename...\
-    \ U>\nvoid print(const std::priority_queue<T, U...> &pque);\ntemplate <typename\
-    \ T, typename std::enable_if_t<has_iterator<T>::value, bool> = false>\nvoid print(const\
+    \ &t);\ntemplate <typename... T>\nvoid print(const std::stack<T...> &st);\ntemplate\
+    \ <typename... T>\nvoid print(const std::queue<T...> &que);\ntemplate <typename...\
+    \ T>\nvoid print(const std::priority_queue<T...> &pque);\ntemplate <typename T,\
+    \ typename std::enable_if_t<has_iterator<T>::value, bool> = false>\nvoid print(const\
     \ T &v);\ntemplate <typename T, typename std::enable_if_t<!has_iterator<T>::value,\
     \ bool> = false>\nvoid print(const T &elem);\ntemplate <typename T, typename...\
     \ Args>\nvoid debug_internal(int l, std::string_view context, T &&first, Args\
@@ -94,19 +94,18 @@ data:
     \ {\n    os << \"{\";\n    ((os << (Idx == 0 ? \"\" : \", \"), print(std::get<Idx>(t))),\
     \ ...);\n    os << \"}\";\n}\n\ntemplate <typename... T>\nvoid print(const std::tuple<T...>\
     \ &t) {\n    print_tuple(t, std::make_index_sequence<sizeof...(T)>());\n}\n\n\
-    template <typename T>\nvoid print(const std::stack<T> &st) {\n    std::stack<T>\
-    \ tmp = st;\n    os << \"[\";\n    while(!tmp.empty()) {\n        T elem = tmp.top();\n\
-    \        tmp.pop();\n        print(elem);\n        if(!tmp.empty()) os << \" \"\
-    ;\n    }\n    os << \"]\";\n}\n\ntemplate <typename T>\nvoid print(const std::queue<T>\
-    \ &que) {\n    std::queue<T> tmp = que;\n    os << \"[\";\n    while(!tmp.empty())\
-    \ {\n        T elem = tmp.front();\n        tmp.pop();\n        print(elem);\n\
-    \        if(!tmp.empty()) os << \" \";\n    }\n    os << \"]\";\n}\n\ntemplate\
-    \ <typename T, typename... U>\nvoid print(const std::priority_queue<T, U...> &pque)\
-    \ {\n    std::priority_queue<T, U...> tmp = pque;\n    os << \"[\";\n    while(!tmp.empty())\
-    \ {\n        T elem = tmp.top();\n        tmp.pop();\n        print(elem);\n \
-    \       if(!tmp.empty()) os << \" \";\n    }\n    os << \"]\";\n}\n\ntemplate\
-    \ <class T, typename std::enable_if_t<has_iterator<T>::value, bool> = false>\n\
-    void print(const T &v) {\n    os << \"[\";\n    for(auto itr = std::cbegin(v);\
+    template <typename... T>\nvoid print(const std::stack<T...> &st) {\n    std::stack<T...>\
+    \ tmp = st;\n    os << \"[\";\n    while(!tmp.empty()) {\n        print(tmp.top());\n\
+    \        tmp.pop();\n        if(!tmp.empty()) os << \" \";\n    }\n    os << \"\
+    ]\";\n}\n\ntemplate <typename... T>\nvoid print(const std::queue<T...> &que) {\n\
+    \    std::queue<T...> tmp = que;\n    os << \"[\";\n    while(!tmp.empty()) {\n\
+    \        print(tmp.front());\n        tmp.pop();\n        if(!tmp.empty()) os\
+    \ << \" \";\n    }\n    os << \"]\";\n}\n\ntemplate <typename... T>\nvoid print(const\
+    \ std::priority_queue<T...> &pque) {\n    std::priority_queue<T...> tmp = pque;\n\
+    \    os << \"[\";\n    while(!tmp.empty()) {\n        print(tmp.top());\n    \
+    \    tmp.pop();\n        if(!tmp.empty()) os << \" \";\n    }\n    os << \"]\"\
+    ;\n}\n\ntemplate <class T, typename std::enable_if_t<has_iterator<T>::value, bool>\
+    \ = false>\nvoid print(const T &v) {\n    os << \"[\";\n    for(auto itr = std::cbegin(v);\
     \ itr != std::cend(v); ++itr) {\n        if(itr != std::cbegin(v)) os << \" \"\
     ;\n        print(*itr);\n    }\n    os << \"]\";\n}\n\ntemplate <typename T, typename\
     \ std::enable_if_t<!has_iterator<T>::value, bool> = false>\nvoid print(const T\
@@ -123,7 +122,7 @@ data:
   isVerificationFile: false
   path: src/Utils/debug.hpp
   requiredBy: []
-  timestamp: '2023-09-04 17:57:10+09:00'
+  timestamp: '2023-09-05 17:51:27+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj-3110.test.cpp
