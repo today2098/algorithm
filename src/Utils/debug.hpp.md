@@ -32,7 +32,7 @@ data:
     \ typename std::enable_if_t<has_iterator<T>::value, bool> = false>\nvoid print(const\
     \ T &v);\ntemplate <typename T, typename std::enable_if_t<!has_iterator<T>::value,\
     \ bool> = false>\nvoid print(const T &elem);\ntemplate <typename T, typename...\
-    \ Args>\nvoid debug_internal(int l, std::string_view context, T &&first, Args\
+    \ Args>\nvoid debug_internal(int line, std::string_view context, T &&first, Args\
     \ &&...args);\n\nvoid print(const std::string &s) { os << s; }\n\nvoid print(const\
     \ std::string_view &s) { os << s; }\n\ntemplate <typename T, typename U>\nvoid\
     \ print(const std::pair<T, U> &p) {\n    os << \"{\";\n    print(p.first);\n \
@@ -57,14 +57,14 @@ data:
     ;\n        print(*itr);\n    }\n    os << \"]\";\n}\n\ntemplate <typename T, typename\
     \ std::enable_if_t<!has_iterator<T>::value, bool> = false>\nvoid print(const T\
     \ &elem) { os << elem; }\n\ntemplate <typename T, typename... Args>\nvoid debug_internal(int\
-    \ l, std::string_view context, T &&first, Args &&...args) {\n    constexpr const\
-    \ char *open_bracket = (sizeof...(args) == 0 ? \"\" : \"(\");\n    constexpr const\
-    \ char *close_bracket = (sizeof...(args) == 0 ? \"\" : \")\");\n    os << \"[L\"\
-    \ << l << \"] \" << open_bracket << context << close_bracket << \": \" << open_bracket;\n\
-    \    print(std::forward<T>(first));\n    ((os << \", \", print(std::forward<Args>(args))),\
-    \ ...);\n    os << close_bracket << std::endl;\n}\n\n}  // namespace debug\n\n\
-    }  // namespace algorithm\n\n#else\n\n#define debug(...) static_cast<void>(0)\n\
-    \n#endif\n\n#endif\n"
+    \ line, std::string_view context, T &&first, Args &&...args) {\n    constexpr\
+    \ const char *open_bracket = (sizeof...(args) == 0 ? \"\" : \"(\");\n    constexpr\
+    \ const char *close_bracket = (sizeof...(args) == 0 ? \"\" : \")\");\n    os <<\
+    \ \"[L\" << line << \"] \" << open_bracket << context << close_bracket << \":\
+    \ \" << open_bracket;\n    print(std::forward<T>(first));\n    ((os << \", \"\
+    , print(std::forward<Args>(args))), ...);\n    os << close_bracket << std::endl;\n\
+    }\n\n}  // namespace debug\n\n}  // namespace algorithm\n\n#else\n\n#define debug(...)\
+    \ static_cast<void>(0)\n\n#endif\n\n#endif\n"
   code: "/**\n * @docs docs/Utils/debug.md\n */\n\n#ifndef ALGORITHM_DEBUG_HPP\n#define\
     \ ALGORITHM_DEBUG_HPP 1\n\n#include <iostream>\n#include <iterator>\n#include\
     \ <queue>\n#include <stack>\n#include <string>\n#include <string_view>\n#include\
@@ -85,7 +85,7 @@ data:
     \ typename std::enable_if_t<has_iterator<T>::value, bool> = false>\nvoid print(const\
     \ T &v);\ntemplate <typename T, typename std::enable_if_t<!has_iterator<T>::value,\
     \ bool> = false>\nvoid print(const T &elem);\ntemplate <typename T, typename...\
-    \ Args>\nvoid debug_internal(int l, std::string_view context, T &&first, Args\
+    \ Args>\nvoid debug_internal(int line, std::string_view context, T &&first, Args\
     \ &&...args);\n\nvoid print(const std::string &s) { os << s; }\n\nvoid print(const\
     \ std::string_view &s) { os << s; }\n\ntemplate <typename T, typename U>\nvoid\
     \ print(const std::pair<T, U> &p) {\n    os << \"{\";\n    print(p.first);\n \
@@ -110,19 +110,19 @@ data:
     ;\n        print(*itr);\n    }\n    os << \"]\";\n}\n\ntemplate <typename T, typename\
     \ std::enable_if_t<!has_iterator<T>::value, bool> = false>\nvoid print(const T\
     \ &elem) { os << elem; }\n\ntemplate <typename T, typename... Args>\nvoid debug_internal(int\
-    \ l, std::string_view context, T &&first, Args &&...args) {\n    constexpr const\
-    \ char *open_bracket = (sizeof...(args) == 0 ? \"\" : \"(\");\n    constexpr const\
-    \ char *close_bracket = (sizeof...(args) == 0 ? \"\" : \")\");\n    os << \"[L\"\
-    \ << l << \"] \" << open_bracket << context << close_bracket << \": \" << open_bracket;\n\
-    \    print(std::forward<T>(first));\n    ((os << \", \", print(std::forward<Args>(args))),\
-    \ ...);\n    os << close_bracket << std::endl;\n}\n\n}  // namespace debug\n\n\
-    }  // namespace algorithm\n\n#else\n\n#define debug(...) static_cast<void>(0)\n\
-    \n#endif\n\n#endif\n"
+    \ line, std::string_view context, T &&first, Args &&...args) {\n    constexpr\
+    \ const char *open_bracket = (sizeof...(args) == 0 ? \"\" : \"(\");\n    constexpr\
+    \ const char *close_bracket = (sizeof...(args) == 0 ? \"\" : \")\");\n    os <<\
+    \ \"[L\" << line << \"] \" << open_bracket << context << close_bracket << \":\
+    \ \" << open_bracket;\n    print(std::forward<T>(first));\n    ((os << \", \"\
+    , print(std::forward<Args>(args))), ...);\n    os << close_bracket << std::endl;\n\
+    }\n\n}  // namespace debug\n\n}  // namespace algorithm\n\n#else\n\n#define debug(...)\
+    \ static_cast<void>(0)\n\n#endif\n\n#endif\n"
   dependsOn: []
   isVerificationFile: false
   path: src/Utils/debug.hpp
   requiredBy: []
-  timestamp: '2023-09-05 17:51:27+09:00'
+  timestamp: '2023-09-05 19:21:40+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj-3110.test.cpp
@@ -178,3 +178,5 @@ $ ./debug
 - _EnumHack. "C++メタ関数のまとめ". Qiita. <https://qiita.com/_EnumHack/items/ee2141ad47915c55d9cb>.
 - terukazu. "特定のメンバ関数有無で、呼び出す関数を変えたい". Qiita. <https://qiita.com/terukazu/items/e257c05a7b191d32c577>.
 - "競技プログラミングで print デバッグ". <https://naskya.net/post/0002/>.
+- rsk0315_h4x. X (Twitter). <https://twitter.com/rsk0315_h4x/status/1522810205029167105>.
+- raclamusi. X (Twitter). <https://twitter.com/raclamusi/status/1522862497463631872>.
