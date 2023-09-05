@@ -1,3 +1,8 @@
+/**
+ * @brief 最小費用流
+ * @docs docs/Graph/Flow/primal_dual.md
+ */
+
 #ifndef ALGORITHM_PRIMAL_DUAL_HPP
 #define ALGORITHM_PRIMAL_DUAL_HPP 1
 
@@ -34,8 +39,7 @@ class PrimalDual {
             auto [dist, v] = pque.top();
             pque.pop();
             if(d[v] < dist) continue;
-            const int n = m_g[v].size();
-            for(int i = 0; i < n; ++i) {
+            for(int i = 0, n = m_g[v].size(); i < n; ++i) {
                 const Edge &e = m_g[v][i];
                 Cost new_cost = e.cost + pot[v] - pot[e.to];
                 if(e.cap > 0 and d[e.to] > d[v] + new_cost) {
@@ -72,7 +76,7 @@ public:
     }
     // ソースからシンクまでの最小費用[costs]（単位コスト[cost/flow]とフロー[flows]の積の総和）を求める．
     // 返り値は流量[flows]と最小費用[costs]．O(F*|E|*log|V|).
-    std::pair<Flow, Cost> min_cost_flow(int s, int t) { return min_cost_flow(s, t, infinity_flow()); }
+    std::pair<Flow, Cost> min_cost_flow(int s, int t) { return slope(s, t, infinity_flow()).back(); }
     std::pair<Flow, Cost> min_cost_flow(int s, int t, Flow flow) { return slope(s, t, flow).back(); }
     std::vector<std::pair<Flow, Cost> > slope(int s, int t) { return slope(s, t, infinity_flow()); }
     std::vector<std::pair<Flow, Cost> > slope(int s, int t, Flow flow) {
@@ -80,28 +84,28 @@ public:
         assert(0 <= t and t < order());
         Flow rest = flow;                                   // rest:=(残流量).
         Cost sum = 0;                                       // sum:=(合計費用).
-        Cost pre_cost = -1;                                 // pre_cost:=(直前のフローにおける単位コスト[cost/flow]).
+        Cost prev_cost = -1;                                // prev_cost:=(直前のフローにおける単位コスト[cost/flow]).
         std::vector<std::pair<Flow, Cost> > res({{0, 0}});  // res[]:=(流量とコストの関係の折れ線). 値は狭義単調増加．
-        std::vector<Cost> d(order());                       // d[v]:=(ノートsからvまでの最小費用).
+        std::vector<Cost> d(order());                       // d[v]:=(ノートsからvまでの最小単位コスト).
         std::vector<Cost> pot(order(), 0);                  // pot[v]:=(ノードvのポテンシャル).
         std::vector<int> prev_v(order());                   // prev_v[v]:=(ノードvの直前に訪れるノード). 逆方向経路．
         std::vector<int> prev_e(order());                   // prev_e[v]:=(ノードvの直前に通る辺). 逆方向経路．
         while(rest > 0) {
             dijkstra(s, pot, d, prev_v, prev_e);
             if(d[t] == infinity_cost()) break;  // これ以上流せない場合．
-            for(int v = 0; v < order(); ++v) pot[v] += d[v];
+            for(int v = 0, n = order(); v < n; ++v) pot[v] += d[v];
             Flow tmp = rest;
             for(int v = t; v != s; v = prev_v[v]) tmp = std::min(tmp, m_g[prev_v[v]][prev_e[v]].cap);
+            rest -= tmp;
+            sum += pot[t] * tmp;
+            if(pot[t] == prev_cost) res.pop_back();
+            res.emplace_back(flow - rest, sum);
             for(int v = t; v != s; v = prev_v[v]) {
                 Edge &e = m_g[prev_v[v]][prev_e[v]];
                 e.cap -= tmp;
                 m_g[v][e.rev].cap += tmp;
             }
-            rest -= tmp;
-            sum += pot[t] * tmp;
-            if(pot[t] == pre_cost) res.pop_back();
-            res.emplace_back(flow - rest, sum);
-            pre_cost = pot[t];
+            prev_cost = pot[t];
         }
         return res;
     }
