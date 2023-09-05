@@ -10,6 +10,7 @@
 #include <queue>
 #include <stack>
 #include <string>
+#include <string_view>
 #include <tuple>
 #include <type_traits>
 #include <utility>
@@ -46,12 +47,12 @@ template <class T, std::size_t... Idx>
 void print_tuple(const T &t, std::index_sequence<Idx...>);
 template <typename... T>
 void print(const std::tuple<T...> &t);
-template <typename T>
-void print(const std::stack<T> &st);
-template <typename T>
-void print(const std::queue<T> &que);
-template <typename T, typename... U>
-void print(const std::priority_queue<T, U...> &pque);
+template <typename... T>
+void print(const std::stack<T...> &st);
+template <typename... T>
+void print(const std::queue<T...> &que);
+template <typename... T>
+void print(const std::priority_queue<T...> &pque);
 template <typename T, typename std::enable_if_t<has_iterator<T>::value, bool> = false>
 void print(const T &v);
 template <typename T, typename std::enable_if_t<!has_iterator<T>::value, bool> = false>
@@ -84,40 +85,37 @@ void print(const std::tuple<T...> &t) {
     print_tuple(t, std::make_index_sequence<sizeof...(T)>());
 }
 
-template <typename T>
-void print(const std::stack<T> &st) {
-    std::stack<T> tmp = st;
+template <typename... T>
+void print(const std::stack<T...> &st) {
+    std::stack<T...> tmp = st;
     os << "[";
     while(!tmp.empty()) {
-        T elem = tmp.top();
+        print(tmp.top());
         tmp.pop();
-        print(elem);
         if(!tmp.empty()) os << " ";
     }
     os << "]";
 }
 
-template <typename T>
-void print(const std::queue<T> &que) {
-    std::queue<T> tmp = que;
+template <typename... T>
+void print(const std::queue<T...> &que) {
+    std::queue<T...> tmp = que;
     os << "[";
     while(!tmp.empty()) {
-        T elem = tmp.front();
+        print(tmp.front());
         tmp.pop();
-        print(elem);
         if(!tmp.empty()) os << " ";
     }
     os << "]";
 }
 
-template <typename T, typename... U>
-void print(const std::priority_queue<T, U...> &pque) {
-    std::priority_queue<T, U...> tmp = pque;
+template <typename... T>
+void print(const std::priority_queue<T...> &pque) {
+    std::priority_queue<T...> tmp = pque;
     os << "[";
     while(!tmp.empty()) {
-        T elem = tmp.top();
+        print(tmp.top());
         tmp.pop();
-        print(elem);
         if(!tmp.empty()) os << " ";
     }
     os << "]";
