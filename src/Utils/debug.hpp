@@ -58,7 +58,7 @@ void print(const T &v);
 template <typename T, typename std::enable_if_t<!has_iterator<T>::value, bool> = false>
 void print(const T &elem);
 template <typename T, typename... Args>
-void debug_internal(int l, std::string_view context, T &&first, Args &&...args);
+void debug_internal(int line, std::string_view context, T &&first, Args &&...args);
 
 void print(const std::string &s) { os << s; }
 
@@ -135,10 +135,10 @@ template <typename T, typename std::enable_if_t<!has_iterator<T>::value, bool> =
 void print(const T &elem) { os << elem; }
 
 template <typename T, typename... Args>
-void debug_internal(int l, std::string_view context, T &&first, Args &&...args) {
+void debug_internal(int line, std::string_view context, T &&first, Args &&...args) {
     constexpr const char *open_bracket = (sizeof...(args) == 0 ? "" : "(");
     constexpr const char *close_bracket = (sizeof...(args) == 0 ? "" : ")");
-    os << "[L" << l << "] " << open_bracket << context << close_bracket << ": " << open_bracket;
+    os << "[L" << line << "] " << open_bracket << context << close_bracket << ": " << open_bracket;
     print(std::forward<T>(first));
     ((os << ", ", print(std::forward<Args>(args))), ...);
     os << close_bracket << std::endl;

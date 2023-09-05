@@ -43,3 +43,5 @@ $ ./debug
 - _EnumHack. "C++メタ関数のまとめ". Qiita. <https://qiita.com/_EnumHack/items/ee2141ad47915c55d9cb>.
 - terukazu. "特定のメンバ関数有無で、呼び出す関数を変えたい". Qiita. <https://qiita.com/terukazu/items/e257c05a7b191d32c577>.
 - "競技プログラミングで print デバッグ". <https://naskya.net/post/0002/>.
+- rsk0315_h4x. X (Twitter). <https://twitter.com/rsk0315_h4x/status/1522810205029167105>.
+- raclamusi. X (Twitter). <https://twitter.com/raclamusi/status/1522862497463631872>.
