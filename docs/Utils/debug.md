@@ -1,39 +1,44 @@
 ## 概要
 
 ローカル環境のみで実行される debug マクロ関数．
-引数にある変数，オブジェクトを標準エラー出力 (`std::cerr`) に出力する．
+引数にあるものを，名前と行番号とを合わせて，標準エラー出力 (`std::cerr`) に出力する．
+可変長引数にも対応している．
 
-対応している変数，オブジェクトは次の通り．
+引数として使用できるものは次の通り．
 
-- スカラー型の変数
+- スカラー型の値・変数
 - 出力演算子が定義されているクラスのオブジェクト
 - iterator が実装されているクラス（STL のコンテナクラスなど）のオブジェクト
-- `std::string`, `std::string_view`, `std::pair`, `std::tuple`, `std::stack`, `std::queue`, `std::priority_queue`
+- `std::string`, `std::string_view`, `std::pair`, `std::tuple`, `std::stack`, `std::queue`, `std::priority_queue` のオブジェクト
 
-使用する際は，コンパイル時に「`-D=DEBUG`」と指定する．
+使用する際は，コンパイル時に「`-D=DEBUG`」とオプション指定する．
 
 使用例は次の通り．
-変数名とその値，行番号を対応させて出力する．
-また可変長引数にも対応している．
+引数は1個以上指定すること．
 
 ```main.cpp
 int a = 0;
 double b = 3.14;
+std::vector<int> v({1, 1, 2, 3, 5});
 std::string s = "Hello, world!";
 std::pair<int, double> p({1, 1.41});
-std::vector<int> v({1, 1, 2, 3, 5});
 
-debug(a, b, s);
-debug(p);
+debug(a, b);
 debug(v);
+debug(s);
+debug(p);
+debug('i', -1LL);
+// debug();  // error!
 `````
 
 ```bash
 $ g++ main.cpp -std=c++17 -D=DEBUG -o debug.out
 $ ./debug
-[L50] (a, b, s): (0, 3.14, Hello, world!)
-[L51] p: {1, 1.41}
-[L52] v: [1 1 2 3 5]
+[L50] (a, b): (0, 3.14)
+[L51] v: [1 1 2 3 5]
+[L52] s: Hello, world!
+[L53] p: {1, 1.41}
+[L54] ('i', -1LL): (i, -1)
 ``````
 
 
