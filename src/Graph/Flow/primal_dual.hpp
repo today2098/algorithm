@@ -8,6 +8,7 @@
 
 #include <algorithm>
 #include <cassert>
+#include <functional>
 #include <limits>
 #include <queue>
 #include <tuple>
