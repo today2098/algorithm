@@ -23,7 +23,7 @@ class SegmentSet {
 
 public:
     SegmentSet() {
-        // 番兵を用意する．
+        // 番兵を配置．
         m_st.emplace(-infinity() - 2, -infinity() - 1);
         m_st.emplace(infinity() + 2, infinity() + 3);
     }
@@ -32,7 +32,7 @@ public:
     // 整数xを追加する．O(logN).
     bool insert(T x) { return insert(x, x + 1); }
     // 区間[l,r)の整数を追加する．O(logN).
-    int insert(T l, T r) {
+    bool insert(T l, T r) {
         assert(-infinity() <= l and l < r and r <= infinity() + 1);
         auto iter1 = std::prev(m_st.lower_bound(std::pair<T, T>(l + 1, l + 1)));
         auto [l1, r1] = *iter1;
@@ -94,9 +94,9 @@ public:
         os << "[";
         const int n = ob.m_st.size();
         int cnt = 0;
-        for(auto itr = ob.m_st.cbegin(); itr != ob.m_st.cend(); ++itr) {
+        for(auto iter = ob.m_st.cbegin(); iter != ob.m_st.cend(); ++iter) {
             if(cnt != 0 and cnt != n - 1) {
-                const auto &[l, r] = *itr;
+                const auto &[l, r] = *iter;
                 os << (cnt == 1 ? "" : " ") << "[" << l << ", " << r << ")";
             }
             cnt++;
