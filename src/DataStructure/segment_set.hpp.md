@@ -25,12 +25,12 @@ data:
     \ {\n    std::set<std::pair<T, T> > m_st;  // m_st:=(\u6574\u6570\u306E\u96C6\u5408\
     ). \u9023\u7D9A\u3057\u3066\u3044\u308B\u533A\u9593[l,r)\u3092pair(l,r)\u3067\u8868\
     \u73FE\u3059\u308B\uFF0E\n\npublic:\n    SegmentSet() {\n        // \u756A\u5175\
-    \u3092\u7528\u610F\u3059\u308B\uFF0E\n        m_st.emplace(-infinity() - 2, -infinity()\
-    \ - 1);\n        m_st.emplace(infinity() + 2, infinity() + 3);\n    }\n\n    static\
+    \u3092\u914D\u7F6E\uFF0E\n        m_st.emplace(-infinity() - 2, -infinity() -\
+    \ 1);\n        m_st.emplace(infinity() + 2, infinity() + 3);\n    }\n\n    static\
     \ constexpr T infinity() { return std::numeric_limits<T>::max() - 3; }\n    //\
     \ \u6574\u6570x\u3092\u8FFD\u52A0\u3059\u308B\uFF0EO(logN).\n    bool insert(T\
     \ x) { return insert(x, x + 1); }\n    // \u533A\u9593[l,r)\u306E\u6574\u6570\u3092\
-    \u8FFD\u52A0\u3059\u308B\uFF0EO(logN).\n    int insert(T l, T r) {\n        assert(-infinity()\
+    \u8FFD\u52A0\u3059\u308B\uFF0EO(logN).\n    bool insert(T l, T r) {\n        assert(-infinity()\
     \ <= l and l < r and r <= infinity() + 1);\n        auto iter1 = std::prev(m_st.lower_bound(std::pair<T,\
     \ T>(l + 1, l + 1)));\n        auto [l1, r1] = *iter1;\n        if(r <= r1) return\
     \ false;  // \u5168\u3066\u96C6\u5408\u306B\u542B\u307E\u308C\u3066\u3044\u308B\
@@ -70,9 +70,9 @@ data:
     \ T>(x + 1, x + 1)));\n        return (x < r ? r : x);\n    }\n\n    friend std::ostream\
     \ &operator<<(std::ostream &os, const SegmentSet &ob) {\n        os << \"[\";\n\
     \        const int n = ob.m_st.size();\n        int cnt = 0;\n        for(auto\
-    \ itr = ob.m_st.cbegin(); itr != ob.m_st.cend(); ++itr) {\n            if(cnt\
-    \ != 0 and cnt != n - 1) {\n                const auto &[l, r] = *itr;\n     \
-    \           os << (cnt == 1 ? \"\" : \" \") << \"[\" << l << \", \" << r << \"\
+    \ iter = ob.m_st.cbegin(); iter != ob.m_st.cend(); ++iter) {\n            if(cnt\
+    \ != 0 and cnt != n - 1) {\n                const auto &[l, r] = *iter;\n    \
+    \            os << (cnt == 1 ? \"\" : \" \") << \"[\" << l << \", \" << r << \"\
     )\";\n            }\n            cnt++;\n        }\n        os << \"]\";\n   \
     \     return os;\n    }\n};\n\n}  // namespace algorithm\n\n#endif\n"
   code: "/**\n * @brief \u6574\u6570\u306E\u96C6\u5408\u3092\u533A\u9593\u3067\u7BA1\
@@ -85,12 +85,12 @@ data:
     \ {\n    std::set<std::pair<T, T> > m_st;  // m_st:=(\u6574\u6570\u306E\u96C6\u5408\
     ). \u9023\u7D9A\u3057\u3066\u3044\u308B\u533A\u9593[l,r)\u3092pair(l,r)\u3067\u8868\
     \u73FE\u3059\u308B\uFF0E\n\npublic:\n    SegmentSet() {\n        // \u756A\u5175\
-    \u3092\u7528\u610F\u3059\u308B\uFF0E\n        m_st.emplace(-infinity() - 2, -infinity()\
-    \ - 1);\n        m_st.emplace(infinity() + 2, infinity() + 3);\n    }\n\n    static\
+    \u3092\u914D\u7F6E\uFF0E\n        m_st.emplace(-infinity() - 2, -infinity() -\
+    \ 1);\n        m_st.emplace(infinity() + 2, infinity() + 3);\n    }\n\n    static\
     \ constexpr T infinity() { return std::numeric_limits<T>::max() - 3; }\n    //\
     \ \u6574\u6570x\u3092\u8FFD\u52A0\u3059\u308B\uFF0EO(logN).\n    bool insert(T\
     \ x) { return insert(x, x + 1); }\n    // \u533A\u9593[l,r)\u306E\u6574\u6570\u3092\
-    \u8FFD\u52A0\u3059\u308B\uFF0EO(logN).\n    int insert(T l, T r) {\n        assert(-infinity()\
+    \u8FFD\u52A0\u3059\u308B\uFF0EO(logN).\n    bool insert(T l, T r) {\n        assert(-infinity()\
     \ <= l and l < r and r <= infinity() + 1);\n        auto iter1 = std::prev(m_st.lower_bound(std::pair<T,\
     \ T>(l + 1, l + 1)));\n        auto [l1, r1] = *iter1;\n        if(r <= r1) return\
     \ false;  // \u5168\u3066\u96C6\u5408\u306B\u542B\u307E\u308C\u3066\u3044\u308B\
@@ -130,16 +130,16 @@ data:
     \ T>(x + 1, x + 1)));\n        return (x < r ? r : x);\n    }\n\n    friend std::ostream\
     \ &operator<<(std::ostream &os, const SegmentSet &ob) {\n        os << \"[\";\n\
     \        const int n = ob.m_st.size();\n        int cnt = 0;\n        for(auto\
-    \ itr = ob.m_st.cbegin(); itr != ob.m_st.cend(); ++itr) {\n            if(cnt\
-    \ != 0 and cnt != n - 1) {\n                const auto &[l, r] = *itr;\n     \
-    \           os << (cnt == 1 ? \"\" : \" \") << \"[\" << l << \", \" << r << \"\
+    \ iter = ob.m_st.cbegin(); iter != ob.m_st.cend(); ++iter) {\n            if(cnt\
+    \ != 0 and cnt != n - 1) {\n                const auto &[l, r] = *iter;\n    \
+    \            os << (cnt == 1 ? \"\" : \" \") << \"[\" << l << \", \" << r << \"\
     )\";\n            }\n            cnt++;\n        }\n        os << \"]\";\n   \
     \     return os;\n    }\n};\n\n}  // namespace algorithm\n\n#endif\n"
   dependsOn: []
   isVerificationFile: false
   path: src/DataStructure/segment_set.hpp
   requiredBy: []
-  timestamp: '2023-09-06 18:19:20+09:00'
+  timestamp: '2023-09-07 08:32:22+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj-2880.test.cpp
