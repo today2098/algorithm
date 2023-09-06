@@ -1,88 +1,105 @@
-#ifndef ALGORITHM_SERIAL_SET_HPP
-#define ALGORITHM_SERIAL_SET_HPP 1
+/**
+ * @brief 整数の集合を区間で管理するデータ構造
+ * @docs docs/DataStructure/segment_set.md
+ */
 
+#ifndef ALGORITHM_SEGMENT_SET_HPP
+#define ALGORITHM_SEGMENT_SET_HPP 1
+
+#include <algorithm>
 #include <cassert>
 #include <iostream>
+#include <iterator>
+#include <limits>
 #include <set>
+#include <utility>
 
 namespace algorithm {
 
-// 整数の集合を連続範囲で管理するデータ構造．
+// 整数の集合を区間で管理するデータ構造．
 template <typename T>
-class SerialSet {
-    std::set<std::pair<T, T> > m_st;  // m_st:=(整数の集合). 連続する整数列[l,r)をpair(l,r)で表現する．
-    T m_inf;
+class SegmentSet {
+    std::set<std::pair<T, T> > m_st;  // m_st:=(整数の集合). 連続している区間[l,r)をpair(l,r)で表現する．
 
 public:
-    explicit SerialSet(T inf = 1e9) : m_inf(inf) {
-        m_st.emplace(-m_inf, -m_inf + 1);  // 番兵用．
-        m_st.emplace(m_inf, m_inf + 1);    // 〃
+    SegmentSet() {
+        // 番兵を用意する．
+        m_st.emplace(-infinity() - 2, -infinity() - 1);
+        m_st.emplace(infinity() + 2, infinity() + 3);
     }
 
-    T infinity() const { return m_inf; }
-    // 範囲[l,r)の整数を挿入する．O(logN).
-    bool insert(T l, T r) {
-        assert(-m_inf < l and l < r and r < m_inf);
-        auto itr1 = std::prev(m_st.lower_bound(std::pair<T, T>(l + 1, l + 2)));
-        auto [l1, r1] = *itr1;
-        if(r <= r1) return false;  // 集合に完全に含まれている場合．
-        auto itr3 = m_st.lower_bound(std::pair<T, T>(r, r + 1));
-        auto itr2 = std::prev(itr3);
-        auto [l2, r2] = *itr2;
-        auto [l3, r3] = *itr3;
+    static constexpr T infinity() { return std::numeric_limits<T>::max() - 3; }
+    // 整数xを追加する．O(logN).
+    bool insert(T x) { return insert(x, x + 1); }
+    // 区間[l,r)の整数を追加する．O(logN).
+    int insert(T l, T r) {
+        assert(-infinity() <= l and l < r and r <= infinity() + 1);
+        auto iter1 = std::prev(m_st.lower_bound(std::pair<T, T>(l + 1, l + 1)));
+        auto [l1, r1] = *iter1;
+        if(r <= r1) return false;  // 全て集合に含まれている場合．
         if(l <= r1) l = l1;
-        else itr1++;
-        if(l3 <= r) {
-            m_st.erase(itr1, ++itr3);
+        else iter1++;
+        auto iter3 = m_st.lower_bound(std::pair<T, T>(r, r));
+        auto iter2 = std::prev(iter3);
+        auto [l2, r2] = *iter2;
+        auto [l3, r3] = *iter3;
+        if(r == l3) {
+            m_st.erase(iter1, ++iter3);
             m_st.emplace(l, r3);
         } else {
-            m_st.erase(itr1, itr3);
+            m_st.erase(iter1, iter3);
             if(r <= r2) m_st.emplace(l, r2);
             else m_st.emplace(l, r);
         }
         return true;
     }
-    // 整数xを挿入する．O(logN).
-    bool insert(T x) { return insert(x, x + 1); }
-    // 範囲[l,r)の整数を削除する．O(logN).
+    // 整数xを削除する．O(logN).
+    bool erase(T x) { return erase(x, x + 1); }
+    // 区間[l,r)の整数を削除する．O(logN).
     bool erase(T l, T r) {
-        assert(-m_inf < l and l < r and r < m_inf);
-        auto itr1 = std::prev(m_st.lower_bound(std::pair<T, T>(l + 1, l + 2)));
-        auto itr3 = m_st.lower_bound(std::pair<T, T>(r, r + 1));
-        auto itr2 = std::prev(itr3);
-        auto [l1, r1] = *itr1;
-        auto [l2, r2] = *itr2;
+        assert(-infinity() <= l and l < r and r <= infinity() + 1);
+        auto iter1 = std::prev(m_st.lower_bound(std::pair<T, T>(l + 1, l + 1)));
+        auto iter3 = m_st.lower_bound(std::pair<T, T>(r, r));
+        auto iter2 = std::prev(iter3);
+        auto [l1, r1] = *iter1;
+        auto [l2, r2] = *iter2;
         if(l < r1) {
-            m_st.erase(itr1, itr3);
+            m_st.erase(iter1, iter3);
             if(l1 < l) m_st.emplace(l1, l);
         } else {
-            if(itr1 == itr2) return false;  // 集合に全く含まれていない場合．
-            m_st.erase(++itr1, itr3);
+            if(iter1 == iter2) return false;  // 全て集合に含まれていない場合．
+            m_st.erase(++iter1, iter3);
         }
         if(r < r2) m_st.emplace(r, r2);
         return true;
     }
-    // 整数xを削除する．O(logN).
-    bool erase(T x) { return erase(x, x + 1); }
-    // 範囲[l,r)の整数が集合に全て含まれるか判定する．O(logN).
-    bool contains(T l, T r) const {
-        assert(-m_inf < l and l < r and r <= m_inf);
-        const auto &[_, pr] = *std::prev(m_st.lower_bound(std::pair<T, T>(l + 1, l + 2)));
-        return r <= pr;
+    // 整数xが集合に含まれているか判定する．O(logN).
+    int contains(T x) const { return contains(x, x + 1); }
+    // 区間[l,r)の整数が集合に含まれているか判定する．O(logN).
+    int contains(T l, T r) const {
+        assert(-infinity() <= l and l < r and r <= infinity() + 1);
+        const auto &[_, pr] = *std::prev(m_st.lower_bound(std::pair<T, T>(l + 1, l + 1)));
+        if(pr <= l) return 0;  // 全て含まれていない場合．
+        if(pr < r) return 1;   // 一部含まれている場合．
+        return 2;              // 全て含まれている場合．
     }
-    // 整数xが集合に含まれるか判定する．O(logN).
-    bool contains(T x) const { return contains(x, x + 1); }
-    // 集合に含まれないx以上の整数の中で最小の値 (MEX:Minimum EXcluded value) を求める．O(logN).
+    // x以上の整数で集合に含まれない最小の値 (mex: Minimum EXcluded value) を求める．O(logN).
     T mex(T x) const {
-        assert(-m_inf < x and x < m_inf);
-        const auto &[_, r] = *std::prev(m_st.lower_bound(std::pair<T, T>(x + 1, x + 2)));
+        assert(-infinity() <= x and x <= infinity());
+        const auto &[_, r] = *std::prev(m_st.lower_bound(std::pair<T, T>(x + 1, x + 1)));
         return (x < r ? r : x);
     }
 
-    friend std::ostream &operator<<(std::ostream &os, const SerialSet &ob) {
+    friend std::ostream &operator<<(std::ostream &os, const SegmentSet &ob) {
+        os << "[";
+        const int n = ob.m_st.size();
+        int cnt = 0;
         for(auto itr = ob.m_st.cbegin(); itr != ob.m_st.cend(); ++itr) {
-            const auto &[l, r] = *itr;
-            os << (itr == ob.m_st.cbegin() ? "[" : " ") << "[" << l << ", " << r << ")";
+            if(cnt != 0 and cnt != n - 1) {
+                const auto &[l, r] = *itr;
+                os << (cnt == 1 ? "" : " ") << "[" << l << ", " << r << ")";
+            }
+            cnt++;
         }
         os << "]";
         return os;
