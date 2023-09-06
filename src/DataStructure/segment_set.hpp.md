@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj-2880.test.cpp
     title: test/aoj-2880.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     _deprecated_at_docs: docs/DataStructure/segment_set.md
     document_title: "\u6574\u6570\u306E\u96C6\u5408\u3092\u533A\u9593\u3067\u7BA1\u7406\
@@ -140,7 +140,7 @@ data:
   path: src/DataStructure/segment_set.hpp
   requiredBy: []
   timestamp: '2023-09-06 18:19:20+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj-2880.test.cpp
 documentation_of: src/DataStructure/segment_set.hpp

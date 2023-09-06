@@ -3,15 +3,15 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj-2880.test.cpp
     title: test/aoj-2880.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/aoj-3110.test.cpp
     title: test/aoj-3110.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     _deprecated_at_docs: docs/Utils/debug.md
     links: []
@@ -126,7 +126,7 @@ data:
   path: src/Utils/debug.hpp
   requiredBy: []
   timestamp: '2023-09-06 00:38:28+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj-2880.test.cpp
   - test/aoj-3110.test.cpp

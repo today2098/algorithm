@@ -55,7 +55,7 @@ data:
     - icon: ':warning:'
       path: src/DataStructure/heap.hpp
       title: src/DataStructure/heap.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: src/DataStructure/segment_set.hpp
       title: "\u6574\u6570\u306E\u96C6\u5408\u3092\u533A\u9593\u3067\u7BA1\u7406\u3059\
         \u308B\u30C7\u30FC\u30BF\u69CB\u9020"
@@ -214,7 +214,7 @@ data:
     - icon: ':warning:'
       path: src/Utils/convert.hpp
       title: src/Utils/convert.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: src/Utils/debug.hpp
       title: src/Utils/debug.hpp
     - icon: ':heavy_check_mark:'
@@ -232,7 +232,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj-1276-sieve.test.cpp
       title: test/aoj-1276-sieve.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj-2880.test.cpp
       title: test/aoj-2880.test.cpp
     - icon: ':heavy_check_mark:'
