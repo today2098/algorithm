@@ -26,6 +26,9 @@ int main() {
     }
     std::sort(query.begin(), query.end());
 
+    debug(vt);
+    debug(query);
+
     std::vector<bool> ans(q);
     algorithm::SegmentSet<int> segment_set;
     int i = 0;
@@ -33,12 +36,12 @@ int main() {
         while(i < m) {
             const auto &[d, a, b] = vt[i];
             if(d >= e) break;
-            segment_set.insert(a, b + 1);
+            segment_set.insert(a, b);
             i++;
         }
-        debug(segment_set);
+        debug(e, segment_set);
 
-        ans[idx] = (s > t or segment_set.contains(s, t + 1) == 2);
+        ans[idx] = (s >= t or segment_set.contains(s, t) == 2);
     }
 
     for(auto elem : ans) std::cout << (elem ? "Yes" : "No") << "\n";
