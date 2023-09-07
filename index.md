@@ -110,9 +110,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: src/Graph/strongly_connected_components.hpp
       title: "\u5F37\u9023\u7D50\u6210\u5206\u5206\u89E3"
-    - icon: ':warning:'
+    - icon: ':x:'
       path: src/Graph/topological_sort.hpp
-      title: src/Graph/topological_sort.hpp
+      title: "Topological Sort\uFF08\u30C8\u30DD\u30ED\u30B8\u30AB\u30EB\u30BD\u30FC\
+        \u30C8\uFF09"
   - name: src/Math/Algebra
     pages:
     - icon: ':warning:'
@@ -268,6 +269,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj-GRL_3_C.test.cpp
       title: test/aoj-GRL_3_C.test.cpp
+    - icon: ':x:'
+      path: test/aoj-GRL_4_B.test.cpp
+      title: test/aoj-GRL_4_B.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/aoj-GRL_5_A.test.cpp
       title: test/aoj-GRL_5_A.test.cpp
