@@ -16,6 +16,6 @@
 
 ## 参考文献
 
-- 大槻兼資. "第16章 グラフ(4)：ネットワークフロー". 問題解決力を鍛える！ アルゴリズムとデータ構造. 秋葉拓哉監修. 講談社, 2020, p.283-309. 
-- "Ford–Fulkerson algorithm". Wikipedia. <https://en.wikipedia.org/wiki/Ford%E2%80%93Fulkerson_algorithm>.
-- "フォード・ファルカーソンのアルゴリズム". Wikipedia. <https://ja.wikipedia.org/wiki/フォード・ファルカーソンのアルゴリズム>.
+1. 大槻兼資. "第16章 グラフ(4)：ネットワークフロー". 問題解決力を鍛える！ アルゴリズムとデータ構造. 秋葉拓哉監修. 講談社, 2020, p.283-309. 
+1. "Ford–Fulkerson algorithm". Wikipedia. <https://en.wikipedia.org/wiki/Ford%E2%80%93Fulkerson_algorithm>.
+1. "フォード・ファルカーソンのアルゴリズム". Wikipedia. <https://ja.wikipedia.org/wiki/フォード・ファルカーソンのアルゴリズム>.

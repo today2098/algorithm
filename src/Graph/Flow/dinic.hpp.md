@@ -185,8 +185,8 @@ DFS 部分の計算量は，同じ辺を何度も調べないことで $O(|V||E|
 
 ## 参考文献
 
-- 秋葉拓哉ほか. "高速な最大流アルゴリズム". プログラミングコンテストチャレンジブック. 第2版, マイナビ出版, 2012, p.194-195.
-- "Dinic's algorithm". Wikipedia. <https://en.wikipedia.org/wiki/Dinic's_algorithm>.
-- tanaka-a. "燃やす埋める問題とProject Selection Problemの整理". <https://qiita.com/tanaka-a/items/fb8d84c44190c7098047>.
-- "最大流問題について". <https://topcoder-g-hatena-ne-jp.jag-icpc.org/Mi_Sawa/20140311/>.
-- "Dinic 法とその時間計算量". <https://misawa.github.io/others/flow/dinic_time_complexity.html>.
+1. 秋葉拓哉ほか. "高速な最大流アルゴリズム". プログラミングコンテストチャレンジブック. 第2版, マイナビ出版, 2012, p.194-195.
+1. "Dinic's algorithm". Wikipedia. <https://en.wikipedia.org/wiki/Dinic's_algorithm>.
+1. tanaka-a. "燃やす埋める問題とProject Selection Problemの整理". <https://qiita.com/tanaka-a/items/fb8d84c44190c7098047>.
+1. "最大流問題について". <https://topcoder-g-hatena-ne-jp.jag-icpc.org/Mi_Sawa/20140311/>.
+1. "Dinic 法とその時間計算量". <https://misawa.github.io/others/flow/dinic_time_complexity.html>.

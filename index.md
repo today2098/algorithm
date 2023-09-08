@@ -27,9 +27,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: src/DataStructure/SegmentTree/binary_indexed_tree_zero.hpp
       title: Binary Indexed Tree (0-based index)
-    - icon: ':warning:'
+    - icon: ':question:'
       path: src/DataStructure/SegmentTree/lazy_segment_tree.hpp
-      title: src/DataStructure/SegmentTree/lazy_segment_tree.hpp
+      title: "Lazy Segment Tree\uFF08\u9045\u5EF6\u8A55\u4FA1\u30BB\u30B0\u30E1\u30F3\
+        \u30C8\u6728\uFF09"
     - icon: ':heavy_check_mark:'
       path: src/DataStructure/SegmentTree/segment_tree.hpp
       title: Segment Tree
@@ -101,16 +102,16 @@ data:
       title: "Lowest Common Ancestor\uFF08\u6700\u8FD1\u5171\u901A\u7956\u5148\uFF09"
   - name: src/Graph
     pages:
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: src/Graph/low_link.hpp
-      title: src/Graph/low_link.hpp
+      title: "Low-Link\uFF08\u6A4B\uFF0C\u95A2\u7BC0\u70B9\uFF09"
     - icon: ':heavy_check_mark:'
       path: src/Graph/prim.hpp
       title: "Prim's Algorithm\uFF08\u6700\u5C0F\u5168\u57DF\u6728\uFF09"
     - icon: ':heavy_check_mark:'
       path: src/Graph/strongly_connected_components.hpp
       title: "\u5F37\u9023\u7D50\u6210\u5206\u5206\u89E3"
-    - icon: ':x:'
+    - icon: ':warning:'
       path: src/Graph/topological_sort.hpp
       title: "Topological Sort\uFF08\u30C8\u30DD\u30ED\u30B8\u30AB\u30EB\u30BD\u30FC\
         \u30C8\uFF09"
@@ -261,17 +262,32 @@ data:
       path: test/aoj-DSL_2_B-segment_tree.test.cpp
       title: test/aoj-DSL_2_B-segment_tree.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/aoj-DSL_2_F.test.cpp
+      title: test/aoj-DSL_2_F.test.cpp
+    - icon: ':x:'
+      path: test/aoj-DSL_2_G.test.cpp
+      title: test/aoj-DSL_2_G.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/aoj-DSL_2_H.test.cpp
+      title: test/aoj-DSL_2_H.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/aoj-DSL_2_I.test.cpp
+      title: test/aoj-DSL_2_I.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/aoj-GRL_1_A.test.cpp
       title: test/aoj-GRL_1_A.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/aoj-GRL_1_B.test.cpp
       title: test/aoj-GRL_1_B.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/aoj-GRL_3_A.test.cpp
+      title: test/aoj-GRL_3_A.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/aoj-GRL_3_B.test.cpp
+      title: test/aoj-GRL_3_B.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/aoj-GRL_3_C.test.cpp
       title: test/aoj-GRL_3_C.test.cpp
-    - icon: ':x:'
-      path: test/aoj-GRL_4_B.test.cpp
-      title: test/aoj-GRL_4_B.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/aoj-GRL_5_A.test.cpp
       title: test/aoj-GRL_5_A.test.cpp

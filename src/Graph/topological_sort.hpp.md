@@ -2,13 +2,10 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':x:'
-    path: test/aoj-GRL_4_B.test.cpp
-    title: test/aoj-GRL_4_B.test.cpp
-  _isVerificationFailed: true
+  _extendedVerifiedWith: []
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     _deprecated_at_docs: docs/Graph/topological_sort.md
     document_title: "Topological Sort\uFF08\u30C8\u30DD\u30ED\u30B8\u30AB\u30EB\u30BD\
@@ -95,9 +92,8 @@ data:
   path: src/Graph/topological_sort.hpp
   requiredBy: []
   timestamp: '2023-09-07 23:51:55+09:00'
-  verificationStatus: LIBRARY_ALL_WA
-  verifiedWith:
-  - test/aoj-GRL_4_B.test.cpp
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: src/Graph/topological_sort.hpp
 layout: document
 redirect_from:
@@ -108,13 +104,18 @@ title: "Topological Sort\uFF08\u30C8\u30DD\u30ED\u30B8\u30AB\u30EB\u30BD\u30FC\u
 ---
 ## 概要
 
-トポロジカルソートとは，有向グラフの各ノードを，全ての辺の向きが揃うように一列に並べることである．
+トポロジカルソートとは，有向グラフの各ノードを，全ての辺の向きが揃うように一列に並べること．
 有向グラフが DAG (directed acyclic graph) である（つまり閉路がない）場合のみ，解が存在する．
 
-アルゴリズムの計算量は $O(|V|+|E|)$ となる．
+アルゴリズムの計算量は $O(\lvert V \rvert + \lvert E \rvert)$ ．
 
 
 ## 参考文献
 
-- "トポロジカルソート". Wikipedia. <https://ja.wikipedia.org/wiki/トポロジカルソート>.
-- "トポロジカルソート". いかたこのたこつぼ. <https://ikatakos.com/pot/programming_algorithm/graph_theory/topological_sort>.
+1. "トポロジカルソート". Wikipedia. <https://ja.wikipedia.org/wiki/トポロジカルソート>.
+1. "トポロジカルソート". いかたこのたこつぼ. <https://ikatakos.com/pot/programming_algorithm/graph_theory/topological_sort>.
+
+
+## 問題
+
+- "GRL_4_B: トポロジカルソート". AOJ. <https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_4_B>.

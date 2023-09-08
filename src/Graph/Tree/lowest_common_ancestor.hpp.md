@@ -222,4 +222,4 @@ title: "Lowest Common Ancestor\uFF08\u6700\u8FD1\u5171\u901A\u7956\u5148\uFF09"
 ---
 ## 参考文献
 
-- yaketake08. "LCAをベースに構築するAuxiliary Treeのメモ". Hatena Blog. <https://smijake3.hatenablog.com/entry/2019/09/15/200200>.
+1. yaketake08. "LCAをベースに構築するAuxiliary Treeのメモ". Hatena Blog. <https://smijake3.hatenablog.com/entry/2019/09/15/200200>.

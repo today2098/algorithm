@@ -211,4 +211,4 @@ title: "\u6700\u5C0F\u8CBB\u7528\u6D41"
 
 ## 参考文献
 
-- "最小費用流". いかのたこつぼ. <https://ikatakos.com/pot/programming_algorithm/graph_theory/minimum_cost_flow>.
+1. "最小費用流". いかのたこつぼ. <https://ikatakos.com/pot/programming_algorithm/graph_theory/minimum_cost_flow>.

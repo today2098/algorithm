@@ -75,12 +75,6 @@ redirect_from:
 - /library/src/Graph/prim.hpp.html
 title: "Prim's Algorithm\uFF08\u6700\u5C0F\u5168\u57DF\u6728\uFF09"
 ---
-<!-- ---
-title: Prim's Algorithm（最小全域木）
-documentation_of: //src/Graph/prim.hpp
---- -->
-
-
 ## 概要
 
 重み付き無向連結グラフにおける最小全域木 (MST: Minimum Spanning Tree) を求める．
