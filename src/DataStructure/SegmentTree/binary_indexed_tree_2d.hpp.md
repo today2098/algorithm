@@ -2,18 +2,21 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/aoj-2842.test.cpp
+    title: test/aoj-2842.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    document_title: "2\u6B21\u5143BIT"
+    document_title: "\u4E8C\u6B21\u5143BIT"
     links: []
   bundledCode: "#line 1 \"src/DataStructure/SegmentTree/binary_indexed_tree_2d.hpp\"\
-    \n/**\n * @brief 2\u6B21\u5143BIT\n */\n\n#ifndef ALGORITHM_BINARY_INDEXED_TREE_2D_HPP\n\
+    \n/**\n * @brief \u4E8C\u6B21\u5143BIT\n */\n\n#ifndef ALGORITHM_BINARY_INDEXED_TREE_2D_HPP\n\
     #define ALGORITHM_BINARY_INDEXED_TREE_2D_HPP 1\n\n#include <algorithm>\n#include\
-    \ <cassert>\n#include <vector>\n\nnamespace algorithm {\n\n// 2\u6B21\u5143BIT\uFF0E\
-    \ntemplate <typename T>\nclass BIT2D {\n    int m_h, m_w;\n    std::vector<std::vector<T>\
+    \ <cassert>\n#include <vector>\n\nnamespace algorithm {\n\n// \u4E8C\u6B21\u5143\
+    BIT\uFF0E\ntemplate <typename T>\nclass BIT2D {\n    int m_h, m_w;\n    std::vector<std::vector<T>\
     \ > m_dat;  // 1-based index.\n\n    void build() {\n        for(int i = 1; i\
     \ <= height(); ++i)\n            for(int j = 1; j <= width(); ++j) {\n       \
     \         int ni = i + (i & -i), nj = j + (j & -j);\n                bool flag1\
@@ -46,10 +49,10 @@ data:
     \   for(int i = 1; i <= height(); ++i) std::fill(m_dat[i].begin() + 1, m_dat[i].end(),\
     \ a);\n        if(a != 0) build();\n    }\n};\n\n}  // namespace algorithm\n\n\
     #endif\n"
-  code: "/**\n * @brief 2\u6B21\u5143BIT\n */\n\n#ifndef ALGORITHM_BINARY_INDEXED_TREE_2D_HPP\n\
+  code: "/**\n * @brief \u4E8C\u6B21\u5143BIT\n */\n\n#ifndef ALGORITHM_BINARY_INDEXED_TREE_2D_HPP\n\
     #define ALGORITHM_BINARY_INDEXED_TREE_2D_HPP 1\n\n#include <algorithm>\n#include\
-    \ <cassert>\n#include <vector>\n\nnamespace algorithm {\n\n// 2\u6B21\u5143BIT\uFF0E\
-    \ntemplate <typename T>\nclass BIT2D {\n    int m_h, m_w;\n    std::vector<std::vector<T>\
+    \ <cassert>\n#include <vector>\n\nnamespace algorithm {\n\n// \u4E8C\u6B21\u5143\
+    BIT\uFF0E\ntemplate <typename T>\nclass BIT2D {\n    int m_h, m_w;\n    std::vector<std::vector<T>\
     \ > m_dat;  // 1-based index.\n\n    void build() {\n        for(int i = 1; i\
     \ <= height(); ++i)\n            for(int j = 1; j <= width(); ++j) {\n       \
     \         int ni = i + (i & -i), nj = j + (j & -j);\n                bool flag1\
@@ -86,13 +89,14 @@ data:
   isVerificationFile: false
   path: src/DataStructure/SegmentTree/binary_indexed_tree_2d.hpp
   requiredBy: []
-  timestamp: '2023-09-08 19:04:43+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  timestamp: '2023-09-08 23:12:17+09:00'
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/aoj-2842.test.cpp
 documentation_of: src/DataStructure/SegmentTree/binary_indexed_tree_2d.hpp
 layout: document
 redirect_from:
 - /library/src/DataStructure/SegmentTree/binary_indexed_tree_2d.hpp
 - /library/src/DataStructure/SegmentTree/binary_indexed_tree_2d.hpp.html
-title: "2\u6B21\u5143BIT"
+title: "\u4E8C\u6B21\u5143BIT"
 ---

@@ -18,12 +18,12 @@ data:
     - icon: ':warning:'
       path: src/DataStructure/SegmentTree/binary_indexed_tree.hpp
       title: Binary Indexed Tree
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: src/DataStructure/SegmentTree/binary_indexed_tree_2d.hpp
-      title: "2\u6B21\u5143BIT"
+      title: "\u4E8C\u6B21\u5143BIT"
     - icon: ':warning:'
       path: src/DataStructure/SegmentTree/binary_indexed_tree_2d_zero.hpp
-      title: "2\u6B21\u5143BIT (0-based index)"
+      title: "\u4E8C\u6B21\u5143BIT (0-based index)"
     - icon: ':heavy_check_mark:'
       path: src/DataStructure/SegmentTree/binary_indexed_tree_zero.hpp
       title: Binary Indexed Tree (0-based index)
@@ -234,6 +234,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj-1276-sieve.test.cpp
       title: test/aoj-1276-sieve.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/aoj-2842.test.cpp
+      title: test/aoj-2842.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/aoj-2880.test.cpp
       title: test/aoj-2880.test.cpp
