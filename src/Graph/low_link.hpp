@@ -1,3 +1,8 @@
+/**
+ * @brief Low-Link（橋，関節点）
+ * @docs docs/Graph/low_link.md
+ */
+
 #ifndef ALGORITHM_LOW_LINK_HPP
 #define ALGORITHM_LOW_LINK_HPP 1
 
@@ -10,13 +15,13 @@ namespace algorithm {
 
 class LowLink {
     std::vector<std::vector<int> > m_g;       // m_g[v][]:=(頂点vの隣接リスト).
-    std::vector<int> m_aps;                   // m_aps[]:=(関節点のリスト). Articulations points.
+    std::vector<int> m_aps;                   // m_aps[]:=(関節点のリスト). Articulation points.
     std::vector<std::pair<int, int> > m_brs;  // m_brs[]:=(橋のリスト). Bridges.
 
     void dfs(int u, int parent, std::vector<int> &ord, std::vector<int> &low, int &now) {
         ord[u] = low[u] = now++;
-        int degree = 0;      // DFS木での頂点uにおける葉方向への出次数．
-        bool is_ap = false;  // 頂点uが関節点か否か．
+        int degree = 0;      // degree:=(DFS木での頂点uにおける葉方向への出次数).
+        bool is_ap = false;  // is_ap:=(頂点uが関節点か).
         for(int v : m_g[u]) {
             if(v == parent) continue;
             if(ord[v] == -1) {  // 頂点vが未訪問のとき．
@@ -57,23 +62,18 @@ public:
         // low[v]:=(DFS木において，頂点vから葉方向に0回以上，後退辺を高々1回用いて到達できる頂点wのord[w]の最小値).
         std::vector<int> ord(order(), -1), low(order());
         int now = 0;
-        for(int v = 0; v < order(); ++v) {
+        for(int v = 0, n = order(); v < n; ++v) {
             if(ord[v] == -1) dfs(v, -1, ord, low, now);
         }
         std::sort(m_aps.begin(), m_aps.end());
         std::sort(m_brs.begin(), m_brs.end());
     }
     // 関節点のリストを参照する．
-    const std::vector<int> &get_points() const { return m_aps; }
+    const std::vector<int> &articulation_points() const { return m_aps; }
     // 橋のリストを参照する．
-    const std::vector<std::pair<int, int> > &get_bridges() const { return m_brs; }
+    const std::vector<std::pair<int, int> > &bridges() const { return m_brs; }
 };
 
 }  // namespace algorithm
 
 #endif
-
-/*
-参考文献
-- o-treetree, グラフの関節点と橋を求めて再帰DFSを知る，HatenaBlog, https://o-treetree.hatenablog.com/entry/2020/06/08/231258（参照2022.9.13）．
-*/
