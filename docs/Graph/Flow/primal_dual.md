@@ -13,4 +13,4 @@
 
 ## 参考文献
 
-- "最小費用流". いかのたこつぼ. <https://ikatakos.com/pot/programming_algorithm/graph_theory/minimum_cost_flow>.
+1. "最小費用流". いかのたこつぼ. <https://ikatakos.com/pot/programming_algorithm/graph_theory/minimum_cost_flow>.

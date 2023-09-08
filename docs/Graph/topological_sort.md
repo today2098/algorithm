@@ -8,8 +8,8 @@
 
 ## 参考文献
 
-- "トポロジカルソート". Wikipedia. <https://ja.wikipedia.org/wiki/トポロジカルソート>.
-- "トポロジカルソート". いかたこのたこつぼ. <https://ikatakos.com/pot/programming_algorithm/graph_theory/topological_sort>.
+1. "トポロジカルソート". Wikipedia. <https://ja.wikipedia.org/wiki/トポロジカルソート>.
+1. "トポロジカルソート". いかたこのたこつぼ. <https://ikatakos.com/pot/programming_algorithm/graph_theory/topological_sort>.
 
 
 ## 問題
