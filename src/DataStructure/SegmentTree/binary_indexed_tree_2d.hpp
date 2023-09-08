@@ -1,5 +1,5 @@
 /**
- * @brief 2次元BIT
+ * @brief 二次元BIT
  */
 
 #ifndef ALGORITHM_BINARY_INDEXED_TREE_2D_HPP
@@ -11,7 +11,7 @@
 
 namespace algorithm {
 
-// 2次元BIT．
+// 二次元BIT．
 template <typename T>
 class BIT2D {
     int m_h, m_w;
