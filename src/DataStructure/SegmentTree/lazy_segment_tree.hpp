@@ -1,3 +1,8 @@
+/**
+ * @brief Lazy Segment Tree（遅延評価セグメント木）
+ * @docs docs/DataStructure/SegmentTree/lzay_segment_tree.hpp
+ */
+
 #ifndef ALGORITHM_LAZY_SEGMENT_TREE_HPP
 #define ALGORITHM_LAZY_SEGMENT_TREE_HPP 1
 
@@ -8,16 +13,16 @@
 
 namespace algorithm {
 
-// 遅延評価セグメント木．
+// Lazy Segment Tree（遅延評価セグメント木）.
 template <class S, class F>  // S:モノイドの型, F:写像の型.
 class LazySegTree {
-    using FO = std::function<S(const S &, const S &)>;
-    using FM = std::function<S(const F &, const S &)>;
-    using FC = std::function<F(const F &, const F &)>;
+    using FuncO = std::function<S(const S &, const S &)>;
+    using FuncM = std::function<S(const F &, const S &)>;
+    using FuncC = std::function<F(const F &, const F &)>;
 
-    FO m_op;                // S m_op(S,S):=(二項演算関数). S×S→Sを計算する．
-    FM m_mapping;           // S m_mapping(F f,S x):=(写像). f(x)を返す．
-    FC m_composition;       // F m_composition(F f,F g):=(写像の合成). f∘gを返す．
+    FuncO m_op;             // S m_op(S,S):=(二項演算関数). S×S→Sを計算する．
+    FuncM m_mapping;        // S m_mapping(F f,S x):=(写像). f(x)を返す．
+    FuncC m_composition;    // F m_composition(F f,F g):=(写像の合成). f∘gを返す．
     S m_e;                  // m_e:=(単位元).
     F m_id;                 // m_id:=(恒等写像).
     int m_sz;               // m_sz:=(要素数).
@@ -45,13 +50,13 @@ class LazySegTree {
 public:
     // constructor. O(N).
     LazySegTree() {}
-    explicit LazySegTree(const FO &op, const FM &mapping, const FC &composition, const S &e, const F &id, size_t n)
+    explicit LazySegTree(const FuncO &op, const FuncM &mapping, const FuncC &composition, const S &e, const F &id, size_t n)
         : m_op(op), m_mapping(mapping), m_composition(composition), m_e(e), m_id(id), m_sz(n), m_n(1), m_depth(0) {
         while(m_n < size()) m_n <<= 1, m_depth++;
         m_tree.assign(2 * m_n, identity());
         m_lazy.assign(m_n, mapping_identity());
     }
-    explicit LazySegTree(const FO &op, const FM &mapping, const FC &composition, const S &e, const F &id, const std::vector<S> &v)
+    explicit LazySegTree(const FuncO &op, const FuncM &mapping, const FuncC &composition, const S &e, const F &id, const std::vector<S> &v)
         : LazySegTree(op, mapping, composition, e, id, v.size()) {
         std::copy(v.begin(), v.end(), m_tree.begin() + m_n);
         for(int i = m_n - 1; i >= 1; --i) update(i);
@@ -78,12 +83,12 @@ public:
         if(l == r) return;
         l += m_n, r += m_n;
         for(int i = m_depth; i >= 1; --i) {
-            if(((l >> i) << i) != l) push(l >> i);
-            if(((r >> i) << i) != r) push((r - 1) >> i);
+            if((l >> i) << i != l) push(l >> i);
+            if((r >> i) << i != r) push((r - 1) >> i);
         }
         std::copy(v.begin(), v.end(), m_tree.begin() + l);
         for(int i = 1; i <= m_depth; ++i) {
-            int l2 = (l >> i), r2 = ((r - 1) >> i);
+            int l2 = l >> i, r2 = (r - 1) >> i;
             for(int j = l2; j <= r2; ++j) update(j);
         }
     }
@@ -101,16 +106,16 @@ public:
         if(l == r) return;
         l += m_n, r += m_n;
         for(int i = m_depth; i >= 1; --i) {
-            if(((l >> i) << i) != l) push(l >> i);
-            if(((r >> i) << i) != r) push((r - 1) >> i);
+            if((l >> i) << i != l) push(l >> i);
+            if((r >> i) << i != r) push((r - 1) >> i);
         }
         for(int l2 = l, r2 = r; l2 < r2; l2 >>= 1, r2 >>= 1) {
             if(l2 & 1) apply0(l2++, f);
             if(r2 & 1) apply0(--r2, f);
         }
         for(int i = 1; i <= m_depth; ++i) {
-            if(((l >> i) << i) != l) update(l >> i);
-            if(((r >> i) << i) != r) update((r - 1) >> i);
+            if((l >> i) << i != l) update(l >> i);
+            if((r >> i) << i != r) update((r - 1) >> i);
         }
     }
     // 一点取得．O(logN).
@@ -120,14 +125,14 @@ public:
         for(int i = m_depth; i >= 1; --i) push(k >> i);
         return m_tree[k];
     }
-    // 区間[l,r)の総積 (v[l]•v[l+1]•....•v[r-1]) を求める．O(logN).
+    // 区間[l,r)の総積 v[l]•v[l+1]•....•v[r-1] を求める．O(logN).
     S prod(int l, int r) {
         assert(0 <= l and l <= r and r <= size());
         if(l == r) return identity();
         l += m_n, r += m_n;
         for(int i = m_depth; i >= 1; --i) {
-            if(((l >> i) << i) != l) push(l >> i);
-            if(((r >> i) << i) != r) push((r - 1) >> i);
+            if((l >> i) << i != l) push(l >> i);
+            if((r >> i) << i != r) push((r - 1) >> i);
         }
         S val_l = identity(), val_r = identity();
         for(; l < r; l >>= 1, r >>= 1) {
