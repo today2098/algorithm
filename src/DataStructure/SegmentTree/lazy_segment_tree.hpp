@@ -1,6 +1,6 @@
 /**
  * @brief Lazy Segment Tree（遅延評価セグメント木）
- * @docs docs/DataStructure/SegmentTree/lzay_segment_tree.hpp
+ * @docs docs/DataStructure/SegmentTree/lzay_segment_tree.md
  */
 
 #ifndef ALGORITHM_LAZY_SEGMENT_TREE_HPP
