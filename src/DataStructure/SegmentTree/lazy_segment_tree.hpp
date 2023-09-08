@@ -1,6 +1,6 @@
 /**
  * @brief Lazy Segment Tree（遅延評価セグメント木）
- * @docs docs/DataStructure/SegmentTree/lzay_segment_tree.md
+ * @docs docs/DataStructure/SegmentTree/lazy_segment_tree.md
  */
 
 #ifndef ALGORITHM_LAZY_SEGMENT_TREE_HPP
@@ -40,7 +40,7 @@ class LazySegTree {
         assert(1 <= k and k < m_n);
         apply0(k << 1, m_lazy[k]);
         apply0(k << 1 | 1, m_lazy[k]);
-        m_lazy[k] = mapping_identity();
+        m_lazy[k] = identity_mapping();
     }
     void update(int k) {
         assert(1 <= k and k < m_n);
@@ -54,7 +54,7 @@ public:
         : m_op(op), m_mapping(mapping), m_composition(composition), m_e(e), m_id(id), m_sz(n), m_n(1), m_depth(0) {
         while(m_n < size()) m_n <<= 1, m_depth++;
         m_tree.assign(2 * m_n, identity());
-        m_lazy.assign(m_n, mapping_identity());
+        m_lazy.assign(m_n, identity_mapping());
     }
     explicit LazySegTree(const FuncO &op, const FuncM &mapping, const FuncC &composition, const S &e, const F &id, const std::vector<S> &v)
         : LazySegTree(op, mapping, composition, e, id, v.size()) {
@@ -67,7 +67,7 @@ public:
     // モノイドの単位元を返す．
     S identity() const { return m_e; }
     // 恒等写像を返す．
-    F mapping_identity() const { return m_id; }
+    F identity_mapping() const { return m_id; }
     // k番目の要素をaに置き換える．O(logN).
     void set(int k, const S &a) {
         assert(0 <= k and k < size());
@@ -78,18 +78,16 @@ public:
     }
     // 区間[l,-)の要素をv[]に置き換える．O(N).
     void set(int l, const std::vector<S> &v) {
+        assert(0 <= l and l + (int)v.size() <= size());
+        if(v.size() == 0) return;
+        l += m_n;
         int r = l + (int)v.size();
-        assert(0 <= l and r <= size());
-        if(l == r) return;
-        l += m_n, r += m_n;
         for(int i = m_depth; i >= 1; --i) {
-            if((l >> i) << i != l) push(l >> i);
-            if((r >> i) << i != r) push((r - 1) >> i);
+            for(int j = l >> i, end = (r - 1) >> i; j <= end; ++j) push(j);
         }
         std::copy(v.begin(), v.end(), m_tree.begin() + l);
         for(int i = 1; i <= m_depth; ++i) {
-            int l2 = l >> i, r2 = (r - 1) >> i;
-            for(int j = l2; j <= r2; ++j) update(j);
+            for(int j = l >> i, end = (r - 1) >> i; j <= end; ++j) update(j);
         }
     }
     // k番目の要素を写像fを用いて更新する．O(logN).
@@ -158,7 +156,7 @@ public:
             if(!jud(tmp)) {
                 while(l < m_n) {
                     push(l);
-                    l *= 2;
+                    l <<= 1;
                     S &&tmp2 = m_op(val, m_tree[l]);
                     if(jud(tmp2)) val = tmp2, l++;
                 }
@@ -184,7 +182,7 @@ public:
             if(!jud(tmp)) {
                 while(r < m_n) {
                     push(r);
-                    r = 2 * r + 1;
+                    r = r << 1 | 1;
                     S &&tmp2 = m_op(m_tree[r], val);
                     if(jud(tmp2)) val = tmp2, r--;
                 }
@@ -196,7 +194,7 @@ public:
     }
     void reset() {
         std::fill(m_tree.begin(), m_tree.end(), identity());
-        std::fill(m_lazy.begin(), m_lazy.end(), mapping_identity());
+        std::fill(m_lazy.begin(), m_lazy.end(), identity_mapping());
     }
 };
 
