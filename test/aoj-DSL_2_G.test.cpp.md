@@ -1,24 +1,24 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: src/DataStructure/SegmentTree/lazy_segment_tree.hpp
     title: "Lazy Segment Tree\uFF08\u9045\u5EF6\u8A55\u4FA1\u30BB\u30B0\u30E1\u30F3\
       \u30C8\u6728\uFF09"
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/all/DSL_2_F
+    PROBLEM: https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/all/DSL_2_G
     links:
-    - https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/all/DSL_2_F
-  bundledCode: "#line 1 \"test/aoj-DSL_2_G.test.cpp\"\n#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/all/DSL_2_F\"\
+    - https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/all/DSL_2_G
+  bundledCode: "#line 1 \"test/aoj-DSL_2_G.test.cpp\"\n#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/all/DSL_2_G\"\
     \n\n#include <iostream>\n#include <vector>\n\n#line 1 \"src/DataStructure/SegmentTree/lazy_segment_tree.hpp\"\
     \n/**\n * @brief Lazy Segment Tree\uFF08\u9045\u5EF6\u8A55\u4FA1\u30BB\u30B0\u30E1\
-    \u30F3\u30C8\u6728\uFF09\n * @docs docs/DataStructure/SegmentTree/lzay_segment_tree.hpp\n\
+    \u30F3\u30C8\u6728\uFF09\n * @docs docs/DataStructure/SegmentTree/lzay_segment_tree.md\n\
     \ */\n\n#ifndef ALGORITHM_LAZY_SEGMENT_TREE_HPP\n#define ALGORITHM_LAZY_SEGMENT_TREE_HPP\
     \ 1\n\n#include <algorithm>\n#include <cassert>\n#include <functional>\n#line\
     \ 13 \"src/DataStructure/SegmentTree/lazy_segment_tree.hpp\"\n\nnamespace algorithm\
@@ -146,7 +146,7 @@ data:
     \    } else {\n            int s, t;\n            std::cin >> s >> t;\n      \
     \      s--;\n\n            std::cout << tree.prod(s, t).val << \"\\n\";\n    \
     \    }\n    }\n}\n"
-  code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/all/DSL_2_F\"\
+  code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/all/DSL_2_G\"\
     \n\n#include <iostream>\n#include <vector>\n\n#include \"../src/DataStructure/SegmentTree/lazy_segment_tree.hpp\"\
     \n\nint main() {\n    int n;\n    int q;\n    std::cin >> n >> q;\n\n    using\
     \ S = struct {\n        long long val;\n        int size;\n    };\n    using F\
@@ -167,8 +167,8 @@ data:
   isVerificationFile: true
   path: test/aoj-DSL_2_G.test.cpp
   requiredBy: []
-  timestamp: '2023-09-08 18:04:20+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-09-08 18:38:07+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj-DSL_2_G.test.cpp
 layout: document

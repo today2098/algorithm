@@ -6,7 +6,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj-DSL_2_F.test.cpp
     title: test/aoj-DSL_2_F.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj-DSL_2_G.test.cpp
     title: test/aoj-DSL_2_G.test.cpp
   - icon: ':heavy_check_mark:'
@@ -15,17 +15,17 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj-DSL_2_I.test.cpp
     title: test/aoj-DSL_2_I.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    _deprecated_at_docs: docs/DataStructure/SegmentTree/lzay_segment_tree.hpp
+    _deprecated_at_docs: docs/DataStructure/SegmentTree/lzay_segment_tree.md
     document_title: "Lazy Segment Tree\uFF08\u9045\u5EF6\u8A55\u4FA1\u30BB\u30B0\u30E1\
       \u30F3\u30C8\u6728\uFF09"
     links: []
   bundledCode: "#line 1 \"src/DataStructure/SegmentTree/lazy_segment_tree.hpp\"\n\
     /**\n * @brief Lazy Segment Tree\uFF08\u9045\u5EF6\u8A55\u4FA1\u30BB\u30B0\u30E1\
-    \u30F3\u30C8\u6728\uFF09\n * @docs docs/DataStructure/SegmentTree/lzay_segment_tree.hpp\n\
+    \u30F3\u30C8\u6728\uFF09\n * @docs docs/DataStructure/SegmentTree/lzay_segment_tree.md\n\
     \ */\n\n#ifndef ALGORITHM_LAZY_SEGMENT_TREE_HPP\n#define ALGORITHM_LAZY_SEGMENT_TREE_HPP\
     \ 1\n\n#include <algorithm>\n#include <cassert>\n#include <functional>\n#include\
     \ <vector>\n\nnamespace algorithm {\n\n// Lazy Segment Tree\uFF08\u9045\u5EF6\u8A55\
@@ -139,7 +139,7 @@ data:
     \ m_tree.end(), identity());\n        std::fill(m_lazy.begin(), m_lazy.end(),\
     \ mapping_identity());\n    }\n};\n\n}  // namespace algorithm\n\n#endif\n"
   code: "/**\n * @brief Lazy Segment Tree\uFF08\u9045\u5EF6\u8A55\u4FA1\u30BB\u30B0\
-    \u30E1\u30F3\u30C8\u6728\uFF09\n * @docs docs/DataStructure/SegmentTree/lzay_segment_tree.hpp\n\
+    \u30E1\u30F3\u30C8\u6728\uFF09\n * @docs docs/DataStructure/SegmentTree/lzay_segment_tree.md\n\
     \ */\n\n#ifndef ALGORITHM_LAZY_SEGMENT_TREE_HPP\n#define ALGORITHM_LAZY_SEGMENT_TREE_HPP\
     \ 1\n\n#include <algorithm>\n#include <cassert>\n#include <functional>\n#include\
     \ <vector>\n\nnamespace algorithm {\n\n// Lazy Segment Tree\uFF08\u9045\u5EF6\u8A55\
@@ -256,8 +256,8 @@ data:
   isVerificationFile: false
   path: src/DataStructure/SegmentTree/lazy_segment_tree.hpp
   requiredBy: []
-  timestamp: '2023-09-08 16:48:10+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  timestamp: '2023-09-08 18:38:07+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj-DSL_2_F.test.cpp
   - test/aoj-DSL_2_I.test.cpp

@@ -20,14 +20,14 @@ data:
       title: Binary Indexed Tree
     - icon: ':warning:'
       path: src/DataStructure/SegmentTree/binary_indexed_tree_2d.hpp
-      title: src/DataStructure/SegmentTree/binary_indexed_tree_2d.hpp
+      title: "2\u6B21\u5143BIT"
     - icon: ':warning:'
       path: src/DataStructure/SegmentTree/binary_indexed_tree_2d_zero.hpp
-      title: src/DataStructure/SegmentTree/binary_indexed_tree_2d_zero.hpp
+      title: "2\u6B21\u5143BIT (0-based index)"
     - icon: ':heavy_check_mark:'
       path: src/DataStructure/SegmentTree/binary_indexed_tree_zero.hpp
       title: Binary Indexed Tree (0-based index)
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: src/DataStructure/SegmentTree/lazy_segment_tree.hpp
       title: "Lazy Segment Tree\uFF08\u9045\u5EF6\u8A55\u4FA1\u30BB\u30B0\u30E1\u30F3\
         \u30C8\u6728\uFF09"
@@ -264,7 +264,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj-DSL_2_F.test.cpp
       title: test/aoj-DSL_2_F.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj-DSL_2_G.test.cpp
       title: test/aoj-DSL_2_G.test.cpp
     - icon: ':heavy_check_mark:'

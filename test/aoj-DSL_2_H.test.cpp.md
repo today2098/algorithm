@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: src/DataStructure/SegmentTree/lazy_segment_tree.hpp
     title: "Lazy Segment Tree\uFF08\u9045\u5EF6\u8A55\u4FA1\u30BB\u30B0\u30E1\u30F3\
       \u30C8\u6728\uFF09"
@@ -19,7 +19,7 @@ data:
     \n\n#include <algorithm>\n#include <iostream>\n#include <vector>\n\n#line 1 \"\
     src/DataStructure/SegmentTree/lazy_segment_tree.hpp\"\n/**\n * @brief Lazy Segment\
     \ Tree\uFF08\u9045\u5EF6\u8A55\u4FA1\u30BB\u30B0\u30E1\u30F3\u30C8\u6728\uFF09\
-    \n * @docs docs/DataStructure/SegmentTree/lzay_segment_tree.hpp\n */\n\n#ifndef\
+    \n * @docs docs/DataStructure/SegmentTree/lzay_segment_tree.md\n */\n\n#ifndef\
     \ ALGORITHM_LAZY_SEGMENT_TREE_HPP\n#define ALGORITHM_LAZY_SEGMENT_TREE_HPP 1\n\
     \n#line 10 \"src/DataStructure/SegmentTree/lazy_segment_tree.hpp\"\n#include <cassert>\n\
     #include <functional>\n#line 13 \"src/DataStructure/SegmentTree/lazy_segment_tree.hpp\"\
@@ -164,7 +164,7 @@ data:
   isVerificationFile: true
   path: test/aoj-DSL_2_H.test.cpp
   requiredBy: []
-  timestamp: '2023-09-08 18:04:20+09:00'
+  timestamp: '2023-09-08 18:38:07+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj-DSL_2_H.test.cpp
