@@ -39,12 +39,13 @@ data:
       title: Sparse Table
   - name: src/DataStructure/UnionFind
     pages:
+    - icon: ':warning:'
+      path: src/DataStructure/UnionFind/partially_persistent_union_find.hpp
+      title: "Partially Persistent Union-Find\uFF08\u90E8\u5206\u6C38\u7D9AUnionf-Find\
+        \ Tree\uFF09"
     - icon: ':heavy_check_mark:'
       path: src/DataStructure/UnionFind/potentialized_union_find.hpp
       title: "\u91CD\u307F\u4ED8\u304DUnion-Find\u6728"
-    - icon: ':warning:'
-      path: src/DataStructure/UnionFind/sub_persistent_union_find.hpp
-      title: src/DataStructure/UnionFind/sub_persistent_union_find.hpp
     - icon: ':heavy_check_mark:'
       path: src/DataStructure/UnionFind/union_find.hpp
       title: "Union-Find\uFF08\u7D20\u96C6\u5408\u30C7\u30FC\u30BF\u69CB\u9020\uFF09"
@@ -138,7 +139,7 @@ data:
     pages:
     - icon: ':warning:'
       path: src/Math/ModularArithmetic/dynamic_modint.hpp
-      title: src/Math/ModularArithmetic/dynamic_modint.hpp
+      title: "\u52D5\u7684Modint"
     - icon: ':warning:'
       path: src/Math/ModularArithmetic/mod_inv.hpp
       title: "\u30E2\u30B8\u30E5\u30E9\u9006\u6570\uFF08\u4E57\u6CD5\u9006\u5143\uFF09"
