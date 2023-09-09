@@ -1,8 +1,13 @@
+/**
+ * @brief 動的Modint
+ */
+
 #ifndef ALGORITHM_DYNAMIC_MODINT_HPP
 #define ALGORITHM_DYNAMIC_MODINT_HPP 1
 
 #include <cassert>
 #include <iostream>
+#include <utility>
 
 namespace algorithm {
 
@@ -11,16 +16,20 @@ class DynamicModint {
     static int mod;
     long long val;
 
+    void build() {
+        if(!(-mod <= val and val < mod)) val %= mod;
+        if(val < 0) val += mod;
+    }
+
 public:
     DynamicModint() : DynamicModint(0) {}
     DynamicModint(long long val_) : val(val_) {
         assert(mod >= 1);
-        val %= mod;
-        if(val < 0) val += mod;
+        build();
     }
 
     DynamicModint operator+() const { return DynamicModint(*this); }
-    DynamicModint operator-() const { return DynamicModint(0) - (*this); }
+    DynamicModint operator-() const { return (val == 0 ? DynamicModint(0) : DynamicModint(mod - val)); }
     DynamicModint &operator++() {
         val++;
         if(val == mod) val = 0;
@@ -41,35 +50,34 @@ public:
         --(*this);
         return res;
     }
-    DynamicModint &operator+=(const DynamicModint &a) {
-        val += a.val;
+    DynamicModint &operator+=(const DynamicModint &rhs) {
+        val += rhs.val;
         if(val >= mod) val -= mod;
         return *this;
     }
-    DynamicModint &operator-=(const DynamicModint &a) {
-        val -= a.val;
+    DynamicModint &operator-=(const DynamicModint &rhs) {
+        val -= rhs.val;
         if(val < 0) val += mod;
         return *this;
     }
-    DynamicModint &operator*=(const DynamicModint &a) {
-        val = val * a.val % mod;
+    DynamicModint &operator*=(const DynamicModint &rhs) {
+        val = val * rhs.val % mod;
         return *this;
     }
-    DynamicModint &operator/=(const DynamicModint &a) { return (*this) *= a.inv(); }
+    DynamicModint &operator/=(const DynamicModint &rhs) { return *this *= rhs.inv(); }
 
-    friend DynamicModint operator+(const DynamicModint &x, const DynamicModint &y) { return DynamicModint(x) += y; }
-    friend DynamicModint operator-(const DynamicModint &x, const DynamicModint &y) { return DynamicModint(x) -= y; }
-    friend DynamicModint operator*(const DynamicModint &x, const DynamicModint &y) { return DynamicModint(x) *= y; }
-    friend DynamicModint operator/(const DynamicModint &x, const DynamicModint &y) { return DynamicModint(x) /= y; }
-    friend bool operator==(const DynamicModint &x, const DynamicModint &y) { return x.val == y.val; }
-    friend bool operator!=(const DynamicModint &x, const DynamicModint &y) { return x.val != y.val; }
-    friend std::istream &operator>>(std::istream &is, DynamicModint &x) {
-        is >> x.val;
-        x.val %= mod;
-        if(x.val < 0) x.val += mod;
+    friend DynamicModint operator+(const DynamicModint &lhs, const DynamicModint &rhs) { return DynamicModint(lhs) += rhs; }
+    friend DynamicModint operator-(const DynamicModint &lhs, const DynamicModint &rhs) { return DynamicModint(lhs) -= rhs; }
+    friend DynamicModint operator*(const DynamicModint &lhs, const DynamicModint &rhs) { return DynamicModint(lhs) *= rhs; }
+    friend DynamicModint operator/(const DynamicModint &lhs, const DynamicModint &rhs) { return DynamicModint(lhs) /= rhs; }
+    friend bool operator==(const DynamicModint &lhs, const DynamicModint &rhs) { return lhs.val == rhs.val; }
+    friend bool operator!=(const DynamicModint &lhs, const DynamicModint &rhs) { return lhs.val != rhs.val; }
+    friend std::istream &operator>>(std::istream &is, DynamicModint &rhs) {
+        is >> rhs.val;
+        rhs.build();
         return is;
     }
-    friend std::ostream &operator<<(std::ostream &os, const DynamicModint &x) { return os << x.val; }
+    friend std::ostream &operator<<(std::ostream &os, const DynamicModint &rhs) { return os << rhs.val; }
 
     static constexpr int get_id() { return id; }
     static void set_modulus(int mod_) {
@@ -82,22 +90,24 @@ public:
         long long a = val, b = mod, u = 1, v = 0;
         while(b) {
             long long t = a / b;
-            a -= t * b, u -= t * v;
+            a -= b * t, u -= v * t;
             std::swap(a, b), std::swap(u, v);
         }
         return DynamicModint(u);
     }
-
-    friend DynamicModint mod_pow(const DynamicModint &x, long long k) {
-        if(k < 0) return mod_pow(x.inv(), -k);
-        DynamicModint res = 1, tmp = x;
+    DynamicModint pow(long long k) const {
+        if(k < 0) return inv().pow(-k);
+        DynamicModint res = 1, mul = *this;
         while(k > 0) {
-            if(k & 1LL) res *= tmp;
-            tmp = tmp * tmp;
+            if(k & 1LL) res *= mul;
+            mul *= mul;
             k >>= 1;
         }
         return res;
     }
+
+    friend DynamicModint mod_inv(const DynamicModint &a) { return a.inv(); }
+    friend DynamicModint mod_pow(const DynamicModint &a, long long k) { return a.pow(k); }
 };
 
 template <int id>

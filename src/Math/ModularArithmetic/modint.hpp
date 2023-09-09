@@ -15,16 +15,16 @@ template <int mod>
 class Modint {
     long long val;
 
-    void convert(long long &val_) {
-        if(!(-mod <= val_ and val_ < mod)) val_ %= mod;
-        if(val_ < 0) val_ += mod;
+    void build() {
+        if(!(-mod <= val and val < mod)) val %= mod;
+        if(val < 0) val += mod;
     }
 
 public:
     Modint() : Modint(0) {}
     Modint(long long val_) : val(val_) {
         static_assert(mod >= 1);
-        convert(val);
+        build();
     }
 
     Modint operator+() const { return Modint(*this); }
@@ -73,7 +73,7 @@ public:
     friend bool operator!=(const Modint &lhs, const Modint &rhs) { return lhs.val != rhs.val; }
     friend std::istream &operator>>(std::istream &is, Modint &rhs) {
         is >> rhs.val;
-        convert(rhs.val);
+        rhs.build();
         return is;
     }
     friend std::ostream &operator<<(std::ostream &os, const Modint &rhs) { return os << rhs.val; }
