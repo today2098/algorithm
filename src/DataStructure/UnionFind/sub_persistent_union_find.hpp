@@ -1,100 +1,104 @@
-#ifndef ALGORITHM_SUB_PERSISTENT_UNION_FIND_HPP
-#define ALGORITHM_SUB_PERSISTENT_UNION_FIND_HPP 1
+/**
+ * @brief Partially Persistent Union-Find（部分永続Unionf-Find Tree）
+ * @docs docs/DataStructure/UnionFind/partially_persistent_union_find.md
+ */
 
+#ifndef ALGORITHM_PARTIALLY_PERSISTENT_UNION_FIND_HPP
+#define ALGORITHM_PARTIALLY_PERSISTENT_UNION_FIND_HPP 1
+
+#include <algorithm>
 #include <cassert>
+#include <limits>
+#include <utility>
 #include <vector>
 
 namespace algorithm {
 
 // 部分永続Union-Find Tree．
-class SubPersistentUnionFind {
+class PartiallyPersistentUnionFind {
     using pii = std::pair<int, int>;
 
-    int m_now;  // m_now:=(時刻).
-    int m_vn;   // m_vn:=(ノード数).
-    int m_gn;   // m_gn:=(連結成分数).
-    // m_par[v][](t,id):=(時刻tにおけるノードvの親番号id). 値idが0未満の場合，vは親となり，値idの絶対値は連結成分のサイズを表す．
+    int m_now;  // m_now:=(現在時刻).
+    int m_vn;   // m_vn:=(要素数).
+    int m_gn;   // m_gn:=(グループ数).
+    // m_par[x][](t,id):=(要素xにおける更新時間tと親番号id).
+    // 値idが0未満の場合，xは根であり，値idの絶対値は属するグループのサイズを表す．
     std::vector<std::vector<pii> > m_par;
 
-    static constexpr int infinity() { return 1e9; }
+    static constexpr int infinity() { return std::numeric_limits<int>::max(); }
 
 public:
-    SubPersistentUnionFind() : SubPersistentUnionFind(0) {}
-    explicit SubPersistentUnionFind(size_t vn) : m_now(1), m_vn(vn), m_gn(vn), m_par(vn, std::vector<pii>(1, pii(0, -1))) {
-        assert((int)vn < infinity());
-    }
+    PartiallyPersistentUnionFind() : PartiallyPersistentUnionFind(0) {}
+    explicit PartiallyPersistentUnionFind(size_t vn)
+        : m_now(0), m_vn(vn), m_gn(vn), m_par(vn, std::vector<pii>({{0, -1}})) {}
 
     // 現在の時刻を返す．
     int now() const { return m_now; }
-    // ノードの総数を返す．
+    // 要素の総数を返す．
     int vn() const { return m_vn; };
-    // 連結成分数を返す．
+    // グループ数を返す．
     int gn() const { return m_gn; };
-    // 現在のノードvの親番号を返す．
-    int root(int v) const {
-        assert(0 <= v and v < vn());
-        auto itr = m_par[v].rbegin();
-        if(itr->second < 0) return v;
-        return root(itr->second);
+    // 現在において要素xが属するグループ（根付き木）の根番号を返す．O(logN).
+    int root(int x) const {
+        assert(0 <= x and x < vn());
+        while(m_par[x].crbegin()->second >= 0) x = m_par[x].crbegin()->second;
+        return x;
     }
-    // 時刻tにおけるノードvの親番号を返す．
-    int root(int v, int t) const {
-        assert(0 <= v and v < vn());
-        assert(0 <= t and t < now());
-        auto itr = std::lower_bound(m_par[v].begin(), m_par[v].end(), pii(t, -infinity()));
-        if(itr == m_par[v].end() or itr->first > t) itr--;
-        if(itr->second < 0) return v;
-        return (itr->first == t ? itr->second : root(itr->second, t));
+    // 時刻tにおいて要素xが属するグループ（根付き木）の根番号を返す．O(logN).
+    int root(int x, int t) const {
+        assert(0 <= x and x < vn());
+        assert(0 <= t and t <= now());
+        auto itr = std::lower_bound(m_par[x].cbegin(), m_par[x].cend(), pii(t, -infinity()));
+        if(itr == m_par[x].cend() or itr->first > t) itr--;
+        if(itr->second < 0) return x;
+        return root(itr->second, t);
     }
-    // 現在のノードvが属する連結成分のサイズを返す．
-    int size(int v) const {
-        assert(0 <= v and v < vn());
-        return -m_par[root(v)].rbegin()->second;
+    // 現在において要素xが属するグループのサイズを返す．O(logN).
+    int size(int x) const {
+        assert(0 <= x and x < vn());
+        return -m_par[root(x)].crbegin()->second;
     }
-    // 時刻tにおけるノードvが属する連結成分のサイズを返す．
-    int size(int v, int t) const {
-        assert(0 <= v and v < vn());
-        assert(0 <= t and t < now());
-        int par = root(v, t);
-        auto itr = std::lower_bound(m_par[par].begin(), m_par[par].end(), pii(t, -infinity()));
-        if(itr == m_par[par].end() or itr->first > t) itr--;
-        return -itr->second;
+    // 時刻tにおいて要素xが属するグループのサイズを返す．O(logN).
+    int size(int x, int t) const {
+        assert(0 <= x and x < vn());
+        assert(0 <= t and t <= now());
+        auto itr = std::lower_bound(m_par[x].cbegin(), m_par[x].cend(), pii(t, -infinity()));
+        if(itr == m_par[x].cend() or itr->first > t) itr--;
+        if(itr->second < 0) return -itr->second;
+        return size(itr->second, t);
     }
-    // 現在ノードuとvが連結か判定する．
-    bool same(int u, int v) const {
-        assert(0 <= u and u < vn());
-        assert(0 <= v and v < vn());
-        return root(u) == root(v);
+    // 現在において要素x, yが同じグループに属するか判定する．O(logN).
+    bool is_same(int x, int y) const {
+        assert(0 <= x and x < vn());
+        assert(0 <= y and y < vn());
+        return root(x) == root(y);
     }
-    // 時刻tにおいてノードuとvが連結か判定する．
-    bool same(int u, int v, int t) const {
-        assert(0 <= u and u < vn());
-        assert(0 <= v and v < vn());
-        assert(0 <= t and t < now());
-        return root(u, t) == root(v, t);
+    // 時刻tにおいて要素x, yが同じグループに属するか判定する．O(logN).
+    bool is_same(int x, int y, int t) const {
+        assert(0 <= x and x < vn());
+        assert(0 <= y and y < vn());
+        assert(0 <= t and t <= now());
+        return root(x, t) == root(y, t);
     }
-    // ノードuとvが属する連結成分を繋げる．
-    bool unite(int u, int v) {
-        assert(0 <= u and u < vn());
-        assert(0 <= v and v < vn());
-        u = root(u), v = root(v);
-        if(u == v) {
-            m_now++;
-            return false;  // Already united.
-        }
-        int sz_u = -m_par[u].rbegin()->second;
-        int sz_v = -m_par[v].rbegin()->second;
-        if(sz_u < sz_v) std::swap(u, v), std::swap(sz_u, sz_v);  // Merge technique.
-        m_par[u].emplace_back(now(), -sz_u - sz_v);
-        m_par[v].emplace_back(now(), u);
-        m_gn--;
+    // 要素xが属するグループと要素yが属するグループとを併合し，時間を+1進める．O(logN).
+    bool unite(int x, int y) {
+        assert(0 <= x and x < vn());
+        assert(0 <= y and y < vn());
         m_now++;
+        x = root(x), y = root(y);
+        if(x == y) return false;  // Already united.
+        int sz_x = -m_par[x].crbegin()->second;
+        int sz_y = -m_par[y].crbegin()->second;
+        if(sz_x < sz_y) std::swap(x, y);  // Merge technique (unite by size).
+        m_par[x].emplace_back(now(), -sz_x - sz_y);
+        m_par[y].emplace_back(now(), x);
+        m_gn--;
         return true;
     }
     void reset() {
         m_now = 1;
         m_gn = vn();
-        for(auto &history : m_par) history.resize(1);
+        for(std::vector<pii> &history : m_par) history.resize(1);
     }
 };
 
