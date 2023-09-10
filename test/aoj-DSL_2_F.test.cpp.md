@@ -137,13 +137,13 @@ data:
     \ e;\n    auto op = [&](const S &l, const S &r) -> S { return std::min(l, r);\
     \ };\n    auto mapping = [&](const F &f, const S &x) -> S { return (f == id ?\
     \ x : f); };\n    auto composition = [&](const F &f, const F &g) -> F { return\
-    \ (f == id ? g : f); };\n    algorithm::LazySegTree<S, F> tree(op, mapping, composition,\
-    \ e, id, n);\n\n    while(q--) {\n        int type;\n        std::cin >> type;\n\
-    \n        if(type == 0) {\n            int s, t;\n            long long x;\n \
-    \           std::cin >> s >> t >> x;\n            t++;\n\n            tree.apply(s,\
-    \ t, x);\n        } else {\n            int s, t;\n            std::cin >> s >>\
-    \ t;\n            t++;\n\n            std::cout << tree.prod(s, t) << \"\\n\"\
-    ;\n        }\n    }\n}\n"
+    \ (f == id ? g : f); };\n    algorithm::LazySegTree<S, F> segtree(op, mapping,\
+    \ composition, e, id, n);\n\n    while(q--) {\n        int type;\n        std::cin\
+    \ >> type;\n\n        if(type == 0) {\n            int s, t;\n            long\
+    \ long x;\n            std::cin >> s >> t >> x;\n            t++;\n\n        \
+    \    segtree.apply(s, t, x);\n        } else {\n            int s, t;\n      \
+    \      std::cin >> s >> t;\n            t++;\n\n            std::cout << segtree.prod(s,\
+    \ t) << \"\\n\";\n        }\n    }\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/all/DSL_2_F\"\
     \n\n#include <algorithm>\n#include <iostream>\n\n#include \"../src/DataStructure/SegmentTree/lazy_segment_tree.hpp\"\
     \n\nint main() {\n    int n;\n    int q;\n    std::cin >> n >> q;\n\n    using\
@@ -152,18 +152,18 @@ data:
     \ S { return std::min(l, r); };\n    auto mapping = [&](const F &f, const S &x)\
     \ -> S { return (f == id ? x : f); };\n    auto composition = [&](const F &f,\
     \ const F &g) -> F { return (f == id ? g : f); };\n    algorithm::LazySegTree<S,\
-    \ F> tree(op, mapping, composition, e, id, n);\n\n    while(q--) {\n        int\
-    \ type;\n        std::cin >> type;\n\n        if(type == 0) {\n            int\
-    \ s, t;\n            long long x;\n            std::cin >> s >> t >> x;\n    \
-    \        t++;\n\n            tree.apply(s, t, x);\n        } else {\n        \
-    \    int s, t;\n            std::cin >> s >> t;\n            t++;\n\n        \
-    \    std::cout << tree.prod(s, t) << \"\\n\";\n        }\n    }\n}\n"
+    \ F> segtree(op, mapping, composition, e, id, n);\n\n    while(q--) {\n      \
+    \  int type;\n        std::cin >> type;\n\n        if(type == 0) {\n         \
+    \   int s, t;\n            long long x;\n            std::cin >> s >> t >> x;\n\
+    \            t++;\n\n            segtree.apply(s, t, x);\n        } else {\n \
+    \           int s, t;\n            std::cin >> s >> t;\n            t++;\n\n \
+    \           std::cout << segtree.prod(s, t) << \"\\n\";\n        }\n    }\n}\n"
   dependsOn:
   - src/DataStructure/SegmentTree/lazy_segment_tree.hpp
   isVerificationFile: true
   path: test/aoj-DSL_2_F.test.cpp
   requiredBy: []
-  timestamp: '2023-09-08 22:40:48+09:00'
+  timestamp: '2023-09-10 12:13:48+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj-DSL_2_F.test.cpp

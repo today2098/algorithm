@@ -15,7 +15,7 @@ data:
         \u5217\uFF09"
   - name: src/DataStructure/SegmentTree
     pages:
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: src/DataStructure/SegmentTree/binary_indexed_tree.hpp
       title: Binary Indexed Tree
     - icon: ':heavy_check_mark:'
@@ -266,6 +266,9 @@ data:
       path: test/aoj-DSL_2_A.test.cpp
       title: test/aoj-DSL_2_A.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/aoj-DSL_2_B-binary_indexed_tree.test.cpp
+      title: test/aoj-DSL_2_B-binary_indexed_tree.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/aoj-DSL_2_B-segment_tree.test.cpp
       title: test/aoj-DSL_2_B-segment_tree.test.cpp
     - icon: ':heavy_check_mark:'
@@ -322,6 +325,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo-point_add_range_sum-binary_indexed_tree_zero.test.cpp
       title: test/yosupo-point_add_range_sum-binary_indexed_tree_zero.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo-range_affine_range_sum.test.cpp
+      title: test/yosupo-range_affine_range_sum.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo-shortest_path.test.cpp
       title: test/yosupo-shortest_path.test.cpp

@@ -6,6 +6,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj-3110.test.cpp
     title: test/aoj-3110.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo-range_affine_range_sum.test.cpp
+    title: test/yosupo-range_affine_range_sum.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -103,6 +106,7 @@ data:
   timestamp: '2023-09-09 16:07:58+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/yosupo-range_affine_range_sum.test.cpp
   - test/aoj-3110.test.cpp
 documentation_of: src/Math/ModularArithmetic/modint.hpp
 layout: document

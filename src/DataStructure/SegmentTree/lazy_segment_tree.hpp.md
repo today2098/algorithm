@@ -15,6 +15,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj-DSL_2_I.test.cpp
     title: test/aoj-DSL_2_I.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo-range_affine_range_sum.test.cpp
+    title: test/yosupo-range_affine_range_sum.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -260,6 +263,7 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj-DSL_2_F.test.cpp
+  - test/yosupo-range_affine_range_sum.test.cpp
   - test/aoj-DSL_2_I.test.cpp
   - test/aoj-DSL_2_H.test.cpp
   - test/aoj-DSL_2_G.test.cpp

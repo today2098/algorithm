@@ -5,6 +5,9 @@ data:
     path: src/DataStructure/SegmentTree/lazy_segment_tree.hpp
     title: "Lazy Segment Tree\uFF08\u9045\u5EF6\u8A55\u4FA1\u30BB\u30B0\u30E1\u30F3\
       \u30C8\u6728\uFF09"
+  - icon: ':heavy_check_mark:'
+    path: src/Math/ModularArithmetic/modint.hpp
+    title: Modint
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -12,22 +15,21 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/all/DSL_2_H
+    PROBLEM: https://judge.yosupo.jp/problem/range_affine_range_sum
     links:
-    - https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/all/DSL_2_H
-  bundledCode: "#line 1 \"test/aoj-DSL_2_H.test.cpp\"\n#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/all/DSL_2_H\"\
-    \n\n#include <algorithm>\n#include <iostream>\n#include <vector>\n\n#line 1 \"\
-    src/DataStructure/SegmentTree/lazy_segment_tree.hpp\"\n/**\n * @brief Lazy Segment\
-    \ Tree\uFF08\u9045\u5EF6\u8A55\u4FA1\u30BB\u30B0\u30E1\u30F3\u30C8\u6728\uFF09\
-    \n * @docs docs/DataStructure/SegmentTree/lazy_segment_tree.md\n */\n\n#ifndef\
-    \ ALGORITHM_LAZY_SEGMENT_TREE_HPP\n#define ALGORITHM_LAZY_SEGMENT_TREE_HPP 1\n\
-    \n#line 10 \"src/DataStructure/SegmentTree/lazy_segment_tree.hpp\"\n#include <cassert>\n\
-    #include <functional>\n#line 13 \"src/DataStructure/SegmentTree/lazy_segment_tree.hpp\"\
-    \n\nnamespace algorithm {\n\n// Lazy Segment Tree\uFF08\u9045\u5EF6\u8A55\u4FA1\
-    \u30BB\u30B0\u30E1\u30F3\u30C8\u6728\uFF09.\ntemplate <class S, class F>  // S:\u30E2\
-    \u30CE\u30A4\u30C9\u306E\u578B, F:\u5199\u50CF\u306E\u578B.\nclass LazySegTree\
-    \ {\n    using FuncO = std::function<S(const S &, const S &)>;\n    using FuncM\
-    \ = std::function<S(const F &, const S &)>;\n    using FuncC = std::function<F(const\
+    - https://judge.yosupo.jp/problem/range_affine_range_sum
+  bundledCode: "#line 1 \"test/yosupo-range_affine_range_sum.test.cpp\"\n#define PROBLEM\
+    \ \"https://judge.yosupo.jp/problem/range_affine_range_sum\"\n\n#include <iostream>\n\
+    \n#line 1 \"src/DataStructure/SegmentTree/lazy_segment_tree.hpp\"\n/**\n * @brief\
+    \ Lazy Segment Tree\uFF08\u9045\u5EF6\u8A55\u4FA1\u30BB\u30B0\u30E1\u30F3\u30C8\
+    \u6728\uFF09\n * @docs docs/DataStructure/SegmentTree/lazy_segment_tree.md\n */\n\
+    \n#ifndef ALGORITHM_LAZY_SEGMENT_TREE_HPP\n#define ALGORITHM_LAZY_SEGMENT_TREE_HPP\
+    \ 1\n\n#include <algorithm>\n#include <cassert>\n#include <functional>\n#include\
+    \ <vector>\n\nnamespace algorithm {\n\n// Lazy Segment Tree\uFF08\u9045\u5EF6\u8A55\
+    \u4FA1\u30BB\u30B0\u30E1\u30F3\u30C8\u6728\uFF09.\ntemplate <class S, class F>\
+    \  // S:\u30E2\u30CE\u30A4\u30C9\u306E\u578B, F:\u5199\u50CF\u306E\u578B.\nclass\
+    \ LazySegTree {\n    using FuncO = std::function<S(const S &, const S &)>;\n \
+    \   using FuncM = std::function<S(const F &, const S &)>;\n    using FuncC = std::function<F(const\
     \ F &, const F &)>;\n\n    FuncO m_op;             // S m_op(S,S):=(\u4E8C\u9805\
     \u6F14\u7B97\u95A2\u6570). S\xD7S\u2192S\u3092\u8A08\u7B97\u3059\u308B\uFF0E\n\
     \    FuncM m_mapping;        // S m_mapping(F f,S x):=(\u5199\u50CF). f(x)\u3092\
@@ -132,46 +134,95 @@ data:
     \u968E\u4E57\u6570\uFF0E\n        return 0;\n    }\n    void reset() {\n     \
     \   std::fill(m_tree.begin(), m_tree.end(), identity());\n        std::fill(m_lazy.begin(),\
     \ m_lazy.end(), identity_mapping());\n    }\n};\n\n}  // namespace algorithm\n\
-    \n#endif\n#line 8 \"test/aoj-DSL_2_H.test.cpp\"\n\nint main() {\n    int n;\n\
-    \    int q;\n    std::cin >> n >> q;\n\n    using S = int;\n    using F = int;\n\
-    \    constexpr S e = 1e8;\n    constexpr F id = 0;\n    auto op = [&](const S\
-    \ &l, const S &r) -> S { return std::min(l, r); };\n    auto mapping = [&](const\
-    \ F &f, const S &x) -> S { return x + f; };\n    auto composition = [&](const\
-    \ F &f, const F &g) -> F { return f + g; };\n    algorithm::LazySegTree<S, F>\
-    \ segtree(op, mapping, composition, e, id, std::vector<int>(n, 0));\n\n    while(q--)\
-    \ {\n        int type;\n        std::cin >> type;\n\n        if(type == 0) {\n\
-    \            int s, t;\n            int x;\n            std::cin >> s >> t >>\
-    \ x;\n            t++;\n\n            segtree.apply(s, t, x);\n        } else\
-    \ {\n            int s, t;\n            std::cin >> s >> t;\n            t++;\n\
-    \n            std::cout << segtree.prod(s, t) << \"\\n\";\n        }\n    }\n\
-    }\n"
-  code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/all/DSL_2_H\"\
-    \n\n#include <algorithm>\n#include <iostream>\n#include <vector>\n\n#include \"\
-    ../src/DataStructure/SegmentTree/lazy_segment_tree.hpp\"\n\nint main() {\n   \
-    \ int n;\n    int q;\n    std::cin >> n >> q;\n\n    using S = int;\n    using\
-    \ F = int;\n    constexpr S e = 1e8;\n    constexpr F id = 0;\n    auto op = [&](const\
-    \ S &l, const S &r) -> S { return std::min(l, r); };\n    auto mapping = [&](const\
-    \ F &f, const S &x) -> S { return x + f; };\n    auto composition = [&](const\
-    \ F &f, const F &g) -> F { return f + g; };\n    algorithm::LazySegTree<S, F>\
-    \ segtree(op, mapping, composition, e, id, std::vector<int>(n, 0));\n\n    while(q--)\
-    \ {\n        int type;\n        std::cin >> type;\n\n        if(type == 0) {\n\
-    \            int s, t;\n            int x;\n            std::cin >> s >> t >>\
-    \ x;\n            t++;\n\n            segtree.apply(s, t, x);\n        } else\
-    \ {\n            int s, t;\n            std::cin >> s >> t;\n            t++;\n\
-    \n            std::cout << segtree.prod(s, t) << \"\\n\";\n        }\n    }\n\
-    }\n"
+    \n#endif\n#line 1 \"src/Math/ModularArithmetic/modint.hpp\"\n/**\n * @brief Modint\n\
+    \ */\n\n#ifndef ALGORITHM_MODINT_HPP\n#define ALGORITHM_MODINT_HPP 1\n\n#include\
+    \ <cassert>\n#line 10 \"src/Math/ModularArithmetic/modint.hpp\"\n#include <utility>\n\
+    \nnamespace algorithm {\n\ntemplate <int mod>\nclass Modint {\n    long long val;\n\
+    \n    void build() {\n        if(!(-mod <= val and val < mod)) val %= mod;\n \
+    \       if(val < 0) val += mod;\n    }\n\npublic:\n    Modint() : Modint(0) {}\n\
+    \    Modint(long long val_) : val(val_) {\n        static_assert(mod >= 1);\n\
+    \        build();\n    }\n\n    Modint operator+() const { return Modint(*this);\
+    \ }\n    Modint operator-() const { return (val == 0 ? Modint(0) : Modint(mod\
+    \ - val)); }\n    Modint &operator++() {\n        val++;\n        if(val == mod)\
+    \ val = 0;\n        return *this;\n    }\n    Modint &operator--() {\n       \
+    \ if(val == 0) val = mod;\n        val--;\n        return *this;\n    }\n    Modint\
+    \ operator++(int) {\n        Modint res = *this;\n        ++(*this);\n       \
+    \ return res;\n    }\n    Modint operator--(int) {\n        Modint res = *this;\n\
+    \        --(*this);\n        return res;\n    }\n    Modint &operator+=(const\
+    \ Modint &rhs) {\n        val += rhs.val;\n        if(val >= mod) val -= mod;\n\
+    \        return *this;\n    }\n    Modint &operator-=(const Modint &rhs) {\n \
+    \       val -= rhs.val;\n        if(val < 0) val += mod;\n        return *this;\n\
+    \    }\n    Modint &operator*=(const Modint &rhs) {\n        val = val * rhs.val\
+    \ % mod;\n        return *this;\n    }\n    Modint &operator/=(const Modint &rhs)\
+    \ { return *this *= rhs.inv(); }\n\n    friend Modint operator+(const Modint &lhs,\
+    \ const Modint &rhs) { return Modint(lhs) += rhs; }\n    friend Modint operator-(const\
+    \ Modint &lhs, const Modint &rhs) { return Modint(lhs) -= rhs; }\n    friend Modint\
+    \ operator*(const Modint &lhs, const Modint &rhs) { return Modint(lhs) *= rhs;\
+    \ }\n    friend Modint operator/(const Modint &lhs, const Modint &rhs) { return\
+    \ Modint(lhs) /= rhs; }\n    friend bool operator==(const Modint &lhs, const Modint\
+    \ &rhs) { return lhs.val == rhs.val; }\n    friend bool operator!=(const Modint\
+    \ &lhs, const Modint &rhs) { return lhs.val != rhs.val; }\n    friend std::istream\
+    \ &operator>>(std::istream &is, Modint &rhs) {\n        is >> rhs.val;\n     \
+    \   rhs.build();\n        return is;\n    }\n    friend std::ostream &operator<<(std::ostream\
+    \ &os, const Modint &rhs) { return os << rhs.val; }\n\n    static constexpr int\
+    \ modulus() { return mod; }\n    long long value() const { return val; }\n   \
+    \ Modint inv() const {\n        long long a = val, b = mod, u = 1, v = 0;\n  \
+    \      while(b != 0) {\n            long long t = a / b;\n            a -= b *\
+    \ t, u -= v * t;\n            std::swap(a, b), std::swap(u, v);\n        }\n \
+    \       return Modint(u);\n    }\n    Modint pow(long long k) const {\n      \
+    \  if(k < 0) return inv().pow(-k);\n        Modint res = 1, mul = *this;\n   \
+    \     while(k > 0) {\n            if(k & 1LL) res *= mul;\n            mul *=\
+    \ mul;\n            k >>= 1;\n        }\n        return res;\n    }\n\n    friend\
+    \ Modint mod_inv(const Modint &a) { return a.inv(); }\n    friend Modint mod_pow(const\
+    \ Modint &a, long long k) { return a.pow(k); }\n};\n\nusing mint998244353 = Modint<998'244'353>;\n\
+    using mint1000000007 = Modint<1'000'000'007>;\n\n}  // namespace algorithm\n\n\
+    #endif\n#line 7 \"test/yosupo-range_affine_range_sum.test.cpp\"\n\nint main()\
+    \ {\n    int n;\n    int q;\n    std::cin >> n >> q;\n\n    using S = struct {\n\
+    \        algorithm::mint998244353 val;\n        int size;\n    };\n    using F\
+    \ = struct {\n        algorithm::mint998244353 a;\n        algorithm::mint998244353\
+    \ b;\n    };\n    const S e = (S){0, 0};\n    const F id = (F){1, 0};\n    auto\
+    \ op = [&](const S &l, const S &r) -> S { return (S){l.val + r.val, l.size + r.size};\
+    \ };\n    auto mapping = [&](const F &f, const S &x) -> S { return (S){f.a * x.val\
+    \ + f.b * x.size, x.size}; };\n    auto composition = [&](const F &f, const F\
+    \ &g) -> F { return (F){f.a * g.a, f.a * g.b + f.b}; };\n    algorithm::LazySegTree<S,\
+    \ F> segtree(op, mapping, composition, e, id, std::vector<S>(n, (S){0, 1}));\n\
+    \n    for(int i = 0; i < n; ++i) {\n        int a;\n        std::cin >> a;\n \
+    \       segtree.set(i, (S){a, 1});\n    }\n\n    while(q--) {\n        int t;\n\
+    \        int l, r;\n        std::cin >> t >> l >> r;\n\n        if(t == 0) {\n\
+    \            algorithm::mint998244353 b, c;\n            std::cin >> b >> c;\n\
+    \n            segtree.apply(l, r, (F){b, c});\n        } else {\n            std::cout\
+    \ << segtree.prod(l, r).val << std::endl;\n        }\n    }\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/range_affine_range_sum\"\
+    \n\n#include <iostream>\n\n#include \"../src/DataStructure/SegmentTree/lazy_segment_tree.hpp\"\
+    \n#include \"../src/Math/ModularArithmetic/modint.hpp\"\n\nint main() {\n    int\
+    \ n;\n    int q;\n    std::cin >> n >> q;\n\n    using S = struct {\n        algorithm::mint998244353\
+    \ val;\n        int size;\n    };\n    using F = struct {\n        algorithm::mint998244353\
+    \ a;\n        algorithm::mint998244353 b;\n    };\n    const S e = (S){0, 0};\n\
+    \    const F id = (F){1, 0};\n    auto op = [&](const S &l, const S &r) -> S {\
+    \ return (S){l.val + r.val, l.size + r.size}; };\n    auto mapping = [&](const\
+    \ F &f, const S &x) -> S { return (S){f.a * x.val + f.b * x.size, x.size}; };\n\
+    \    auto composition = [&](const F &f, const F &g) -> F { return (F){f.a * g.a,\
+    \ f.a * g.b + f.b}; };\n    algorithm::LazySegTree<S, F> segtree(op, mapping,\
+    \ composition, e, id, std::vector<S>(n, (S){0, 1}));\n\n    for(int i = 0; i <\
+    \ n; ++i) {\n        int a;\n        std::cin >> a;\n        segtree.set(i, (S){a,\
+    \ 1});\n    }\n\n    while(q--) {\n        int t;\n        int l, r;\n       \
+    \ std::cin >> t >> l >> r;\n\n        if(t == 0) {\n            algorithm::mint998244353\
+    \ b, c;\n            std::cin >> b >> c;\n\n            segtree.apply(l, r, (F){b,\
+    \ c});\n        } else {\n            std::cout << segtree.prod(l, r).val << std::endl;\n\
+    \        }\n    }\n}\n"
   dependsOn:
   - src/DataStructure/SegmentTree/lazy_segment_tree.hpp
+  - src/Math/ModularArithmetic/modint.hpp
   isVerificationFile: true
-  path: test/aoj-DSL_2_H.test.cpp
+  path: test/yosupo-range_affine_range_sum.test.cpp
   requiredBy: []
   timestamp: '2023-09-10 12:13:48+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/aoj-DSL_2_H.test.cpp
+documentation_of: test/yosupo-range_affine_range_sum.test.cpp
 layout: document
 redirect_from:
-- /verify/test/aoj-DSL_2_H.test.cpp
-- /verify/test/aoj-DSL_2_H.test.cpp.html
-title: test/aoj-DSL_2_H.test.cpp
+- /verify/test/yosupo-range_affine_range_sum.test.cpp
+- /verify/test/yosupo-range_affine_range_sum.test.cpp.html
+title: test/yosupo-range_affine_range_sum.test.cpp
 ---
