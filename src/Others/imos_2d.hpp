@@ -1,3 +1,8 @@
+/**
+ * @brief 二次元いもす法
+ * @docs docs/Others/imos_2d.md
+ */
+
 #ifndef ALGORITHM_IMOS_2D_HPP
 #define ALGORITHM_IMOS_2D_HPP 1
 
@@ -27,7 +32,7 @@ public:
         m_dat[ry][lx] -= val;
         m_dat[ry][rx] += val;
     }
-    void imos() {
+    void build() {
         for(int i = 0; i < height(); ++i) {
             for(int j = 0; j < width(); ++j) m_dat[i][j + 1] += m_dat[i][j];
         }
@@ -36,11 +41,12 @@ public:
         }
     }
     T get(int y, int x) const {
-        assert(0 <= y and y < height() and 0 <= x and x < width());
+        assert(0 <= y and y < height());
+        assert(0 <= x and x < width());
         return m_dat[y][x];
     }
     void reset() {
-        for(auto &v : m_dat) std::fill(v.begin(), v.end(), 0);
+        for(std::vector<T> &v : m_dat) std::fill(v.begin(), v.end(), 0);
     }
 };
 
