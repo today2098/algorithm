@@ -36,7 +36,7 @@
 			"",
 			"int main(){}"
 		],
-		"description": "Main template"
+		"description": ""
 	},
 	"All template": {
 		"scope": "cpp",
@@ -286,22 +286,23 @@
 		],
 		"description": ""
 	},
-	"compress": {
+	"rotate": {
 		"scope": "cpp",
-		"prefix": "compress",
+		"prefix": "rotate",
 		"body": [
-			"// 座標圧縮．",
+			"// 2次元配列を時計回りに90度回転させる．",
 			"template <typename Type>",
-			"std::vector<Type> compress(std::vector<Type> &v) {",
-			"    const int n = v.size();",
-			"    std::vector<Type> res = v;",
-			"    std::sort(res.begin(), res.end());",
-			"    res.erase(std::unique(res.begin(), res.end()), res.end());",
-			"    for(int i = 0; i < n; ++i) v[i] = std::lower_bound(res.begin(), res.end(), v[i]) - res.begin();",
+			"std::vector<std::vector<Type> > rotate(const std::vector<std::vector<Type> > &v) {",
+			"    if(v.size() == 0) return std::vector<std::vector<Type> >();",
+			"    const int h = v.size(), w = v[0].size();",
+			"    std::vector<std::vector<Type> > res(w, std::vector<Type>(h));",
+			"    for(int i = 0; i < w; ++i) {",
+			"        for(int j = 0; j < h; ++j) res[i][j] = v[h - 1 - j][i];",
+			"    }",
 			"    return res;",
 			"}"
 		],
-		"description": "座標圧縮"
+		"description": ""
 	},
 	"split": {
 		"scope": "cpp",
@@ -483,7 +484,7 @@
 			"auto op=[&](const S &l,const S &r)->S{return (S){l.val+r.val,l.size+r.size};};",
 			"auto mapping=[&](const F &f,const S &x)->S{return (S){(f==id?x.val:f*x.size),x.size};};",
 			"auto composition=[&](const F &f,const F &g)->F{return (f==id?g:f));};",
-			"LazySegTree<S,F> tree(op,mapping,composition,e,id,vector<S>(${1:0},(S){0,1}));"
+			"LazySegTree<S,F> tree(op,mapping,composition,e,id,std::vector<S>(${1:0},(S){0,1}));"
 		],
 		"description": ""
 	},
@@ -501,7 +502,7 @@
 			"auto op=[&](const S &l,const S &r)->S{return (S){l.val+r.val,l.size+r.size};};",
 			"auto mapping=[&](const F &f,const S &x)->S{return (S){x.val+f*x.size,x.size};};",
 			"auto composition=[&](const F &f,const F &g)->F{return f+g;};",
-			"LazySegTree<S,F> tree(op,mapping,composition,e,id,vector<S>(${1:0},(S){0,1}));"
+			"LazySegTree<S,F> tree(op,mapping,composition,e,id,std::vector<S>(${1:0},(S){0,1}));"
 		],
 		"description": ""
 	},
@@ -522,7 +523,7 @@
 			"auto op=[&](const S &l,const S &r)->S{return (S){l.val+r.val,l.size+r.size};};",
 			"auto mapping=[&](const F &f,const S &x)->S{return (S){f.a*x.val+f.b*x.size,x.size};};",
 			"auto composition=[&](const F &f,const F &g)->F{return (F){f.a*g.a,f.a*g.b+f.b};};",
-			"LazySegTree<S,F> tree(op,mapping,composition,e,id,vector<S>(${1:0},(S){0,1}));"
+			"LazySegTree<S,F> tree(op,mapping,composition,e,id,std::vector<S>(${1:0},(S){0,1}));"
 		],
 		"description": ""
 	},

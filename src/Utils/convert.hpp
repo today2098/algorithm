@@ -59,23 +59,11 @@ std::string vtos(const std::vector<int> &v) {
     return s;
 }
 
-// 座標圧縮．
-template <typename Type>
-std::vector<Type> compress(std::vector<Type> &v) {
-    const int n = v.size();
-    std::vector<Type> res = v;
-    std::sort(res.begin(), res.end());
-    res.erase(std::unique(res.begin(), res.end()), res.end());
-    for(int i = 0; i < n; ++i) v[i] = std::lower_bound(res.begin(), res.end(), v[i]) - res.begin();
-    return res;
-}
-
-// 2次元配列を時計回り90度回転させる．
+// 2次元配列を時計回りに90度回転させる．
 template <typename Type>
 std::vector<std::vector<Type> > rotate(const std::vector<std::vector<Type> > &v) {
-    assert(v.size() > 0);
-    const int h = v.size();
-    const int w = v[0].size();
+    if(v.size() == 0) return std::vector<std::vector<Type> >();
+    const int h = v.size(), w = v[0].size();
     std::vector<std::vector<Type> > res(w, std::vector<Type>(h));
     for(int i = 0; i < w; ++i) {
         for(int j = 0; j < h; ++j) res[i][j] = v[h - 1 - j][i];
