@@ -189,9 +189,12 @@ data:
     - icon: ':warning:'
       path: src/Others/calc_viewing_range.hpp
       title: src/Others/calc_viewing_range.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
+      path: src/Others/compress.hpp
+      title: "\u5EA7\u6A19\u5727\u7E2E"
+    - icon: ':heavy_check_mark:'
       path: src/Others/imos_2d.hpp
-      title: src/Others/imos_2d.hpp
+      title: "\u4E8C\u6B21\u5143\u3044\u3082\u3059\u6CD5"
     - icon: ':heavy_check_mark:'
       path: src/Others/mo_algorithm.hpp
       title: "Mo's Algorithm\uFF08\u30AF\u30A8\u30EA\u5E73\u65B9\u5206\u5272\uFF09"
@@ -277,6 +280,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj-DSL_2_I.test.cpp
       title: test/aoj-DSL_2_I.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/aoj-DSL_4_A.test.cpp
+      title: test/aoj-DSL_4_A.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/aoj-GRL_1_A.test.cpp
       title: test/aoj-GRL_1_A.test.cpp
