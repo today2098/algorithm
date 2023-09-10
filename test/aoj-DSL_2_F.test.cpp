@@ -17,7 +17,7 @@ int main() {
     auto op = [&](const S &l, const S &r) -> S { return std::min(l, r); };
     auto mapping = [&](const F &f, const S &x) -> S { return (f == id ? x : f); };
     auto composition = [&](const F &f, const F &g) -> F { return (f == id ? g : f); };
-    algorithm::LazySegTree<S, F> tree(op, mapping, composition, e, id, n);
+    algorithm::LazySegTree<S, F> segtree(op, mapping, composition, e, id, n);
 
     while(q--) {
         int type;
@@ -29,13 +29,13 @@ int main() {
             std::cin >> s >> t >> x;
             t++;
 
-            tree.apply(s, t, x);
+            segtree.apply(s, t, x);
         } else {
             int s, t;
             std::cin >> s >> t;
             t++;
 
-            std::cout << tree.prod(s, t) << "\n";
+            std::cout << segtree.prod(s, t) << "\n";
         }
     }
 }

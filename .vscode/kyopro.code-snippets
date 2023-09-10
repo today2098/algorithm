@@ -451,7 +451,7 @@
 			"auto op=[&](const S &l,const S &r)->S{return std::min(l,r);};",
 			"auto mapping=[&](const F &f,const S &x)->S{return (f==id?x:f);};",
 			"auto composition=[&](const F &f,const F &g)->F{return (f==id?g:f);};",
-			"LazySegTree<S,F> tree(op,mapping,composition,e,id,${1:0});"
+			"LazySegTree<S,F> segtree(op,mapping,composition,e,id,${1:0});"
 		],
 		"description": ""
 	},
@@ -466,7 +466,7 @@
 			"auto op=[&](const S &l,const S &r)->S{return std::min(l,r);};",
 			"auto mapping=[&](const F &f,const S &x)->S{return x+f;};",
 			"auto composition=[&](const F &f,const F &g)->F{return f+g;};",
-			"LazySegTree<S,F> tree(op,mapping,composition,e,id,${1:0});"
+			"LazySegTree<S,F> segtree(op,mapping,composition,e,id,${1:0});"
 		],
 		"description": ""
 	},
@@ -484,7 +484,7 @@
 			"auto op=[&](const S &l,const S &r)->S{return (S){l.val+r.val,l.size+r.size};};",
 			"auto mapping=[&](const F &f,const S &x)->S{return (S){(f==id?x.val:f*x.size),x.size};};",
 			"auto composition=[&](const F &f,const F &g)->F{return (f==id?g:f));};",
-			"LazySegTree<S,F> tree(op,mapping,composition,e,id,std::vector<S>(${1:0},(S){0,1}));"
+			"LazySegTree<S,F> segtree(op,mapping,composition,e,id,std::vector<S>(${1:0},(S){0,1}));"
 		],
 		"description": ""
 	},
@@ -502,7 +502,7 @@
 			"auto op=[&](const S &l,const S &r)->S{return (S){l.val+r.val,l.size+r.size};};",
 			"auto mapping=[&](const F &f,const S &x)->S{return (S){x.val+f*x.size,x.size};};",
 			"auto composition=[&](const F &f,const F &g)->F{return f+g;};",
-			"LazySegTree<S,F> tree(op,mapping,composition,e,id,std::vector<S>(${1:0},(S){0,1}));"
+			"LazySegTree<S,F> segtree(op,mapping,composition,e,id,std::vector<S>(${1:0},(S){0,1}));"
 		],
 		"description": ""
 	},
@@ -523,7 +523,7 @@
 			"auto op=[&](const S &l,const S &r)->S{return (S){l.val+r.val,l.size+r.size};};",
 			"auto mapping=[&](const F &f,const S &x)->S{return (S){f.a*x.val+f.b*x.size,x.size};};",
 			"auto composition=[&](const F &f,const F &g)->F{return (F){f.a*g.a,f.a*g.b+f.b};};",
-			"LazySegTree<S,F> tree(op,mapping,composition,e,id,std::vector<S>(${1:0},(S){0,1}));"
+			"LazySegTree<S,F> segtree(op,mapping,composition,e,id,std::vector<S>(${1:0},(S){0,1}));"
 		],
 		"description": ""
 	},
