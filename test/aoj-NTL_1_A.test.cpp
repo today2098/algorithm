@@ -2,13 +2,13 @@
 
 #include <iostream>
 
-#include "../src/Math/NumberTheory/prime_factorization.hpp"
+#include "../src/Math/NumberTheory/prime_factorize.hpp"
 
 int main() {
     int n;
     std::cin >> n;
 
-    auto &&mp = algorithm::prime_factorization(n);
+    const auto &&mp = algorithm::prime_factorize(n);
 
     std::cout << n << ":";
     for(const auto &[p, cnt] : mp) {
