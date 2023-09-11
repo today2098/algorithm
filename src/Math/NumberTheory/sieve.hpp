@@ -45,7 +45,7 @@ public:
         return m_lpf[n];
     }
     // 高速素因数分解．O(logN).
-    std::map<int, int> prime_factorization(int n) const {
+    std::map<int, int> prime_factorize(int n) const {
         assert(1 <= n and n <= m_mx);
         std::map<int, int> res;
         while(n > 1) {
@@ -58,7 +58,7 @@ public:
     std::vector<int> divisors(int n) const {
         assert(1 <= n and n <= m_mx);
         std::vector<int> res({1});
-        const auto &&pf = prime_factorization(n);
+        const std::map<int, int> &&pf = prime_factorize(n);
         for(const auto &[p, cnt] : pf) {
             const int sz = res.size();
             int b = 1;
@@ -73,20 +73,20 @@ public:
     // オイラーのファイ関数．n以下でnと互いに素な自然数の個数を求める．
     int totient(int n) const {
         assert(1 <= n and n <= m_mx);
-        const auto &&pf = prime_factorization(n);
-        int res = 1;
-        for(const auto &[p, cnt] : pf) res *= std::pow(p, cnt - 1) * (p - 1);
+        const std::map<int, int> &&pf = prime_factorize(n);
+        int res = n;
+        for(const auto &[p, cnt] : pf) res = res / p * (p - 1);
         return res;
     }
     // メビウス関数．O(N*loglogN).
-    std::vector<int> mebius() const {
-        std::vector<int> res(m_mx + 1, 1);  // res[i]:=μ(i).
+    std::vector<int> mobius() const {
+        std::vector<int> res(m_mx + 1, 1);  // res[n]:=μ(n).
         for(int p = 2; p <= m_mx; ++p) {
             if(m_lpf[p] != p) continue;
             res[p] = -1;
             for(int q = 2 * p; q <= m_mx; q += p) {
-                if((q / p) % p == 0) res[q] = 0;
-                else res[q] = -res[q];
+                if((q / p) % p == 0) res[q] = 0;  // nがある素数pで2回以上割り切れるとき，μ(n)=0.
+                else res[q] = -res[q];            // nがk個の相異なる素因数で分解できるとき，μ(n)=(-1)^k.
             }
         }
         return res;

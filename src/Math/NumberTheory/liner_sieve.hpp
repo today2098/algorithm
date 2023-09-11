@@ -1,3 +1,7 @@
+/**
+ * @brief 線形篩
+ */
+
 #ifndef ALGORITHM_LINEAR_SIEVE_HPP
 #define ALGORITHM_LINEAR_SIEVE_HPP 1
 
@@ -11,7 +15,7 @@ namespace algorithm {
 // 線形篩．
 class LinearSieve {
     int m_mx;                   // m_mx:=(篩にかける最大の自然数).
-    std::vector<int> m_lpf;     // m_lpf[n]:=(自然数nの最小の素因数). Least prime factor. m_lpf[n]==nのとき，nは素数．
+    std::vector<int> m_lpf;     // m_lpf[n]:=(自然数nの最小の素因数). Least prime factor. m_lpf[n]==n のとき，nは素数．
     std::vector<int> m_primes;  // m_primes[]:=(自然数n以下の素数のリスト).
 
 public:
@@ -24,7 +28,7 @@ public:
                 m_lpf[p] = p;
                 m_primes.push_back(p);
             }
-            for(auto prime : m_primes) {
+            for(int prime : m_primes) {
                 if(prime * p > m_mx or prime > m_lpf[p]) break;
                 m_lpf[prime * p] = prime;
             }
@@ -37,11 +41,11 @@ public:
         return m_lpf[n] == n;
     }
     // 自然数nの最小の素因数を返す．O(1).
-    int get_lpf(int n) const {
-        assert(2 <= n and n <= m_mx);
+    int lpf(int n) const {
+        assert(0 <= n and n <= m_mx);
         return m_lpf[n];
     }
-    // 高速素因数分解．osa_k法．O(logN).
+    // 高速素因数分解．O(logN).
     std::map<int, int> prime_factorize(int n) const {
         assert(1 <= n and n <= m_mx);
         std::map<int, int> res;
@@ -55,7 +59,7 @@ public:
     std::vector<int> divisors(int n) const {
         assert(1 <= n and n <= m_mx);
         std::vector<int> res({1});
-        const auto &&pf = prime_factorize(n);
+        const std::map<int, int> &&pf = prime_factorize(n);
         for(const auto &[p, cnt] : pf) {
             const int sz = res.size();
             int b = 1;
