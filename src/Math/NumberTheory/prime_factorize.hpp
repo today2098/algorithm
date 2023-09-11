@@ -13,13 +13,12 @@ namespace algorithm {
 // 素因数分解．O(√N).
 template <typename Type>
 std::map<Type, int> prime_factorize(Type n) {
-    assert(n >= 2);
+    assert(n >= 1);
     std::map<Type, int> res;  // res[p]:=(自然数nに含まれる素因数pの個数).
     for(Type p = 2; p * p <= n; ++p) {
-        if(n % p != 0) continue;
         while(n % p == 0) res[p]++, n /= p;
     }
-    if(n != 1) res[n]++;
+    if(n > 1) res[n] = 1;
     return res;
 }
 

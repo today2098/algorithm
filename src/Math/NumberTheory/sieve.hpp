@@ -75,7 +75,7 @@ public:
         assert(1 <= n and n <= m_mx);
         const std::map<int, int> &&pf = prime_factorize(n);
         int res = n;
-        for(const auto &[p, cnt] : pf) res = res / p * (p - 1);
+        for(const auto &[p, cnt] : pf) res -= res / p;
         return res;
     }
     // メビウス関数．O(N*loglogN).

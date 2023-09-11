@@ -2645,7 +2645,7 @@
 			"        assert(1 <= n and n <= m_mx);",
 			"        const std::map<int, int> &&pf = prime_factorize(n);",
 			"        int res = n;",
-			"        for(const auto &[p, cnt] : pf) res = res / p * (p - 1);",
+			"        for(const auto &[p, cnt] : pf) res -= res / p;",
 			"        return res;",
 			"    }",
 			"    // メビウス関数．O(N*loglogN).",
@@ -3268,20 +3268,19 @@
 		],
 		"description": "順列，組合せ"
 	},
-	"prime_factorization": {
+	"prime_factorize": {
 		"scope": "cpp",
 		"prefix": "prime_factorize",
 		"body": [
 			"// 素因数分解．O(√N).",
 			"template <typename Type>",
 			"std::map<Type, int> prime_factorize(Type n) {",
-			"    assert(n >= 2);",
+			"    assert(n >= 1);",
 			"    std::map<Type, int> res;  // res[p]:=(自然数nに含まれる素因数pの個数).",
 			"    for(Type p = 2; p * p <= n; ++p) {",
-			"        if(n % p != 0) continue;",
 			"        while(n % p == 0) res[p]++, n /= p;",
 			"    }",
-			"    if(n != 1) res[n]++;",
+			"    if(n > 1) res[n] = 1;",
 			"    return res;",
 			"}"
 		],
