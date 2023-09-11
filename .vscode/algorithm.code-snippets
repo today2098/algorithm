@@ -3346,6 +3346,27 @@
 		],
 		"description": "文字列剰余"
 	},
+	"totient": {
+		"scope": "cpp",
+		"prefix": "totient",
+		"body": [
+			"// オイラーのファイ関数．",
+			"// n以下でnと互いに素な自然数の個数を求める．O(√N).",
+			"template <typename Type>",
+			"Type totient(Type n) {",
+			"    assert(n >= 1);",
+			"    Type res = n;",
+			"    for(Type p = 2; p * p <= n; ++p) {",
+			"        if(n % p != 0) continue;",
+			"        res -= res / p;",
+			"        while(n % p == 0) n /= p;",
+			"    }",
+			"    if(n > 1) res -= res / n;",
+			"    return res;",
+			"}"
+		],
+		"description": "オイラーのファイ関数"
+	},
 	"z_algorithm": {
 		"scope": "cpp",
 		"prefix": "z_algorithm",
