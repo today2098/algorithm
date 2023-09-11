@@ -163,16 +163,16 @@ data:
     - icon: ':warning:'
       path: src/Math/NumberTheory/is_prime.hpp
       title: "\u7D20\u6570\u5224\u5B9A"
-    - icon: ':warning:'
+    - icon: ':question:'
       path: src/Math/NumberTheory/liner_sieve.hpp
-      title: src/Math/NumberTheory/liner_sieve.hpp
+      title: "\u7DDA\u5F62\u7BE9"
     - icon: ':heavy_check_mark:'
       path: src/Math/NumberTheory/prime_factorization.hpp
       title: "\u7D20\u56E0\u6570\u5206\u89E3"
     - icon: ':warning:'
       path: src/Math/NumberTheory/segment_sieve.hpp
       title: src/Math/NumberTheory/segment_sieve.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: src/Math/NumberTheory/sieve.hpp
       title: "Sieve of Eratosthenes\uFF08\u30A8\u30E9\u30C8\u30B9\u30C6\u30CD\u30B9\
         \u306E\u7BE9\uFF09"
@@ -236,6 +236,9 @@ data:
       path: test/aoj-0425.test.cpp
       title: test/aoj-0425.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/aoj-1276-liner_sieve.test.cpp
+      title: test/aoj-1276-liner_sieve.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/aoj-1276-sieve.test.cpp
       title: test/aoj-1276-sieve.test.cpp
     - icon: ':heavy_check_mark:'
@@ -250,6 +253,12 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj-ALDS1_12_A.test.cpp
       title: test/aoj-ALDS1_12_A.test.cpp
+    - icon: ':x:'
+      path: test/aoj-ALDS1_1_C-liner_sieve.test.cpp
+      title: test/aoj-ALDS1_1_C-liner_sieve.test.cpp
+    - icon: ':x:'
+      path: test/aoj-ALDS1_1_C-sieve.test.cpp
+      title: test/aoj-ALDS1_1_C-sieve.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/aoj-DPL_1_D.test.cpp
       title: test/aoj-DPL_1_D.test.cpp
