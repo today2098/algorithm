@@ -1,14 +1,14 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: src/Math/NumberTheory/liner_sieve.hpp
     title: "\u7DDA\u5F62\u7BE9"
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://onlinejudge.u-aizu.ac.jp/courses/lesson/1/ALDS1/1/ALDS1_1_C
@@ -54,21 +54,21 @@ data:
     \ algorithm\n\n#endif\n#line 6 \"test/aoj-ALDS1_1_C-liner_sieve.test.cpp\"\n\n\
     int main() {\n    int n;\n    std::cin >> n;\n\n    algorithm::LinearSieve sieve((int)1e8);\n\
     \n    int ans = 0;\n    for(int i = 0; i < n; ++i) {\n        int a;\n       \
-    \ std::cin >> a;\n\n        if(sieve.is_prime(n)) ans++;\n    }\n\n    std::cout\
+    \ std::cin >> a;\n\n        if(sieve.is_prime(a)) ans++;\n    }\n\n    std::cout\
     \ << ans << std::endl;\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/lesson/1/ALDS1/1/ALDS1_1_C\"\
     \n\n#include <iostream>\n\n#include \"../src/Math/NumberTheory/liner_sieve.hpp\"\
     \n\nint main() {\n    int n;\n    std::cin >> n;\n\n    algorithm::LinearSieve\
     \ sieve((int)1e8);\n\n    int ans = 0;\n    for(int i = 0; i < n; ++i) {\n   \
-    \     int a;\n        std::cin >> a;\n\n        if(sieve.is_prime(n)) ans++;\n\
+    \     int a;\n        std::cin >> a;\n\n        if(sieve.is_prime(a)) ans++;\n\
     \    }\n\n    std::cout << ans << std::endl;\n}\n"
   dependsOn:
   - src/Math/NumberTheory/liner_sieve.hpp
   isVerificationFile: true
   path: test/aoj-ALDS1_1_C-liner_sieve.test.cpp
   requiredBy: []
-  timestamp: '2023-09-11 18:10:17+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-09-11 18:38:11+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj-ALDS1_1_C-liner_sieve.test.cpp
 layout: document

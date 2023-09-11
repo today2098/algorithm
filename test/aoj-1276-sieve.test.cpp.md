@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: src/Math/NumberTheory/sieve.hpp
     title: "Sieve of Eratosthenes\uFF08\u30A8\u30E9\u30C8\u30B9\u30C6\u30CD\u30B9\u306E\
       \u7BE9\uFF09"
@@ -54,9 +54,9 @@ data:
     n\u3068\u4E92\u3044\u306B\u7D20\u306A\u81EA\u7136\u6570\u306E\u500B\u6570\u3092\
     \u6C42\u3081\u308B\uFF0E\n    int totient(int n) const {\n        assert(1 <=\
     \ n and n <= m_mx);\n        const std::map<int, int> &&pf = prime_factorize(n);\n\
-    \        int res = n;\n        for(const auto &[p, cnt] : pf) res = res / p *\
-    \ (p - 1);\n        return res;\n    }\n    // \u30E1\u30D3\u30A6\u30B9\u95A2\u6570\
-    \uFF0EO(N*loglogN).\n    std::vector<int> mobius() const {\n        std::vector<int>\
+    \        int res = n;\n        for(const auto &[p, cnt] : pf) res -= res / p;\n\
+    \        return res;\n    }\n    // \u30E1\u30D3\u30A6\u30B9\u95A2\u6570\uFF0E\
+    O(N*loglogN).\n    std::vector<int> mobius() const {\n        std::vector<int>\
     \ res(m_mx + 1, 1);  // res[n]:=\u03BC(n).\n        for(int p = 2; p <= m_mx;\
     \ ++p) {\n            if(m_lpf[p] != p) continue;\n            res[p] = -1;\n\
     \            for(int q = 2 * p; q <= m_mx; q += p) {\n                if((q /\
@@ -87,7 +87,7 @@ data:
   isVerificationFile: true
   path: test/aoj-1276-sieve.test.cpp
   requiredBy: []
-  timestamp: '2023-09-11 18:10:17+09:00'
+  timestamp: '2023-09-11 19:44:16+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj-1276-sieve.test.cpp

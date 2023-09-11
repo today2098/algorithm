@@ -6,12 +6,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj-1276-liner_sieve.test.cpp
     title: test/aoj-1276-liner_sieve.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj-ALDS1_1_C-liner_sieve.test.cpp
     title: test/aoj-ALDS1_1_C-liner_sieve.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     document_title: "\u7DDA\u5F62\u7BE9"
     links: []
@@ -91,7 +91,7 @@ data:
   path: src/Math/NumberTheory/liner_sieve.hpp
   requiredBy: []
   timestamp: '2023-09-11 18:09:23+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj-1276-liner_sieve.test.cpp
   - test/aoj-ALDS1_1_C-liner_sieve.test.cpp

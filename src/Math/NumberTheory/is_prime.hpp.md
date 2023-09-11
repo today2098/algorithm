@@ -2,10 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/aoj-ALDS1_1_C-is_prime.test.cpp
+    title: test/aoj-ALDS1_1_C-is_prime.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     document_title: "\u7D20\u6570\u5224\u5B9A"
     links: []
@@ -27,8 +30,9 @@ data:
   path: src/Math/NumberTheory/is_prime.hpp
   requiredBy: []
   timestamp: '2023-08-30 11:28:55+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/aoj-ALDS1_1_C-is_prime.test.cpp
 documentation_of: src/Math/NumberTheory/is_prime.hpp
 layout: document
 redirect_from:

@@ -160,22 +160,25 @@ data:
     - icon: ':warning:'
       path: src/Math/NumberTheory/floor_sum.hpp
       title: src/Math/NumberTheory/floor_sum.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: src/Math/NumberTheory/is_prime.hpp
       title: "\u7D20\u6570\u5224\u5B9A"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: src/Math/NumberTheory/liner_sieve.hpp
       title: "\u7DDA\u5F62\u7BE9"
     - icon: ':heavy_check_mark:'
-      path: src/Math/NumberTheory/prime_factorization.hpp
+      path: src/Math/NumberTheory/prime_factorize.hpp
       title: "\u7D20\u56E0\u6570\u5206\u89E3"
     - icon: ':warning:'
       path: src/Math/NumberTheory/segment_sieve.hpp
       title: src/Math/NumberTheory/segment_sieve.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: src/Math/NumberTheory/sieve.hpp
       title: "Sieve of Eratosthenes\uFF08\u30A8\u30E9\u30C8\u30B9\u30C6\u30CD\u30B9\
         \u306E\u7BE9\uFF09"
+    - icon: ':heavy_check_mark:'
+      path: src/Math/NumberTheory/totient.hpp
+      title: "\u30AA\u30A4\u30E9\u30FC\u306E\u30D5\u30A1\u30A4\u95A2\u6570"
   - name: src/Math
     pages:
     - icon: ':warning:'
@@ -253,10 +256,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj-ALDS1_12_A.test.cpp
       title: test/aoj-ALDS1_12_A.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
+      path: test/aoj-ALDS1_1_C-is_prime.test.cpp
+      title: test/aoj-ALDS1_1_C-is_prime.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/aoj-ALDS1_1_C-liner_sieve.test.cpp
       title: test/aoj-ALDS1_1_C-liner_sieve.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj-ALDS1_1_C-sieve.test.cpp
       title: test/aoj-ALDS1_1_C-sieve.test.cpp
     - icon: ':heavy_check_mark:'
@@ -331,6 +337,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj-NTL_1_B.test.cpp
       title: test/aoj-NTL_1_B.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/aoj-NTL_1_D.test.cpp
+      title: test/aoj-NTL_1_D.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo-point_add_range_sum-binary_indexed_tree_zero.test.cpp
       title: test/yosupo-point_add_range_sum-binary_indexed_tree_zero.test.cpp

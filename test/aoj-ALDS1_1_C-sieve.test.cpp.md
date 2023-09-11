@@ -1,15 +1,15 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: src/Math/NumberTheory/sieve.hpp
     title: "Sieve of Eratosthenes\uFF08\u30A8\u30E9\u30C8\u30B9\u30C6\u30CD\u30B9\u306E\
       \u7BE9\uFF09"
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://onlinejudge.u-aizu.ac.jp/courses/lesson/1/ALDS1/1/ALDS1_1_C
@@ -54,34 +54,34 @@ data:
     \u81EA\u7136\u6570\u306E\u500B\u6570\u3092\u6C42\u3081\u308B\uFF0E\n    int totient(int\
     \ n) const {\n        assert(1 <= n and n <= m_mx);\n        const std::map<int,\
     \ int> &&pf = prime_factorize(n);\n        int res = n;\n        for(const auto\
-    \ &[p, cnt] : pf) res = res / p * (p - 1);\n        return res;\n    }\n    //\
-    \ \u30E1\u30D3\u30A6\u30B9\u95A2\u6570\uFF0EO(N*loglogN).\n    std::vector<int>\
-    \ mobius() const {\n        std::vector<int> res(m_mx + 1, 1);  // res[n]:=\u03BC\
-    (n).\n        for(int p = 2; p <= m_mx; ++p) {\n            if(m_lpf[p] != p)\
-    \ continue;\n            res[p] = -1;\n            for(int q = 2 * p; q <= m_mx;\
-    \ q += p) {\n                if((q / p) % p == 0) res[q] = 0;  // n\u304C\u3042\
-    \u308B\u7D20\u6570p\u30672\u56DE\u4EE5\u4E0A\u5272\u308A\u5207\u308C\u308B\u3068\
-    \u304D\uFF0C\u03BC(n)=0.\n                else res[q] = -res[q];            //\
-    \ n\u304Ck\u500B\u306E\u76F8\u7570\u306A\u308B\u7D20\u56E0\u6570\u3067\u5206\u89E3\
-    \u3067\u304D\u308B\u3068\u304D\uFF0C\u03BC(n)=(-1)^k.\n            }\n       \
-    \ }\n        return res;\n    }\n};\n\n}  // namespace algorithm\n\n#endif\n#line\
-    \ 6 \"test/aoj-ALDS1_1_C-sieve.test.cpp\"\n\nint main() {\n    int n;\n    std::cin\
-    \ >> n;\n\n    algorithm::Sieve sieve((int)1e8);\n\n    int ans = 0;\n    for(int\
-    \ i = 0; i < n; ++i) {\n        int a;\n        std::cin >> a;\n\n        if(sieve.is_prime(n))\
-    \ ans++;\n    }\n\n    std::cout << ans << std::endl;\n}\n"
+    \ &[p, cnt] : pf) res -= res / p;\n        return res;\n    }\n    // \u30E1\u30D3\
+    \u30A6\u30B9\u95A2\u6570\uFF0EO(N*loglogN).\n    std::vector<int> mobius() const\
+    \ {\n        std::vector<int> res(m_mx + 1, 1);  // res[n]:=\u03BC(n).\n     \
+    \   for(int p = 2; p <= m_mx; ++p) {\n            if(m_lpf[p] != p) continue;\n\
+    \            res[p] = -1;\n            for(int q = 2 * p; q <= m_mx; q += p) {\n\
+    \                if((q / p) % p == 0) res[q] = 0;  // n\u304C\u3042\u308B\u7D20\
+    \u6570p\u30672\u56DE\u4EE5\u4E0A\u5272\u308A\u5207\u308C\u308B\u3068\u304D\uFF0C\
+    \u03BC(n)=0.\n                else res[q] = -res[q];            // n\u304Ck\u500B\
+    \u306E\u76F8\u7570\u306A\u308B\u7D20\u56E0\u6570\u3067\u5206\u89E3\u3067\u304D\
+    \u308B\u3068\u304D\uFF0C\u03BC(n)=(-1)^k.\n            }\n        }\n        return\
+    \ res;\n    }\n};\n\n}  // namespace algorithm\n\n#endif\n#line 6 \"test/aoj-ALDS1_1_C-sieve.test.cpp\"\
+    \n\nint main() {\n    int n;\n    std::cin >> n;\n\n    algorithm::Sieve sieve((int)1e8);\n\
+    \n    int ans = 0;\n    for(int i = 0; i < n; ++i) {\n        int a;\n       \
+    \ std::cin >> a;\n\n        if(sieve.is_prime(a)) ans++;\n    }\n\n    std::cout\
+    \ << ans << std::endl;\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/lesson/1/ALDS1/1/ALDS1_1_C\"\
     \n\n#include <iostream>\n\n#include \"../src/Math/NumberTheory/sieve.hpp\"\n\n\
     int main() {\n    int n;\n    std::cin >> n;\n\n    algorithm::Sieve sieve((int)1e8);\n\
     \n    int ans = 0;\n    for(int i = 0; i < n; ++i) {\n        int a;\n       \
-    \ std::cin >> a;\n\n        if(sieve.is_prime(n)) ans++;\n    }\n\n    std::cout\
+    \ std::cin >> a;\n\n        if(sieve.is_prime(a)) ans++;\n    }\n\n    std::cout\
     \ << ans << std::endl;\n}\n"
   dependsOn:
   - src/Math/NumberTheory/sieve.hpp
   isVerificationFile: true
   path: test/aoj-ALDS1_1_C-sieve.test.cpp
   requiredBy: []
-  timestamp: '2023-09-11 18:10:17+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-09-11 19:44:16+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj-ALDS1_1_C-sieve.test.cpp
 layout: document
