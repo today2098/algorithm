@@ -2963,7 +2963,7 @@
 			"// 約数列挙．O(√N).",
 			"template <typename Type>",
 			"std::vector<Type> divisors(Type n) {",
-			"    assert(n >= 0);",
+			"    assert(n >= 1);",
 			"    std::vector<Type> res;  // res[]:=(自然数nの約数の集合).",
 			"    for(Type p = 1; p * p <= n; ++p) {",
 			"        if(n % p == 0) {",
