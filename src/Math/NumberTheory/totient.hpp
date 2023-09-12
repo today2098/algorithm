@@ -17,9 +17,10 @@ Type totient(Type n) {
     assert(n >= 1);
     Type res = n;
     for(Type p = 2; p * p <= n; ++p) {
-        if(n % p != 0) continue;
-        res -= res / p;
-        while(n % p == 0) n /= p;
+        if(n % p == 0) {
+            res -= res / p;
+            while(n % p == 0) n /= p;
+        }
     }
     if(n > 1) res -= res / n;
     return res;
