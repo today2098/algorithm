@@ -23,11 +23,11 @@ data:
     \u4E0B\u3067n\u3068\u4E92\u3044\u306B\u7D20\u306A\u81EA\u7136\u6570\u306E\u500B\
     \u6570\u3092\u6C42\u3081\u308B\uFF0EO(\u221AN).\ntemplate <typename Type>\nType\
     \ totient(Type n) {\n    assert(n >= 1);\n    Type res = n;\n    for(Type p =\
-    \ 2; p * p <= n; ++p) {\n        if(n % p != 0) continue;\n        res -= res\
-    \ / p;\n        while(n % p == 0) n /= p;\n    }\n    if(n > 1) res -= res / n;\n\
-    \    return res;\n}\n\n};  // namespace algorithm\n\n#endif\n#line 6 \"test/aoj-NTL_1_D.test.cpp\"\
-    \n\nint main() {\n    int n;\n    std::cin >> n;\n\n    std::cout << algorithm::totient(n)\
-    \ << std::endl;\n}\n"
+    \ 2; p * p <= n; ++p) {\n        if(n % p == 0) {\n            res -= res / p;\n\
+    \            while(n % p == 0) n /= p;\n        }\n    }\n    if(n > 1) res -=\
+    \ res / n;\n    return res;\n}\n\n};  // namespace algorithm\n\n#endif\n#line\
+    \ 6 \"test/aoj-NTL_1_D.test.cpp\"\n\nint main() {\n    int n;\n    std::cin >>\
+    \ n;\n\n    std::cout << algorithm::totient(n) << std::endl;\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/NTL_1_D\"\n\n\
     #include <iostream>\n\n#include \"../src/Math/NumberTheory/totient.hpp\"\n\nint\
     \ main() {\n    int n;\n    std::cin >> n;\n\n    std::cout << algorithm::totient(n)\
@@ -37,7 +37,7 @@ data:
   isVerificationFile: true
   path: test/aoj-NTL_1_D.test.cpp
   requiredBy: []
-  timestamp: '2023-09-11 21:21:00+09:00'
+  timestamp: '2023-09-13 00:24:42+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj-NTL_1_D.test.cpp

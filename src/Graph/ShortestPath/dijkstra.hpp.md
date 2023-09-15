@@ -102,8 +102,8 @@ data:
   timestamp: '2023-08-31 14:17:44+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj-GRL_1_A.test.cpp
   - test/yosupo-shortest_path.test.cpp
+  - test/aoj-GRL_1_A.test.cpp
 documentation_of: src/Graph/ShortestPath/dijkstra.hpp
 layout: document
 redirect_from:

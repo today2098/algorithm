@@ -152,14 +152,23 @@ data:
   - name: src/Math/NumberTheory
     pages:
     - icon: ':warning:'
-      path: src/Math/NumberTheory/divisor.hpp
-      title: src/Math/NumberTheory/divisor.hpp
+      path: src/Math/NumberTheory/chinese_remainder_theorem.hpp
+      title: "Chinese Remainder Theorem\uFF08\u4E2D\u56FD\u5270\u4F59\u5B9A\u7406\uFF09"
+    - icon: ':heavy_check_mark:'
+      path: src/Math/NumberTheory/divisors.hpp
+      title: "\u7D04\u6570\u5217\u6319"
     - icon: ':warning:'
       path: src/Math/NumberTheory/extgcd.hpp
-      title: src/Math/NumberTheory/extgcd.hpp
+      title: "\u62E1\u5F35\u30E6\u30FC\u30AF\u30EA\u30C3\u30C9\u306E\u4E92\u9664\u6CD5"
     - icon: ':warning:'
       path: src/Math/NumberTheory/floor_sum.hpp
       title: src/Math/NumberTheory/floor_sum.hpp
+    - icon: ':heavy_check_mark:'
+      path: src/Math/NumberTheory/igcd.hpp
+      title: "Greatest Common Divisor\uFF08\u6700\u5927\u516C\u7D04\u6570\uFF09"
+    - icon: ':heavy_check_mark:'
+      path: src/Math/NumberTheory/ilcm.hpp
+      title: "Least Common Multiple\uFF08\u6700\u5C0F\u516C\u500D\u6570\uFF09"
     - icon: ':heavy_check_mark:'
       path: src/Math/NumberTheory/is_prime.hpp
       title: "\u7D20\u6570\u5224\u5B9A"
@@ -332,11 +341,17 @@ data:
       path: test/aoj-GRL_6_B.test.cpp
       title: test/aoj-GRL_6_B.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/aoj-ITP1_3_D.test.cpp
+      title: test/aoj-ITP1_3_D.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/aoj-NTL_1_A.test.cpp
       title: test/aoj-NTL_1_A.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/aoj-NTL_1_B.test.cpp
       title: test/aoj-NTL_1_B.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/aoj-NTL_1_C.test.cpp
+      title: test/aoj-NTL_1_C.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/aoj-NTL_1_D.test.cpp
       title: test/aoj-NTL_1_D.test.cpp

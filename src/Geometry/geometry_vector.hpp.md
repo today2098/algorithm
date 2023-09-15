@@ -230,8 +230,8 @@ data:
   isVerificationFile: false
   path: src/Geometry/geometry_vector.hpp
   requiredBy:
-  - src/Geometry/geometry_figure.hpp
   - src/Geometry/geometry_line.hpp
+  - src/Geometry/geometry_figure.hpp
   timestamp: '2023-02-14 22:14:21+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []

@@ -159,9 +159,9 @@ data:
   timestamp: '2023-08-31 14:17:44+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj-DSL_2_B-segment_tree.test.cpp
-  - test/aoj-DSL_2_A.test.cpp
   - test/yosupo-staticrmq-segment_tree.test.cpp
+  - test/aoj-DSL_2_A.test.cpp
+  - test/aoj-DSL_2_B-segment_tree.test.cpp
 documentation_of: src/DataStructure/SegmentTree/segment_tree.hpp
 layout: document
 redirect_from:
