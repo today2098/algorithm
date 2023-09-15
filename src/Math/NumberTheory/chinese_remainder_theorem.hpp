@@ -1,6 +1,6 @@
 /**
  * @brief Chinese Remainder Theorem（中国剰余定理）
- * @docs docs/Math/NumberTheory/chinese_remainder_theorem
+ * @docs docs/Math/NumberTheory/chinese_remainder_theorem.md
  */
 
 #ifndef ALGORITHM_CHINESE_REMAINDER_THEOREM_HPP
@@ -31,7 +31,8 @@ std::pair<long long, long long> crt(long long b1, long long m1, long long b2, lo
 // Chinese Remainder Theorem（中国剰余定理）.
 // 各iについて，x≡b[i] (mod m[i]) を満たす整数x (0≦x＜lcm(m[]))を求める．
 // 返り値はpair of (x,lcm(m[]))．解なしの場合，(0,-1)を返す．
-std::pair<long long, long long> crt(const std::vector<long long> &bs, const std::vector<long long> &ms) {
+template <typename Type>
+std::pair<long long, long long> crt(const std::vector<Type> &bs, const std::vector<Type> &ms) {
     assert(bs.size() == ms.size());
     long long r = 0, m = 1;
     for(int i = 0, n = bs.size(); i < n; ++i) {
