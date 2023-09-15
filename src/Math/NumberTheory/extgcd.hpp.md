@@ -2,13 +2,19 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: src/Math/NumberTheory/chinese_remainder_theorem.hpp
     title: "Chinese Remainder Theorem\uFF08\u4E2D\u56FD\u5270\u4F59\u5B9A\u7406\uFF09"
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/aoj-2659.test.cpp
+    title: test/aoj-2659.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj-NTL_1_E.test.cpp
+    title: test/aoj-NTL_1_E.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     _deprecated_at_docs: docs/Math/NumberTheory/extgcd.md
     document_title: "\u62E1\u5F35\u30E6\u30FC\u30AF\u30EA\u30C3\u30C9\u306E\u4E92\u9664\
@@ -39,8 +45,10 @@ data:
   requiredBy:
   - src/Math/NumberTheory/chinese_remainder_theorem.hpp
   timestamp: '2023-09-15 20:30:15+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/aoj-NTL_1_E.test.cpp
+  - test/aoj-2659.test.cpp
 documentation_of: src/Math/NumberTheory/extgcd.hpp
 layout: document
 redirect_from:

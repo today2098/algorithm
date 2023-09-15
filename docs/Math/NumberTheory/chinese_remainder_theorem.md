@@ -11,7 +11,13 @@ $$
 
 を満たす $0$ 以上 $\operatorname{lcm}(m,n)$ 以下の整数 $x$ を求める．
 
-$x$ が存在する必要十分条件は $$b \equiv c \pmod{\gcd(m,n)}$$ であること．
+$x$ が存在する必要十分条件は
+
+$$
+b \equiv c \pmod{\gcd(m,n)}
+$$
+
+であること．
 
 実装では[拡張ユークリッドの互除法](https://today2098.github.io/algorithm/src/Math/NumberTheory/extgcd.hpp)を利用し，計算量は $\mathcal{O}(\log a)$ となる． 
 

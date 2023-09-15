@@ -151,13 +151,13 @@ data:
       title: Modint
   - name: src/Math/NumberTheory
     pages:
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: src/Math/NumberTheory/chinese_remainder_theorem.hpp
       title: "Chinese Remainder Theorem\uFF08\u4E2D\u56FD\u5270\u4F59\u5B9A\u7406\uFF09"
     - icon: ':heavy_check_mark:'
       path: src/Math/NumberTheory/divisors.hpp
       title: "\u7D04\u6570\u5217\u6319"
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: src/Math/NumberTheory/extgcd.hpp
       title: "\u62E1\u5F35\u30E6\u30FC\u30AF\u30EA\u30C3\u30C9\u306E\u4E92\u9664\u6CD5"
     - icon: ':warning:'
@@ -253,6 +253,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj-1276-sieve.test.cpp
       title: test/aoj-1276-sieve.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/aoj-2659.test.cpp
+      title: test/aoj-2659.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/aoj-2842.test.cpp
       title: test/aoj-2842.test.cpp
@@ -355,6 +358,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj-NTL_1_D.test.cpp
       title: test/aoj-NTL_1_D.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/aoj-NTL_1_E.test.cpp
+      title: test/aoj-NTL_1_E.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo-point_add_range_sum-binary_indexed_tree_zero.test.cpp
       title: test/yosupo-point_add_range_sum-binary_indexed_tree_zero.test.cpp
