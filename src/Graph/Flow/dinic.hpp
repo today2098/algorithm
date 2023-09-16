@@ -1,10 +1,10 @@
+#ifndef ALGORITHM_DINIC_HPP
+#define ALGORITHM_DINIC_HPP 1
+
 /**
  * @brief Dinic's Algorithm（最大流）
  * @docs docs/Graph/Flow/dinic.md
  */
-
-#ifndef ALGORITHM_DINIC_HPP
-#define ALGORITHM_DINIC_HPP 1
 
 #include <algorithm>
 #include <cassert>

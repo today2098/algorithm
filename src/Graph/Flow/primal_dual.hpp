@@ -1,10 +1,10 @@
+#ifndef ALGORITHM_PRIMAL_DUAL_HPP
+#define ALGORITHM_PRIMAL_DUAL_HPP 1
+
 /**
  * @brief 最小費用流
  * @docs docs/Graph/Flow/primal_dual.md
  */
-
-#ifndef ALGORITHM_PRIMAL_DUAL_HPP
-#define ALGORITHM_PRIMAL_DUAL_HPP 1
 
 #include <algorithm>
 #include <cassert>

@@ -1,10 +1,10 @@
+#ifndef ALGORITHM_CHINESE_REMAINDER_THEOREM_HPP
+#define ALGORITHM_CHINESE_REMAINDER_THEOREM_HPP 1
+
 /**
  * @brief Chinese Remainder Theorem（中国剰余定理）
  * @docs docs/Math/NumberTheory/chinese_remainder_theorem.md
  */
-
-#ifndef ALGORITHM_CHINESE_REMAINDER_THEOREM_HPP
-#define ALGORITHM_CHINESE_REMAINDER_THEOREM_HPP 1
 
 #include <cassert>
 #include <vector>

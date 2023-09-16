@@ -1,10 +1,10 @@
+#ifndef ALGORITHM_FORD_FULKERSON_HPP
+#define ALGORITHM_FORD_FULKERSON_HPP 1
+
 /**
  * @brief Ford-Fulkerson Algorithm（最大流）
  * @docs docs/Graph/Flow/ford_fulkerson.md
  */
-
-#ifndef ALGORITHM_FORD_FULKERSON_HPP
-#define ALGORITHM_FORD_FULKERSON_HPP 1
 
 #include <algorithm>
 #include <cassert>

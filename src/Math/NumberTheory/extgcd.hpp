@@ -1,10 +1,10 @@
+#ifndef ALGORITHM_EXTGCD_HPP
+#define ALGORITHM_EXTGCD_HPP 1
+
 /**
  * @brief 拡張ユークリッドの互除法
  * @docs docs/Math/NumberTheory/extgcd.md
  */
-
-#ifndef ALGORITHM_EXTGCD_HPP
-#define ALGORITHM_EXTGCD_HPP 1
 
 namespace algorithm {
 
