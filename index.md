@@ -41,11 +41,10 @@ data:
     pages:
     - icon: ':warning:'
       path: src/DataStructure/UnionFind/partially_persistent_union_find.hpp
-      title: "Partially Persistent Union-Find\uFF08\u90E8\u5206\u6C38\u7D9AUnionf-Find\
-        \ Tree\uFF09"
+      title: "Partially Persistent Union-Find\uFF08\u90E8\u5206\u6C38\u7D9AUnionf-Find\uFF09"
     - icon: ':heavy_check_mark:'
       path: src/DataStructure/UnionFind/potentialized_union_find.hpp
-      title: "\u91CD\u307F\u4ED8\u304DUnion-Find\u6728"
+      title: "\u91CD\u307F\u4ED8\u304DUnion-Find"
     - icon: ':heavy_check_mark:'
       path: src/DataStructure/UnionFind/union_find.hpp
       title: "Union-Find\uFF08\u7D20\u96C6\u5408\u30C7\u30FC\u30BF\u69CB\u9020\uFF09"

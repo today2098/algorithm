@@ -16,18 +16,17 @@ data:
     - https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_6_A
   bundledCode: "#line 1 \"test/aoj-GRL_6_A-ford_fulkerson.test.cpp\"\n#define PROBLEM\
     \ \"https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_6_A\"\n\n#include\
-    \ <iostream>\n\n#line 1 \"src/Graph/Flow/ford_fulkerson.hpp\"\n/**\n * @brief\
+    \ <iostream>\n\n#line 1 \"src/Graph/Flow/ford_fulkerson.hpp\"\n\n\n\n/**\n * @brief\
     \ Ford-Fulkerson Algorithm\uFF08\u6700\u5927\u6D41\uFF09\n * @docs docs/Graph/Flow/ford_fulkerson.md\n\
-    \ */\n\n#ifndef ALGORITHM_FORD_FULKERSON_HPP\n#define ALGORITHM_FORD_FULKERSON_HPP\
-    \ 1\n\n#include <algorithm>\n#include <cassert>\n#include <limits>\n#include <queue>\n\
-    #include <utility>\n#include <vector>\n\nnamespace algorithm {\n\ntemplate <typename\
-    \ T>  // T:\u5BB9\u91CF\u306E\u578B.\nclass FordFulkerson {\n    struct Edge {\n\
-    \        int to;   // to:=(\u884C\u304D\u5148\u30CE\u30FC\u30C9).\n        T cap;\
-    \    // cap:=(\u5BB9\u91CF).\n        int rev;  // rev:=(\u9006\u8FBA\u30A4\u30C6\
-    \u30EC\u30FC\u30BF).\n        explicit Edge(int to_, T cap_, int rev_) : to(to_),\
-    \ cap(cap_), rev(rev_) {}\n    };\n\n    std::vector<std::vector<Edge> > m_g;\
-    \      // m_g[v][]:=(\u30CE\u30FC\u30C9v\u306E\u96A3\u63A5\u30EA\u30B9\u30C8).\n\
-    \    std::vector<std::pair<int, int> > m_pos;  // m_pos[i]:=(i\u756A\u76EE\u306E\
+    \ */\n\n#include <algorithm>\n#include <cassert>\n#include <limits>\n#include\
+    \ <queue>\n#include <utility>\n#include <vector>\n\nnamespace algorithm {\n\n\
+    template <typename T>  // T:\u5BB9\u91CF\u306E\u578B.\nclass FordFulkerson {\n\
+    \    struct Edge {\n        int to;   // to:=(\u884C\u304D\u5148\u30CE\u30FC\u30C9\
+    ).\n        T cap;    // cap:=(\u5BB9\u91CF).\n        int rev;  // rev:=(\u9006\
+    \u8FBA\u30A4\u30C6\u30EC\u30FC\u30BF).\n        explicit Edge(int to_, T cap_,\
+    \ int rev_) : to(to_), cap(cap_), rev(rev_) {}\n    };\n\n    std::vector<std::vector<Edge>\
+    \ > m_g;      // m_g[v][]:=(\u30CE\u30FC\u30C9v\u306E\u96A3\u63A5\u30EA\u30B9\u30C8\
+    ).\n    std::vector<std::pair<int, int> > m_pos;  // m_pos[i]:=(i\u756A\u76EE\u306E\
     \u8FBA\u306E\u60C5\u5831). pair of (from, index).\n\n    // \u5897\u52A0\u30D1\
     \u30B9\u3092\u63A2\u3059\uFF0E\n    T dfs(int v, int t, T flow, std::vector<bool>\
     \ &seen) {\n        if(v == t) return flow;\n        seen[v] = true;\n       \
@@ -70,13 +69,12 @@ data:
     \  }\n        }\n        return res;\n    }\n    void reset() {\n        for(const\
     \ auto &[from, idx] : m_pos) {\n            Edge &e = m_g[from][idx];\n      \
     \      e.cap = e.cap + m_g[e.to][e.rev].cap;\n            m_g[e.to][e.rev].cap\
-    \ = 0;\n        }\n    }\n};\n\n}  // namespace algorithm\n\n#endif\n#line 6 \"\
-    test/aoj-GRL_6_A-ford_fulkerson.test.cpp\"\n\nint main() {\n    int n, m;\n  \
-    \  std::cin >> n >> m;\n\n    algorithm::FordFulkerson<int> ford_fulkerson(n);\n\
-    \    int s = 0, t = n - 1;\n    for(int i = 0; i < m; ++i) {\n        int u, v;\n\
-    \        int c;\n        std::cin >> u >> v >> c;\n\n        ford_fulkerson.add_edge(u,\
-    \ v, c);\n    }\n\n    std::cout << ford_fulkerson.max_flow(s, t) << std::endl;\n\
-    }\n"
+    \ = 0;\n        }\n    }\n};\n\n}  // namespace algorithm\n\n\n#line 6 \"test/aoj-GRL_6_A-ford_fulkerson.test.cpp\"\
+    \n\nint main() {\n    int n, m;\n    std::cin >> n >> m;\n\n    algorithm::FordFulkerson<int>\
+    \ ford_fulkerson(n);\n    int s = 0, t = n - 1;\n    for(int i = 0; i < m; ++i)\
+    \ {\n        int u, v;\n        int c;\n        std::cin >> u >> v >> c;\n\n \
+    \       ford_fulkerson.add_edge(u, v, c);\n    }\n\n    std::cout << ford_fulkerson.max_flow(s,\
+    \ t) << std::endl;\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_6_A\"\
     \n\n#include <iostream>\n\n#include \"../src/Graph/Flow/ford_fulkerson.hpp\"\n\
     \nint main() {\n    int n, m;\n    std::cin >> n >> m;\n\n    algorithm::FordFulkerson<int>\
@@ -89,7 +87,7 @@ data:
   isVerificationFile: true
   path: test/aoj-GRL_6_A-ford_fulkerson.test.cpp
   requiredBy: []
-  timestamp: '2023-09-04 20:29:18+09:00'
+  timestamp: '2023-09-16 12:49:54+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj-GRL_6_A-ford_fulkerson.test.cpp

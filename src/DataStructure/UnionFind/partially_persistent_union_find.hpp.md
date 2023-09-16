@@ -9,23 +9,22 @@ data:
   attributes:
     _deprecated_at_docs: docs/DataStructure/UnionFind/partially_persistent_union_find.md
     document_title: "Partially Persistent Union-Find\uFF08\u90E8\u5206\u6C38\u7D9A\
-      Unionf-Find Tree\uFF09"
+      Unionf-Find\uFF09"
     links: []
   bundledCode: "#line 1 \"src/DataStructure/UnionFind/partially_persistent_union_find.hpp\"\
-    \n/**\n * @brief Partially Persistent Union-Find\uFF08\u90E8\u5206\u6C38\u7D9A\
-    Unionf-Find Tree\uFF09\n * @docs docs/DataStructure/UnionFind/partially_persistent_union_find.md\n\
-    \ */\n\n#ifndef ALGORITHM_PARTIALLY_PERSISTENT_UNION_FIND_HPP\n#define ALGORITHM_PARTIALLY_PERSISTENT_UNION_FIND_HPP\
-    \ 1\n\n#include <algorithm>\n#include <cassert>\n#include <limits>\n#include <utility>\n\
-    #include <vector>\n\nnamespace algorithm {\n\n// \u90E8\u5206\u6C38\u7D9AUnion-Find\
-    \ Tree\uFF0E\nclass PartiallyPersistentUnionFind {\n    using pii = std::pair<int,\
-    \ int>;\n\n    int m_now;  // m_now:=(\u73FE\u5728\u6642\u523B).\n    int m_vn;\
-    \   // m_vn:=(\u8981\u7D20\u6570).\n    int m_gn;   // m_gn:=(\u30B0\u30EB\u30FC\
-    \u30D7\u6570).\n    // m_par[x][](t,id):=(\u8981\u7D20x\u306B\u304A\u3051\u308B\
-    \u66F4\u65B0\u6642\u9593t\u3068\u89AA\u756A\u53F7id).\n    // \u5024id\u304C0\u672A\
-    \u6E80\u306E\u5834\u5408\uFF0Cx\u306F\u6839\u3067\u3042\u308A\uFF0C\u5024id\u306E\
-    \u7D76\u5BFE\u5024\u306F\u5C5E\u3059\u308B\u30B0\u30EB\u30FC\u30D7\u306E\u30B5\
-    \u30A4\u30BA\u3092\u8868\u3059\uFF0E\n    std::vector<std::vector<pii> > m_par;\n\
-    \n    static constexpr int infinity() { return std::numeric_limits<int>::max();\
+    \n\n\n\n/**\n * @brief Partially Persistent Union-Find\uFF08\u90E8\u5206\u6C38\
+    \u7D9AUnionf-Find\uFF09\n * @docs docs/DataStructure/UnionFind/partially_persistent_union_find.md\n\
+    \ */\n\n#include <algorithm>\n#include <cassert>\n#include <limits>\n#include\
+    \ <utility>\n#include <vector>\n\nnamespace algorithm {\n\n// \u90E8\u5206\u6C38\
+    \u7D9AUnion-Find\uFF0E\nclass PartiallyPersistentUnionFind {\n    using pii =\
+    \ std::pair<int, int>;\n\n    int m_now;  // m_now:=(\u73FE\u5728\u6642\u523B\
+    ).\n    int m_vn;   // m_vn:=(\u8981\u7D20\u6570).\n    int m_gn;   // m_gn:=(\u30B0\
+    \u30EB\u30FC\u30D7\u6570).\n    // m_par[x][](t,id):=(\u8981\u7D20x\u306B\u304A\
+    \u3051\u308B\u66F4\u65B0\u6642\u9593t\u3068\u89AA\u756A\u53F7id).\n    // \u5024\
+    id\u304C0\u672A\u6E80\u306E\u5834\u5408\uFF0Cx\u306F\u6839\u3067\u3042\u308A\uFF0C\
+    \u5024id\u306E\u7D76\u5BFE\u5024\u306F\u5C5E\u3059\u308B\u30B0\u30EB\u30FC\u30D7\
+    \u306E\u30B5\u30A4\u30BA\u3092\u8868\u3059\uFF0E\n    std::vector<std::vector<pii>\
+    \ > m_par;\n\n    static constexpr int infinity() { return std::numeric_limits<int>::max();\
     \ }\n\npublic:\n    PartiallyPersistentUnionFind() : PartiallyPersistentUnionFind(0)\
     \ {}\n    explicit PartiallyPersistentUnionFind(size_t vn)\n        : m_now(0),\
     \ m_vn(vn), m_gn(vn), m_par(vn, std::vector<pii>({{0, -1}})) {}\n\n    // \u73FE\
@@ -74,21 +73,21 @@ data:
     \ -sz_x - sz_y);\n        m_par[y].emplace_back(now(), x);\n        m_gn--;\n\
     \        return true;\n    }\n    void reset() {\n        m_now = 1;\n       \
     \ m_gn = vn();\n        for(std::vector<pii> &history : m_par) history.resize(1);\n\
-    \    }\n};\n\n}  // namespace algorithm\n\n#endif\n"
-  code: "/**\n * @brief Partially Persistent Union-Find\uFF08\u90E8\u5206\u6C38\u7D9A\
-    Unionf-Find Tree\uFF09\n * @docs docs/DataStructure/UnionFind/partially_persistent_union_find.md\n\
-    \ */\n\n#ifndef ALGORITHM_PARTIALLY_PERSISTENT_UNION_FIND_HPP\n#define ALGORITHM_PARTIALLY_PERSISTENT_UNION_FIND_HPP\
-    \ 1\n\n#include <algorithm>\n#include <cassert>\n#include <limits>\n#include <utility>\n\
-    #include <vector>\n\nnamespace algorithm {\n\n// \u90E8\u5206\u6C38\u7D9AUnion-Find\
-    \ Tree\uFF0E\nclass PartiallyPersistentUnionFind {\n    using pii = std::pair<int,\
-    \ int>;\n\n    int m_now;  // m_now:=(\u73FE\u5728\u6642\u523B).\n    int m_vn;\
-    \   // m_vn:=(\u8981\u7D20\u6570).\n    int m_gn;   // m_gn:=(\u30B0\u30EB\u30FC\
-    \u30D7\u6570).\n    // m_par[x][](t,id):=(\u8981\u7D20x\u306B\u304A\u3051\u308B\
-    \u66F4\u65B0\u6642\u9593t\u3068\u89AA\u756A\u53F7id).\n    // \u5024id\u304C0\u672A\
-    \u6E80\u306E\u5834\u5408\uFF0Cx\u306F\u6839\u3067\u3042\u308A\uFF0C\u5024id\u306E\
-    \u7D76\u5BFE\u5024\u306F\u5C5E\u3059\u308B\u30B0\u30EB\u30FC\u30D7\u306E\u30B5\
-    \u30A4\u30BA\u3092\u8868\u3059\uFF0E\n    std::vector<std::vector<pii> > m_par;\n\
-    \n    static constexpr int infinity() { return std::numeric_limits<int>::max();\
+    \    }\n};\n\n}  // namespace algorithm\n\n\n"
+  code: "#ifndef ALGORITHM_PARTIALLY_PERSISTENT_UNION_FIND_HPP\n#define ALGORITHM_PARTIALLY_PERSISTENT_UNION_FIND_HPP\
+    \ 1\n\n/**\n * @brief Partially Persistent Union-Find\uFF08\u90E8\u5206\u6C38\u7D9A\
+    Unionf-Find\uFF09\n * @docs docs/DataStructure/UnionFind/partially_persistent_union_find.md\n\
+    \ */\n\n#include <algorithm>\n#include <cassert>\n#include <limits>\n#include\
+    \ <utility>\n#include <vector>\n\nnamespace algorithm {\n\n// \u90E8\u5206\u6C38\
+    \u7D9AUnion-Find\uFF0E\nclass PartiallyPersistentUnionFind {\n    using pii =\
+    \ std::pair<int, int>;\n\n    int m_now;  // m_now:=(\u73FE\u5728\u6642\u523B\
+    ).\n    int m_vn;   // m_vn:=(\u8981\u7D20\u6570).\n    int m_gn;   // m_gn:=(\u30B0\
+    \u30EB\u30FC\u30D7\u6570).\n    // m_par[x][](t,id):=(\u8981\u7D20x\u306B\u304A\
+    \u3051\u308B\u66F4\u65B0\u6642\u9593t\u3068\u89AA\u756A\u53F7id).\n    // \u5024\
+    id\u304C0\u672A\u6E80\u306E\u5834\u5408\uFF0Cx\u306F\u6839\u3067\u3042\u308A\uFF0C\
+    \u5024id\u306E\u7D76\u5BFE\u5024\u306F\u5C5E\u3059\u308B\u30B0\u30EB\u30FC\u30D7\
+    \u306E\u30B5\u30A4\u30BA\u3092\u8868\u3059\uFF0E\n    std::vector<std::vector<pii>\
+    \ > m_par;\n\n    static constexpr int infinity() { return std::numeric_limits<int>::max();\
     \ }\n\npublic:\n    PartiallyPersistentUnionFind() : PartiallyPersistentUnionFind(0)\
     \ {}\n    explicit PartiallyPersistentUnionFind(size_t vn)\n        : m_now(0),\
     \ m_vn(vn), m_gn(vn), m_par(vn, std::vector<pii>({{0, -1}})) {}\n\n    // \u73FE\
@@ -142,7 +141,7 @@ data:
   isVerificationFile: false
   path: src/DataStructure/UnionFind/partially_persistent_union_find.hpp
   requiredBy: []
-  timestamp: '2023-09-09 23:39:11+09:00'
+  timestamp: '2023-09-16 12:03:00+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: src/DataStructure/UnionFind/partially_persistent_union_find.hpp
@@ -150,13 +149,13 @@ layout: document
 redirect_from:
 - /library/src/DataStructure/UnionFind/partially_persistent_union_find.hpp
 - /library/src/DataStructure/UnionFind/partially_persistent_union_find.hpp.html
-title: "Partially Persistent Union-Find\uFF08\u90E8\u5206\u6C38\u7D9AUnionf-Find Tree\uFF09"
+title: "Partially Persistent Union-Find\uFF08\u90E8\u5206\u6C38\u7D9AUnionf-Find\uFF09"
 ---
 ## 概要
 
-部分永続 Union-Find Tree は，通常の [Union-Find Tree](https://today2098.github.io/algorithm/src/DataStructure/UnionFind/union_find.hpp) の機能に加え，過去の状態におけるクエリを求めるデータ構造．
+部分永続 Union-Find は，通常の [Union-Find](https://today2098.github.io/algorithm/src/DataStructure/UnionFind/union_find.hpp) の機能に加え，過去の状態におけるクエリを求めることができるデータ構造．
 
-経路圧縮は行わず，各クエリの計算量は $O(\log N)$ となる．
+実装では「union by size」の工夫のみ行い，各クエリの計算量は $\mathcal{O}(\log N)$ となる．
 
 
 ## 参考文献

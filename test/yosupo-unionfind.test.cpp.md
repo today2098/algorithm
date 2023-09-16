@@ -16,16 +16,15 @@ data:
     - https://judge.yosupo.jp/problem/unionfind
   bundledCode: "#line 1 \"test/yosupo-unionfind.test.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/unionfind\"\
     \n\n#include <iostream>\n\n#line 1 \"src/DataStructure/UnionFind/union_find.hpp\"\
-    \n/**\n * @brief Union-Find\uFF08\u7D20\u96C6\u5408\u30C7\u30FC\u30BF\u69CB\u9020\
-    \uFF09\n * @docs docs/DataStructure/UnionFind/union_find.md\n */\n\n#ifndef ALGORITHM_UNION_FIND_HPP\n\
-    #define ALGORITHM_UNION_FIND_HPP 1\n\n#include <algorithm>\n#include <cassert>\n\
-    #include <utility>\n#include <vector>\n\nnamespace algorithm {\n\nclass UnionFind\
-    \ {\n    int m_vn;                // m_vn:=(\u8981\u7D20\u6570).\n    int m_gn;\
-    \                // m_gn:=(\u30B0\u30EB\u30FC\u30D7\u6570).\n    std::vector<int>\
-    \ m_par;  // m_par[x]:=(\u30CE\u30FC\u30C9x\u306E\u89AA\u756A\u53F7). 0\u672A\u6E80\
-    \u306E\u5834\u5408\uFF0Cx\u306F\u6839\u3067\u3042\u308A\uFF0C\u5024\u306E\u7D76\
-    \u5BFE\u5024\u306F\u5C5E\u3059\u308B\u30B0\u30EB\u30FC\u30D7\u306E\u30B5\u30A4\
-    \u30BA\u3092\u8868\u3059\uFF0E\n\npublic:\n    UnionFind() : UnionFind(0) {}\n\
+    \n\n\n\n/**\n * @brief Union-Find\uFF08\u7D20\u96C6\u5408\u30C7\u30FC\u30BF\u69CB\
+    \u9020\uFF09\n * @docs docs/DataStructure/UnionFind/union_find.md\n */\n\n#include\
+    \ <algorithm>\n#include <cassert>\n#include <utility>\n#include <vector>\n\nnamespace\
+    \ algorithm {\n\nclass UnionFind {\n    int m_vn;  // m_vn:=(\u8981\u7D20\u6570\
+    ).\n    int m_gn;  // m_gn:=(\u30B0\u30EB\u30FC\u30D7\u6570).\n    // m_par[x]:=(\u8981\
+    \u7D20x\u306E\u89AA\u756A\u53F7). 0\u672A\u6E80\u306E\u5834\u5408\uFF0Cx\u306F\
+    \u6839\u3067\u3042\u308A\uFF0C\u5024\u306E\u7D76\u5BFE\u5024\u306F\u5C5E\u3059\
+    \u308B\u30B0\u30EB\u30FC\u30D7\u306E\u30B5\u30A4\u30BA\u3092\u8868\u3059\uFF0E\
+    \n    std::vector<int> m_par;\n\npublic:\n    UnionFind() : UnionFind(0) {}\n\
     \    explicit UnionFind(size_t vn) : m_vn(vn), m_gn(vn), m_par(vn, -1) {}\n\n\
     \    // \u8981\u7D20\u306E\u7DCF\u6570\u3092\u8FD4\u3059\uFF0E\n    int vn() const\
     \ { return m_vn; };\n    // \u30B0\u30EB\u30FC\u30D7\u6570\u3092\u8FD4\u3059\uFF0E\
@@ -49,7 +48,7 @@ data:
     \ technique (union by size).\n        m_par[x] += m_par[y];\n        m_par[y]\
     \ = x;\n        m_gn--;\n        return true;\n    }\n    void reset() {\n   \
     \     m_gn = vn();\n        std::fill(m_par.begin(), m_par.end(), -1);\n    }\n\
-    };\n\n}  // namespace algorithm\n\n#endif\n#line 6 \"test/yosupo-unionfind.test.cpp\"\
+    };\n\n}  // namespace algorithm\n\n\n#line 6 \"test/yosupo-unionfind.test.cpp\"\
     \n\nint main() {\n    int n;\n    int q;\n    std::cin >> n >> q;\n\n    algorithm::UnionFind\
     \ uf(n);\n    while(q--) {\n        int t;\n        int u, v;\n        std::cin\
     \ >> t >> u >> v;\n\n        if(t == 0) uf.unite(u, v);\n        else std::cout\
@@ -65,7 +64,7 @@ data:
   isVerificationFile: true
   path: test/yosupo-unionfind.test.cpp
   requiredBy: []
-  timestamp: '2023-08-31 14:17:44+09:00'
+  timestamp: '2023-09-16 12:03:00+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo-unionfind.test.cpp

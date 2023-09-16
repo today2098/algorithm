@@ -13,14 +13,14 @@ data:
     _deprecated_at_docs: docs/Graph/Flow/dinic.md
     document_title: "Dinic's Algorithm\uFF08\u6700\u5927\u6D41\uFF09"
     links: []
-  bundledCode: "#line 1 \"src/Graph/Flow/dinic.hpp\"\n/**\n * @brief Dinic's Algorithm\uFF08\
-    \u6700\u5927\u6D41\uFF09\n * @docs docs/Graph/Flow/dinic.md\n */\n\n#ifndef ALGORITHM_DINIC_HPP\n\
-    #define ALGORITHM_DINIC_HPP 1\n\n#include <algorithm>\n#include <cassert>\n#include\
-    \ <limits>\n#include <queue>\n#include <tuple>\n#include <utility>\n#include <vector>\n\
-    \nnamespace algorithm {\n\ntemplate <typename T>  // T:\u5BB9\u91CF\u306E\u578B\
-    .\nclass Dinic {\n    struct Edge {\n        int to;   // to:=(\u884C\u304D\u5148\
-    \u30CE\u30FC\u30C9).\n        T cap;    // cap:=(\u5BB9\u91CF).\n        int rev;\
-    \  // rev:=(\u9006\u8FBA\u30A4\u30C6\u30EC\u30FC\u30BF).\n        explicit Edge(int\
+  bundledCode: "#line 1 \"src/Graph/Flow/dinic.hpp\"\n\n\n\n/**\n * @brief Dinic's\
+    \ Algorithm\uFF08\u6700\u5927\u6D41\uFF09\n * @docs docs/Graph/Flow/dinic.md\n\
+    \ */\n\n#include <algorithm>\n#include <cassert>\n#include <limits>\n#include\
+    \ <queue>\n#include <tuple>\n#include <utility>\n#include <vector>\n\nnamespace\
+    \ algorithm {\n\ntemplate <typename T>  // T:\u5BB9\u91CF\u306E\u578B.\nclass\
+    \ Dinic {\n    struct Edge {\n        int to;   // to:=(\u884C\u304D\u5148\u30CE\
+    \u30FC\u30C9).\n        T cap;    // cap:=(\u5BB9\u91CF).\n        int rev;  //\
+    \ rev:=(\u9006\u8FBA\u30A4\u30C6\u30EC\u30FC\u30BF).\n        explicit Edge(int\
     \ to_, T cap_, int rev_) : to(to_), cap(cap_), rev(rev_) {}\n    };\n\n    std::vector<std::vector<Edge>\
     \ > m_g;      // m_g[v][]:=(\u30CE\u30FC\u30C9v\u306E\u96A3\u63A5\u30EA\u30B9\u30C8\
     ).\n    std::vector<std::pair<int, int> > m_pos;  // m_pos[i]:=(i\u756A\u76EE\u306E\
@@ -78,16 +78,16 @@ data:
     \  }\n        }\n        return res;\n    }\n    void reset() {\n        for(const\
     \ auto &[from, idx] : m_pos) {\n            Edge &e = m_g[from][idx];\n      \
     \      e.cap = e.cap + m_g[e.to][e.rev].cap;\n            m_g[e.to][e.rev].cap\
-    \ = 0;\n        }\n    }\n};\n\n}  // namespace algorithm\n\n#endif\n"
-  code: "/**\n * @brief Dinic's Algorithm\uFF08\u6700\u5927\u6D41\uFF09\n * @docs\
-    \ docs/Graph/Flow/dinic.md\n */\n\n#ifndef ALGORITHM_DINIC_HPP\n#define ALGORITHM_DINIC_HPP\
-    \ 1\n\n#include <algorithm>\n#include <cassert>\n#include <limits>\n#include <queue>\n\
-    #include <tuple>\n#include <utility>\n#include <vector>\n\nnamespace algorithm\
-    \ {\n\ntemplate <typename T>  // T:\u5BB9\u91CF\u306E\u578B.\nclass Dinic {\n\
-    \    struct Edge {\n        int to;   // to:=(\u884C\u304D\u5148\u30CE\u30FC\u30C9\
-    ).\n        T cap;    // cap:=(\u5BB9\u91CF).\n        int rev;  // rev:=(\u9006\
-    \u8FBA\u30A4\u30C6\u30EC\u30FC\u30BF).\n        explicit Edge(int to_, T cap_,\
-    \ int rev_) : to(to_), cap(cap_), rev(rev_) {}\n    };\n\n    std::vector<std::vector<Edge>\
+    \ = 0;\n        }\n    }\n};\n\n}  // namespace algorithm\n\n\n"
+  code: "#ifndef ALGORITHM_DINIC_HPP\n#define ALGORITHM_DINIC_HPP 1\n\n/**\n * @brief\
+    \ Dinic's Algorithm\uFF08\u6700\u5927\u6D41\uFF09\n * @docs docs/Graph/Flow/dinic.md\n\
+    \ */\n\n#include <algorithm>\n#include <cassert>\n#include <limits>\n#include\
+    \ <queue>\n#include <tuple>\n#include <utility>\n#include <vector>\n\nnamespace\
+    \ algorithm {\n\ntemplate <typename T>  // T:\u5BB9\u91CF\u306E\u578B.\nclass\
+    \ Dinic {\n    struct Edge {\n        int to;   // to:=(\u884C\u304D\u5148\u30CE\
+    \u30FC\u30C9).\n        T cap;    // cap:=(\u5BB9\u91CF).\n        int rev;  //\
+    \ rev:=(\u9006\u8FBA\u30A4\u30C6\u30EC\u30FC\u30BF).\n        explicit Edge(int\
+    \ to_, T cap_, int rev_) : to(to_), cap(cap_), rev(rev_) {}\n    };\n\n    std::vector<std::vector<Edge>\
     \ > m_g;      // m_g[v][]:=(\u30CE\u30FC\u30C9v\u306E\u96A3\u63A5\u30EA\u30B9\u30C8\
     ).\n    std::vector<std::pair<int, int> > m_pos;  // m_pos[i]:=(i\u756A\u76EE\u306E\
     \u8FBA\u306E\u60C5\u5831). pair of (from, index).\n\n    // \u30CE\u30FC\u30C9\
@@ -149,7 +149,7 @@ data:
   isVerificationFile: false
   path: src/Graph/Flow/dinic.hpp
   requiredBy: []
-  timestamp: '2023-09-02 01:17:16+09:00'
+  timestamp: '2023-09-16 12:49:54+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj-GRL_6_A-dinic.test.cpp
@@ -167,7 +167,6 @@ title: "Dinic's Algorithm\uFF08\u6700\u5927\u6D41\uFF09"
 
 同じく最大流問題を解く [Ford-Fulkerson algorithm](https://today2098.github.io/algorithm/src/Graph/Flow/ford_fulkerson.hpp) は「DFS で残余グラフ内の増加パスを探し，そこにフローを流す」ということを繰り返す貪欲なアルゴリズムである．
 Dinic's algorithm では，この増加パスを探す部分に対して規則を作り，無闇に探索しない工夫をしている．
-<!-- これにより実行オーダーは最大流値 $F$ ではなく，$|V|$ と $|E|$ に依存する． -->
 
 アルゴリズムの流れは次の通り．
 
@@ -177,9 +176,9 @@ Dinic's algorithm では，この増加パスを探す部分に対して規則�
 1. 候補の経路が無くなるまで DFS を繰り返す．
 1. source から sink への増加パスが無くなるまで BFS からやり直す．
 
-BFS 部分の計算量は $O(|V|+|E|)$ ．
-DFS 部分の計算量は，同じ辺を何度も調べないことで $O(|V||E|)$ となる．
-これらは高々 $|V|-1$ 回しか行われないため，全体の計算量は $O(|V|^2|E|)$ となる．
+BFS 部分の計算量は $\mathcal{O}(\lvert V \rvert + \lvert E \rvert)$ ．
+DFS 部分の計算量は，同じ辺を何度も調べないことで $\mathcal{O}(\lvert V \rvert \lvert E \rvert)$ となる．
+これらは高々 $\lvert V \rvert - 1$ 回しか行われないため，全体の計算量は $\mathcal{O}(\lvert V \rvert ^2 \lvert E \rvert)$ となる．
 しかし，たいていの場合は見積りより高速である．
 
 

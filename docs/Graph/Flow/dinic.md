@@ -5,7 +5,6 @@
 
 同じく最大流問題を解く [Ford-Fulkerson algorithm](https://today2098.github.io/algorithm/src/Graph/Flow/ford_fulkerson.hpp) は「DFS で残余グラフ内の増加パスを探し，そこにフローを流す」ということを繰り返す貪欲なアルゴリズムである．
 Dinic's algorithm では，この増加パスを探す部分に対して規則を作り，無闇に探索しない工夫をしている．
-<!-- これにより実行オーダーは最大流値 $F$ ではなく，$|V|$ と $|E|$ に依存する． -->
 
 アルゴリズムの流れは次の通り．
 
@@ -15,9 +14,9 @@ Dinic's algorithm では，この増加パスを探す部分に対して規則�
 1. 候補の経路が無くなるまで DFS を繰り返す．
 1. source から sink への増加パスが無くなるまで BFS からやり直す．
 
-BFS 部分の計算量は $O(|V|+|E|)$ ．
-DFS 部分の計算量は，同じ辺を何度も調べないことで $O(|V||E|)$ となる．
-これらは高々 $|V|-1$ 回しか行われないため，全体の計算量は $O(|V|^2|E|)$ となる．
+BFS 部分の計算量は $\mathcal{O}(\lvert V \rvert + \lvert E \rvert)$ ．
+DFS 部分の計算量は，同じ辺を何度も調べないことで $\mathcal{O}(\lvert V \rvert \lvert E \rvert)$ となる．
+これらは高々 $\lvert V \rvert - 1$ 回しか行われないため，全体の計算量は $\mathcal{O}(\lvert V \rvert ^2 \lvert E \rvert)$ となる．
 しかし，たいていの場合は見積りより高速である．
 
 

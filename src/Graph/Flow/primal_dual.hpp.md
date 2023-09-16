@@ -13,21 +13,21 @@ data:
     _deprecated_at_docs: docs/Graph/Flow/primal_dual.md
     document_title: "\u6700\u5C0F\u8CBB\u7528\u6D41"
     links: []
-  bundledCode: "#line 1 \"src/Graph/Flow/primal_dual.hpp\"\n/**\n * @brief \u6700\u5C0F\
-    \u8CBB\u7528\u6D41\n * @docs docs/Graph/Flow/primal_dual.md\n */\n\n#ifndef ALGORITHM_PRIMAL_DUAL_HPP\n\
-    #define ALGORITHM_PRIMAL_DUAL_HPP 1\n\n#include <algorithm>\n#include <cassert>\n\
-    #include <functional>\n#include <limits>\n#include <queue>\n#include <tuple>\n\
-    #include <utility>\n#include <vector>\n\nnamespace algorithm {\n\ntemplate <typename\
-    \ Flow, typename Cost>  // Flow:\u5BB9\u91CF\u306E\u578B, Cost:\u30B3\u30B9\u30C8\
-    \u306E\u578B.\nclass PrimalDual {\n    struct Edge {\n        int to;     // to:=(\u884C\
-    \u304D\u5148\u30CE\u30FC\u30C9).\n        Flow cap;   // cap:=(\u5BB9\u91CF).\n\
-    \        Cost cost;  // cost:=(\u5358\u4F4D\u30B3\u30B9\u30C8).\n        int rev;\
-    \    // rev:=(\u9006\u8FBA\u30A4\u30C6\u30EC\u30FC\u30BF).\n        explicit Edge(int\
-    \ to_, Flow cap_, Cost cost_, int rev_) : to(to_), cap(cap_), cost(cost_), rev(rev_)\
-    \ {}\n    };\n\n    std::vector<std::vector<Edge> > m_g;      // m_g[v][]:=(\u30CE\
-    \u30FC\u30C9v\u306E\u96A3\u63A5\u30EA\u30B9\u30C8).\n    std::vector<std::pair<int,\
-    \ int> > m_pos;  // m_pos[i]:=(i\u756A\u76EE\u306E\u8FBA\u60C5\u5831). pair of\
-    \ (from, index).\n\n    static constexpr Cost infinity_cost() { return std::numeric_limits<Cost>::max();\
+  bundledCode: "#line 1 \"src/Graph/Flow/primal_dual.hpp\"\n\n\n\n/**\n * @brief \u6700\
+    \u5C0F\u8CBB\u7528\u6D41\n * @docs docs/Graph/Flow/primal_dual.md\n */\n\n#include\
+    \ <algorithm>\n#include <cassert>\n#include <functional>\n#include <limits>\n\
+    #include <queue>\n#include <tuple>\n#include <utility>\n#include <vector>\n\n\
+    namespace algorithm {\n\ntemplate <typename Flow, typename Cost>  // Flow:\u5BB9\
+    \u91CF\u306E\u578B, Cost:\u30B3\u30B9\u30C8\u306E\u578B.\nclass PrimalDual {\n\
+    \    struct Edge {\n        int to;     // to:=(\u884C\u304D\u5148\u30CE\u30FC\
+    \u30C9).\n        Flow cap;   // cap:=(\u5BB9\u91CF).\n        Cost cost;  //\
+    \ cost:=(\u5358\u4F4D\u30B3\u30B9\u30C8).\n        int rev;    // rev:=(\u9006\
+    \u8FBA\u30A4\u30C6\u30EC\u30FC\u30BF).\n        explicit Edge(int to_, Flow cap_,\
+    \ Cost cost_, int rev_) : to(to_), cap(cap_), cost(cost_), rev(rev_) {}\n    };\n\
+    \n    std::vector<std::vector<Edge> > m_g;      // m_g[v][]:=(\u30CE\u30FC\u30C9\
+    v\u306E\u96A3\u63A5\u30EA\u30B9\u30C8).\n    std::vector<std::pair<int, int> >\
+    \ m_pos;  // m_pos[i]:=(i\u756A\u76EE\u306E\u8FBA\u60C5\u5831). pair of (from,\
+    \ index).\n\n    static constexpr Cost infinity_cost() { return std::numeric_limits<Cost>::max();\
     \ }\n    void dijkstra(int s, const std::vector<Cost> &pot, std::vector<Cost>\
     \ &d, std::vector<int> &prev_v, std::vector<int> &prev_e) {\n        std::fill(d.begin(),\
     \ d.end(), infinity_cost());\n        d[s] = 0;\n        std::priority_queue<std::pair<Cost,\
@@ -96,12 +96,12 @@ data:
     \ to, cap, cost, flow).\n    }\n    void reset() {\n        for(const auto &[from,\
     \ idx] : m_pos) {\n            Edge &e = m_g[from][idx];\n            e.cap =\
     \ e.cap + m_g[e.to][e.rev].cap;\n            m_g[e.to][e.rev].cap = 0;\n     \
-    \   }\n    }\n};\n\n}  // namespace algorithm\n\n#endif\n"
-  code: "/**\n * @brief \u6700\u5C0F\u8CBB\u7528\u6D41\n * @docs docs/Graph/Flow/primal_dual.md\n\
-    \ */\n\n#ifndef ALGORITHM_PRIMAL_DUAL_HPP\n#define ALGORITHM_PRIMAL_DUAL_HPP 1\n\
-    \n#include <algorithm>\n#include <cassert>\n#include <functional>\n#include <limits>\n\
-    #include <queue>\n#include <tuple>\n#include <utility>\n#include <vector>\n\n\
-    namespace algorithm {\n\ntemplate <typename Flow, typename Cost>  // Flow:\u5BB9\
+    \   }\n    }\n};\n\n}  // namespace algorithm\n\n\n"
+  code: "#ifndef ALGORITHM_PRIMAL_DUAL_HPP\n#define ALGORITHM_PRIMAL_DUAL_HPP 1\n\n\
+    /**\n * @brief \u6700\u5C0F\u8CBB\u7528\u6D41\n * @docs docs/Graph/Flow/primal_dual.md\n\
+    \ */\n\n#include <algorithm>\n#include <cassert>\n#include <functional>\n#include\
+    \ <limits>\n#include <queue>\n#include <tuple>\n#include <utility>\n#include <vector>\n\
+    \nnamespace algorithm {\n\ntemplate <typename Flow, typename Cost>  // Flow:\u5BB9\
     \u91CF\u306E\u578B, Cost:\u30B3\u30B9\u30C8\u306E\u578B.\nclass PrimalDual {\n\
     \    struct Edge {\n        int to;     // to:=(\u884C\u304D\u5148\u30CE\u30FC\
     \u30C9).\n        Flow cap;   // cap:=(\u5BB9\u91CF).\n        Cost cost;  //\
@@ -185,7 +185,7 @@ data:
   isVerificationFile: false
   path: src/Graph/Flow/primal_dual.hpp
   requiredBy: []
-  timestamp: '2023-09-05 18:55:18+09:00'
+  timestamp: '2023-09-16 12:49:54+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj-GRL_6_B.test.cpp

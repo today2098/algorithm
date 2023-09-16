@@ -13,18 +13,17 @@ data:
     _deprecated_at_docs: docs/Graph/Flow/ford_fulkerson.md
     document_title: "Ford-Fulkerson Algorithm\uFF08\u6700\u5927\u6D41\uFF09"
     links: []
-  bundledCode: "#line 1 \"src/Graph/Flow/ford_fulkerson.hpp\"\n/**\n * @brief Ford-Fulkerson\
-    \ Algorithm\uFF08\u6700\u5927\u6D41\uFF09\n * @docs docs/Graph/Flow/ford_fulkerson.md\n\
-    \ */\n\n#ifndef ALGORITHM_FORD_FULKERSON_HPP\n#define ALGORITHM_FORD_FULKERSON_HPP\
-    \ 1\n\n#include <algorithm>\n#include <cassert>\n#include <limits>\n#include <queue>\n\
-    #include <utility>\n#include <vector>\n\nnamespace algorithm {\n\ntemplate <typename\
-    \ T>  // T:\u5BB9\u91CF\u306E\u578B.\nclass FordFulkerson {\n    struct Edge {\n\
-    \        int to;   // to:=(\u884C\u304D\u5148\u30CE\u30FC\u30C9).\n        T cap;\
-    \    // cap:=(\u5BB9\u91CF).\n        int rev;  // rev:=(\u9006\u8FBA\u30A4\u30C6\
-    \u30EC\u30FC\u30BF).\n        explicit Edge(int to_, T cap_, int rev_) : to(to_),\
-    \ cap(cap_), rev(rev_) {}\n    };\n\n    std::vector<std::vector<Edge> > m_g;\
-    \      // m_g[v][]:=(\u30CE\u30FC\u30C9v\u306E\u96A3\u63A5\u30EA\u30B9\u30C8).\n\
-    \    std::vector<std::pair<int, int> > m_pos;  // m_pos[i]:=(i\u756A\u76EE\u306E\
+  bundledCode: "#line 1 \"src/Graph/Flow/ford_fulkerson.hpp\"\n\n\n\n/**\n * @brief\
+    \ Ford-Fulkerson Algorithm\uFF08\u6700\u5927\u6D41\uFF09\n * @docs docs/Graph/Flow/ford_fulkerson.md\n\
+    \ */\n\n#include <algorithm>\n#include <cassert>\n#include <limits>\n#include\
+    \ <queue>\n#include <utility>\n#include <vector>\n\nnamespace algorithm {\n\n\
+    template <typename T>  // T:\u5BB9\u91CF\u306E\u578B.\nclass FordFulkerson {\n\
+    \    struct Edge {\n        int to;   // to:=(\u884C\u304D\u5148\u30CE\u30FC\u30C9\
+    ).\n        T cap;    // cap:=(\u5BB9\u91CF).\n        int rev;  // rev:=(\u9006\
+    \u8FBA\u30A4\u30C6\u30EC\u30FC\u30BF).\n        explicit Edge(int to_, T cap_,\
+    \ int rev_) : to(to_), cap(cap_), rev(rev_) {}\n    };\n\n    std::vector<std::vector<Edge>\
+    \ > m_g;      // m_g[v][]:=(\u30CE\u30FC\u30C9v\u306E\u96A3\u63A5\u30EA\u30B9\u30C8\
+    ).\n    std::vector<std::pair<int, int> > m_pos;  // m_pos[i]:=(i\u756A\u76EE\u306E\
     \u8FBA\u306E\u60C5\u5831). pair of (from, index).\n\n    // \u5897\u52A0\u30D1\
     \u30B9\u3092\u63A2\u3059\uFF0E\n    T dfs(int v, int t, T flow, std::vector<bool>\
     \ &seen) {\n        if(v == t) return flow;\n        seen[v] = true;\n       \
@@ -67,27 +66,27 @@ data:
     \  }\n        }\n        return res;\n    }\n    void reset() {\n        for(const\
     \ auto &[from, idx] : m_pos) {\n            Edge &e = m_g[from][idx];\n      \
     \      e.cap = e.cap + m_g[e.to][e.rev].cap;\n            m_g[e.to][e.rev].cap\
-    \ = 0;\n        }\n    }\n};\n\n}  // namespace algorithm\n\n#endif\n"
-  code: "/**\n * @brief Ford-Fulkerson Algorithm\uFF08\u6700\u5927\u6D41\uFF09\n *\
-    \ @docs docs/Graph/Flow/ford_fulkerson.md\n */\n\n#ifndef ALGORITHM_FORD_FULKERSON_HPP\n\
-    #define ALGORITHM_FORD_FULKERSON_HPP 1\n\n#include <algorithm>\n#include <cassert>\n\
-    #include <limits>\n#include <queue>\n#include <utility>\n#include <vector>\n\n\
-    namespace algorithm {\n\ntemplate <typename T>  // T:\u5BB9\u91CF\u306E\u578B\
-    .\nclass FordFulkerson {\n    struct Edge {\n        int to;   // to:=(\u884C\u304D\
-    \u5148\u30CE\u30FC\u30C9).\n        T cap;    // cap:=(\u5BB9\u91CF).\n      \
-    \  int rev;  // rev:=(\u9006\u8FBA\u30A4\u30C6\u30EC\u30FC\u30BF).\n        explicit\
-    \ Edge(int to_, T cap_, int rev_) : to(to_), cap(cap_), rev(rev_) {}\n    };\n\
-    \n    std::vector<std::vector<Edge> > m_g;      // m_g[v][]:=(\u30CE\u30FC\u30C9\
-    v\u306E\u96A3\u63A5\u30EA\u30B9\u30C8).\n    std::vector<std::pair<int, int> >\
-    \ m_pos;  // m_pos[i]:=(i\u756A\u76EE\u306E\u8FBA\u306E\u60C5\u5831). pair of\
-    \ (from, index).\n\n    // \u5897\u52A0\u30D1\u30B9\u3092\u63A2\u3059\uFF0E\n\
-    \    T dfs(int v, int t, T flow, std::vector<bool> &seen) {\n        if(v == t)\
-    \ return flow;\n        seen[v] = true;\n        for(Edge &e : m_g[v]) {\n   \
-    \         if(e.cap > 0 and !seen[e.to]) {\n                T res = dfs(e.to, t,\
-    \ std::min(flow, e.cap), seen);\n                if(res > 0) {\n             \
-    \       e.cap -= res;\n                    m_g[e.to][e.rev].cap += res;\n    \
-    \                return res;\n                }\n            }\n        }\n  \
-    \      return 0;\n    }\n\npublic:\n    FordFulkerson() : FordFulkerson(0) {}\n\
+    \ = 0;\n        }\n    }\n};\n\n}  // namespace algorithm\n\n\n"
+  code: "#ifndef ALGORITHM_FORD_FULKERSON_HPP\n#define ALGORITHM_FORD_FULKERSON_HPP\
+    \ 1\n\n/**\n * @brief Ford-Fulkerson Algorithm\uFF08\u6700\u5927\u6D41\uFF09\n\
+    \ * @docs docs/Graph/Flow/ford_fulkerson.md\n */\n\n#include <algorithm>\n#include\
+    \ <cassert>\n#include <limits>\n#include <queue>\n#include <utility>\n#include\
+    \ <vector>\n\nnamespace algorithm {\n\ntemplate <typename T>  // T:\u5BB9\u91CF\
+    \u306E\u578B.\nclass FordFulkerson {\n    struct Edge {\n        int to;   //\
+    \ to:=(\u884C\u304D\u5148\u30CE\u30FC\u30C9).\n        T cap;    // cap:=(\u5BB9\
+    \u91CF).\n        int rev;  // rev:=(\u9006\u8FBA\u30A4\u30C6\u30EC\u30FC\u30BF\
+    ).\n        explicit Edge(int to_, T cap_, int rev_) : to(to_), cap(cap_), rev(rev_)\
+    \ {}\n    };\n\n    std::vector<std::vector<Edge> > m_g;      // m_g[v][]:=(\u30CE\
+    \u30FC\u30C9v\u306E\u96A3\u63A5\u30EA\u30B9\u30C8).\n    std::vector<std::pair<int,\
+    \ int> > m_pos;  // m_pos[i]:=(i\u756A\u76EE\u306E\u8FBA\u306E\u60C5\u5831). pair\
+    \ of (from, index).\n\n    // \u5897\u52A0\u30D1\u30B9\u3092\u63A2\u3059\uFF0E\
+    \n    T dfs(int v, int t, T flow, std::vector<bool> &seen) {\n        if(v ==\
+    \ t) return flow;\n        seen[v] = true;\n        for(Edge &e : m_g[v]) {\n\
+    \            if(e.cap > 0 and !seen[e.to]) {\n                T res = dfs(e.to,\
+    \ t, std::min(flow, e.cap), seen);\n                if(res > 0) {\n          \
+    \          e.cap -= res;\n                    m_g[e.to][e.rev].cap += res;\n \
+    \                   return res;\n                }\n            }\n        }\n\
+    \        return 0;\n    }\n\npublic:\n    FordFulkerson() : FordFulkerson(0) {}\n\
     \    explicit FordFulkerson(size_t vn) : m_g(vn) {}\n\n    static constexpr T\
     \ infinity() { return std::numeric_limits<T>::max(); }\n    // \u30CE\u30FC\u30C9\
     \u6570\u3092\u8FD4\u3059\uFF0E\n    int order() const { return m_g.size(); }\n\
@@ -127,7 +126,7 @@ data:
   isVerificationFile: false
   path: src/Graph/Flow/ford_fulkerson.hpp
   requiredBy: []
-  timestamp: '2023-09-03 23:04:25+09:00'
+  timestamp: '2023-09-16 12:49:54+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj-GRL_6_A-ford_fulkerson.test.cpp
@@ -150,12 +149,12 @@ title: "Ford-Fulkerson Algorithm\uFF08\u6700\u5927\u6D41\uFF09"
 1. 残余グラフ上から増加パスが無くなるまで上記を繰り返す．
 
 最大流値を $F$ とすると，上記処理の反復回数は $F$ 回に抑えられる．
-また，各反復時において DFS に $O(|E|)$ の計算量を要する．
-よって，全体の計算量は $O(F|E|)$ となる．
+また，各反復時において DFS に $\mathcal{O}(\lvert E \rvert)$ の計算量を要する．
+よって，全体の計算量は $\mathcal{O}(F \lvert E \rvert)$ となる．
 
 
 ## 参考文献
 
-1. 大槻兼資. "第16章 グラフ(4)：ネットワークフロー". 問題解決力を鍛える！ アルゴリズムとデータ構造. 秋葉拓哉監修. 講談社, 2020, p.283-309. 
+1. 大槻兼資. "第16章 グラフ (4)：ネットワークフロー". 問題解決力を鍛える！ アルゴリズムとデータ構造. 秋葉拓哉監修. 講談社, 2020, p.283-309. 
 1. "Ford–Fulkerson algorithm". Wikipedia. <https://en.wikipedia.org/wiki/Ford%E2%80%93Fulkerson_algorithm>.
 1. "フォード・ファルカーソンのアルゴリズム". Wikipedia. <https://ja.wikipedia.org/wiki/フォード・ファルカーソンのアルゴリズム>.

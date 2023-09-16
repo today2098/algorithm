@@ -15,12 +15,11 @@ data:
     links:
     - https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_6_B
   bundledCode: "#line 1 \"test/aoj-GRL_6_B.test.cpp\"\n#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_6_B\"\
-    \n\n#include <iostream>\n\n#line 1 \"src/Graph/Flow/primal_dual.hpp\"\n/**\n *\
-    \ @brief \u6700\u5C0F\u8CBB\u7528\u6D41\n * @docs docs/Graph/Flow/primal_dual.md\n\
-    \ */\n\n#ifndef ALGORITHM_PRIMAL_DUAL_HPP\n#define ALGORITHM_PRIMAL_DUAL_HPP 1\n\
-    \n#include <algorithm>\n#include <cassert>\n#include <functional>\n#include <limits>\n\
-    #include <queue>\n#include <tuple>\n#include <utility>\n#include <vector>\n\n\
-    namespace algorithm {\n\ntemplate <typename Flow, typename Cost>  // Flow:\u5BB9\
+    \n\n#include <iostream>\n\n#line 1 \"src/Graph/Flow/primal_dual.hpp\"\n\n\n\n\
+    /**\n * @brief \u6700\u5C0F\u8CBB\u7528\u6D41\n * @docs docs/Graph/Flow/primal_dual.md\n\
+    \ */\n\n#include <algorithm>\n#include <cassert>\n#include <functional>\n#include\
+    \ <limits>\n#include <queue>\n#include <tuple>\n#include <utility>\n#include <vector>\n\
+    \nnamespace algorithm {\n\ntemplate <typename Flow, typename Cost>  // Flow:\u5BB9\
     \u91CF\u306E\u578B, Cost:\u30B3\u30B9\u30C8\u306E\u578B.\nclass PrimalDual {\n\
     \    struct Edge {\n        int to;     // to:=(\u884C\u304D\u5148\u30CE\u30FC\
     \u30C9).\n        Flow cap;   // cap:=(\u5BB9\u91CF).\n        Cost cost;  //\
@@ -99,7 +98,7 @@ data:
     \ to, cap, cost, flow).\n    }\n    void reset() {\n        for(const auto &[from,\
     \ idx] : m_pos) {\n            Edge &e = m_g[from][idx];\n            e.cap =\
     \ e.cap + m_g[e.to][e.rev].cap;\n            m_g[e.to][e.rev].cap = 0;\n     \
-    \   }\n    }\n};\n\n}  // namespace algorithm\n\n#endif\n#line 6 \"test/aoj-GRL_6_B.test.cpp\"\
+    \   }\n    }\n};\n\n}  // namespace algorithm\n\n\n#line 6 \"test/aoj-GRL_6_B.test.cpp\"\
     \n\nint main() {\n    int n, m;\n    int f;\n    std::cin >> n >> m >> f;\n\n\
     \    algorithm::PrimalDual<int, int> primal_dual(n);\n    for(int i = 0; i < m;\
     \ ++i) {\n        int u, v;\n        int c;\n        int d;\n        std::cin\
@@ -120,7 +119,7 @@ data:
   isVerificationFile: true
   path: test/aoj-GRL_6_B.test.cpp
   requiredBy: []
-  timestamp: '2023-09-05 18:55:18+09:00'
+  timestamp: '2023-09-16 12:49:54+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj-GRL_6_B.test.cpp
