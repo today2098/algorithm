@@ -27,9 +27,10 @@ public:
         assert(n >= 0);
         std::iota(m_lpf.begin() + 2, m_lpf.end(), 2);
         for(int p = 2; p * p <= m_mx; ++p) {
-            if(m_lpf[p] != p) continue;
-            for(int q = p * p; q <= m_mx; q += p) {
-                if(m_lpf[q] == q) m_lpf[q] = p;
+            if(m_lpf[p] == p) {
+                for(int q = p * p; q <= m_mx; q += p) {
+                    if(m_lpf[q] == q) m_lpf[q] = p;
+                }
             }
         }
     }
@@ -82,11 +83,12 @@ public:
     std::vector<int> mobius() const {
         std::vector<int> res(m_mx + 1, 1);  // res[n]:=μ(n).
         for(int p = 2; p <= m_mx; ++p) {
-            if(m_lpf[p] != p) continue;
-            res[p] = -1;
-            for(int q = 2 * p; q <= m_mx; q += p) {
-                if((q / p) % p == 0) res[q] = 0;  // nがある素数pで2回以上割り切れるとき，μ(n)=0.
-                else res[q] = -res[q];            // nがk個の相異なる素因数で分解できるとき，μ(n)=(-1)^k.
+            if(m_lpf[p] == p) {
+                res[p] = -1;
+                for(int q = 2 * p; q <= m_mx; q += p) {
+                    if((q / p) % p == 0) res[q] = 0;  // nがある素数pで2回以上割り切れるとき，μ(n)=0.
+                    else res[q] = -res[q];            // nがk個の相異なる素因数で分解できるとき，μ(n)=(-1)^k.
+                }
             }
         }
         return res;

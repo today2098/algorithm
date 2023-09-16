@@ -1,9 +1,9 @@
+#ifndef ALGORITHM_LINEAR_SIEVE_HPP
+#define ALGORITHM_LINEAR_SIEVE_HPP 1
+
 /**
  * @brief 線形篩
  */
-
-#ifndef ALGORITHM_LINEAR_SIEVE_HPP
-#define ALGORITHM_LINEAR_SIEVE_HPP 1
 
 #include <algorithm>
 #include <cassert>
