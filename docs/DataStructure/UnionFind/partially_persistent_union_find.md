@@ -1,8 +1,8 @@
 ## 概要
 
-部分永続 Union-Find Tree は，通常の [Union-Find Tree](https://today2098.github.io/algorithm/src/DataStructure/UnionFind/union_find.hpp) の機能に加え，過去の状態におけるクエリを求めるデータ構造．
+部分永続 Union-Find は，通常の [Union-Find](https://today2098.github.io/algorithm/src/DataStructure/UnionFind/union_find.hpp) の機能に加え，過去の状態におけるクエリを求めることができるデータ構造．
 
-経路圧縮は行わず，各クエリの計算量は $O(\log N)$ となる．
+実装では「union by size」の工夫のみ行い，各クエリの計算量は $\mathcal{O}(\log N)$ となる．
 
 
 ## 参考文献

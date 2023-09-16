@@ -1,10 +1,10 @@
-/**
- * @brief 重み付きUnion-Find木
- * @docs docs/DataStructure/UnionFind/potentialized_union_find.md
- */
-
 #ifndef ALGORITHM_POTENTIALIZED_UNION_FIND_HPP
 #define ALGORITHM_POTENTIALIZED_UNION_FIND_HPP 1
+
+/**
+ * @brief 重み付きUnion-Find
+ * @docs docs/DataStructure/UnionFind/potentialized_union_find.md
+ */
 
 #include <algorithm>
 #include <cassert>
@@ -13,13 +13,14 @@
 
 namespace algorithm {
 
-// 重み付きUnion-Find木．
+// 重み付きUnion-Find．
 template <typename T>  // T:Type of potential.
 class PotentializedUnionFind {
-    int m_vn;                // m_vn:=(要素数).
-    int m_gn;                // m_gn:=(グループ数).
-    std::vector<int> m_par;  // m_par[x]:=(ノードxの親番号). 0未満の場合，xは根であり，値の絶対値は属するグループのサイズを表す．
-    std::vector<T> m_p;      // m_p[x]:=(要素xのポテンシャル).
+    int m_vn;  // m_vn:=(要素数).
+    int m_gn;  // m_gn:=(グループ数).
+    // m_par[x]:=(要素xの親番号). 0未満の場合，xは根であり，値の絶対値は属するグループのサイズを表す．
+    std::vector<int> m_par;
+    std::vector<T> m_p;  // m_p[x]:=(要素xのポテンシャル).
 
 public:
     PotentializedUnionFind() : PotentializedUnionFind(0) {}
@@ -33,7 +34,7 @@ public:
     int root(int x) {
         assert(0 <= x and x < vn());
         if(m_par[x] < 0) return x;
-        int res = root(m_par[x]);  // 座標圧縮．
+        int res = root(m_par[x]);  // 経路圧縮．
         m_p[x] += m_p[m_par[x]];
         return m_par[x] = res;
     }
@@ -60,7 +61,7 @@ public:
         assert(0 <= y and y < vn());
         return potential(y) - potential(x);
     }
-    // difference(x,y)==dとなるように，要素xが属するグループと要素yが属するグループとを併合する．
+    // difference(x,y)==d となるように，要素xが属するグループと要素yが属するグループとを併合する．
     bool unite(int x, int y, T d) {
         assert(0 <= x and x < vn());
         assert(0 <= y and y < vn());

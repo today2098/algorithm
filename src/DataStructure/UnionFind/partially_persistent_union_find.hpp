@@ -1,10 +1,10 @@
-/**
- * @brief Partially Persistent Union-Find（部分永続Unionf-Find Tree）
- * @docs docs/DataStructure/UnionFind/partially_persistent_union_find.md
- */
-
 #ifndef ALGORITHM_PARTIALLY_PERSISTENT_UNION_FIND_HPP
 #define ALGORITHM_PARTIALLY_PERSISTENT_UNION_FIND_HPP 1
+
+/**
+ * @brief Partially Persistent Union-Find（部分永続Unionf-Find）
+ * @docs docs/DataStructure/UnionFind/partially_persistent_union_find.md
+ */
 
 #include <algorithm>
 #include <cassert>
@@ -14,7 +14,7 @@
 
 namespace algorithm {
 
-// 部分永続Union-Find Tree．
+// 部分永続Union-Find．
 class PartiallyPersistentUnionFind {
     using pii = std::pair<int, int>;
 

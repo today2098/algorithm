@@ -1,10 +1,10 @@
+#ifndef ALGORITHM_UNION_FIND_HPP
+#define ALGORITHM_UNION_FIND_HPP 1
+
 /**
  * @brief Union-Find（素集合データ構造）
  * @docs docs/DataStructure/UnionFind/union_find.md
  */
-
-#ifndef ALGORITHM_UNION_FIND_HPP
-#define ALGORITHM_UNION_FIND_HPP 1
 
 #include <algorithm>
 #include <cassert>
@@ -14,9 +14,10 @@
 namespace algorithm {
 
 class UnionFind {
-    int m_vn;                // m_vn:=(要素数).
-    int m_gn;                // m_gn:=(グループ数).
-    std::vector<int> m_par;  // m_par[x]:=(ノードxの親番号). 0未満の場合，xは根であり，値の絶対値は属するグループのサイズを表す．
+    int m_vn;  // m_vn:=(要素数).
+    int m_gn;  // m_gn:=(グループ数).
+    // m_par[x]:=(要素xの親番号). 0未満の場合，xは根であり，値の絶対値は属するグループのサイズを表す．
+    std::vector<int> m_par;
 
 public:
     UnionFind() : UnionFind(0) {}

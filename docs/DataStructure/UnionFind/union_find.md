@@ -1,9 +1,13 @@
-<!-- ---
-title: Union-Find（素集合データ構造）
-documentation_of: //src/DataStructure/union_find.hpp
---- -->
-
-
 ## 概要
 
-グループ分けを効率的に管理するデータ構造．
+要素のグループ分けを効率的に管理するデータ構造．
+
+実装では「union by size」および「経路圧縮」の工夫を行っている．
+
+各クエリ処理に要する計算量は，アッカーマン関数の逆関数を $\operatorname{\alpha}(N)$ とすると $\mathcal{O}(\operatorname{\alpha}(N))$ となる．
+アッカーマン関数の逆関数は，$N \leq 10^{80}$ に対し $\operatorname{\alpha}(N) \leq 4$ が成り立つため，実用上 $\mathcal{O}(1)$ とみなすことができる．
+
+
+## 参考文献
+
+1. 大槻兼資. "第11章 データ構造 (4)：Union-Find". 問題解決力を鍛える！ アルゴリズムとデータ構造. 秋葉拓哉監修. 講談社, 2020, p.181-190. 
