@@ -16,16 +16,15 @@ data:
     - https://onlinejudge.u-aizu.ac.jp/courses/lesson/1/ALDS1/1/ALDS1_1_C
   bundledCode: "#line 1 \"test/aoj-ALDS1_1_C-liner_sieve.test.cpp\"\n#define PROBLEM\
     \ \"https://onlinejudge.u-aizu.ac.jp/courses/lesson/1/ALDS1/1/ALDS1_1_C\"\n\n\
-    #include <iostream>\n\n#line 1 \"src/Math/NumberTheory/liner_sieve.hpp\"\n/**\n\
-    \ * @brief \u7DDA\u5F62\u7BE9\n */\n\n#ifndef ALGORITHM_LINEAR_SIEVE_HPP\n#define\
-    \ ALGORITHM_LINEAR_SIEVE_HPP 1\n\n#include <algorithm>\n#include <cassert>\n#include\
-    \ <map>\n#include <vector>\n\nnamespace algorithm {\n\n// \u7DDA\u5F62\u7BE9\uFF0E\
-    \nclass LinearSieve {\n    int m_mx;                   // m_mx:=(\u7BE9\u306B\u304B\
-    \u3051\u308B\u6700\u5927\u306E\u81EA\u7136\u6570).\n    std::vector<int> m_lpf;\
-    \     // m_lpf[n]:=(\u81EA\u7136\u6570n\u306E\u6700\u5C0F\u306E\u7D20\u56E0\u6570\
-    ). Least prime factor. m_lpf[n]==n \u306E\u3068\u304D\uFF0Cn\u306F\u7D20\u6570\
-    \uFF0E\n    std::vector<int> m_primes;  // m_primes[]:=(\u81EA\u7136\u6570n\u4EE5\
-    \u4E0B\u306E\u7D20\u6570\u306E\u30EA\u30B9\u30C8).\n\npublic:\n    // constructor.\
+    #include <iostream>\n\n#line 1 \"src/Math/NumberTheory/liner_sieve.hpp\"\n\n\n\
+    \n/**\n * @brief \u7DDA\u5F62\u7BE9\n */\n\n#include <algorithm>\n#include <cassert>\n\
+    #include <map>\n#include <vector>\n\nnamespace algorithm {\n\n// \u7DDA\u5F62\u7BE9\
+    \uFF0E\nclass LinearSieve {\n    int m_mx;                   // m_mx:=(\u7BE9\u306B\
+    \u304B\u3051\u308B\u6700\u5927\u306E\u81EA\u7136\u6570).\n    std::vector<int>\
+    \ m_lpf;     // m_lpf[n]:=(\u81EA\u7136\u6570n\u306E\u6700\u5C0F\u306E\u7D20\u56E0\
+    \u6570). Least prime factor. m_lpf[n]==n \u306E\u3068\u304D\uFF0Cn\u306F\u7D20\
+    \u6570\uFF0E\n    std::vector<int> m_primes;  // m_primes[]:=(\u81EA\u7136\u6570\
+    n\u4EE5\u4E0B\u306E\u7D20\u6570\u306E\u30EA\u30B9\u30C8).\n\npublic:\n    // constructor.\
     \ n\u4EE5\u4E0B\u306E\u81EA\u7136\u6570\u3092\u7BE9\u306B\u304B\u3051\u308B\uFF0E\
     O(N).\n    LinearSieve() : LinearSieve(51e4) {}\n    explicit LinearSieve(int\
     \ n) : m_mx(n), m_lpf(n + 1, -1) {\n        assert(n >= 0);\n        for(int p\
@@ -51,8 +50,8 @@ data:
     \   std::sort(res.begin(), res.end());\n        return res;\n    }\n    // \u7D20\
     \u6570\u306E\u30EA\u30B9\u30C8\u3092\u53C2\u7167\u3059\u308B\uFF0EO(1).\n    const\
     \ std::vector<int> &primes() const { return m_primes; }\n};\n\n}  // namespace\
-    \ algorithm\n\n#endif\n#line 6 \"test/aoj-ALDS1_1_C-liner_sieve.test.cpp\"\n\n\
-    int main() {\n    int n;\n    std::cin >> n;\n\n    algorithm::LinearSieve sieve((int)1e8);\n\
+    \ algorithm\n\n\n#line 6 \"test/aoj-ALDS1_1_C-liner_sieve.test.cpp\"\n\nint main()\
+    \ {\n    int n;\n    std::cin >> n;\n\n    algorithm::LinearSieve sieve((int)1e8);\n\
     \n    int ans = 0;\n    for(int i = 0; i < n; ++i) {\n        int a;\n       \
     \ std::cin >> a;\n\n        if(sieve.is_prime(a)) ans++;\n    }\n\n    std::cout\
     \ << ans << std::endl;\n}\n"
@@ -67,7 +66,7 @@ data:
   isVerificationFile: true
   path: test/aoj-ALDS1_1_C-liner_sieve.test.cpp
   requiredBy: []
-  timestamp: '2023-09-11 18:38:11+09:00'
+  timestamp: '2023-09-16 17:39:09+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj-ALDS1_1_C-liner_sieve.test.cpp

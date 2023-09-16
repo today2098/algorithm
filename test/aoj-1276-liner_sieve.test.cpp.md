@@ -17,8 +17,7 @@ data:
   bundledCode: "#line 1 \"test/aoj-1276-liner_sieve.test.cpp\"\n#define PROBLEM \"\
     https://onlinejudge.u-aizu.ac.jp/challenges/sources/ICPC/Regional/1276\"\n\n#include\
     \ <algorithm>\n#include <iostream>\n#include <iterator>\n\n#line 1 \"src/Math/NumberTheory/liner_sieve.hpp\"\
-    \n/**\n * @brief \u7DDA\u5F62\u7BE9\n */\n\n#ifndef ALGORITHM_LINEAR_SIEVE_HPP\n\
-    #define ALGORITHM_LINEAR_SIEVE_HPP 1\n\n#line 9 \"src/Math/NumberTheory/liner_sieve.hpp\"\
+    \n\n\n\n/**\n * @brief \u7DDA\u5F62\u7BE9\n */\n\n#line 9 \"src/Math/NumberTheory/liner_sieve.hpp\"\
     \n#include <cassert>\n#include <map>\n#include <vector>\n\nnamespace algorithm\
     \ {\n\n// \u7DDA\u5F62\u7BE9\uFF0E\nclass LinearSieve {\n    int m_mx;       \
     \            // m_mx:=(\u7BE9\u306B\u304B\u3051\u308B\u6700\u5927\u306E\u81EA\u7136\
@@ -51,7 +50,7 @@ data:
     \            }\n        }\n        std::sort(res.begin(), res.end());\n      \
     \  return res;\n    }\n    // \u7D20\u6570\u306E\u30EA\u30B9\u30C8\u3092\u53C2\
     \u7167\u3059\u308B\uFF0EO(1).\n    const std::vector<int> &primes() const { return\
-    \ m_primes; }\n};\n\n}  // namespace algorithm\n\n#endif\n#line 8 \"test/aoj-1276-liner_sieve.test.cpp\"\
+    \ m_primes; }\n};\n\n}  // namespace algorithm\n\n\n#line 8 \"test/aoj-1276-liner_sieve.test.cpp\"\
     \n\nint main() {\n    constexpr int MX = 1299709;\n    algorithm::LinearSieve\
     \ sieve(MX);\n\n    while(true) {\n        int a;\n        std::cin >> a;\n\n\
     \        if(a == 0) break;\n\n        auto itr = std::lower_bound(sieve.primes().cbegin(),\
@@ -70,7 +69,7 @@ data:
   isVerificationFile: true
   path: test/aoj-1276-liner_sieve.test.cpp
   requiredBy: []
-  timestamp: '2023-09-11 18:10:17+09:00'
+  timestamp: '2023-09-16 17:39:09+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj-1276-liner_sieve.test.cpp

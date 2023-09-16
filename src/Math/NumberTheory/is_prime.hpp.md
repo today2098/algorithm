@@ -4,6 +4,9 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: test/aoj-2858.test.cpp
+    title: test/aoj-2858.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/aoj-ALDS1_1_C-is_prime.test.cpp
     title: test/aoj-ALDS1_1_C-is_prime.test.cpp
   _isVerificationFailed: false
@@ -33,6 +36,7 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj-ALDS1_1_C-is_prime.test.cpp
+  - test/aoj-2858.test.cpp
 documentation_of: src/Math/NumberTheory/is_prime.hpp
 layout: document
 redirect_from:

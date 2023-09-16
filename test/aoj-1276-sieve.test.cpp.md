@@ -31,20 +31,20 @@ data:
     \u81EA\u7136\u6570\u3092\u7BE9\u306B\u304B\u3051\u308B\uFF0EO(N*loglogN).\n  \
     \  Sieve() : Sieve(51e4) {}\n    explicit Sieve(int n) : m_mx(n), m_lpf(n + 1,\
     \ -1) {\n        assert(n >= 0);\n        std::iota(m_lpf.begin() + 2, m_lpf.end(),\
-    \ 2);\n        for(int p = 2; p * p <= m_mx; ++p) {\n            if(m_lpf[p] !=\
-    \ p) continue;\n            for(int q = p * p; q <= m_mx; q += p) {\n        \
-    \        if(m_lpf[q] == q) m_lpf[q] = p;\n            }\n        }\n    }\n\n\
-    \    // \u7D20\u6570\u5224\u5B9A\uFF0EO(1).\n    bool is_prime(int n) const {\n\
-    \        assert(0 <= n and n <= m_mx);\n        return m_lpf[n] == n;\n    }\n\
-    \    // \u81EA\u7136\u6570n\u306E\u6700\u5C0F\u306E\u7D20\u56E0\u6570\u3092\u8FD4\
-    \u3059\uFF0EO(1).\n    int lpf(int n) const {\n        assert(0 <= n and n <=\
-    \ m_mx);\n        return m_lpf[n];\n    }\n    // \u9AD8\u901F\u7D20\u56E0\u6570\
-    \u5206\u89E3\uFF0EO(logN).\n    std::map<int, int> prime_factorize(int n) const\
-    \ {\n        assert(1 <= n and n <= m_mx);\n        std::map<int, int> res;\n\
-    \        while(n > 1) {\n            res[m_lpf[n]]++;\n            n /= m_lpf[n];\n\
-    \        }\n        return res;\n    }\n    // \u9AD8\u901F\u7D04\u6570\u5217\u6319\
-    \uFF0E\n    std::vector<int> divisors(int n) const {\n        assert(1 <= n and\
-    \ n <= m_mx);\n        std::vector<int> res({1});\n        const std::map<int,\
+    \ 2);\n        for(int p = 2; p * p <= m_mx; ++p) {\n            if(m_lpf[p] ==\
+    \ p) {\n                for(int q = p * p; q <= m_mx; q += p) {\n            \
+    \        if(m_lpf[q] == q) m_lpf[q] = p;\n                }\n            }\n \
+    \       }\n    }\n\n    // \u7D20\u6570\u5224\u5B9A\uFF0EO(1).\n    bool is_prime(int\
+    \ n) const {\n        assert(0 <= n and n <= m_mx);\n        return m_lpf[n] ==\
+    \ n;\n    }\n    // \u81EA\u7136\u6570n\u306E\u6700\u5C0F\u306E\u7D20\u56E0\u6570\
+    \u3092\u8FD4\u3059\uFF0EO(1).\n    int lpf(int n) const {\n        assert(0 <=\
+    \ n and n <= m_mx);\n        return m_lpf[n];\n    }\n    // \u9AD8\u901F\u7D20\
+    \u56E0\u6570\u5206\u89E3\uFF0EO(logN).\n    std::map<int, int> prime_factorize(int\
+    \ n) const {\n        assert(1 <= n and n <= m_mx);\n        std::map<int, int>\
+    \ res;\n        while(n > 1) {\n            res[m_lpf[n]]++;\n            n /=\
+    \ m_lpf[n];\n        }\n        return res;\n    }\n    // \u9AD8\u901F\u7D04\u6570\
+    \u5217\u6319\uFF0E\n    std::vector<int> divisors(int n) const {\n        assert(1\
+    \ <= n and n <= m_mx);\n        std::vector<int> res({1});\n        const std::map<int,\
     \ int> &&pf = prime_factorize(n);\n        for(const auto &[p, cnt] : pf) {\n\
     \            const int sz = res.size();\n            int b = 1;\n            for(int\
     \ i = 0; i < cnt; ++i) {\n                b *= p;\n                for(int j =\
@@ -58,19 +58,19 @@ data:
     \        return res;\n    }\n    // \u30E1\u30D3\u30A6\u30B9\u95A2\u6570\uFF0E\
     O(N*loglogN).\n    std::vector<int> mobius() const {\n        std::vector<int>\
     \ res(m_mx + 1, 1);  // res[n]:=\u03BC(n).\n        for(int p = 2; p <= m_mx;\
-    \ ++p) {\n            if(m_lpf[p] != p) continue;\n            res[p] = -1;\n\
-    \            for(int q = 2 * p; q <= m_mx; q += p) {\n                if((q /\
-    \ p) % p == 0) res[q] = 0;  // n\u304C\u3042\u308B\u7D20\u6570p\u30672\u56DE\u4EE5\
-    \u4E0A\u5272\u308A\u5207\u308C\u308B\u3068\u304D\uFF0C\u03BC(n)=0.\n         \
-    \       else res[q] = -res[q];            // n\u304Ck\u500B\u306E\u76F8\u7570\u306A\
-    \u308B\u7D20\u56E0\u6570\u3067\u5206\u89E3\u3067\u304D\u308B\u3068\u304D\uFF0C\
-    \u03BC(n)=(-1)^k.\n            }\n        }\n        return res;\n    }\n};\n\n\
-    }  // namespace algorithm\n\n#endif\n#line 9 \"test/aoj-1276-sieve.test.cpp\"\n\
-    \nint main() {\n    constexpr int MX = 1299709;\n    algorithm::Sieve sieve(MX);\n\
-    \n    std::vector<int> primes;\n    primes.reserve(100000);\n    for(int p = 2;\
-    \ p <= MX; ++p) {\n        if(sieve.is_prime(p)) primes.push_back(p);\n    }\n\
-    \n    while(true) {\n        int a;\n        std::cin >> a;\n\n        if(a ==\
-    \ 0) break;\n\n        auto itr = std::lower_bound(primes.cbegin(), primes.cend(),\
+    \ ++p) {\n            if(m_lpf[p] == p) {\n                res[p] = -1;\n    \
+    \            for(int q = 2 * p; q <= m_mx; q += p) {\n                    if((q\
+    \ / p) % p == 0) res[q] = 0;  // n\u304C\u3042\u308B\u7D20\u6570p\u30672\u56DE\
+    \u4EE5\u4E0A\u5272\u308A\u5207\u308C\u308B\u3068\u304D\uFF0C\u03BC(n)=0.\n   \
+    \                 else res[q] = -res[q];            // n\u304Ck\u500B\u306E\u76F8\
+    \u7570\u306A\u308B\u7D20\u56E0\u6570\u3067\u5206\u89E3\u3067\u304D\u308B\u3068\
+    \u304D\uFF0C\u03BC(n)=(-1)^k.\n                }\n            }\n        }\n \
+    \       return res;\n    }\n};\n\n}  // namespace algorithm\n\n#endif\n#line 9\
+    \ \"test/aoj-1276-sieve.test.cpp\"\n\nint main() {\n    constexpr int MX = 1299709;\n\
+    \    algorithm::Sieve sieve(MX);\n\n    std::vector<int> primes;\n    primes.reserve(100000);\n\
+    \    for(int p = 2; p <= MX; ++p) {\n        if(sieve.is_prime(p)) primes.push_back(p);\n\
+    \    }\n\n    while(true) {\n        int a;\n        std::cin >> a;\n\n      \
+    \  if(a == 0) break;\n\n        auto itr = std::lower_bound(primes.cbegin(), primes.cend(),\
     \ a);\n        std::cout << (*itr == a ? 0 : *itr - *std::prev(itr)) << \"\\n\"\
     ;\n    }\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/challenges/sources/ICPC/Regional/1276\"\
@@ -87,7 +87,7 @@ data:
   isVerificationFile: true
   path: test/aoj-1276-sieve.test.cpp
   requiredBy: []
-  timestamp: '2023-09-11 19:44:16+09:00'
+  timestamp: '2023-09-16 17:39:09+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj-1276-sieve.test.cpp
