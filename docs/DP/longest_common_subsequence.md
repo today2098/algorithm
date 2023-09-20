@@ -8,3 +8,8 @@
 ## 参考文献
 
 1. 秋葉拓哉ほか. "2-3 値を覚えて再利用 '動的計画法'". プログラミングコンテストチャレンジブック. 第2版, マイナビ出版, 2012, p.56-57.
+
+
+## 問題
+
+- "F - LCS". Educational DP Contest / DP まとめコンテスト. AtCoder. <https://atcoder.jp/contests/dp/tasks/dp_f>.

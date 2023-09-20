@@ -1,9 +1,10 @@
-/**
- * @brief Edit Distance（編集距離）
- */
-
 #ifndef ALGORITHM_EDIT_DISTANCE_HPP
 #define ALGORITHM_EDIT_DISTANCE_HPP 1
+
+/**
+ * @brief Edit Distance（編集距離）
+ * @docs docs/DP/edit_distance.md
+ */
 
 #include <algorithm>
 #include <vector>

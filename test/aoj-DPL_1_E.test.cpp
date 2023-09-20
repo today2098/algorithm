@@ -9,6 +9,5 @@ int main() {
     std::string s, t;
     std::cin >> s >> t;
 
-    auto res = algorithm::edit_distance(s, t).back().back();
-    std::cout << res << std::endl;
+    std::cout << algorithm::edit_distance(s, t).back().back() << std::endl;
 }

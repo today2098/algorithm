@@ -12,6 +12,5 @@ int main() {
     std::vector<int> a(n);
     for(auto &in : a) std::cin >> in;
 
-    auto &&lis = algorithm::lis(a);
-    std::cout << lis[n] << std::endl;
+    std::cout << algorithm::lis(a).back() << std::endl;
 }
