@@ -3153,7 +3153,7 @@
 		"scope": "cpp",
 		"prefix": "lcs",
 		"body": [
-			"// 最長共通部分列 (LCS: Longest Common Subsequence)．",
+			"// Longest Common Subsequence（最長共通部分列）.",
 			"// 引数はSTLのシーケンスコンテナ．O(|A|*|B|).",
 			"template <class Sequence>",
 			"Sequence lcs(const Sequence &a, const Sequence &b) {",
@@ -3162,11 +3162,10 @@
 			"    std::vector<std::vector<int> > dp(n + 1, std::vector<int>(m + 1, 0));",
 			"    for(int i = 1; i <= n; ++i) {",
 			"        for(int j = 1; j <= m; ++j) {",
-			"            if(a[i - 1] == b[j - 1]) dp[i][j] = dp[i - 1][j - 1] + 1;",
-			"            else dp[i][j] = std::max(dp[i - 1][j], dp[i][j - 1]);",
+			"            dp[i][j] = (a[i - 1] == b[j - 1] ? dp[i - 1][j - 1] + 1 : std::max(dp[i - 1][j], dp[i][j - 1]));",
 			"        }",
 			"    }",
-			"    Sequence sub(dp[n][m], a[0]);  // sub[]:=(配列a, bのLCS).",
+			"    Sequence sub(dp[n][m], 0);  // sub[]:=(配列a, bのLCS).",
 			"    int i = n, j = m, k = dp[n][m];",
 			"    while(k > 0) {",
 			"        if(a[i - 1] == b[j - 1]) {",
@@ -3181,13 +3180,13 @@
 			"    return sub;",
 			"}"
 		],
-		"description": "最長共通部分列 (LCS: Longest Common Subsequence)"
+		"description": "Longest Common Subsequence（最長共通部分列）"
 	},
 	"lis": {
 		"scope": "cpp",
 		"prefix": "lis",
 		"body": [
-			"// Longest Increasing Subsequence（最長増加部分列）の長さを求める．O(N*logN).",
+			"// 最長増加部分列 (LIS: Longest Increasing Subsequence) の長さを求める．O(N*logN).",
 			"template <typename Type, typename Func = std::function<bool(const Type &, const Type &)> >",
 			"std::vector<int> lis(",
 			"    const std::vector<Type> &v,",

@@ -1,9 +1,10 @@
-/**
- * @brief Longest Increasing Subsequence（最長増加部分列）
- */
-
 #ifndef ALGORITHM_LONGEST_INCREASING_SUBSEQUENCE_HPP
 #define ALGORITHM_LONGEST_INCREASING_SUBSEQUENCE_HPP 1
+
+/**
+ * @brief Longest Increasing Subsequence（最長増加部分列）
+ * @docs docs/DP/longest_increasing_subsequence.md
+ */
 
 #include <algorithm>
 #include <functional>
@@ -11,7 +12,7 @@
 
 namespace algorithm {
 
-// Longest Increasing Subsequence（最長増加部分列）の長さを求める．O(N*logN).
+// 最長増加部分列 (LIS: Longest Increasing Subsequence) の長さを求める．O(N*logN).
 template <typename Type, typename Func = std::function<bool(const Type &, const Type &)> >
 std::vector<int> lis(
     const std::vector<Type> &v,
