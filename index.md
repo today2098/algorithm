@@ -6,9 +6,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: src/DP/edit_distance.hpp
       title: "Edit Distance\uFF08\u7DE8\u96C6\u8DDD\u96E2\uFF09"
-    - icon: ':warning:'
-      path: src/DP/lcs.hpp
-      title: src/DP/lcs.hpp
+    - icon: ':heavy_check_mark:'
+      path: src/DP/longest_common_subsequence.hpp
+      title: "Longest Common Subsequence\uFF08\u6700\u9577\u5171\u901A\u90E8\u5206\
+        \u5217\uFF09"
     - icon: ':heavy_check_mark:'
       path: src/DP/longest_increasing_subsequence.hpp
       title: "Longest Increasing Subsequence\uFF08\u6700\u9577\u5897\u52A0\u90E8\u5206\
@@ -50,9 +51,9 @@ data:
       title: "Union-Find\uFF08\u7D20\u96C6\u5408\u30C7\u30FC\u30BF\u69CB\u9020\uFF09"
   - name: src/DataStructure
     pages:
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: src/DataStructure/binary_trie.hpp
-      title: src/DataStructure/binary_trie.hpp
+      title: "Binary Trie\u6728"
     - icon: ':warning:'
       path: src/DataStructure/heap.hpp
       title: src/DataStructure/heap.hpp
@@ -268,6 +269,9 @@ data:
       path: test/aoj-3110.test.cpp
       title: test/aoj-3110.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/aoj-ALDS1_10_C.test.cpp
+      title: test/aoj-ALDS1_10_C.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/aoj-ALDS1_12_A.test.cpp
       title: test/aoj-ALDS1_12_A.test.cpp
     - icon: ':heavy_check_mark:'
@@ -369,6 +373,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo-range_affine_range_sum.test.cpp
       title: test/yosupo-range_affine_range_sum.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo-set_xor_min.test.cpp
+      title: test/yosupo-set_xor_min.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo-shortest_path.test.cpp
       title: test/yosupo-shortest_path.test.cpp

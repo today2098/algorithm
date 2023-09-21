@@ -16,34 +16,33 @@ data:
     - https://onlinejudge.u-aizu.ac.jp/courses/library/7/DPL/all/DPL_1_E
   bundledCode: "#line 1 \"test/aoj-DPL_1_E.test.cpp\"\n#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/7/DPL/all/DPL_1_E\"\
     \n\n#include <iostream>\n#include <string>\n\n#line 1 \"src/DP/edit_distance.hpp\"\
-    \n/**\n * @brief Edit Distance\uFF08\u7DE8\u96C6\u8DDD\u96E2\uFF09\n */\n\n#ifndef\
-    \ ALGORITHM_EDIT_DISTANCE_HPP\n#define ALGORITHM_EDIT_DISTANCE_HPP 1\n\n#include\
-    \ <algorithm>\n#include <vector>\n\nnamespace algorithm {\n\n// Edit Distance\uFF08\
-    \u7DE8\u96C6\u8DDD\u96E2\uFF09.\n// \u5F15\u6570\u306FSTL\u306E\u30B7\u30FC\u30B1\
-    \u30F3\u30B9\u30B3\u30F3\u30C6\u30CA\u3067\u3042\u308B\u3053\u3068\uFF0EO(|S|*|T|).\n\
-    template <class Sequence>\nstd::vector<std::vector<int> > edit_distance(const\
-    \ Sequence &s, const Sequence &t) {\n    const int n = s.size(), m = t.size();\n\
-    \    // dp[i][j]:=(s[:i]\u3068t[:j]\u306E\u7DE8\u96C6\u8DDD\u96E2).\n    std::vector<std::vector<int>\
-    \ > dp(n + 1, std::vector<int>(m + 1, 0));\n    for(int i = 1; i <= n; ++i) dp[i][0]\
+    \n\n\n\n/**\n * @brief Edit Distance\uFF08\u7DE8\u96C6\u8DDD\u96E2\uFF09\n * @docs\
+    \ docs/DP/edit_distance.md\n */\n\n#include <algorithm>\n#include <vector>\n\n\
+    namespace algorithm {\n\n// Edit Distance\uFF08\u7DE8\u96C6\u8DDD\u96E2\uFF09\
+    .\n// \u5F15\u6570\u306FSTL\u306E\u30B7\u30FC\u30B1\u30F3\u30B9\u30B3\u30F3\u30C6\
+    \u30CA\u3067\u3042\u308B\u3053\u3068\uFF0EO(|S|*|T|).\ntemplate <class Sequence>\n\
+    std::vector<std::vector<int> > edit_distance(const Sequence &s, const Sequence\
+    \ &t) {\n    const int n = s.size(), m = t.size();\n    // dp[i][j]:=(s[:i]\u3068\
+    t[:j]\u306E\u7DE8\u96C6\u8DDD\u96E2).\n    std::vector<std::vector<int> > dp(n\
+    \ + 1, std::vector<int>(m + 1, 0));\n    for(int i = 1; i <= n; ++i) dp[i][0]\
     \ = i;\n    for(int j = 1; j <= m; ++j) dp[0][j] = j;\n    for(int i = 1; i <=\
     \ n; ++i) {\n        for(int j = 1; j <= m; ++j) {\n            dp[i][j] = std::min({dp[i\
     \ - 1][j] + 1,\n                                 dp[i][j - 1] + 1,\n         \
     \                        dp[i - 1][j - 1] + (s[i - 1] == t[j - 1] ? 0 : 1)});\n\
-    \        }\n    }\n    return dp;\n}\n\n}  // namespace algorithm\n\n#endif\n\
-    #line 7 \"test/aoj-DPL_1_E.test.cpp\"\n\nint main() {\n    std::string s, t;\n\
-    \    std::cin >> s >> t;\n\n    auto res = algorithm::edit_distance(s, t).back().back();\n\
-    \    std::cout << res << std::endl;\n}\n"
+    \        }\n    }\n    return dp;\n}\n\n}  // namespace algorithm\n\n\n#line 7\
+    \ \"test/aoj-DPL_1_E.test.cpp\"\n\nint main() {\n    std::string s, t;\n    std::cin\
+    \ >> s >> t;\n\n    std::cout << algorithm::edit_distance(s, t).back().back()\
+    \ << std::endl;\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/7/DPL/all/DPL_1_E\"\
     \n\n#include <iostream>\n#include <string>\n\n#include \"../src/DP/edit_distance.hpp\"\
-    \n\nint main() {\n    std::string s, t;\n    std::cin >> s >> t;\n\n    auto res\
-    \ = algorithm::edit_distance(s, t).back().back();\n    std::cout << res << std::endl;\n\
-    }\n"
+    \n\nint main() {\n    std::string s, t;\n    std::cin >> s >> t;\n\n    std::cout\
+    \ << algorithm::edit_distance(s, t).back().back() << std::endl;\n}\n"
   dependsOn:
   - src/DP/edit_distance.hpp
   isVerificationFile: true
   path: test/aoj-DPL_1_E.test.cpp
   requiredBy: []
-  timestamp: '2023-09-04 21:12:50+09:00'
+  timestamp: '2023-09-20 16:42:39+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj-DPL_1_E.test.cpp
