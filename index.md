@@ -302,6 +302,9 @@ data:
       path: test/aoj-DSL_2_B-binary_indexed_tree.test.cpp
       title: test/aoj-DSL_2_B-binary_indexed_tree.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/aoj-DSL_2_B-binary_trie.test.cpp
+      title: test/aoj-DSL_2_B-binary_trie.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/aoj-DSL_2_B-segment_tree.test.cpp
       title: test/aoj-DSL_2_B-segment_tree.test.cpp
     - icon: ':heavy_check_mark:'
