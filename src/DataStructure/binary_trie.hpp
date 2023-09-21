@@ -13,7 +13,7 @@
 namespace algorithm {
 
 // 非負整数を要素値とする多重集合．
-template <int B = 32>  // B:ビット長.
+template <size_t B = 32>  // B:ビット長.
 class BinaryTrie {
 public:
     using size_type = uint64_t;
@@ -22,7 +22,9 @@ private:
     struct Node {
         size_type cnt;  // cnt:=(自身を根とする部分木に含まれる要素数).
         Node *ch[2];    // ch[]:=(子のポインタ).
-        Node() : cnt(0), ch({nullptr, nullptr}) {}
+        Node() : cnt(0) {
+            ch[0] = ch[1] = nullptr;
+        }
     };
 
     Node *m_root;           // m_root:=(根のポインタ).
@@ -59,20 +61,13 @@ private:
         }
         return p;
     }
-    std::bitset<B> get_min(Node *p, int shift = B - 1) const {
-        assert(p);
-        if(shift < 0) return 0;
-        bool bit = m_bias[shift];
-        if(p->ch[bit]) return get_min(p->ch[bit], shift - 1);
-        return std::bitset<B>(1) << shift | get_min(p->ch[!bit], shift - 1);
-    }
     std::bitset<B> get(Node *p, size_type k, int shift = B - 1) const {
         assert(p);
         if(shift < 0) return 0;
         bool bit = m_bias[shift];
         size_type m = (p->ch[bit] ? p->ch[bit]->cnt : 0);
         if(k < m) return get(p->ch[bit], k, shift - 1);
-        return std::bitset<B>(1) << shift | get(p->ch[!bit], k - m, shift - 1);
+        return std::bitset<B>(0).set(shift) | get(p->ch[!bit], k - m, shift - 1);
     }
     size_type get_lower(Node *p, const std::bitset<B> &x, int shift = B - 1) const {
         if(p == nullptr or shift < 0) return 0;
@@ -85,32 +80,32 @@ private:
         bool bit = x[shift] ^ m_bias[shift];
         return (x[shift] and p->ch[!bit] ? p->ch[!bit]->cnt : 0) + get_upper(p->ch[bit], x, shift - 1);
     }
-    Node *clear_dfs(Node *p) {
+    Node *dfs_clear(Node *p) {
         if(p == nullptr) return nullptr;
-        for(bool bit : {0, 1}) p->ch[bit] = clear_dfs(p->ch[bit]);
+        for(bool bit : {0, 1}) p->ch[bit] = dfs_clear(p->ch[bit]);
         delete p;
         return p = nullptr;
     }
-    void print_dfs(std::ostream &os, Node *p, std::bitset<B> &x, int &cnt, int shift = B - 1) const {
+    void dfs_print(std::ostream &os, Node *p, std::bitset<B> &x, int &cnt, int shift = B - 1) const {
         if(shift < 0) {
-            os << (cnt == 0 ? "" : "\n ") << "{" << x << ", " << x.to_ullong() << ", (" << p->cnt << ")}";
+            os << (cnt == 0 ? "" : "\n ") << "{" << x << " (" << x.to_ullong() << "), " << p->cnt << "}";
             cnt++;
             return;
         }
         for(bool bit : {0, 1}) {
             x[shift] = bit;
             bit ^= m_bias[shift];
-            if(p->ch[bit]) print_dfs(os, p->ch[bit], x, cnt, shift - 1);
+            if(p->ch[bit]) dfs_print(os, p->ch[bit], x, cnt, shift - 1);
         }
     }
 
 public:
-    BinaryTrie() : m_root(nullptr), m_bias(0) {
-        static_assert(B >= 0);
-    }
+    BinaryTrie() : m_root(nullptr), m_bias(0) {}
     ~BinaryTrie() {
         clear();
     }
+
+    std::bitset<B> operator[](size_type k) const { return kth_element(k); }
 
     // 要素が空かどうか判定する．O(1).
     bool empty() const { return m_root == nullptr; }
@@ -135,20 +130,15 @@ public:
         m_root = sub(m_root, x, cnt);
     }
     // 多重集合内で最小の要素値を取得する．O(B).
-    std::bitset<B> min_element() const { return get_min(m_root); }
+    std::bitset<B> min_element() const { return kth_element(0); }
     // 多重集合内で最大の要素値を取得する．O(B).
-    std::bitset<B> max_element() {
-        m_bias = ~m_bias;
-        std::bitset<B> &&res = ~min_element();
-        m_bias = ~m_bias;
-        return res;
-    }
+    std::bitset<B> max_element() const { return kth_element(size() - 1); }
     // 多重集合内でk番目に小さい要素値を取得する．0-based index. O(B).
     std::bitset<B> kth_element(size_type k) const {
         assert(0 <= k and k < size());
         return get(m_root, k);
     }
-    // 集合内で値x以上の最小の要素番号を取得する．O(B).
+    // 集合内で値x以上である最小の要素番号を取得する．O(B).
     size_type lower_bound(const std::bitset<B> &x) const { return get_lower(m_root, x); }
     // 集合内で値xより大きい最小の要素番号を取得する．O(B).
     size_type upper_bound(const std::bitset<B> &x) const { return get_upper(m_root, x); }
@@ -157,13 +147,13 @@ public:
     // xorの操作をする値を返す．O(1).
     std::bitset<B> xor_value() const { return m_bias; }
     // 全要素を削除する．
-    void clear() { m_root = clear_dfs(m_root); }
+    void clear() { m_root = dfs_clear(m_root); }
 
     friend std::ostream &operator<<(std::ostream &os, const BinaryTrie &ob) {
         std::bitset<B> x(0);
         int cnt = 0;
         os << "[";
-        if(ob.m_root) ob.print_dfs(os, ob.m_root, x, cnt);
+        if(ob.m_root) ob.dfs_print(os, ob.m_root, x, cnt);
         os << "]";
         return os;
     }
