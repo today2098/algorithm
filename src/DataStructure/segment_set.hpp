@@ -1,10 +1,10 @@
+#ifndef ALGORITHM_SEGMENT_SET_HPP
+#define ALGORITHM_SEGMENT_SET_HPP 1
+
 /**
  * @brief 整数の集合を区間で管理するデータ構造
  * @docs docs/DataStructure/segment_set.md
  */
-
-#ifndef ALGORITHM_SEGMENT_SET_HPP
-#define ALGORITHM_SEGMENT_SET_HPP 1
 
 #include <algorithm>
 #include <cassert>
