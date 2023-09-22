@@ -1,10 +1,10 @@
+#ifndef ALGORITHM_LAZY_SEGMENT_TREE_HPP
+#define ALGORITHM_LAZY_SEGMENT_TREE_HPP 1
+
 /**
  * @brief Lazy Segment Tree（遅延評価セグメント木）
  * @docs docs/DataStructure/SegmentTree/lazy_segment_tree.md
  */
-
-#ifndef ALGORITHM_LAZY_SEGMENT_TREE_HPP
-#define ALGORITHM_LAZY_SEGMENT_TREE_HPP 1
 
 #include <algorithm>
 #include <cassert>
@@ -16,20 +16,20 @@ namespace algorithm {
 // Lazy Segment Tree（遅延評価セグメント木）.
 template <class S, class F>  // S:モノイドの型, F:写像の型.
 class LazySegTree {
-    using FuncO = std::function<S(const S &, const S &)>;
-    using FuncM = std::function<S(const F &, const S &)>;
-    using FuncC = std::function<F(const F &, const F &)>;
+    using Op = std::function<S(const S &, const S &)>;
+    using Mapping = std::function<S(const F &, const S &)>;
+    using Composition = std::function<F(const F &, const F &)>;
 
-    FuncO m_op;             // S m_op(S,S):=(二項演算関数). S×S→Sを計算する．
-    FuncM m_mapping;        // S m_mapping(F f,S x):=(写像). f(x)を返す．
-    FuncC m_composition;    // F m_composition(F f,F g):=(写像の合成). f∘gを返す．
-    S m_e;                  // m_e:=(単位元).
-    F m_id;                 // m_id:=(恒等写像).
-    int m_sz;               // m_sz:=(要素数).
-    int m_n;                // m_n:=(二分木の葉数).
-    int m_depth;            // m_depth:=(二分木の深さ).
-    std::vector<S> m_tree;  // m_tree(2n)[]:=(完全二分木). 1-based index.
-    std::vector<F> m_lazy;  // m_lazy(n)[k]:=(m_tree[k]の子 (m_tree[2k], m_tree[2k+1]) に対する遅延評価).
+    Op m_op;                    // S m_op(S,S):=(二項演算関数). S×S→Sを計算する．
+    Mapping m_mapping;          // S m_mapping(F f,S x):=(写像). f(x)を返す．
+    Composition m_composition;  // F m_composition(F f,F g):=(写像の合成). f∘gを返す．
+    S m_e;                      // m_e:=(単位元).
+    F m_id;                     // m_id:=(恒等写像).
+    int m_sz;                   // m_sz:=(要素数).
+    int m_n;                    // m_n:=(二分木の葉数).
+    int m_depth;                // m_depth:=(二分木の深さ).
+    std::vector<S> m_tree;      // m_tree(2n)[]:=(完全二分木). 1-based index.
+    std::vector<F> m_lazy;      // m_lazy(n)[k]:=(m_tree[k]の子 (m_tree[2k], m_tree[2k+1]) に対する遅延評価).
 
     void apply0(int k, const F &f) {
         assert(1 <= k and k < 2 * m_n);
@@ -50,13 +50,13 @@ class LazySegTree {
 public:
     // constructor. O(N).
     LazySegTree() {}
-    explicit LazySegTree(const FuncO &op, const FuncM &mapping, const FuncC &composition, const S &e, const F &id, size_t n)
+    explicit LazySegTree(const Op &op, const Mapping &mapping, const Composition &composition, const S &e, const F &id, size_t n)
         : m_op(op), m_mapping(mapping), m_composition(composition), m_e(e), m_id(id), m_sz(n), m_n(1), m_depth(0) {
         while(m_n < size()) m_n <<= 1, m_depth++;
         m_tree.assign(2 * m_n, identity());
         m_lazy.assign(m_n, identity_mapping());
     }
-    explicit LazySegTree(const FuncO &op, const FuncM &mapping, const FuncC &composition, const S &e, const F &id, const std::vector<S> &v)
+    explicit LazySegTree(const Op &op, const Mapping &mapping, const Composition &composition, const S &e, const F &id, const std::vector<S> &v)
         : LazySegTree(op, mapping, composition, e, id, v.size()) {
         std::copy(v.begin(), v.end(), m_tree.begin() + m_n);
         for(int i = m_n - 1; i >= 1; --i) update(i);
@@ -98,7 +98,7 @@ public:
         m_tree[k] = m_mapping(f, m_tree[k]);
         for(int i = 1; i <= m_depth; ++i) update(k >> i);
     }
-    // 区間[l,r)を写像fを用いて更新する．O(logN).
+    // 区間[l,r)の要素を写像fを用いて更新する．O(logN).
     void apply(int l, int r, const F &f) {
         assert(0 <= l and l <= r and r <= size());
         if(l == r) return;
@@ -116,14 +116,14 @@ public:
             if((r >> i) << i != r) update((r - 1) >> i);
         }
     }
-    // 一点取得．O(logN).
+    // k番目の要素を求める．O(logN).
     S prod(int k) {
         assert(0 <= k and k < size());
         k += m_n;
         for(int i = m_depth; i >= 1; --i) push(k >> i);
         return m_tree[k];
     }
-    // 区間[l,r)の総積 v[l]•v[l+1]•....•v[r-1] を求める．O(logN).
+    // 区間[l,r)の要素の総積 v[l]•v[l+1]•....•v[r-1] を求める．O(logN).
     S prod(int l, int r) {
         assert(0 <= l and l <= r and r <= size());
         if(l == r) return identity();
@@ -139,7 +139,7 @@ public:
         }
         return m_op(val_l, val_r);
     }
-    // 区間全体の総積を返す．O(1).
+    // 区間全体の要素の総積を返す．O(1).
     S prod_all() const { return m_tree[1]; }
     // jud(prod(l,-))=true となる区間の最右位値を二分探索する．
     // ただし要素列には単調性があり，また jud(e)=true であること．O(logN).

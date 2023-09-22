@@ -17,7 +17,7 @@ int main() {
     using F = long long;
     constexpr S e = (S){0, 0};
     constexpr F id = 0;
-    auto op = [&](const S &l, const S &r) -> S { return (S){l.val + r.val, l.size + r.size}; };
+    auto op = [&](const S &lhs, const S &rhs) -> S { return (S){lhs.val + rhs.val, lhs.size + rhs.size}; };
     auto mapping = [&](const F &f, const S &x) -> S { return (S){x.val + f * x.size, x.size}; };
     auto composition = [&](const F &f, const F &g) -> F { return f + g; };
     algorithm::LazySegTree<S, F> segtree(op, mapping, composition, e, id, std::vector<S>(n, (S){0, 1}));

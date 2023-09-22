@@ -1,6 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/range_affine_range_sum"
 
 #include <iostream>
+#include <vector>
 
 #include "../src/DataStructure/SegmentTree/lazy_segment_tree.hpp"
 #include "../src/Math/ModularArithmetic/modint.hpp"
@@ -20,16 +21,14 @@ int main() {
     };
     const S e = (S){0, 0};
     const F id = (F){1, 0};
-    auto op = [&](const S &l, const S &r) -> S { return (S){l.val + r.val, l.size + r.size}; };
+    auto op = [&](const S &lhs, const S &rhs) -> S { return (S){lhs.val + rhs.val, lhs.size + rhs.size}; };
     auto mapping = [&](const F &f, const S &x) -> S { return (S){f.a * x.val + f.b * x.size, x.size}; };
     auto composition = [&](const F &f, const F &g) -> F { return (F){f.a * g.a, f.a * g.b + f.b}; };
-    algorithm::LazySegTree<S, F> segtree(op, mapping, composition, e, id, std::vector<S>(n, (S){0, 1}));
 
-    for(int i = 0; i < n; ++i) {
-        int a;
-        std::cin >> a;
-        segtree.set(i, (S){a, 1});
-    }
+    std::vector<S> a(n, (S){0, 1});
+    for(auto &elem : a) std::cin >> elem.val;
+
+    algorithm::LazySegTree<S, F> segtree(op, mapping, composition, e, id, a);
 
     while(q--) {
         int t;

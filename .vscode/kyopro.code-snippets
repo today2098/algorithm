@@ -422,10 +422,10 @@
 		"scope": "cpp",
 		"prefix": "SegmentTree (RMQ)",
 		"body": [
-			"using T=${1:int};",
-			"const T e=${2:2*INF};",
-			"auto op=[](T a,T b)->T{return ${3:std::min(a,b)};};",
-			"SegmentTree<T> segtree(op,e,${4:0});"
+			"using S=${1:int};",
+			"const S e=${2:2*INF};",
+			"auto op=[](const S &lhs,const S &rhs)->S{return ${3:std::min(lhs,rhs)};};",
+			"SegmentTree<S> segtree(op,e,${4:0});"
 		],
 		"description": ""
 	},
@@ -433,10 +433,10 @@
 		"scope": "cpp",
 		"prefix": "SegmentTree (RSQ)",
 		"body": [
-			"using T=${1:int};",
-			"const T e=${2:0};",
-			"auto op=[](T a,T b)->T{return ${3:a+b};};",
-			"SegmentTree<T> segtree(op,e,${4:0});"
+			"using S=${1:int};",
+			"const S e=${2:0};",
+			"auto op=[](const S &lhs,const S &rhs)->S{return ${3:lhs+rhs};};",
+			"SegmentTree<S> segtree(op,e,${4:0});"
 		],
 		"description": ""
 	},
@@ -448,7 +448,7 @@
 			"using F=int;",
 			"const S e=2*INF;",
 			"const F id=2*INF+1;",
-			"auto op=[&](const S &l,const S &r)->S{return std::min(l,r);};",
+			"auto op=[&](const S &lhs,const S &rhs)->S{return std::min(lhs,rhs);};",
 			"auto mapping=[&](const F &f,const S &x)->S{return (f==id?x:f);};",
 			"auto composition=[&](const F &f,const F &g)->F{return (f==id?g:f);};",
 			"LazySegTree<S,F> segtree(op,mapping,composition,e,id,${1:0});"
@@ -463,10 +463,10 @@
 			"using F=int;",
 			"const S e=2*INF;",
 			"const F id=0;",
-			"auto op=[&](const S &l,const S &r)->S{return std::min(l,r);};",
+			"auto op=[&](const S &lhs,const S &rhs)->S{return std::min(lhs,rhs);};",
 			"auto mapping=[&](const F &f,const S &x)->S{return x+f;};",
 			"auto composition=[&](const F &f,const F &g)->F{return f+g;};",
-			"LazySegTree<S,F> segtree(op,mapping,composition,e,id,${1:0});"
+			"LazySegTree<S,F> segtree(op,mapping,composition,e,id,std::vector<S>(${1:0},0));"
 		],
 		"description": ""
 	},
@@ -480,10 +480,10 @@
 			"};",
 			"using F=long long;",
 			"const S e=(S){0,0};",
-			"const F id=2*INF+1;",
-			"auto op=[&](const S &l,const S &r)->S{return (S){l.val+r.val,l.size+r.size};};",
+			"const F id=9*LINF+1;",
+			"auto op=[&](const S &lhs,const S &rhs)->S{return (S){lhs.val+rhs.val,lhs.size+rhs.size};};",
 			"auto mapping=[&](const F &f,const S &x)->S{return (S){(f==id?x.val:f*x.size),x.size};};",
-			"auto composition=[&](const F &f,const F &g)->F{return (f==id?g:f));};",
+			"auto composition=[&](const F &f,const F &g)->F{return (f==id?g:f);};",
 			"LazySegTree<S,F> segtree(op,mapping,composition,e,id,std::vector<S>(${1:0},(S){0,1}));"
 		],
 		"description": ""
@@ -499,7 +499,7 @@
 			"using F=long long;",
 			"const S e=(S){0,0};",
 			"const F id=0;",
-			"auto op=[&](const S &l,const S &r)->S{return (S){l.val+r.val,l.size+r.size};};",
+			"auto op=[&](const S &lhs,const S &rhs)->S{return (S){lhs.val+rhs.val,lhs.size+rhs.size};};",
 			"auto mapping=[&](const F &f,const S &x)->S{return (S){x.val+f*x.size,x.size};};",
 			"auto composition=[&](const F &f,const F &g)->F{return f+g;};",
 			"LazySegTree<S,F> segtree(op,mapping,composition,e,id,std::vector<S>(${1:0},(S){0,1}));"
@@ -520,7 +520,7 @@
 			"};",
 			"const S e=(S){0,0};",
 			"const F id=(F){1,0};",
-			"auto op=[&](const S &l,const S &r)->S{return (S){l.val+r.val,l.size+r.size};};",
+			"auto op=[&](const S &lhs,const S &rhs)->S{return (S){lhs.val+rhs.val,lhs.size+rhs.size};};",
 			"auto mapping=[&](const F &f,const S &x)->S{return (S){f.a*x.val+f.b*x.size,x.size};};",
 			"auto composition=[&](const F &f,const F &g)->F{return (F){f.a*g.a,f.a*g.b+f.b};};",
 			"LazySegTree<S,F> segtree(op,mapping,composition,e,id,std::vector<S>(${1:0},(S){0,1}));"

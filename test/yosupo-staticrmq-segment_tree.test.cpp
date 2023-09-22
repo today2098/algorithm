@@ -14,15 +14,15 @@ int main() {
     std::vector<int> a(n);
     for(int &in : a) std::cin >> in;
 
-    using T = int;
-    constexpr T e = 1e9 + 1;
-    auto op = [](T a, T b) -> T { return std::min(a, b); };
-    algorithm::SegmentTree<T> segtree(op, e, a);
+    using S = int;
+    constexpr S e = 1e9 + 1;
+    auto op = [](const S &lhs, const S &rhs) -> S { return std::min(lhs, rhs); };
+    algorithm::SegmentTree<S> segtree(op, e, a);
 
     while(q--) {
         int l, r;
         std::cin >> l >> r;
 
-        std::cout << segtree.prod(l, r) << std::endl;
+        std::cout << segtree.prod(l, r) << "\n";
     }
 }

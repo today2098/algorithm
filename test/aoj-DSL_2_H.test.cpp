@@ -15,10 +15,10 @@ int main() {
     using F = int;
     constexpr S e = 1e8;
     constexpr F id = 0;
-    auto op = [&](const S &l, const S &r) -> S { return std::min(l, r); };
+    auto op = [&](const S &lhs, const S &rhs) -> S { return std::min(lhs, rhs); };
     auto mapping = [&](const F &f, const S &x) -> S { return x + f; };
     auto composition = [&](const F &f, const F &g) -> F { return f + g; };
-    algorithm::LazySegTree<S, F> segtree(op, mapping, composition, e, id, std::vector<int>(n, 0));
+    algorithm::LazySegTree<S, F> segtree(op, mapping, composition, e, id, std::vector<S>(n, 0));
 
     while(q--) {
         int type;

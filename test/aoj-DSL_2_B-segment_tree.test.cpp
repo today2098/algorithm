@@ -9,10 +9,10 @@ int main() {
     int q;
     std::cin >> n >> q;
 
-    using T = int;
-    constexpr T e = 0;
-    auto op = [](T a, T b) -> T { return a + b; };
-    algorithm::SegmentTree<T> segtree(op, e, n);
+    using S = int;
+    constexpr S e = 0;
+    auto op = [](const S &lhs, const S &rhs) -> S { return lhs + rhs; };
+    algorithm::SegmentTree<S> segtree(op, e, n);
 
     while(q--) {
         int com;
@@ -22,6 +22,6 @@ int main() {
         x--;
 
         if(com == 0) segtree.set(x, segtree.prod(x) + y);
-        else std::cout << segtree.prod(x, y) << std::endl;
+        else std::cout << segtree.prod(x, y) << "\n";
     }
 }

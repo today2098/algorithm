@@ -13,8 +13,8 @@ int main() {
     using S = long long;
     using F = long long;
     constexpr S e = (1LL << 31) - 1;
-    constexpr F id = 2 * e;
-    auto op = [&](const S &l, const S &r) -> S { return std::min(l, r); };
+    constexpr F id = (1LL << 31) - 1;
+    auto op = [&](const S &lhs, const S &rhs) -> S { return std::min(lhs, rhs); };
     auto mapping = [&](const F &f, const S &x) -> S { return (f == id ? x : f); };
     auto composition = [&](const F &f, const F &g) -> F { return (f == id ? g : f); };
     algorithm::LazySegTree<S, F> segtree(op, mapping, composition, e, id, n);

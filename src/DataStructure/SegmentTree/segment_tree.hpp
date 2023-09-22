@@ -1,10 +1,10 @@
+#ifndef ALGORITHM_SEGMENT_TREE_HPP
+#define ALGORITHM_SEGMENT_TREE_HPP 1
+
 /**
  * @brief Segment Tree
  * @docs docs/DataStructure/SegmentTree/segment_tree.md
  */
-
-#ifndef ALGORITHM_SEGMENT_TREE_HPP
-#define ALGORITHM_SEGMENT_TREE_HPP 1
 
 #include <algorithm>
 #include <cassert>
@@ -15,9 +15,9 @@ namespace algorithm {
 
 template <typename S>
 class SegmentTree {
-    using Func = std::function<S(const S &, const S &)>;
+    using Op = std::function<S(const S &, const S &)>;
 
-    Func m_op;              // S m_op(S,S):=(二項演算関数).
+    Op m_op;                // S m_op(S,S):=(二項演算関数).
     S m_e;                  // m_e:=(単位元).
     int m_sz;               // m_sz:=(要素数).
     int m_n;                // m_n:=(葉の数).
@@ -26,11 +26,11 @@ class SegmentTree {
 public:
     // constructor. O(N).
     SegmentTree(){};
-    explicit SegmentTree(const Func &op, const S &e, size_t n) : m_op(op), m_e(e), m_sz(n), m_n(1) {
+    explicit SegmentTree(const Op &op, const S &e, size_t n) : m_op(op), m_e(e), m_sz(n), m_n(1) {
         while(m_n < size()) m_n <<= 1;
         m_tree.assign(2 * m_n, identity());
     }
-    explicit SegmentTree(const Func &op, const S &e, const std::vector<S> &v) : SegmentTree(op, e, v.size()) {
+    explicit SegmentTree(const Op &op, const S &e, const std::vector<S> &v) : SegmentTree(op, e, v.size()) {
         std::copy(v.begin(), v.end(), m_tree.begin() + m_n);
         for(int i = m_n - 1; i >= 1; --i) m_tree[i] = m_op(m_tree[i << 1], m_tree[i << 1 | 1]);
     }
@@ -46,12 +46,12 @@ public:
         m_tree[k] = a;
         while(k >>= 1) m_tree[k] = m_op(m_tree[k << 1], m_tree[k << 1 | 1]);
     }
-    // 一点取得．O(1).
+    // k番目の要素を返す．O(1).
     S prod(int k) const {
         assert(0 <= k and k < size());
         return m_tree[k + m_n];
     }
-    // 区間[l,r)の総積 v[l]•v[l+1]•....•v[r-1] を求める．O(logN).
+    // 区間[l,r)の要素の総積 v[l]•v[l+1]•...•v[r-1] を求める．O(logN).
     S prod(int l, int r) const {
         assert(0 <= l and l <= r and r <= size());
         S val_l = identity(), val_r = identity();
@@ -63,7 +63,7 @@ public:
         }
         return m_op(val_l, val_r);
     }
-    // 区間全体の総積を返す．O(1).
+    // 区間全体の要素の総積を返す．O(1).
     S prod_all() const { return m_tree[1]; }
     // jud(prod(l,-))==true となる区間の最右位値を二分探索する．
     // ただし要素列には単調性があり，また jud(e)==true であること．O(logN).
@@ -119,10 +119,9 @@ public:
         while(l < 2 * segtree.m_n) {
             os << (l == 1 ? "[" : " ");
             for(int i = l; i < r; ++i) os << (i == l ? "[" : " ") << segtree.m_tree[i];
-            os << "]";
+            os << "]" << (r == 2 * segtree.m_n ? "]" : "\n");
             l <<= 1, r <<= 1;
         }
-        os << "]";
         return os;
     }
 };
