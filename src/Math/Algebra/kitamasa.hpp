@@ -1,61 +1,72 @@
 #ifndef ALGORITHM_KITAMASA_HPP
 #define ALGORITHM_KITAMASA_HPP 1
 
+/**
+ * @brief きたまさ法
+ * @docs docs/Math/Algebra/kitamasa.md
+ */
+
 #include <cassert>
+#include <cstdint>
 #include <vector>
 
 namespace algorithm {
 
-// きたまさ法．線形漸化式 a[n]=d[0]*a[n-k]+d[1]*a[n-k+1]+....+d[k-1]*a[n-1] を求める．O((K^2)*logN).
+// きたまさ法．
+// 線形漸化式 a[n]=d[0]*a[n-k]+d[1]*a[n-(k-1)]+....+d[k-1]*a[n-1] を求める．O((K^2)*logN).
 template <typename T = long long>
 class Kitamasa {
-    int k;             // k:=(階数).
-    std::vector<T> a;  // a[]:=(初項行列).
-    std::vector<T> d;  // d[]:=(係数行列).
+public:
+    using size_type = uint64_t;
+
+private:
+    size_type m_k;       // m_k:=(階数).
+    std::vector<T> m_a;  // m_a[]:=(初項行列).
+    std::vector<T> m_d;  // m_d[]:=(係数行列).
 
     // f(n)->f(n+1). O(K).
     std::vector<T> add(const std::vector<T> &x) const {
-        std::vector<T> y(k);
-        y[0] = x[k - 1] * d[0];
-        for(int i = 1; i < k; ++i) y[i] = x[i - 1] + x[k - 1] * d[i];
+        std::vector<T> y(m_k);
+        y[0] = x[m_k - 1] * m_d[0];
+        for(size_type i = 1; i < m_k; ++i) y[i] = x[i - 1] + x[m_k - 1] * m_d[i];
         return y;
     }
     // f(n)->f(2*n). O(K^2).
     std::vector<T> mul(const std::vector<T> &x) const {
-        std::vector<T> y(k, 0);
-        auto t = x;
-        for(int i = 0; i < k; ++i) {
-            for(int j = 0; j < k; ++j) y[j] += x[i] * t[j];
-            if(i < k - 1) t = add(t);
+        std::vector<T> y(m_k, 0);
+        std::vector<T> t = x;
+        for(size_type i = 0; i < m_k; ++i) {
+            for(size_type j = 0; j < m_k; ++j) y[j] += x[i] * t[j];
+            if(i < m_k - 1) t = add(t);
         }
         return y;
     }
     // f(n)を返す．O((K^2)*logN).
-    std::vector<T> f(long long n) const {
+    std::vector<T> f(size_type n) const {
         if(n == 0) {
-            std::vector<T> x(k, 0);
+            std::vector<T> x(m_k, 0);
             x[0] = 1;
             return x;  // f(0).
         }
-        auto &&x = mul(f(n / 2));
-        if(n & 1LL) x = add(x);
+        std::vector<T> &&x = mul(f(n / 2));
+        if(n & 1ULL) x = add(x);
         return x;
     }
 
 public:
     Kitamasa() : Kitamasa(std::vector<T>({0, 1}), std::vector<T>({1, 1})) {}  // フィボナッチ数列．
-    explicit Kitamasa(const std::vector<T> &a_, const std::vector<T> &d_) : k(a_.size()), a(a_), d(d_) {
-        assert(k >= 1 and a.size() == d.size());
+    explicit Kitamasa(const std::vector<T> &a, const std::vector<T> &d) : m_k(a.size()), m_a(a), m_d(d) {
+        assert(a.size() >= 1);
+        assert(a.size() == d.size());
     }
 
-    T operator[](long long n) const { return calc(n); }
+    T operator[](size_type n) const { return calc(n); }
 
-    // a[n]を返す．O((K^2)*logN).
-    T calc(long long n) const {
-        assert(n >= 0);
-        const auto &&x = f(n);
+    // a[n]を求める．O((K^2)*logN).
+    T calc(size_type n) const {
+        const std::vector<T> &&x = f(n);
         T res = 0;
-        for(int i = 0; i < k; ++i) res += x[i] * a[i];
+        for(size_type i = 0; i < m_k; ++i) res += x[i] * m_a[i];
         return res;
     }
 };
