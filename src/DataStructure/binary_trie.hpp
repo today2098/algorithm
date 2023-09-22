@@ -2,7 +2,7 @@
 #define ALGORITHM_BINARY_TRIE_HPP 1
 
 /**
- * @brief Binary Trie木
+ * @brief Binary Trie
  * @docs docs/DataStructure/binary_trie.md
  */
 
@@ -12,7 +12,7 @@
 
 namespace algorithm {
 
-// 非負整数を要素値とする多重集合．
+// 非負整数値を要素とする多重集合．
 template <size_t B = 32>  // B:ビット長.
 class BinaryTrie {
 public:
@@ -107,13 +107,13 @@ public:
 
     std::bitset<B> operator[](size_type k) const { return kth_element(k); }
 
-    // 要素が空かどうか判定する．O(1).
+    // 集合が空かどうか判定する．O(1).
     bool empty() const { return m_root == nullptr; }
     // 全要素数を返す．O(1).
     size_type size() const { return (m_root ? m_root->cnt : 0); }
-    // 値xの要素が多重集合に含まれるか判定する．O(B).
+    // 値xの要素が集合に含まれるか判定する．O(B).
     bool exist(const std::bitset<B> &x) const { return find(x); }
-    // 値xの要素数を返す．O(B).
+    // 多重集合に含まれる値xの要素数を返す．O(B).
     size_type count(const std::bitset<B> &x) const {
         Node *p = find(x);
         return (p ? p->cnt : 0);
@@ -129,18 +129,18 @@ public:
         if(cnt == 0) return;
         m_root = sub(m_root, x, cnt);
     }
-    // 多重集合内で最小の要素値を取得する．O(B).
+    // 集合内で最小の要素値を取得する．O(B).
     std::bitset<B> min_element() const { return kth_element(0); }
-    // 多重集合内で最大の要素値を取得する．O(B).
+    // 集合内で最大の要素値を取得する．O(B).
     std::bitset<B> max_element() const { return kth_element(size() - 1); }
     // 多重集合内でk番目に小さい要素値を取得する．0-based index. O(B).
     std::bitset<B> kth_element(size_type k) const {
         assert(0 <= k and k < size());
         return get(m_root, k);
     }
-    // 集合内で値x以上である最小の要素番号を取得する．O(B).
+    // x以上である要素値が現れる最初の位置を取得する．O(B).
     size_type lower_bound(const std::bitset<B> &x) const { return get_lower(m_root, x); }
-    // 集合内で値xより大きい最小の要素番号を取得する．O(B).
+    // xより大きい要素値が現れる最初の位置を取得する．O(B).
     size_type upper_bound(const std::bitset<B> &x) const { return get_upper(m_root, x); }
     // 全要素値にxorの操作を行う．O(1).
     void operator_xor(const std::bitset<B> &x) { m_bias ^= x; }
