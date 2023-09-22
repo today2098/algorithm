@@ -28,11 +28,11 @@ data:
     - icon: ':heavy_check_mark:'
       path: src/DataStructure/SegmentTree/binary_indexed_tree_zero.hpp
       title: Binary Indexed Tree (0-based index)
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: src/DataStructure/SegmentTree/lazy_segment_tree.hpp
       title: "Lazy Segment Tree\uFF08\u9045\u5EF6\u8A55\u4FA1\u30BB\u30B0\u30E1\u30F3\
         \u30C8\u6728\uFF09"
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: src/DataStructure/SegmentTree/segment_tree.hpp
       title: Segment Tree
     - icon: ':heavy_check_mark:'
@@ -51,9 +51,9 @@ data:
       title: "Union-Find\uFF08\u7D20\u96C6\u5408\u30C7\u30FC\u30BF\u69CB\u9020\uFF09"
   - name: src/DataStructure
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: src/DataStructure/binary_trie.hpp
-      title: "Binary Trie\u6728"
+      title: Binary Trie
     - icon: ':warning:'
       path: src/DataStructure/heap.hpp
       title: src/DataStructure/heap.hpp
@@ -118,9 +118,9 @@ data:
         \u30C8\uFF09"
   - name: src/Math/Algebra
     pages:
-    - icon: ':warning:'
+    - icon: ':x:'
       path: src/Math/Algebra/kitamasa.hpp
-      title: src/Math/Algebra/kitamasa.hpp
+      title: "\u304D\u305F\u307E\u3055\u6CD5"
     - icon: ':warning:'
       path: src/Math/Algebra/matrix.hpp
       title: src/Math/Algebra/matrix.hpp
@@ -146,7 +146,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: src/Math/ModularArithmetic/mod_pow.hpp
       title: "\u7E70\u308A\u8FD4\u3057\u4E8C\u4E57\u6CD5\uFF08mod\u4ED8\u304D\uFF09"
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: src/Math/ModularArithmetic/modint.hpp
       title: Modint
   - name: src/Math/NumberTheory
@@ -232,7 +232,7 @@ data:
     - icon: ':warning:'
       path: src/Utils/convert.hpp
       title: src/Utils/convert.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: src/Utils/debug.hpp
       title: src/Utils/debug.hpp
     - icon: ':heavy_check_mark:'
@@ -370,19 +370,22 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj-NTL_1_E.test.cpp
       title: test/aoj-NTL_1_E.test.cpp
+    - icon: ':x:'
+      path: test/yosupo-kth_term_of_linearly_recurrent_sequence.test.cpp
+      title: test/yosupo-kth_term_of_linearly_recurrent_sequence.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo-point_add_range_sum-binary_indexed_tree_zero.test.cpp
       title: test/yosupo-point_add_range_sum-binary_indexed_tree_zero.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo-range_affine_range_sum.test.cpp
       title: test/yosupo-range_affine_range_sum.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo-set_xor_min.test.cpp
       title: test/yosupo-set_xor_min.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo-shortest_path.test.cpp
       title: test/yosupo-shortest_path.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo-staticrmq-segment_tree.test.cpp
       title: test/yosupo-staticrmq-segment_tree.test.cpp
     - icon: ':heavy_check_mark:'

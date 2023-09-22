@@ -9,31 +9,30 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj-DSL_2_B-segment_tree.test.cpp
     title: test/aoj-DSL_2_B-segment_tree.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo-staticrmq-segment_tree.test.cpp
     title: test/yosupo-staticrmq-segment_tree.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     _deprecated_at_docs: docs/DataStructure/SegmentTree/segment_tree.md
     document_title: Segment Tree
     links: []
-  bundledCode: "#line 1 \"src/DataStructure/SegmentTree/segment_tree.hpp\"\n/**\n\
-    \ * @brief Segment Tree\n * @docs docs/DataStructure/SegmentTree/segment_tree.md\n\
-    \ */\n\n#ifndef ALGORITHM_SEGMENT_TREE_HPP\n#define ALGORITHM_SEGMENT_TREE_HPP\
-    \ 1\n\n#include <algorithm>\n#include <cassert>\n#include <functional>\n#include\
+  bundledCode: "#line 1 \"src/DataStructure/SegmentTree/segment_tree.hpp\"\n\n\n\n\
+    /**\n * @brief Segment Tree\n * @docs docs/DataStructure/SegmentTree/segment_tree.md\n\
+    \ */\n\n#include <algorithm>\n#include <cassert>\n#include <functional>\n#include\
     \ <vector>\n\nnamespace algorithm {\n\ntemplate <typename S>\nclass SegmentTree\
-    \ {\n    using Func = std::function<S(const S &, const S &)>;\n\n    Func m_op;\
+    \ {\n    using Op = std::function<S(const S &, const S &)>;\n\n    Op m_op;  \
     \              // S m_op(S,S):=(\u4E8C\u9805\u6F14\u7B97\u95A2\u6570).\n    S\
     \ m_e;                  // m_e:=(\u5358\u4F4D\u5143).\n    int m_sz;         \
     \      // m_sz:=(\u8981\u7D20\u6570).\n    int m_n;                // m_n:=(\u8449\
     \u306E\u6570).\n    std::vector<S> m_tree;  // m_tree[]:=(\u5B8C\u5168\u4E8C\u5206\
     \u6728). 1-based index.\n\npublic:\n    // constructor. O(N).\n    SegmentTree(){};\n\
-    \    explicit SegmentTree(const Func &op, const S &e, size_t n) : m_op(op), m_e(e),\
+    \    explicit SegmentTree(const Op &op, const S &e, size_t n) : m_op(op), m_e(e),\
     \ m_sz(n), m_n(1) {\n        while(m_n < size()) m_n <<= 1;\n        m_tree.assign(2\
-    \ * m_n, identity());\n    }\n    explicit SegmentTree(const Func &op, const S\
-    \ &e, const std::vector<S> &v) : SegmentTree(op, e, v.size()) {\n        std::copy(v.begin(),\
+    \ * m_n, identity());\n    }\n    explicit SegmentTree(const Op &op, const S &e,\
+    \ const std::vector<S> &v) : SegmentTree(op, e, v.size()) {\n        std::copy(v.begin(),\
     \ v.end(), m_tree.begin() + m_n);\n        for(int i = m_n - 1; i >= 1; --i) m_tree[i]\
     \ = m_op(m_tree[i << 1], m_tree[i << 1 | 1]);\n    }\n\n    // \u8981\u7D20\u6570\
     \u3092\u8FD4\u3059\uFF0E\n    int size() const { return m_sz; }\n    // \u5358\
@@ -41,16 +40,17 @@ data:
     \    // k\u756A\u76EE\u306E\u8981\u7D20\u3092a\u306B\u7F6E\u304D\u63DB\u3048\u308B\
     \uFF0EO(logN).\n    void set(int k, const S &a) {\n        assert(0 <= k and k\
     \ < size());\n        k += m_n;\n        m_tree[k] = a;\n        while(k >>= 1)\
-    \ m_tree[k] = m_op(m_tree[k << 1], m_tree[k << 1 | 1]);\n    }\n    // \u4E00\u70B9\
-    \u53D6\u5F97\uFF0EO(1).\n    S prod(int k) const {\n        assert(0 <= k and\
-    \ k < size());\n        return m_tree[k + m_n];\n    }\n    // \u533A\u9593[l,r)\u306E\
-    \u7DCF\u7A4D v[l]\u2022v[l+1]\u2022....\u2022v[r-1] \u3092\u6C42\u3081\u308B\uFF0E\
-    O(logN).\n    S prod(int l, int r) const {\n        assert(0 <= l and l <= r and\
-    \ r <= size());\n        S val_l = identity(), val_r = identity();\n        l\
-    \ += m_n, r += m_n;\n        while(l < r) {\n            if(l & 1) val_l = m_op(val_l,\
-    \ m_tree[l++]);\n            if(r & 1) val_r = m_op(m_tree[--r], val_r);\n   \
-    \         l >>= 1, r >>= 1;\n        }\n        return m_op(val_l, val_r);\n \
-    \   }\n    // \u533A\u9593\u5168\u4F53\u306E\u7DCF\u7A4D\u3092\u8FD4\u3059\uFF0E\
+    \ m_tree[k] = m_op(m_tree[k << 1], m_tree[k << 1 | 1]);\n    }\n    // k\u756A\
+    \u76EE\u306E\u8981\u7D20\u3092\u8FD4\u3059\uFF0EO(1).\n    S prod(int k) const\
+    \ {\n        assert(0 <= k and k < size());\n        return m_tree[k + m_n];\n\
+    \    }\n    // \u533A\u9593[l,r)\u306E\u8981\u7D20\u306E\u7DCF\u7A4D v[l]\u2022\
+    v[l+1]\u2022...\u2022v[r-1] \u3092\u6C42\u3081\u308B\uFF0EO(logN).\n    S prod(int\
+    \ l, int r) const {\n        assert(0 <= l and l <= r and r <= size());\n    \
+    \    S val_l = identity(), val_r = identity();\n        l += m_n, r += m_n;\n\
+    \        while(l < r) {\n            if(l & 1) val_l = m_op(val_l, m_tree[l++]);\n\
+    \            if(r & 1) val_r = m_op(m_tree[--r], val_r);\n            l >>= 1,\
+    \ r >>= 1;\n        }\n        return m_op(val_l, val_r);\n    }\n    // \u533A\
+    \u9593\u5168\u4F53\u306E\u8981\u7D20\u306E\u7DCF\u7A4D\u3092\u8FD4\u3059\uFF0E\
     O(1).\n    S prod_all() const { return m_tree[1]; }\n    // jud(prod(l,-))==true\
     \ \u3068\u306A\u308B\u533A\u9593\u306E\u6700\u53F3\u4F4D\u5024\u3092\u4E8C\u5206\
     \u63A2\u7D22\u3059\u308B\uFF0E\n    // \u305F\u3060\u3057\u8981\u7D20\u5217\u306B\
@@ -84,22 +84,23 @@ data:
     \ &segtree) {\n        int l = 1, r = 2;\n        while(l < 2 * segtree.m_n) {\n\
     \            os << (l == 1 ? \"[\" : \" \");\n            for(int i = l; i < r;\
     \ ++i) os << (i == l ? \"[\" : \" \") << segtree.m_tree[i];\n            os <<\
-    \ \"]\";\n            l <<= 1, r <<= 1;\n        }\n        os << \"]\";\n   \
-    \     return os;\n    }\n};\n\n}  // namespace algorithm\n\n#endif\n"
-  code: "/**\n * @brief Segment Tree\n * @docs docs/DataStructure/SegmentTree/segment_tree.md\n\
-    \ */\n\n#ifndef ALGORITHM_SEGMENT_TREE_HPP\n#define ALGORITHM_SEGMENT_TREE_HPP\
-    \ 1\n\n#include <algorithm>\n#include <cassert>\n#include <functional>\n#include\
+    \ \"]\" << (r == 2 * segtree.m_n ? \"]\" : \"\\n\");\n            l <<= 1, r <<=\
+    \ 1;\n        }\n        return os;\n    }\n};\n\n}  // namespace algorithm\n\n\
+    \n"
+  code: "#ifndef ALGORITHM_SEGMENT_TREE_HPP\n#define ALGORITHM_SEGMENT_TREE_HPP 1\n\
+    \n/**\n * @brief Segment Tree\n * @docs docs/DataStructure/SegmentTree/segment_tree.md\n\
+    \ */\n\n#include <algorithm>\n#include <cassert>\n#include <functional>\n#include\
     \ <vector>\n\nnamespace algorithm {\n\ntemplate <typename S>\nclass SegmentTree\
-    \ {\n    using Func = std::function<S(const S &, const S &)>;\n\n    Func m_op;\
+    \ {\n    using Op = std::function<S(const S &, const S &)>;\n\n    Op m_op;  \
     \              // S m_op(S,S):=(\u4E8C\u9805\u6F14\u7B97\u95A2\u6570).\n    S\
     \ m_e;                  // m_e:=(\u5358\u4F4D\u5143).\n    int m_sz;         \
     \      // m_sz:=(\u8981\u7D20\u6570).\n    int m_n;                // m_n:=(\u8449\
     \u306E\u6570).\n    std::vector<S> m_tree;  // m_tree[]:=(\u5B8C\u5168\u4E8C\u5206\
     \u6728). 1-based index.\n\npublic:\n    // constructor. O(N).\n    SegmentTree(){};\n\
-    \    explicit SegmentTree(const Func &op, const S &e, size_t n) : m_op(op), m_e(e),\
+    \    explicit SegmentTree(const Op &op, const S &e, size_t n) : m_op(op), m_e(e),\
     \ m_sz(n), m_n(1) {\n        while(m_n < size()) m_n <<= 1;\n        m_tree.assign(2\
-    \ * m_n, identity());\n    }\n    explicit SegmentTree(const Func &op, const S\
-    \ &e, const std::vector<S> &v) : SegmentTree(op, e, v.size()) {\n        std::copy(v.begin(),\
+    \ * m_n, identity());\n    }\n    explicit SegmentTree(const Op &op, const S &e,\
+    \ const std::vector<S> &v) : SegmentTree(op, e, v.size()) {\n        std::copy(v.begin(),\
     \ v.end(), m_tree.begin() + m_n);\n        for(int i = m_n - 1; i >= 1; --i) m_tree[i]\
     \ = m_op(m_tree[i << 1], m_tree[i << 1 | 1]);\n    }\n\n    // \u8981\u7D20\u6570\
     \u3092\u8FD4\u3059\uFF0E\n    int size() const { return m_sz; }\n    // \u5358\
@@ -107,16 +108,17 @@ data:
     \    // k\u756A\u76EE\u306E\u8981\u7D20\u3092a\u306B\u7F6E\u304D\u63DB\u3048\u308B\
     \uFF0EO(logN).\n    void set(int k, const S &a) {\n        assert(0 <= k and k\
     \ < size());\n        k += m_n;\n        m_tree[k] = a;\n        while(k >>= 1)\
-    \ m_tree[k] = m_op(m_tree[k << 1], m_tree[k << 1 | 1]);\n    }\n    // \u4E00\u70B9\
-    \u53D6\u5F97\uFF0EO(1).\n    S prod(int k) const {\n        assert(0 <= k and\
-    \ k < size());\n        return m_tree[k + m_n];\n    }\n    // \u533A\u9593[l,r)\u306E\
-    \u7DCF\u7A4D v[l]\u2022v[l+1]\u2022....\u2022v[r-1] \u3092\u6C42\u3081\u308B\uFF0E\
-    O(logN).\n    S prod(int l, int r) const {\n        assert(0 <= l and l <= r and\
-    \ r <= size());\n        S val_l = identity(), val_r = identity();\n        l\
-    \ += m_n, r += m_n;\n        while(l < r) {\n            if(l & 1) val_l = m_op(val_l,\
-    \ m_tree[l++]);\n            if(r & 1) val_r = m_op(m_tree[--r], val_r);\n   \
-    \         l >>= 1, r >>= 1;\n        }\n        return m_op(val_l, val_r);\n \
-    \   }\n    // \u533A\u9593\u5168\u4F53\u306E\u7DCF\u7A4D\u3092\u8FD4\u3059\uFF0E\
+    \ m_tree[k] = m_op(m_tree[k << 1], m_tree[k << 1 | 1]);\n    }\n    // k\u756A\
+    \u76EE\u306E\u8981\u7D20\u3092\u8FD4\u3059\uFF0EO(1).\n    S prod(int k) const\
+    \ {\n        assert(0 <= k and k < size());\n        return m_tree[k + m_n];\n\
+    \    }\n    // \u533A\u9593[l,r)\u306E\u8981\u7D20\u306E\u7DCF\u7A4D v[l]\u2022\
+    v[l+1]\u2022...\u2022v[r-1] \u3092\u6C42\u3081\u308B\uFF0EO(logN).\n    S prod(int\
+    \ l, int r) const {\n        assert(0 <= l and l <= r and r <= size());\n    \
+    \    S val_l = identity(), val_r = identity();\n        l += m_n, r += m_n;\n\
+    \        while(l < r) {\n            if(l & 1) val_l = m_op(val_l, m_tree[l++]);\n\
+    \            if(r & 1) val_r = m_op(m_tree[--r], val_r);\n            l >>= 1,\
+    \ r >>= 1;\n        }\n        return m_op(val_l, val_r);\n    }\n    // \u533A\
+    \u9593\u5168\u4F53\u306E\u8981\u7D20\u306E\u7DCF\u7A4D\u3092\u8FD4\u3059\uFF0E\
     O(1).\n    S prod_all() const { return m_tree[1]; }\n    // jud(prod(l,-))==true\
     \ \u3068\u306A\u308B\u533A\u9593\u306E\u6700\u53F3\u4F4D\u5024\u3092\u4E8C\u5206\
     \u63A2\u7D22\u3059\u308B\uFF0E\n    // \u305F\u3060\u3057\u8981\u7D20\u5217\u306B\
@@ -150,14 +152,15 @@ data:
     \ &segtree) {\n        int l = 1, r = 2;\n        while(l < 2 * segtree.m_n) {\n\
     \            os << (l == 1 ? \"[\" : \" \");\n            for(int i = l; i < r;\
     \ ++i) os << (i == l ? \"[\" : \" \") << segtree.m_tree[i];\n            os <<\
-    \ \"]\";\n            l <<= 1, r <<= 1;\n        }\n        os << \"]\";\n   \
-    \     return os;\n    }\n};\n\n}  // namespace algorithm\n\n#endif\n"
+    \ \"]\" << (r == 2 * segtree.m_n ? \"]\" : \"\\n\");\n            l <<= 1, r <<=\
+    \ 1;\n        }\n        return os;\n    }\n};\n\n}  // namespace algorithm\n\n\
+    #endif\n"
   dependsOn: []
   isVerificationFile: false
   path: src/DataStructure/SegmentTree/segment_tree.hpp
   requiredBy: []
-  timestamp: '2023-08-31 14:17:44+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2023-09-23 04:54:39+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yosupo-staticrmq-segment_tree.test.cpp
   - test/aoj-DSL_2_A.test.cpp
@@ -169,7 +172,26 @@ redirect_from:
 - /library/src/DataStructure/SegmentTree/segment_tree.hpp.html
 title: Segment Tree
 ---
-<!-- ---
-title: Segment Tree
-documentation_of: //src/DataStructure/segment_tree.hpp
---- -->
+## 概要
+
+長さ $N$ の配列 $\{ a_0, a_1, \ldots, a_{n-1} \}$ に対して，次のクエリ処理を $\mathcal{O}(\log N)$ で行う．
+
+- 一点更新：$a_i$ を $x$ で更新する．
+- 区間取得：区間 $[l,r)$ の要素の総積 $a_l \bullet a_{l+1} \bullet \cdots \bullet a_{r-1}$ を取得する．
+
+本ライブラリで実装している Segment Tree は，いわゆる「抽象セグメント木」であり，オブジェクトを定義する際に扱うモノイドを定義する．
+
+ここで，モノイド $\left( S, \bullet : S \times S \rightarrow S, e \in S \right)$ とは，
+
+- 結合律：$(a \bullet b) \bullet c = a \bullet (b \bullet c) \quad \left( \forall a, \forall b, \forall c \in S \right)$
+- 単位元の存在：$e \bullet a = a \bullet e = a \quad \left( \forall a \in S \right)$
+
+を満たす代数構造のことをいう．
+例えば，整数全体は加法あるいは乗法に関してモノイドを成す．
+
+
+## 参考文献
+
+1. atcoder. "SegTree". AC Library. <https://atcoder.github.io/ac-library/production/document_ja/segtree.html>.
+1. "モノイド". Wikipedia. <https://ja.wikipedia.org/wiki/モノイド>.
+1. "セグメント木". いかたこのたこつぼ. <https://ikatakos.com/pot/programming_algorithm/data_structure/segment_tree>.
