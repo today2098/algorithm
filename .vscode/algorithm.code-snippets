@@ -3390,12 +3390,13 @@
 		"scope": "cpp",
 		"prefix": "z_algorithm",
 		"body": [
-			"// 最長共通接頭辞 (LCP: Longest Common Prefix)．O(|S|).",
+			"// 最長共通接頭辞 (LCP: Longest Common Prefix) の長さを求める．",
+			"// 引数はSTLのシーケンスコンテナ．O(|S|).",
 			"template <class Sequence>",
 			"std::vector<int> z_algorithm(const Sequence &s) {",
 			"    const int n = s.size();",
-			"    std::vector<int> z(n + 1);  // z[i]:=(sとs[i:]のLCPの長さ).",
-			"    z[0] = n, z[n] = 0;",
+			"    std::vector<int> z(n + 1, 0);  // z[i]:=(sとs[i:]のLCPの長さ).",
+			"    z[0] = n;",
 			"    int i = 1, j = 0;",
 			"    while(i < n) {",
 			"        while(i + j < n and s[j] == s[i + j]) j++;",
@@ -3405,7 +3406,7 @@
 			"            continue;",
 			"        }",
 			"        int k = 1;",
-			"        while(i + k < n and z[k] + k < j) {",
+			"        while(i + k < n and k + z[k] < j) {",
 			"            z[i + k] = z[k];",
 			"            k++;",
 			"        }",
@@ -3414,7 +3415,7 @@
 			"    return z;",
 			"}"
 		],
-		"description": "最長共通接頭辞 (LCP: Longest Common Prefix)"
+		"description": "Longest Common Prefix（最長共通接頭辞）"
 	},
 	"namespace geometry (Vector)": {
 		"scope": "cpp",
