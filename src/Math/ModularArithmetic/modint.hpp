@@ -1,9 +1,10 @@
-/**
- * @brief Modint
- */
-
 #ifndef ALGORITHM_MODINT_HPP
 #define ALGORITHM_MODINT_HPP 1
+
+/**
+ * @brief Modint
+ * @docs docs/Math/ModularArithmetic/modint.md
+ */
 
 #include <cassert>
 #include <iostream>
@@ -15,7 +16,7 @@ template <int mod>
 class Modint {
     long long val;
 
-    void build() {
+    void normalize() {
         if(!(-mod <= val and val < mod)) val %= mod;
         if(val < 0) val += mod;
     }
@@ -24,11 +25,11 @@ public:
     Modint() : Modint(0) {}
     Modint(long long val_) : val(val_) {
         static_assert(mod >= 1);
-        build();
+        normalize();
     }
 
     Modint operator+() const { return Modint(*this); }
-    Modint operator-() const { return (val == 0 ? Modint(0) : Modint(mod - val)); }
+    Modint operator-() const { return (val == 0 ? Modint(*this) : Modint(mod - val)); }
     Modint &operator++() {
         val++;
         if(val == mod) val = 0;
@@ -73,7 +74,7 @@ public:
     friend bool operator!=(const Modint &lhs, const Modint &rhs) { return lhs.val != rhs.val; }
     friend std::istream &operator>>(std::istream &is, Modint &rhs) {
         is >> rhs.val;
-        rhs.build();
+        rhs.normalize();
         return is;
     }
     friend std::ostream &operator<<(std::ostream &os, const Modint &rhs) { return os << rhs.val; }

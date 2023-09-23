@@ -1,9 +1,10 @@
-/**
- * @brief 動的Modint
- */
-
 #ifndef ALGORITHM_DYNAMIC_MODINT_HPP
 #define ALGORITHM_DYNAMIC_MODINT_HPP 1
+
+/**
+ * @brief 動的modint
+ * @docs docs/Math/ModularArithmetic/dynamic_modint.md
+ */
 
 #include <cassert>
 #include <iostream>
@@ -16,7 +17,7 @@ class DynamicModint {
     static int mod;
     long long val;
 
-    void build() {
+    void normalize() {
         if(!(-mod <= val and val < mod)) val %= mod;
         if(val < 0) val += mod;
     }
@@ -25,11 +26,11 @@ public:
     DynamicModint() : DynamicModint(0) {}
     DynamicModint(long long val_) : val(val_) {
         assert(mod >= 1);
-        build();
+        normalize();
     }
 
     DynamicModint operator+() const { return DynamicModint(*this); }
-    DynamicModint operator-() const { return (val == 0 ? DynamicModint(0) : DynamicModint(mod - val)); }
+    DynamicModint operator-() const { return (val == 0 ? DynamicModint(*this) : DynamicModint(mod - val)); }
     DynamicModint &operator++() {
         val++;
         if(val == mod) val = 0;
@@ -74,7 +75,7 @@ public:
     friend bool operator!=(const DynamicModint &lhs, const DynamicModint &rhs) { return lhs.val != rhs.val; }
     friend std::istream &operator>>(std::istream &is, DynamicModint &rhs) {
         is >> rhs.val;
-        rhs.build();
+        rhs.normalize();
         return is;
     }
     friend std::ostream &operator<<(std::ostream &os, const DynamicModint &rhs) { return os << rhs.val; }
