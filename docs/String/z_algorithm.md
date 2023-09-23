@@ -1,8 +1,8 @@
 ## 概要
 
-配列 $S$ に対して，$S$ と $S[i:]$ の最長共通接頭辞 (LCP: Longest Common Prefix) の長さを求める．
+長さ $N$ の配列 $S$ に対して，$S$ と $S[i:]$ の最長共通接頭辞 (LCP: Longest Common Prefix) の長さを求める．
 
-アルゴリズムの計算量は $\mathcal{O}(\left| S \right|)$ ．
+アルゴリズムの計算量は $\mathcal{O}(N)$ ．
 
 
 ## 参考文献
