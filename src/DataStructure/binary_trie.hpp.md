@@ -6,12 +6,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj-DSL_2_B-binary_trie.test.cpp
     title: test/aoj-DSL_2_B-binary_trie.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo-set_xor_min.test.cpp
     title: test/yosupo-set_xor_min.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     _deprecated_at_docs: docs/DataStructure/binary_trie.md
     document_title: Binary Trie
@@ -197,7 +197,7 @@ data:
   path: src/DataStructure/binary_trie.hpp
   requiredBy: []
   timestamp: '2023-09-23 04:42:19+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo-set_xor_min.test.cpp
   - test/aoj-DSL_2_B-binary_trie.test.cpp

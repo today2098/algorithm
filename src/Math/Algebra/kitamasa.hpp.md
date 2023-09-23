@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
-    path: test/yosupo-kth_term_of_linearly_recurrent_sequence.test.cpp
-    title: test/yosupo-kth_term_of_linearly_recurrent_sequence.test.cpp
-  _isVerificationFailed: true
+  - icon: ':heavy_check_mark:'
+    path: test/aoj-ALDS1_10_A.test.cpp
+    title: test/aoj-ALDS1_10_A.test.cpp
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     _deprecated_at_docs: docs/Math/Algebra/kitamasa.md
     document_title: "\u304D\u305F\u307E\u3055\u6CD5"
@@ -75,9 +75,9 @@ data:
   path: src/Math/Algebra/kitamasa.hpp
   requiredBy: []
   timestamp: '2023-09-23 04:49:28+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo-kth_term_of_linearly_recurrent_sequence.test.cpp
+  - test/aoj-ALDS1_10_A.test.cpp
 documentation_of: src/Math/Algebra/kitamasa.hpp
 layout: document
 redirect_from:

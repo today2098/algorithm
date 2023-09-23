@@ -9,12 +9,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj-DSL_2_B-segment_tree.test.cpp
     title: test/aoj-DSL_2_B-segment_tree.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo-staticrmq-segment_tree.test.cpp
     title: test/yosupo-staticrmq-segment_tree.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     _deprecated_at_docs: docs/DataStructure/SegmentTree/segment_tree.md
     document_title: Segment Tree
@@ -160,7 +160,7 @@ data:
   path: src/DataStructure/SegmentTree/segment_tree.hpp
   requiredBy: []
   timestamp: '2023-09-23 04:54:39+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo-staticrmq-segment_tree.test.cpp
   - test/aoj-DSL_2_A.test.cpp

@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: src/DataStructure/binary_trie.hpp
     title: Binary Trie
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: src/Utils/debug.hpp
     title: src/Utils/debug.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/set_xor_min
@@ -182,7 +182,7 @@ data:
   path: test/yosupo-set_xor_min.test.cpp
   requiredBy: []
   timestamp: '2023-09-23 04:42:19+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo-set_xor_min.test.cpp
 layout: document
