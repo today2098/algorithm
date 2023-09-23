@@ -212,9 +212,9 @@ data:
       title: "Mo's Algorithm\uFF08\u30AF\u30A8\u30EA\u5E73\u65B9\u5206\u5272\uFF09"
   - name: src/String
     pages:
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: src/String/manacher.hpp
-      title: src/String/manacher.hpp
+      title: "Manacher's Algorithm\uFF08\u6700\u9577\u56DE\u6587\uFF09"
     - icon: ':warning:'
       path: src/String/run_length_encode.hpp
       title: src/String/run_length_encode.hpp
@@ -224,9 +224,9 @@ data:
     - icon: ':warning:'
       path: src/String/string_modulo.hpp
       title: src/String/string_modulo.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: src/String/z_algorithm.hpp
-      title: src/String/z_algorithm.hpp
+      title: "Z Algorithm\uFF08\u6700\u9577\u5171\u901A\u63A5\u982D\u8F9E\uFF09"
   - name: src/Utils
     pages:
     - icon: ':warning:'
@@ -374,6 +374,9 @@ data:
       path: test/aoj-NTL_1_E.test.cpp
       title: test/aoj-NTL_1_E.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/yosupo-enumerate_palindromes.test.cpp
+      title: test/yosupo-enumerate_palindromes.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/yosupo-point_add_range_sum-binary_indexed_tree_zero.test.cpp
       title: test/yosupo-point_add_range_sum-binary_indexed_tree_zero.test.cpp
     - icon: ':heavy_check_mark:'
@@ -394,5 +397,8 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo-unionfind.test.cpp
       title: test/yosupo-unionfind.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo-zalgorithm.test.cpp
+      title: test/yosupo-zalgorithm.test.cpp
 layout: toppage
 ---
