@@ -23,22 +23,22 @@ std::vector<int> v({1, 1, 2, 3, 5});
 std::string s = "Hello, world!";
 std::pair<int, double> p({1, 1.41});
 
+debug('i', -1LL);
 debug(a, b);
 debug(v);
 debug(s);
 debug(p);
-debug('i', -1LL);
 // debug();  // error!
 `````
 
 ```bash
 $ g++ main.cpp -std=c++17 -D=DEBUG -o debug.out
 $ ./debug
-[L50] (a, b): (0, 3.14)
-[L51] v: [1 1 2 3 5]
-[L52] s: Hello, world!
-[L53] p: {1, 1.41}
-[L54] ('i', -1LL): (i, -1)
+[L50] ('i', -1LL): (i, -1)
+[L51] (a, b): (0, 3.14)
+[L52] v: [1 1 2 3 5]
+[L53] s: Hello, world!
+[L54] p: {1, 1.41}
 ``````
 
 
