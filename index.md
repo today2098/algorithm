@@ -160,9 +160,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: src/Math/NumberTheory/extgcd.hpp
       title: "\u62E1\u5F35\u30E6\u30FC\u30AF\u30EA\u30C3\u30C9\u306E\u4E92\u9664\u6CD5"
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: src/Math/NumberTheory/floor_sum.hpp
-      title: src/Math/NumberTheory/floor_sum.hpp
+      title: Floor Sum
     - icon: ':heavy_check_mark:'
       path: src/Math/NumberTheory/igcd.hpp
       title: "Greatest Common Divisor\uFF08\u6700\u5927\u516C\u7D04\u6570\uFF09"
@@ -394,6 +394,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo-staticrmq-sparse_table.test.cpp
       title: test/yosupo-staticrmq-sparse_table.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo-sum_of_floor_of_linear.test.cpp
+      title: test/yosupo-sum_of_floor_of_linear.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo-unionfind.test.cpp
       title: test/yosupo-unionfind.test.cpp

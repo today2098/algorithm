@@ -14,23 +14,21 @@ data:
     links: []
   bundledCode: "#line 1 \"src/Utils/table.hpp\"\n/**\n * @docs docs/Utils/table.md\n\
     \ */\n\n#ifndef ALGORITHM_TABLE_HPP\n#define ALGORITHM_TABLE_HPP 1\n\n#include\
-    \ <utility>\n#include <vector>\n\nnamespace algorithm {\n\ntemplate <typename\
-    \ Type>\ninline std::vector<Type> table(size_t n, const Type &val) { return std::vector<Type>(n,\
-    \ val); }\n\ntemplate <typename... Args>\nauto table(size_t n, const Args &...args)\
-    \ {\n    auto val = table(args...);\n    return std::vector<decltype(val)>(n,\
-    \ std::move(val));\n}\n\n}  // namespace algorithm\n\n#endif\n"
+    \ <vector>\n\nnamespace algorithm {\n\ntemplate <typename Type>\ninline std::vector<Type>\
+    \ table(size_t n, const Type &val) { return std::vector<Type>(n, val); }\n\ntemplate\
+    \ <typename... Args>\ninline auto table(size_t n, const Args &...args) { return\
+    \ std::vector(n, table(args...)); }\n\n}  // namespace algorithm\n\n#endif\n"
   code: "/**\n * @docs docs/Utils/table.md\n */\n\n#ifndef ALGORITHM_TABLE_HPP\n#define\
-    \ ALGORITHM_TABLE_HPP 1\n\n#include <utility>\n#include <vector>\n\nnamespace\
-    \ algorithm {\n\ntemplate <typename Type>\ninline std::vector<Type> table(size_t\
-    \ n, const Type &val) { return std::vector<Type>(n, val); }\n\ntemplate <typename...\
-    \ Args>\nauto table(size_t n, const Args &...args) {\n    auto val = table(args...);\n\
-    \    return std::vector<decltype(val)>(n, std::move(val));\n}\n\n}  // namespace\
-    \ algorithm\n\n#endif\n"
+    \ ALGORITHM_TABLE_HPP 1\n\n#include <vector>\n\nnamespace algorithm {\n\ntemplate\
+    \ <typename Type>\ninline std::vector<Type> table(size_t n, const Type &val) {\
+    \ return std::vector<Type>(n, val); }\n\ntemplate <typename... Args>\ninline auto\
+    \ table(size_t n, const Args &...args) { return std::vector(n, table(args...));\
+    \ }\n\n}  // namespace algorithm\n\n#endif\n"
   dependsOn: []
   isVerificationFile: false
   path: src/Utils/table.hpp
   requiredBy: []
-  timestamp: '2023-09-04 17:33:16+09:00'
+  timestamp: '2023-09-25 15:35:18+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj-3110.test.cpp
