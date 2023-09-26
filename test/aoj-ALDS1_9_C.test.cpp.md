@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: src/DataStructure/heap.hpp
     title: "\u4E8C\u5206\u30D2\u30FC\u30D7"
   _extendedRequiredBy: []

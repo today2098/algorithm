@@ -3,15 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
-    path: test/aoj-ALDS1_9_B.test.cpp
-    title: test/aoj-ALDS1_9_B.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/aoj-ALDS1_9_C.test.cpp
     title: test/aoj-ALDS1_9_C.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     _deprecated_at_docs: docs/DataStructure/heap.md
     document_title: "\u4E8C\u5206\u30D2\u30FC\u30D7"
@@ -95,9 +92,8 @@ data:
   path: src/DataStructure/heap.hpp
   requiredBy: []
   timestamp: '2023-09-26 16:38:19+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj-ALDS1_9_B.test.cpp
   - test/aoj-ALDS1_9_C.test.cpp
 documentation_of: src/DataStructure/heap.hpp
 layout: document
