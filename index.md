@@ -57,9 +57,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: src/DataStructure/binary_trie.hpp
       title: Binary Trie
-    - icon: ':warning:'
+    - icon: ':question:'
       path: src/DataStructure/heap.hpp
-      title: src/DataStructure/heap.hpp
+      title: "\u4E8C\u5206\u30D2\u30FC\u30D7"
     - icon: ':heavy_check_mark:'
       path: src/DataStructure/segment_set.hpp
       title: "\u6574\u6570\u306E\u96C6\u5408\u3092\u533A\u9593\u3067\u7BA1\u7406\u3059\
@@ -289,6 +289,12 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj-ALDS1_1_C-sieve.test.cpp
       title: test/aoj-ALDS1_1_C-sieve.test.cpp
+    - icon: ':x:'
+      path: test/aoj-ALDS1_9_B.test.cpp
+      title: test/aoj-ALDS1_9_B.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/aoj-ALDS1_9_C.test.cpp
+      title: test/aoj-ALDS1_9_C.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/aoj-DPL_1_D.test.cpp
       title: test/aoj-DPL_1_D.test.cpp
