@@ -194,6 +194,9 @@ data:
   - name: src/Math
     pages:
     - icon: ':warning:'
+      path: src/Math/big_integer.hpp
+      title: "\u591A\u500D\u9577\u6574\u6570"
+    - icon: ':warning:'
       path: src/Math/ipow_isqrt.hpp
       title: src/Math/ipow_isqrt.hpp
   - name: src/Others
