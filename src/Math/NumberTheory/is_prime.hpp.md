@@ -35,8 +35,8 @@ data:
   timestamp: '2023-08-30 11:28:55+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj-ALDS1_1_C-is_prime.test.cpp
   - test/aoj-2858.test.cpp
+  - test/aoj-ALDS1_1_C-is_prime.test.cpp
 documentation_of: src/Math/NumberTheory/is_prime.hpp
 layout: document
 redirect_from:

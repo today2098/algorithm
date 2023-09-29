@@ -1,7 +1,10 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':warning:'
+    path: src/Math/big_integer.hpp
+    title: "\u591A\u500D\u9577\u6574\u6570"
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/aoj-2659.test.cpp
@@ -133,15 +136,16 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: src/Utils/debug.hpp
-  requiredBy: []
+  requiredBy:
+  - src/Math/big_integer.hpp
   timestamp: '2023-09-06 00:38:28+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo-set_xor_min.test.cpp
-  - test/aoj-NTL_1_E.test.cpp
   - test/aoj-2880.test.cpp
-  - test/aoj-3110.test.cpp
   - test/aoj-2659.test.cpp
+  - test/aoj-3110.test.cpp
+  - test/aoj-NTL_1_E.test.cpp
+  - test/yosupo-set_xor_min.test.cpp
 documentation_of: src/Utils/debug.hpp
 layout: document
 redirect_from:

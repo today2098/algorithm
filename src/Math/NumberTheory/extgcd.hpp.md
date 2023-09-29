@@ -46,8 +46,8 @@ data:
   timestamp: '2023-09-16 12:49:54+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj-NTL_1_E.test.cpp
   - test/aoj-2659.test.cpp
+  - test/aoj-NTL_1_E.test.cpp
 documentation_of: src/Math/NumberTheory/extgcd.hpp
 layout: document
 redirect_from:

@@ -107,8 +107,8 @@ data:
   timestamp: '2023-09-23 19:12:59+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj-3110.test.cpp
   - test/yosupo-range_affine_range_sum.test.cpp
+  - test/aoj-3110.test.cpp
 documentation_of: src/Math/ModularArithmetic/modint.hpp
 layout: document
 redirect_from:

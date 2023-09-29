@@ -138,6 +138,11 @@ data:
     - icon: ':warning:'
       path: src/Math/Combinatorics/montmort.hpp
       title: src/Math/Combinatorics/montmort.hpp
+  - name: src/Math/FFT
+    pages:
+    - icon: ':warning:'
+      path: src/Math/FFT/dft.hpp
+      title: src/Math/FFT/dft.hpp
   - name: src/Math/ModularArithmetic
     pages:
     - icon: ':warning:'
