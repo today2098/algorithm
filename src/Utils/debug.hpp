@@ -1,9 +1,10 @@
-/**
- * @docs docs/Utils/debug.md
- */
-
 #ifndef ALGORITHM_DEBUG_HPP
 #define ALGORITHM_DEBUG_HPP 1
+
+/**
+ * @brief デバッグ用関数形式マクロ
+ * @docs docs/Utils/debug.md
+ */
 
 #include <iostream>
 #include <iterator>
@@ -40,19 +41,19 @@ class has_iterator : public decltype(has_iterator_impl::check<T>(nullptr)) {};
 
 // Prototype declaration.
 void print(const std::string &s);
-void print(const std::string_view &s);
+void print(std::string_view s);
 template <typename T, typename U>
 void print(const std::pair<T, U> &p);
 template <class T, std::size_t... Idxes>
 void print_tuple(const T &t, std::index_sequence<Idxes...>);
-template <typename... T>
-void print(const std::tuple<T...> &t);
-template <typename... T>
-void print(const std::stack<T...> &st);
-template <typename... T>
-void print(const std::queue<T...> &que);
-template <typename... T>
-void print(const std::priority_queue<T...> &pque);
+template <typename... Ts>
+void print(const std::tuple<Ts...> &t);
+template <typename... Ts>
+void print(const std::stack<Ts...> &st);
+template <typename... Ts>
+void print(const std::queue<Ts...> &que);
+template <typename... Ts>
+void print(const std::priority_queue<Ts...> &pque);
 template <class T, typename std::enable_if_t<has_iterator<T>::value, bool> = false>
 void print(const T &v);
 template <typename T, typename std::enable_if_t<!has_iterator<T>::value, bool> = false>
@@ -62,7 +63,7 @@ void debug_internal(int line, std::string_view context, T &&first, Args &&...arg
 
 void print(const std::string &s) { os << s; }
 
-void print(const std::string_view &s) { os << s; }
+void print(std::string_view s) { os << s; }
 
 template <typename T, typename U>
 void print(const std::pair<T, U> &p) {
@@ -80,14 +81,14 @@ void print_tuple(const T &t, std::index_sequence<Idxes...>) {
     os << "}";
 }
 
-template <typename... T>
-void print(const std::tuple<T...> &t) {
-    print_tuple(t, std::make_index_sequence<sizeof...(T)>());
+template <typename... Ts>
+void print(const std::tuple<Ts...> &t) {
+    print_tuple(t, std::make_index_sequence<sizeof...(Ts)>());
 }
 
-template <typename... T>
-void print(const std::stack<T...> &st) {
-    std::stack<T...> tmp = st;
+template <typename... Ts>
+void print(const std::stack<Ts...> &st) {
+    std::stack<Ts...> tmp = st;
     os << "[";
     while(!tmp.empty()) {
         print(tmp.top());
@@ -97,9 +98,9 @@ void print(const std::stack<T...> &st) {
     os << "]";
 }
 
-template <typename... T>
-void print(const std::queue<T...> &que) {
-    std::queue<T...> tmp = que;
+template <typename... Ts>
+void print(const std::queue<Ts...> &que) {
+    std::queue<Ts...> tmp = que;
     os << "[";
     while(!tmp.empty()) {
         print(tmp.front());
@@ -109,9 +110,9 @@ void print(const std::queue<T...> &que) {
     os << "]";
 }
 
-template <typename... T>
-void print(const std::priority_queue<T...> &pque) {
-    std::priority_queue<T...> tmp = pque;
+template <typename... Ts>
+void print(const std::priority_queue<Ts...> &pque) {
+    std::priority_queue<Ts...> tmp = pque;
     os << "[";
     while(!tmp.empty()) {
         print(tmp.top());
