@@ -3,7 +3,7 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: src/Utils/debug.hpp
-    title: src/Utils/debug.hpp
+    title: "\u30C7\u30D0\u30C3\u30B0\u7528\u95A2\u6570\u5F62\u5F0F\u30DE\u30AF\u30ED"
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -17,51 +17,51 @@ data:
     \u9577\u6574\u6570\n * @docs docs/Math/big_integer.md\n */\n\n#include <algorithm>\n\
     #include <cassert>\n#include <cmath>\n#include <cstdint>\n#include <iomanip>\n\
     #include <iostream>\n#include <sstream>\n#include <string>\n#include <string_view>\n\
-    #include <vector>\n\n#line 1 \"src/Utils/debug.hpp\"\n/**\n * @docs docs/Utils/debug.md\n\
-    \ */\n\n#ifndef ALGORITHM_DEBUG_HPP\n#define ALGORITHM_DEBUG_HPP 1\n\n#line 9\
-    \ \"src/Utils/debug.hpp\"\n#include <iterator>\n#include <queue>\n#include <stack>\n\
-    #line 14 \"src/Utils/debug.hpp\"\n#include <tuple>\n#include <type_traits>\n#include\
-    \ <utility>\n\n// #define DEBUG\n\n#ifdef DEBUG\n\n#define debug(...) algorithm::debug::debug_internal(__LINE__,\
-    \ #__VA_ARGS__, __VA_ARGS__)\n\nnamespace algorithm {\n\nnamespace debug {\n\n\
-    constexpr std::ostream &os = std::cerr;\n\nstruct has_iterator_impl {\n    template\
-    \ <class T>\n    static constexpr std::true_type check(typename T::iterator *);\n\
-    \n    template <class T>\n    static constexpr std::false_type check(...);\n};\n\
-    \ntemplate <class T>\nclass has_iterator : public decltype(has_iterator_impl::check<T>(nullptr))\
-    \ {};\n\n// Prototype declaration.\nvoid print(const std::string &s);\nvoid print(const\
-    \ std::string_view &s);\ntemplate <typename T, typename U>\nvoid print(const std::pair<T,\
-    \ U> &p);\ntemplate <class T, std::size_t... Idxes>\nvoid print_tuple(const T\
-    \ &t, std::index_sequence<Idxes...>);\ntemplate <typename... T>\nvoid print(const\
-    \ std::tuple<T...> &t);\ntemplate <typename... T>\nvoid print(const std::stack<T...>\
-    \ &st);\ntemplate <typename... T>\nvoid print(const std::queue<T...> &que);\n\
-    template <typename... T>\nvoid print(const std::priority_queue<T...> &pque);\n\
-    template <class T, typename std::enable_if_t<has_iterator<T>::value, bool> = false>\n\
-    void print(const T &v);\ntemplate <typename T, typename std::enable_if_t<!has_iterator<T>::value,\
+    #include <vector>\n\n#line 1 \"src/Utils/debug.hpp\"\n\n\n\n/**\n * @brief \u30C7\
+    \u30D0\u30C3\u30B0\u7528\u95A2\u6570\u5F62\u5F0F\u30DE\u30AF\u30ED\n * @docs docs/Utils/debug.md\n\
+    \ */\n\n#line 10 \"src/Utils/debug.hpp\"\n#include <iterator>\n#include <queue>\n\
+    #include <stack>\n#line 15 \"src/Utils/debug.hpp\"\n#include <tuple>\n#include\
+    \ <type_traits>\n#include <utility>\n\n// #define DEBUG\n\n#ifdef DEBUG\n\n#define\
+    \ debug(...) algorithm::debug::debug_internal(__LINE__, #__VA_ARGS__, __VA_ARGS__)\n\
+    \nnamespace algorithm {\n\nnamespace debug {\n\nconstexpr std::ostream &os = std::cerr;\n\
+    \nstruct has_iterator_impl {\n    template <class T>\n    static constexpr std::true_type\
+    \ check(typename T::iterator *);\n\n    template <class T>\n    static constexpr\
+    \ std::false_type check(...);\n};\n\ntemplate <class T>\nclass has_iterator :\
+    \ public decltype(has_iterator_impl::check<T>(nullptr)) {};\n\n// Prototype declaration.\n\
+    void print(const std::string &s);\nvoid print(std::string_view s);\ntemplate <typename\
+    \ T, typename U>\nvoid print(const std::pair<T, U> &p);\ntemplate <class T, std::size_t...\
+    \ Idxes>\nvoid print_tuple(const T &t, std::index_sequence<Idxes...>);\ntemplate\
+    \ <typename... Ts>\nvoid print(const std::tuple<Ts...> &t);\ntemplate <typename...\
+    \ Ts>\nvoid print(const std::stack<Ts...> &st);\ntemplate <typename... Ts>\nvoid\
+    \ print(const std::queue<Ts...> &que);\ntemplate <typename... Ts>\nvoid print(const\
+    \ std::priority_queue<Ts...> &pque);\ntemplate <class T, typename std::enable_if_t<has_iterator<T>::value,\
+    \ bool> = false>\nvoid print(const T &v);\ntemplate <typename T, typename std::enable_if_t<!has_iterator<T>::value,\
     \ bool> = false>\nvoid print(const T &elem);\ntemplate <typename T, typename...\
     \ Args>\nvoid debug_internal(int line, std::string_view context, T &&first, Args\
-    \ &&...args);\n\nvoid print(const std::string &s) { os << s; }\n\nvoid print(const\
-    \ std::string_view &s) { os << s; }\n\ntemplate <typename T, typename U>\nvoid\
-    \ print(const std::pair<T, U> &p) {\n    os << \"{\";\n    print(p.first);\n \
-    \   os << \", \";\n    print(p.second);\n    os << \"}\";\n}\n\ntemplate <class\
-    \ T, std::size_t... Idxes>\nvoid print_tuple(const T &t, std::index_sequence<Idxes...>)\
-    \ {\n    os << \"{\";\n    ((os << (Idxes == 0 ? \"\" : \", \"), print(std::get<Idxes>(t))),\
-    \ ...);\n    os << \"}\";\n}\n\ntemplate <typename... T>\nvoid print(const std::tuple<T...>\
-    \ &t) {\n    print_tuple(t, std::make_index_sequence<sizeof...(T)>());\n}\n\n\
-    template <typename... T>\nvoid print(const std::stack<T...> &st) {\n    std::stack<T...>\
-    \ tmp = st;\n    os << \"[\";\n    while(!tmp.empty()) {\n        print(tmp.top());\n\
+    \ &&...args);\n\nvoid print(const std::string &s) { os << s; }\n\nvoid print(std::string_view\
+    \ s) { os << s; }\n\ntemplate <typename T, typename U>\nvoid print(const std::pair<T,\
+    \ U> &p) {\n    os << \"{\";\n    print(p.first);\n    os << \", \";\n    print(p.second);\n\
+    \    os << \"}\";\n}\n\ntemplate <class T, std::size_t... Idxes>\nvoid print_tuple(const\
+    \ T &t, std::index_sequence<Idxes...>) {\n    os << \"{\";\n    ((os << (Idxes\
+    \ == 0 ? \"\" : \", \"), print(std::get<Idxes>(t))), ...);\n    os << \"}\";\n\
+    }\n\ntemplate <typename... Ts>\nvoid print(const std::tuple<Ts...> &t) {\n   \
+    \ print_tuple(t, std::make_index_sequence<sizeof...(Ts)>());\n}\n\ntemplate <typename...\
+    \ Ts>\nvoid print(const std::stack<Ts...> &st) {\n    std::stack<Ts...> tmp =\
+    \ st;\n    os << \"[\";\n    while(!tmp.empty()) {\n        print(tmp.top());\n\
     \        tmp.pop();\n        if(!tmp.empty()) os << \" \";\n    }\n    os << \"\
-    ]\";\n}\n\ntemplate <typename... T>\nvoid print(const std::queue<T...> &que) {\n\
-    \    std::queue<T...> tmp = que;\n    os << \"[\";\n    while(!tmp.empty()) {\n\
-    \        print(tmp.front());\n        tmp.pop();\n        if(!tmp.empty()) os\
-    \ << \" \";\n    }\n    os << \"]\";\n}\n\ntemplate <typename... T>\nvoid print(const\
-    \ std::priority_queue<T...> &pque) {\n    std::priority_queue<T...> tmp = pque;\n\
-    \    os << \"[\";\n    while(!tmp.empty()) {\n        print(tmp.top());\n    \
-    \    tmp.pop();\n        if(!tmp.empty()) os << \" \";\n    }\n    os << \"]\"\
-    ;\n}\n\ntemplate <class T, typename std::enable_if_t<has_iterator<T>::value, bool>\
-    \ = false>\nvoid print(const T &v) {\n    os << \"[\";\n    for(auto itr = std::cbegin(v);\
-    \ itr != std::cend(v); ++itr) {\n        if(itr != std::cbegin(v)) os << \" \"\
-    ;\n        print(*itr);\n    }\n    os << \"]\";\n}\n\ntemplate <typename T, typename\
-    \ std::enable_if_t<!has_iterator<T>::value, bool> = false>\nvoid print(const T\
-    \ &elem) { os << elem; }\n\ntemplate <typename T, typename... Args>\nvoid debug_internal(int\
+    ]\";\n}\n\ntemplate <typename... Ts>\nvoid print(const std::queue<Ts...> &que)\
+    \ {\n    std::queue<Ts...> tmp = que;\n    os << \"[\";\n    while(!tmp.empty())\
+    \ {\n        print(tmp.front());\n        tmp.pop();\n        if(!tmp.empty())\
+    \ os << \" \";\n    }\n    os << \"]\";\n}\n\ntemplate <typename... Ts>\nvoid\
+    \ print(const std::priority_queue<Ts...> &pque) {\n    std::priority_queue<Ts...>\
+    \ tmp = pque;\n    os << \"[\";\n    while(!tmp.empty()) {\n        print(tmp.top());\n\
+    \        tmp.pop();\n        if(!tmp.empty()) os << \" \";\n    }\n    os << \"\
+    ]\";\n}\n\ntemplate <class T, typename std::enable_if_t<has_iterator<T>::value,\
+    \ bool> = false>\nvoid print(const T &v) {\n    os << \"[\";\n    for(auto itr\
+    \ = std::cbegin(v); itr != std::cend(v); ++itr) {\n        if(itr != std::cbegin(v))\
+    \ os << \" \";\n        print(*itr);\n    }\n    os << \"]\";\n}\n\ntemplate <typename\
+    \ T, typename std::enable_if_t<!has_iterator<T>::value, bool> = false>\nvoid print(const\
+    \ T &elem) { os << elem; }\n\ntemplate <typename T, typename... Args>\nvoid debug_internal(int\
     \ line, std::string_view context, T &&first, Args &&...args) {\n    constexpr\
     \ const char *open_bracket = (sizeof...(args) == 0 ? \"\" : \"(\");\n    constexpr\
     \ const char *close_bracket = (sizeof...(args) == 0 ? \"\" : \")\");\n    os <<\
@@ -69,8 +69,8 @@ data:
     \ \" << open_bracket;\n    print(std::forward<T>(first));\n    ((os << \", \"\
     , print(std::forward<Args>(args))), ...);\n    os << close_bracket << std::endl;\n\
     }\n\n}  // namespace debug\n\n}  // namespace algorithm\n\n#else\n\n#define debug(...)\
-    \ static_cast<void>(0)\n\n#endif\n\n#endif\n#line 21 \"src/Math/big_integer.hpp\"\
-    \n\nnamespace algorithm {\n\nclass BigInteger {\n    static constexpr int BASE_DIGIT\
+    \ static_cast<void>(0)\n\n#endif\n\n\n#line 21 \"src/Math/big_integer.hpp\"\n\n\
+    namespace algorithm {\n\nclass BigInteger {\n    static constexpr int BASE_DIGIT\
     \ = 8;\n    static constexpr int64_t BASE[BASE_DIGIT + 1] = {1, 10, 100, 1'000,\
     \ 10'000, 100'000, 1'000'000, 10'000'000, 100'000'000};\n\n    bool m_sign;  \
     \                 // m_sign:=(\u7B26\u53F7\u304C\u8CA0\u304B).\n    std::vector<int64_t>\
@@ -190,7 +190,7 @@ data:
   isVerificationFile: false
   path: src/Math/big_integer.hpp
   requiredBy: []
-  timestamp: '2023-09-29 19:55:54+09:00'
+  timestamp: '2023-09-30 18:36:21+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: src/Math/big_integer.hpp
@@ -200,3 +200,11 @@ redirect_from:
 - /library/src/Math/big_integer.hpp.html
 title: "\u591A\u500D\u9577\u6574\u6570"
 ---
+## 概要
+
+多倍長整数を扱う構造体．
+
+
+## 参考文献
+
+1. square1001. "超高速！多倍長整数の計算手法【前編：大きな数の四則計算を圧倒的な速度で！】". Qiita. <https://qiita.com/square1001/items/1aa12e04934b6e749962>.
