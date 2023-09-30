@@ -231,7 +231,7 @@ data:
       title: src/String/run_length_encode.hpp
     - icon: ':warning:'
       path: src/String/split.hpp
-      title: src/String/split.hpp
+      title: "\u6587\u5B57\u5217\u5206\u5272"
     - icon: ':warning:'
       path: src/String/string_modulo.hpp
       title: src/String/string_modulo.hpp
