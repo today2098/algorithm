@@ -1,5 +1,10 @@
-#ifndef ALGORITHM_DISCRETE_FOURIER_TRANSFORMATION_HPP
-#define ALGORITHM_DISCRETE_FOURIER_TRANSFORMATION_HPP 1
+#ifndef ALGORITHM_DISCRETE_FOURIER_TRANSFORM_HPP
+#define ALGORITHM_DISCRETE_FOURIER_TRANSFORM_HPP 1
+
+/**
+ * @brief Discrete Fourier Transform（離散フーリエ変換）
+ * @docs docs/Math/FFT/discrete_fourier_transform.md
+ */
 
 #include <algorithm>
 #include <cmath>
@@ -30,18 +35,34 @@ std::vector<std::complex<D> > transform(const std::vector<std::complex<D> > &a, 
 }
 
 // 畳み込み．
-// c[k]=sum_{i=0}^{k} a[i]*b[k-i] を求める．O(N^2).
-std::vector<long long> convolution(const std::vector<long long> &a, const std::vector<long long> &b) {
-    if(a.size() == 0 or b.size() == 0) return std::vector<long long>();
+// k=0,1,...,N について，c[k]=sum_{i=0}^{k} a[i]*b[k-i] を求める．O(N^2).
+std::vector<D> convolve(const std::vector<D> &a, const std::vector<D> &b) {
+    if(a.size() == 0 or b.size() == 0) return std::vector<D>();
     const int n = a.size() + b.size() - 1;
-    std::vector<std::complex<D> > na(n, 0.0), nb(n, 0.0), c(n);
+    std::vector<std::complex<D> > na(n, 0.0), nb(n, 0.0);
     std::copy(a.begin(), a.end(), na.begin());
     std::copy(b.begin(), b.end(), nb.begin());
     na = transform(na), nb = transform(nb);
-    for(int i = 0; i < n; ++i) c[i] = na[i] * nb[i];
-    c = transform(c, true);
+    for(int i = 0; i < n; ++i) na[i] *= nb[i];
+    na = transform(na, true);
+    std::vector<D> res(n);
+    for(int i = 0; i < n; ++i) res[i] = na[i].real();
+    return res;
+}
+
+// 畳み込み．
+// k=0,1,...,N について，c[k]=sum_{i=0}^{k} a[i]*b[k-i] を求める．O(N^2).
+std::vector<long long> convolve(const std::vector<long long> &a, const std::vector<long long> &b) {
+    if(a.size() == 0 or b.size() == 0) return std::vector<long long>();
+    const int n = a.size() + b.size() - 1;
+    std::vector<std::complex<D> > na(n, 0.0), nb(n, 0.0);
+    std::copy(a.begin(), a.end(), na.begin());
+    std::copy(b.begin(), b.end(), nb.begin());
+    na = transform(na), nb = transform(nb);
+    for(int i = 0; i < n; ++i) na[i] *= nb[i];
+    na = transform(na, true);
     std::vector<long long> res(n);
-    for(int i = 0; i < n; ++i) res[i] = c[i].real() + 0.5;
+    for(int i = 0; i < n; ++i) res[i] = na[i].real() + 0.5;
     return res;
 }
 
