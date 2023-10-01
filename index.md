@@ -141,8 +141,9 @@ data:
   - name: src/Math/FFT
     pages:
     - icon: ':warning:'
-      path: src/Math/FFT/dft.hpp
-      title: src/Math/FFT/dft.hpp
+      path: src/Math/FFT/discrete_fourier_transform.hpp
+      title: "Discrete Fourier Transform\uFF08\u96E2\u6563\u30D5\u30FC\u30EA\u30A8\
+        \u5909\u63DB\uFF09"
   - name: src/Math/ModularArithmetic
     pages:
     - icon: ':warning:'
