@@ -138,12 +138,16 @@ data:
     - icon: ':warning:'
       path: src/Math/Combinatorics/montmort.hpp
       title: src/Math/Combinatorics/montmort.hpp
-  - name: src/Math/FFT
+  - name: src/Math/Convolution
     pages:
     - icon: ':warning:'
-      path: src/Math/FFT/discrete_fourier_transform.hpp
+      path: src/Math/Convolution/discrete_fourier_transform.hpp
       title: "Discrete Fourier Transform\uFF08\u96E2\u6563\u30D5\u30FC\u30EA\u30A8\
         \u5909\u63DB\uFF09"
+    - icon: ':warning:'
+      path: src/Math/Convolution/fast_fourier_transform.hpp
+      title: "Fast Fourier Transform\uFF08\u9AD8\u901F\u30D5\u30FC\u30EA\u30A8\u5909\
+        \u63DB\uFF09"
   - name: src/Math/ModularArithmetic
     pages:
     - icon: ':warning:'
