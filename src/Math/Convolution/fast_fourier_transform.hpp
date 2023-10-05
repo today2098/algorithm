@@ -3,13 +3,14 @@
 
 /**
  * @brief Fast Fourier Transform（高速フーリエ変換）
- * @docs docs/Math/FFT/fast_fourier_transform.md
+ * @docs docs/Math/Convolution/fast_fourier_transform.md
  */
 
 #include <algorithm>
 #include <cassert>
 #include <cmath>
 #include <complex>
+#include <type_traits>
 #include <utility>
 #include <vector>
 
@@ -38,9 +39,10 @@ void transform(std::vector<std::complex<D> > &a, bool inv = false) {
         if(inv) ang = -ang;
         for(int i = 0; i < b; ++i) {
             std::complex<D> w = std::polar<D>(1.0, ang * i);
-            for(int j = 0; j < n; j += 2 * b) {
-                std::complex<D> s = a[i + j], t = a[i + j + b] * w;
-                a[i + j] = s + t, a[i + j + b] = s - t;  // バタフライ演算．
+            for(int j = 0; j < n; j += b << 1) {
+                std::complex<D> tmp = a[i + j + b] * w;
+                a[i + j + b] = a[i + j] - tmp;
+                a[i + j] = a[i + j] + tmp;
             }
         }
     }
@@ -51,8 +53,9 @@ void transform(std::vector<std::complex<D> > &a, bool inv = false) {
 
 // 畳み込み．
 // 数列a, bに対して，c[i]=sum_{k=0}^{i} a[k]*b[i-k] となる数列cを求める．O(N*logN).
-std::vector<double> convolve(const std::vector<double> &a, const std::vector<double> &b) {
-    if(a.size() == 0 or b.size() == 0) return std::vector<double>();
+template <typename Type, typename std::enable_if_t<std::is_integral_v<Type>, bool> = false>
+std::vector<Type> convolve(const std::vector<Type> &a, const std::vector<Type> &b) {
+    if(a.size() == 0 or b.size() == 0) return std::vector<Type>();
     const int n = a.size() + b.size() - 1;
     int m = 1;
     while(m < n) m <<= 1;
@@ -62,15 +65,16 @@ std::vector<double> convolve(const std::vector<double> &a, const std::vector<dou
     transform(na), transform(nb);
     for(int i = 0; i < m; ++i) na[i] *= nb[i];
     transform(na, true);
-    std::vector<double> res(n);
-    for(int i = 0; i < n; ++i) res[i] = na[i].real();
+    std::vector<Type> res(n);
+    for(int i = 0; i < n; ++i) res[i] = na[i].real() + 0.5;
     return res;
 }
 
 // 畳み込み．
 // 数列a, bに対して，c[i]=sum_{k=0}^{i} a[k]*b[i-k] となる数列cを求める．O(N*logN).
-std::vector<long long> convolve(const std::vector<long long> &a, const std::vector<long long> &b) {
-    if(a.size() == 0 or b.size() == 0) return std::vector<long long>();
+template <typename Type, typename std::enable_if_t<std::is_floating_point_v<Type>, bool> = false>
+std::vector<Type> convolve(const std::vector<Type> &a, const std::vector<Type> &b) {
+    if(a.size() == 0 or b.size() == 0) return std::vector<Type>();
     const int n = a.size() + b.size() - 1;
     int m = 1;
     while(m < n) m <<= 1;
@@ -80,8 +84,21 @@ std::vector<long long> convolve(const std::vector<long long> &a, const std::vect
     transform(na), transform(nb);
     for(int i = 0; i < m; ++i) na[i] *= nb[i];
     transform(na, true);
-    std::vector<long long> res(n);
-    for(int i = 0; i < n; ++i) res[i] = na[i].real() + 0.5;
+    std::vector<Type> res(n);
+    for(int i = 0; i < n; ++i) res[i] = na[i].real();
+    return res;
+}
+
+// 畳み込み．
+// 数列a, bに対して，c[i]=sum_{k=0}^{i} a[k]*b[i-k] となる数列cを求める．O(N^2).
+template <typename Type>
+std::vector<Type> convolve_naive(const std::vector<Type> &a, const std::vector<Type> &b) {
+    if(a.size() == 0 or b.size() == 0) return std::vector<Type>();
+    const int n = a.size(), m = b.size();
+    std::vector<Type> res(n + m - 1, 0);
+    for(int i = 0; i < n; ++i) {
+        for(int j = 0; j < m; ++j) res[i + j] += a[i] * b[j];
+    }
     return res;
 }
 

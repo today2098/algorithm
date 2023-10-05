@@ -3,12 +3,13 @@
 
 /**
  * @brief Discrete Fourier Transform（離散フーリエ変換）
- * @docs docs/Math/FFT/discrete_fourier_transform.md
+ * @docs docs/Math/Convolution/discrete_fourier_transform.md
  */
 
 #include <algorithm>
 #include <cmath>
 #include <complex>
+#include <type_traits>
 #include <vector>
 
 namespace algorithm {
@@ -37,8 +38,9 @@ void transform(std::vector<std::complex<D> > &a, bool inv = false) {
 
 // 畳み込み．
 // 数列a, bに対して，c[i]=sum_{k=0}^{i} a[k]*b[i-k] となる数列cを求める．O(N^2).
-std::vector<double> convolve(const std::vector<double> &a, const std::vector<double> &b) {
-    if(a.size() == 0 or b.size() == 0) return std::vector<double>();
+template <typename Type, typename std::enable_if_t<std::is_integral_v<Type>, bool> = false>
+std::vector<Type> convolve(const std::vector<Type> &a, const std::vector<Type> &b) {
+    if(a.size() == 0 or b.size() == 0) return std::vector<Type>();
     const int n = a.size() + b.size() - 1;
     std::vector<std::complex<D> > na(n, 0.0), nb(n, 0.0);
     std::copy(a.begin(), a.end(), na.begin());
@@ -46,15 +48,16 @@ std::vector<double> convolve(const std::vector<double> &a, const std::vector<dou
     transform(na), transform(nb);
     for(int i = 0; i < n; ++i) na[i] *= nb[i];
     transform(na, true);
-    std::vector<double> res(n);
-    for(int i = 0; i < n; ++i) res[i] = na[i].real();
+    std::vector<Type> res(n);
+    for(int i = 0; i < n; ++i) res[i] = na[i].real() + 0.5;
     return res;
 }
 
 // 畳み込み．
 // 数列a, bに対して，c[i]=sum_{k=0}^{i} a[k]*b[i-k] となる数列cを求める．O(N^2).
-std::vector<long long> convolve(const std::vector<long long> &a, const std::vector<long long> &b) {
-    if(a.size() == 0 or b.size() == 0) return std::vector<long long>();
+template <typename Type, typename std::enable_if_t<std::is_floating_point_v<Type>, bool> = false>
+std::vector<Type> convolve(const std::vector<Type> &a, const std::vector<Type> &b) {
+    if(a.size() == 0 or b.size() == 0) return std::vector<Type>();
     const int n = a.size() + b.size() - 1;
     std::vector<std::complex<D> > na(n, 0.0), nb(n, 0.0);
     std::copy(a.begin(), a.end(), na.begin());
@@ -62,8 +65,8 @@ std::vector<long long> convolve(const std::vector<long long> &a, const std::vect
     transform(na), transform(nb);
     for(int i = 0; i < n; ++i) na[i] *= nb[i];
     transform(na, true);
-    std::vector<long long> res(n);
-    for(int i = 0; i < n; ++i) res[i] = na[i].real() + 0.5;
+    std::vector<Type> res(n);
+    for(int i = 0; i < n; ++i) res[i] = na[i].real();
     return res;
 }
 
