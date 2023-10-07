@@ -1,11 +1,20 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: src/Math/Convolution/number_theoretic_transform.hpp
+    title: "Number Theoretic Transform\uFF08\u6570\u8AD6\u5909\u63DB\uFF09"
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/aoj-3110.test.cpp
     title: test/aoj-3110.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo-convolution_mod.test.cpp
+    title: test/yosupo-convolution_mod.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo-convolution_mod.test.cpp
+    title: test/yosupo-convolution_mod.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo-range_affine_range_sum.test.cpp
     title: test/yosupo-range_affine_range_sum.test.cpp
@@ -103,11 +112,14 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: src/Math/ModularArithmetic/modint.hpp
-  requiredBy: []
+  requiredBy:
+  - src/Math/Convolution/number_theoretic_transform.hpp
   timestamp: '2023-09-23 19:12:59+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo-range_affine_range_sum.test.cpp
+  - test/yosupo-convolution_mod.test.cpp
+  - test/yosupo-convolution_mod.test.cpp
   - test/aoj-3110.test.cpp
 documentation_of: src/Math/ModularArithmetic/modint.hpp
 layout: document

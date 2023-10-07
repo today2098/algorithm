@@ -1,11 +1,17 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: src/Math/Convolution/number_theoretic_transform.hpp
+    title: "Number Theoretic Transform\uFF08\u6570\u8AD6\u5909\u63DB\uFF09"
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo-convolution_mod.test.cpp
+    title: test/yosupo-convolution_mod.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     _deprecated_at_docs: docs/Math/ModularArithmetic/dynamic_modint.md
     document_title: "\u52D5\u7684modint"
@@ -109,10 +115,12 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: src/Math/ModularArithmetic/dynamic_modint.hpp
-  requiredBy: []
+  requiredBy:
+  - src/Math/Convolution/number_theoretic_transform.hpp
   timestamp: '2023-09-23 19:12:59+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/yosupo-convolution_mod.test.cpp
 documentation_of: src/Math/ModularArithmetic/dynamic_modint.hpp
 layout: document
 redirect_from:

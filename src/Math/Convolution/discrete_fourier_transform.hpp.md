@@ -18,16 +18,24 @@ data:
     #include <vector>\n\nnamespace algorithm {\n\nnamespace dft {\n\nusing D = double;\n\
     \nconst D PI = std::acos(-1.0);\n\n// Discrete Fourier Transform\uFF08\u96E2\u6563\
     \u30D5\u30FC\u30EA\u30A8\u5909\u63DB\uFF09. O(N^2).\nvoid transform(std::vector<std::complex<D>\
-    \ > &a, bool inv = false) {\n    const int n = a.size();\n    std::vector<std::complex<D>\
-    \ > res(n, 0.0);\n    D ang = 2 * PI / n;\n    if(inv) ang = -ang;\n    for(int\
-    \ i = 0; i < n; ++i) {\n        D tmp = ang * i;\n        for(int j = 0; j < n;\
-    \ ++j) res[i] += a[j] * std::polar<D>(1.0, tmp * j);\n    }\n    if(inv) {\n \
-    \       for(int i = 0; i < n; ++i) res[i] /= n;\n    }\n    a = res;\n}\n\n//\
-    \ \u7573\u307F\u8FBC\u307F\uFF0E\n// \u6570\u5217a, b\u306B\u5BFE\u3057\u3066\uFF0C\
-    c[i]=sum_{k=0}^{i} a[k]*b[i-k] \u3068\u306A\u308B\u6570\u5217c\u3092\u6C42\u3081\
-    \u308B\uFF0EO(N^2).\ntemplate <typename Type, typename std::enable_if_t<std::is_integral_v<Type>,\
-    \ bool> = false>\nstd::vector<Type> convolve(const std::vector<Type> &a, const\
-    \ std::vector<Type> &b) {\n    if(a.size() == 0 or b.size() == 0) return std::vector<Type>();\n\
+    \ > &a, bool inv = false) {\n    if(a.empty()) return;\n    const int n = a.size();\n\
+    \    std::vector<std::complex<D> > res(n, 0.0);\n    D ang = 2 * PI / n;\n   \
+    \ if(inv) ang = -ang;\n    for(int i = 0; i < n; ++i) {\n        D tmp = ang *\
+    \ i;\n        for(int j = 0; j < n; ++j) res[i] += a[j] * std::polar<D>(1.0, tmp\
+    \ * j);\n    }\n    if(inv) {\n        for(int i = 0; i < n; ++i) res[i] /= n;\n\
+    \    }\n    a = res;\n}\n\n// \u7573\u307F\u8FBC\u307F\uFF0E\n// \u6570\u5217\
+    a, b\u306B\u5BFE\u3057\u3066\uFF0Cc[i]=sum_{k=0}^{i} a[k]*b[i-k] \u3068\u306A\u308B\
+    \u6570\u5217c\u3092\u6C42\u3081\u308B\uFF0EO(N^2).\ntemplate <typename Type>\n\
+    std::vector<Type> convolve_naive(const std::vector<Type> &a, const std::vector<Type>\
+    \ &b) {\n    if(a.size() == 0 or b.size() == 0) return std::vector<Type>();\n\
+    \    const int n = a.size(), m = b.size();\n    std::vector<Type> res(n + m -\
+    \ 1, 0);\n    for(int i = 0; i < n; ++i) {\n        for(int j = 0; j < m; ++j)\
+    \ res[i + j] += a[i] * b[j];\n    }\n    return res;\n}\n\n// \u7573\u307F\u8FBC\
+    \u307F\uFF0E\n// \u6570\u5217a, b\u306B\u5BFE\u3057\u3066\uFF0Cc[i]=sum_{k=0}^{i}\
+    \ a[k]*b[i-k] \u3068\u306A\u308B\u6570\u5217c\u3092\u6C42\u3081\u308B\uFF0EO(N^2).\n\
+    template <typename Type, typename std::enable_if_t<std::is_integral_v<Type>, bool>\
+    \ = false>\nstd::vector<Type> convolve(const std::vector<Type> &a, const std::vector<Type>\
+    \ &b) {\n    if(a.size() == 0 or b.size() == 0) return std::vector<Type>();\n\
     \    const int n = a.size() + b.size() - 1;\n    std::vector<std::complex<D> >\
     \ na(n, 0.0), nb(n, 0.0);\n    std::copy(a.begin(), a.end(), na.begin());\n  \
     \  std::copy(b.begin(), b.end(), nb.begin());\n    transform(na), transform(nb);\n\
@@ -52,16 +60,24 @@ data:
     #include <vector>\n\nnamespace algorithm {\n\nnamespace dft {\n\nusing D = double;\n\
     \nconst D PI = std::acos(-1.0);\n\n// Discrete Fourier Transform\uFF08\u96E2\u6563\
     \u30D5\u30FC\u30EA\u30A8\u5909\u63DB\uFF09. O(N^2).\nvoid transform(std::vector<std::complex<D>\
-    \ > &a, bool inv = false) {\n    const int n = a.size();\n    std::vector<std::complex<D>\
-    \ > res(n, 0.0);\n    D ang = 2 * PI / n;\n    if(inv) ang = -ang;\n    for(int\
-    \ i = 0; i < n; ++i) {\n        D tmp = ang * i;\n        for(int j = 0; j < n;\
-    \ ++j) res[i] += a[j] * std::polar<D>(1.0, tmp * j);\n    }\n    if(inv) {\n \
-    \       for(int i = 0; i < n; ++i) res[i] /= n;\n    }\n    a = res;\n}\n\n//\
-    \ \u7573\u307F\u8FBC\u307F\uFF0E\n// \u6570\u5217a, b\u306B\u5BFE\u3057\u3066\uFF0C\
-    c[i]=sum_{k=0}^{i} a[k]*b[i-k] \u3068\u306A\u308B\u6570\u5217c\u3092\u6C42\u3081\
-    \u308B\uFF0EO(N^2).\ntemplate <typename Type, typename std::enable_if_t<std::is_integral_v<Type>,\
-    \ bool> = false>\nstd::vector<Type> convolve(const std::vector<Type> &a, const\
-    \ std::vector<Type> &b) {\n    if(a.size() == 0 or b.size() == 0) return std::vector<Type>();\n\
+    \ > &a, bool inv = false) {\n    if(a.empty()) return;\n    const int n = a.size();\n\
+    \    std::vector<std::complex<D> > res(n, 0.0);\n    D ang = 2 * PI / n;\n   \
+    \ if(inv) ang = -ang;\n    for(int i = 0; i < n; ++i) {\n        D tmp = ang *\
+    \ i;\n        for(int j = 0; j < n; ++j) res[i] += a[j] * std::polar<D>(1.0, tmp\
+    \ * j);\n    }\n    if(inv) {\n        for(int i = 0; i < n; ++i) res[i] /= n;\n\
+    \    }\n    a = res;\n}\n\n// \u7573\u307F\u8FBC\u307F\uFF0E\n// \u6570\u5217\
+    a, b\u306B\u5BFE\u3057\u3066\uFF0Cc[i]=sum_{k=0}^{i} a[k]*b[i-k] \u3068\u306A\u308B\
+    \u6570\u5217c\u3092\u6C42\u3081\u308B\uFF0EO(N^2).\ntemplate <typename Type>\n\
+    std::vector<Type> convolve_naive(const std::vector<Type> &a, const std::vector<Type>\
+    \ &b) {\n    if(a.size() == 0 or b.size() == 0) return std::vector<Type>();\n\
+    \    const int n = a.size(), m = b.size();\n    std::vector<Type> res(n + m -\
+    \ 1, 0);\n    for(int i = 0; i < n; ++i) {\n        for(int j = 0; j < m; ++j)\
+    \ res[i + j] += a[i] * b[j];\n    }\n    return res;\n}\n\n// \u7573\u307F\u8FBC\
+    \u307F\uFF0E\n// \u6570\u5217a, b\u306B\u5BFE\u3057\u3066\uFF0Cc[i]=sum_{k=0}^{i}\
+    \ a[k]*b[i-k] \u3068\u306A\u308B\u6570\u5217c\u3092\u6C42\u3081\u308B\uFF0EO(N^2).\n\
+    template <typename Type, typename std::enable_if_t<std::is_integral_v<Type>, bool>\
+    \ = false>\nstd::vector<Type> convolve(const std::vector<Type> &a, const std::vector<Type>\
+    \ &b) {\n    if(a.size() == 0 or b.size() == 0) return std::vector<Type>();\n\
     \    const int n = a.size() + b.size() - 1;\n    std::vector<std::complex<D> >\
     \ na(n, 0.0), nb(n, 0.0);\n    std::copy(a.begin(), a.end(), na.begin());\n  \
     \  std::copy(b.begin(), b.end(), nb.begin());\n    transform(na), transform(nb);\n\
@@ -83,7 +99,7 @@ data:
   isVerificationFile: false
   path: src/Math/Convolution/discrete_fourier_transform.hpp
   requiredBy: []
-  timestamp: '2023-10-05 13:40:44+09:00'
+  timestamp: '2023-10-07 23:19:22+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: src/Math/Convolution/discrete_fourier_transform.hpp
@@ -104,7 +120,7 @@ $$
 c_i = \sum_{k=0}^{i} a_k b_{i-k}
 $$
 
-となる長さ $N + M - 1$ の数列 $\lbrace c_n \rbrace$ を $\operatorname{\mathcal{O}} \left\lparen \left\lparen N + M \right\rparen^2 \right\rparen$ で求める．
+となる長さ $N + M - 1$ の数列 $\lbrace c_n \rbrace$ を $\mathcal{O} \left\lparen \left\lparen N + M \right\rparen ^2 \right\rparen$ で求める．
 
 
 ## 参考文献
