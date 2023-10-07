@@ -43,6 +43,7 @@
 "test/aoj-NTL_1_C.test.cpp": "2023-09-13 00:40:02 +0900",
 "test/aoj-NTL_1_D.test.cpp": "2023-09-13 00:24:42 +0900",
 "test/aoj-NTL_1_E.test.cpp": "2023-09-30 18:36:21 +0900",
+"test/yosupo-convolution_mod.test.cpp": "2023-10-07 23:19:22 +0900",
 "test/yosupo-enumerate_palindromes.test.cpp": "2023-09-24 00:38:57 +0900",
 "test/yosupo-persistent_unionfind.test.cpp": "2023-09-26 00:55:47 +0900",
 "test/yosupo-point_add_range_sum-binary_indexed_tree_zero.test.cpp": "2023-09-03 16:17:58 +0900",
