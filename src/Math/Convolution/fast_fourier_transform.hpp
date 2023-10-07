@@ -25,6 +25,7 @@ const D PI = std::acos(-1.0);
 // Fast Fourier Transform（高速フーリエ変換）.
 // 引数の数列の長さは2のべき乗であること．O(N*logN).
 void transform(std::vector<std::complex<D> > &a, bool inv = false) {
+    if(a.empty()) return;
     const int n = a.size();
     int h = 0;  // h:=log2(n).
     while(1 << h < n) h++;
@@ -49,6 +50,19 @@ void transform(std::vector<std::complex<D> > &a, bool inv = false) {
     if(inv) {
         for(int i = 0; i < n; ++i) a[i] /= n;
     }
+}
+
+// 畳み込み．
+// 数列a, bに対して，c[i]=sum_{k=0}^{i} a[k]*b[i-k] となる数列cを求める．O(N^2).
+template <typename Type>
+std::vector<Type> convolve_naive(const std::vector<Type> &a, const std::vector<Type> &b) {
+    if(a.size() == 0 or b.size() == 0) return std::vector<Type>();
+    const int n = a.size(), m = b.size();
+    std::vector<Type> res(n + m - 1, 0);
+    for(int i = 0; i < n; ++i) {
+        for(int j = 0; j < m; ++j) res[i + j] += a[i] * b[j];
+    }
+    return res;
 }
 
 // 畳み込み．
@@ -86,19 +100,6 @@ std::vector<Type> convolve(const std::vector<Type> &a, const std::vector<Type> &
     transform(na, true);
     std::vector<Type> res(n);
     for(int i = 0; i < n; ++i) res[i] = na[i].real();
-    return res;
-}
-
-// 畳み込み．
-// 数列a, bに対して，c[i]=sum_{k=0}^{i} a[k]*b[i-k] となる数列cを求める．O(N^2).
-template <typename Type>
-std::vector<Type> convolve_naive(const std::vector<Type> &a, const std::vector<Type> &b) {
-    if(a.size() == 0 or b.size() == 0) return std::vector<Type>();
-    const int n = a.size(), m = b.size();
-    std::vector<Type> res(n + m - 1, 0);
-    for(int i = 0; i < n; ++i) {
-        for(int j = 0; j < m; ++j) res[i + j] += a[i] * b[j];
-    }
     return res;
 }
 

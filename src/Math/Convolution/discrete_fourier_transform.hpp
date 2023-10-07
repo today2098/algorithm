@@ -22,6 +22,7 @@ const D PI = std::acos(-1.0);
 
 // Discrete Fourier Transform（離散フーリエ変換）. O(N^2).
 void transform(std::vector<std::complex<D> > &a, bool inv = false) {
+    if(a.empty()) return;
     const int n = a.size();
     std::vector<std::complex<D> > res(n, 0.0);
     D ang = 2 * PI / n;
@@ -34,6 +35,19 @@ void transform(std::vector<std::complex<D> > &a, bool inv = false) {
         for(int i = 0; i < n; ++i) res[i] /= n;
     }
     a = res;
+}
+
+// 畳み込み．
+// 数列a, bに対して，c[i]=sum_{k=0}^{i} a[k]*b[i-k] となる数列cを求める．O(N^2).
+template <typename Type>
+std::vector<Type> convolve_naive(const std::vector<Type> &a, const std::vector<Type> &b) {
+    if(a.size() == 0 or b.size() == 0) return std::vector<Type>();
+    const int n = a.size(), m = b.size();
+    std::vector<Type> res(n + m - 1, 0);
+    for(int i = 0; i < n; ++i) {
+        for(int j = 0; j < m; ++j) res[i + j] += a[i] * b[j];
+    }
+    return res;
 }
 
 // 畳み込み．
