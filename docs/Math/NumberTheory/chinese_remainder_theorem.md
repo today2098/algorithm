@@ -9,7 +9,7 @@ x &\equiv c \pmod n \notag
 \end{align}
 $$
 
-を満たす $0$ 以上 $\operatorname{lcm}(m,n)$ 以下の整数 $x$ を求める．
+を満たす $0$ 以上 $\operatorname{lcm}(m,n)$ 以下の非負整数 $x$ を求める．
 
 $x$ が存在する必要十分条件は
 
@@ -19,7 +19,7 @@ $$
 
 であること．
 
-実装では[拡張ユークリッドの互除法](https://today2098.github.io/algorithm/src/Math/NumberTheory/extgcd.hpp)を利用し，計算量は $\mathcal{O}(\log a)$ となる． 
+実装では[拡張ユークリッドの互除法](https://today2098.github.io/algorithm/src/Math/NumberTheory/extgcd.hpp)を利用し，計算量は $\mathcal{O}(\log(\max(m,n)))$ となる． 
 
 
 ## 参考文献
