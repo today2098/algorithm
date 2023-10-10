@@ -1,7 +1,10 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':warning:'
+    path: src/Math/NumberTheory/garner.hpp
+    title: Garner's Algorithm
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
@@ -36,7 +39,8 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: src/Math/ModularArithmetic/mod_inv.hpp
-  requiredBy: []
+  requiredBy:
+  - src/Math/NumberTheory/garner.hpp
   timestamp: '2023-08-30 16:00:58+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []

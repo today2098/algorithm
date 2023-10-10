@@ -179,6 +179,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: src/Math/NumberTheory/floor_sum.hpp
       title: Floor Sum
+    - icon: ':warning:'
+      path: src/Math/NumberTheory/garner.hpp
+      title: Garner's Algorithm
     - icon: ':heavy_check_mark:'
       path: src/Math/NumberTheory/igcd.hpp
       title: "Greatest Common Divisor\uFF08\u6700\u5927\u516C\u7D04\u6570\uFF09"
