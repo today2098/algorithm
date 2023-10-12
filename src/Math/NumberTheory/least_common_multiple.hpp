@@ -6,7 +6,7 @@
  * @docs docs/Math/NumberTheory/least_common_multiple.md
  */
 
-#include "igcd.hpp"
+#include "greatest_common_divisor.hpp"
 
 namespace algorithm {
 

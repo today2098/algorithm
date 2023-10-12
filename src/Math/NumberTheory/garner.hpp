@@ -2,7 +2,7 @@
 #define ALGORITHM_GARNER_HPP 1
 
 /**
- * @brief Garner's Algorithm
+ * @brief Garner's Algorithm（中国剰余定理）
  * @docs docs/Math/NumberTheory/garner.md
  */
 
@@ -14,7 +14,9 @@
 namespace algorithm {
 
 // 各iについて，x≡b[i] (mod m[i]) を満たす最小の非負整数x (0≦x＜m[0]m[1]...m[N-1]) を求める．
-// ただし，任意のi,j (i≠j) について，gcd(m[i],m[j])=1 であること．
+// ただし，以下の制約を満たすこと．
+//   - 任意のiについて，0≦b[i]<m[i]
+//   - 任意のi,j (i≠j) について，gcd(m[i],m[j])=1
 template <typename Type>
 long long garner(const std::vector<Type> &bs, const std::vector<Type> &ms) {
     assert(bs.size() == ms.size());
@@ -23,14 +25,16 @@ long long garner(const std::vector<Type> &bs, const std::vector<Type> &ms) {
     for(int i = 0, n = bs.size(); i < n; ++i) {
         long long t = (bs[i] - x % ms[i]) * mod_inv(m_prod, ms[i]) % ms[i];
         if(t < 0) t += ms[i];
-        x += m_prod * t;
+        x += t * m_prod;
         m_prod *= ms[i];
     }
     return x;
 }
 
 // 各iについて，x≡b[i] (mod m[i]) を満たす最小の非負整数x (0≦x＜m[0]m[1]...m[N-1]) を求め，x%mod を返す．
-// ただし，任意のi,j (i≠j) について，gcd(m[i],m[j])=1 であること．
+// ただし，以下の制約を満たすこと．
+//   - 任意のiについて，0≦b[i]<m[i]
+//   - 任意のi,j (i≠j) について，gcd(m[i],m[j])=1
 template <typename Type>
 long long garner(const std::vector<Type> &bs, const std::vector<Type> &ms, long long mod) {
     assert(bs.size() == ms.size());
@@ -43,10 +47,10 @@ long long garner(const std::vector<Type> &bs, const std::vector<Type> &ms, long 
         long long t = (bs[i] - constants[i]) * mod_inv(coeffs[i], ms[i]) % ms[i];
         if(t < 0) t += ms[i];
         for(int j = i + 1; j < n; ++j) {
-            constants[j] = (constants[j] + coeffs[j] * t % ms[j]) % ms[j];
+            constants[j] = (constants[j] + t * coeffs[j] % ms[j]) % ms[j];
             coeffs[j] = coeffs[j] * ms[i] % ms[j];
         }
-        x = (x + m_prod * t % mod) % mod;
+        x = (x + t * m_prod % mod) % mod;
         m_prod = m_prod * ms[i] % mod;
     }
     return x;
