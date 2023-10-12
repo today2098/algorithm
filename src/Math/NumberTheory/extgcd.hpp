@@ -9,7 +9,7 @@
 namespace algorithm {
 
 // 拡張ユークリッドの互除法．
-// ax+by=gcd(a,b) を満たす整数の組(x,y)を求め，gcd(a,b)を返す．O(logN).
+// ax+by=gcd(a,b) を満たす整数の組(x,y)を求め，gcd(a,b)を返す．O(log(min(a,b))).
 template <typename Type>
 Type extgcd(Type a, Type b, Type &x, Type &y) {
     if(b == 0) {

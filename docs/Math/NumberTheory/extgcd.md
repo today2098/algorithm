@@ -3,21 +3,21 @@
 2つの整数 $a, b$ に対して，
 
 $$
-ax + by = \text{gcd}(a, b)
+ax + by = \gcd(a, b)
 $$
 
 を満たす整数の組 $(x, y)$ を，ユークリッドの互除法を応用して求める．
 ただし，解は複数存在するが，このうち $\lvert x \rvert + \lvert y \rvert$ が最小となるものとする．
 
-この解を $(x_1, y_1)$ とすると他のすべての解は 
+この解を $(x_1, y_1)$ とすると，他のすべての解は 
 
 $$
-(x_1 + k \cdot \frac{b}{\gcd(a, b)}, y_1 - k \cdot \frac{a}{\gcd(a, b)})
+\left( x_1 + k \cdot \frac{b}{\gcd(a, b)}, \ y_1 - k \cdot \frac{a}{\gcd(a, b)} \right)
 $$
 
 から求められる（ただし，$k$ は整数）．
 
-計算量は，$a \geq b$ とすると $\mathcal{O}(\log a)$ となる． 
+アルゴリズムの計算量は $\mathcal{O}(\log(\min(a,b)))$ となる． 
 
 
 ## 参考文献
