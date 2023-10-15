@@ -3,7 +3,7 @@
 #include <cstdint>
 #include <iostream>
 
-#include "../src/Math/NumberTheory/ilcm.hpp"
+#include "../src/Math/NumberTheory/least_common_multiple.hpp"
 
 int main() {
     int n;
