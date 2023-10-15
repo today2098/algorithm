@@ -1,6 +1,6 @@
 ## 概要
 
-整数列 $m_1, m_2, \ldots, m_N$ と $b_1, b_2, \ldots, b_N$ に対して
+非負整数列 $m_1, m_2, \ldots, m_N$ と $b_1, b_2, \ldots, b_N$ に対して
 
 $$
 \begin{align}
@@ -16,15 +16,16 @@ $$
 ただし，以下の制約を満たすこと．
 これを満たさない場合は未定義動作となる．
 
-- 任意の $i, j \ (i \neq j)$ について，$\operatorname{lcm}(m_i, m_j) = 1$
+- 任意の $i$ について，$0 \leq b_i < m_i$
+- 任意の $i, j \ (i \neq j)$ について，$\gcd(m_i, m_j) = 1$
 
 
 ### アルゴリズムの説明
 
-基本的なアイデアは求める解 $x$ を次のような形で考える．
+基本的なアイデアは，求める解 $x$ を次のような形で考える．
 
 $$
-x = t_1 + t_2 m_1 + t_3 m_1 m_2 + \cdots + t_N m_1 m_2 \cdots m_{N-1} \tag{※}
+x = t_1 + t_2 m_1 + t_3 m_1 m_2 + t_4 m_1 m_2 m_3 + \cdots + t_N m_1 m_2 \cdots m_{N-1} \tag{※}
 $$
 
 このとき
@@ -34,21 +35,22 @@ $$
 &t_1 = b_1 \pmod{m_1} \notag\\
 &t_1 + t_2 m_1 = b_2 \pmod{m_2} \notag\\
 &t_1 + t_2 m_1 + t_3 m_1 m_2 = b_3 \pmod{m_3} \notag\\
+&t_1 + t_2 m_1 + t_3 m_1 m_2 + t_4 m_1 m_2 m_3 = b_4 \pmod{m_4} \notag\\
 &\cdots \notag\\
 &t_1 + t_2 m_1 + t_3 m_1 m_2 + \cdots + t_N m_1 m_2 \cdots m_{N-1} = b_N \pmod{m_N} \notag
 \end{align}
 $$
 
-となる．
-ここで $m_i$ を法としたときの $m_j$ の逆元を $m_{j,i}^{-1}$ とすると
+であり，
 
 $$
 \begin{align}
 &t_1 = b_1 \pmod{m_1} \notag\\
-&t_2 = (b_2 - t_1) m_{1,2}^{-1} \pmod{m_2} \notag\\
-&t_3 = (b_3 - t_1 - t_2 m_1) m_{1,3}^{-1} m_{2,3}^{-1} = ((b_3 - t_1) m_{1,3}^{-1} - t_2) m_{2,3}^{-1} \pmod{m_2} \notag\\
+&t_2 = (b_2 - t_1) \cdot m_1^{-1} \pmod{m_2} \notag\\
+&t_3 = (b_3 - t_1 - t_2 m_1) \cdot (m_1 m_2)^{-1} \pmod{m_2} \notag\\
+&t_4 = (b_4 - t_1 - t_2 m_1 - t_3 m_1 m_2) \cdot (m_1 m_2 m_3)^{-1} \pmod{m_3} \notag\\
 &\cdots \notag\\
-&t_N = (( \cdots ((b_N - t_1) m_{1,N}^{-1} - t_2) m_{2,N}^{-1} - \cdots ) m_{N-2,N}^{-1} - t_{N-1}) m_{N-1,N}^{-1} \pmod{m_N} \notag
+&t_N = (b_n - t_1 - t_2 m_1 - \cdots - t_{N-1} m_1 m_2 \cdots m_{N-2}) \cdot (m_1 m_2 \cdots m_{N-1})^{-1} \pmod{m_N} \notag
 \end{align}
 $$
 

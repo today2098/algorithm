@@ -25,10 +25,10 @@ data:
     \u9664\u6CD5\n * @docs docs/Math/NumberTheory/extgcd.md\n */\n\nnamespace algorithm\
     \ {\n\n// \u62E1\u5F35\u30E6\u30FC\u30AF\u30EA\u30C3\u30C9\u306E\u4E92\u9664\u6CD5\
     \uFF0E\n// ax+by=gcd(a,b) \u3092\u6E80\u305F\u3059\u6574\u6570\u306E\u7D44(x,y)\u3092\
-    \u6C42\u3081\uFF0Cgcd(a,b)\u3092\u8FD4\u3059\uFF0EO(logN).\ntemplate <typename\
-    \ Type>\nType extgcd(Type a, Type b, Type &x, Type &y) {\n    if(b == 0) {\n \
-    \       x = 1, y = 0;\n        return a;\n    }\n    Type d = extgcd(b, a % b,\
-    \ y, x);\n    y -= a / b * x;\n    return d;\n}\n\n}  // namespace algorithm\n\
+    \u6C42\u3081\uFF0Cgcd(a,b)\u3092\u8FD4\u3059\uFF0EO(log(min(a,b))).\ntemplate\
+    \ <typename Type>\nType extgcd(Type a, Type b, Type &x, Type &y) {\n    if(b ==\
+    \ 0) {\n        x = 1, y = 0;\n        return a;\n    }\n    Type d = extgcd(b,\
+    \ a % b, y, x);\n    y -= a / b * x;\n    return d;\n}\n\n}  // namespace algorithm\n\
     \n\n#line 13 \"src/Math/NumberTheory/chinese_remainder_theorem.hpp\"\n\nnamespace\
     \ algorithm {\n\n// Chinese Remainder Theorem\uFF08\u4E2D\u56FD\u5270\u4F59\u5B9A\
     \u7406\uFF09.\n// x\u2261b1 (mod m1) \u304B\u3064 x\u2261b2 (mod m2) \u3092\u6E80\
@@ -85,7 +85,7 @@ data:
   isVerificationFile: false
   path: src/Math/NumberTheory/chinese_remainder_theorem.hpp
   requiredBy: []
-  timestamp: '2023-10-10 21:18:55+09:00'
+  timestamp: '2023-10-12 14:57:01+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj-2659.test.cpp

@@ -157,6 +157,9 @@ data:
       path: src/Math/ModularArithmetic/dynamic_modint.hpp
       title: "\u52D5\u7684modint"
     - icon: ':warning:'
+      path: src/Math/ModularArithmetic/linear_congruence.hpp
+      title: "\u4E00\u6B21\u5408\u540C\u5F0F ax\u2261c (mod m)"
+    - icon: ':warning:'
       path: src/Math/ModularArithmetic/mod_inv.hpp
       title: "\u30E2\u30B8\u30E5\u30E9\u9006\u6570\uFF08\u4E57\u6CD5\u9006\u5143\uFF09"
     - icon: ':heavy_check_mark:'
@@ -181,16 +184,16 @@ data:
       title: Floor Sum
     - icon: ':warning:'
       path: src/Math/NumberTheory/garner.hpp
-      title: Garner's Algorithm
-    - icon: ':heavy_check_mark:'
-      path: src/Math/NumberTheory/igcd.hpp
+      title: "Garner's Algorithm\uFF08\u4E2D\u56FD\u5270\u4F59\u5B9A\u7406\uFF09"
+    - icon: ':warning:'
+      path: src/Math/NumberTheory/greatest_common_divisor.hpp
       title: "Greatest Common Divisor\uFF08\u6700\u5927\u516C\u7D04\u6570\uFF09"
-    - icon: ':heavy_check_mark:'
-      path: src/Math/NumberTheory/ilcm.hpp
-      title: "Least Common Multiple\uFF08\u6700\u5C0F\u516C\u500D\u6570\uFF09"
     - icon: ':heavy_check_mark:'
       path: src/Math/NumberTheory/is_prime.hpp
       title: "\u7D20\u6570\u5224\u5B9A"
+    - icon: ':warning:'
+      path: src/Math/NumberTheory/least_common_multiple.hpp
+      title: "Least Common Multiple\uFF08\u6700\u5C0F\u516C\u500D\u6570\uFF09"
     - icon: ':heavy_check_mark:'
       path: src/Math/NumberTheory/liner_sieve.hpp
       title: "\u7DDA\u5F62\u7BE9"
@@ -389,7 +392,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj-NTL_1_B.test.cpp
       title: test/aoj-NTL_1_B.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/aoj-NTL_1_C.test.cpp
       title: test/aoj-NTL_1_C.test.cpp
     - icon: ':heavy_check_mark:'

@@ -23,10 +23,10 @@ data:
     \u6CD5\n * @docs docs/Math/NumberTheory/extgcd.md\n */\n\nnamespace algorithm\
     \ {\n\n// \u62E1\u5F35\u30E6\u30FC\u30AF\u30EA\u30C3\u30C9\u306E\u4E92\u9664\u6CD5\
     \uFF0E\n// ax+by=gcd(a,b) \u3092\u6E80\u305F\u3059\u6574\u6570\u306E\u7D44(x,y)\u3092\
-    \u6C42\u3081\uFF0Cgcd(a,b)\u3092\u8FD4\u3059\uFF0EO(logN).\ntemplate <typename\
-    \ Type>\nType extgcd(Type a, Type b, Type &x, Type &y) {\n    if(b == 0) {\n \
-    \       x = 1, y = 0;\n        return a;\n    }\n    Type d = extgcd(b, a % b,\
-    \ y, x);\n    y -= a / b * x;\n    return d;\n}\n\n}  // namespace algorithm\n\
+    \u6C42\u3081\uFF0Cgcd(a,b)\u3092\u8FD4\u3059\uFF0EO(log(min(a,b))).\ntemplate\
+    \ <typename Type>\nType extgcd(Type a, Type b, Type &x, Type &y) {\n    if(b ==\
+    \ 0) {\n        x = 1, y = 0;\n        return a;\n    }\n    Type d = extgcd(b,\
+    \ a % b, y, x);\n    y -= a / b * x;\n    return d;\n}\n\n}  // namespace algorithm\n\
     \n\n#line 1 \"src/Utils/debug.hpp\"\n\n\n\n/**\n * @brief \u30C7\u30D0\u30C3\u30B0\
     \u7528\u95A2\u6570\u5F62\u5F0F\u30DE\u30AF\u30ED\n * @docs docs/Utils/debug.md\n\
     \ */\n\n#line 10 \"src/Utils/debug.hpp\"\n#include <iterator>\n#include <queue>\n\
@@ -94,7 +94,7 @@ data:
   isVerificationFile: true
   path: test/aoj-NTL_1_E.test.cpp
   requiredBy: []
-  timestamp: '2023-09-30 18:36:21+09:00'
+  timestamp: '2023-10-12 14:57:01+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj-NTL_1_E.test.cpp
