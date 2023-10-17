@@ -14,7 +14,7 @@
 namespace algorithm {
 
 // Chinese Remainder Theorem（中国剰余定理）.
-// x≡b1 (mod m1) かつ x≡b2 (mod m2) を満たす整数x (0≦x＜lcm(m1,m2)) を求める．
+// 非負整数m1,b1,m2,b2に対して x≡b1 (mod m1) かつ x≡b2 (mod m2) を満たす非負整数x (0≦x＜lcm(m1,m2)) を求める．
 // 解xが存在する必要十分条件は b1≡b2 (mod gcd(m1,m2)) であること．
 // 返り値はpair of (x, lcm(m1,m2))．解なしの場合，(0,-1)を返す．
 std::pair<long long, long long> crt(long long b1, long long m1, long long b2, long long m2) {
@@ -29,7 +29,7 @@ std::pair<long long, long long> crt(long long b1, long long m1, long long b2, lo
 }
 
 // Chinese Remainder Theorem（中国剰余定理）.
-// 各iについて，x≡b[i] (mod m[i]) を満たす整数x (0≦x＜lcm(m[0],m[1],...,m[N-1])) を求める．
+// 各iについて，非負整数m[i],b[i]に対して x≡b[i] (mod m[i]) を満たす非負整数x (0≦x＜lcm(m[0],m[1],...,m[N-1])) を求める．
 // 返り値はpair of (x, lcm(m[0],m[1],...,m[N-1]))．解なしの場合，(0,-1)を返す．
 template <typename Type>
 std::pair<long long, long long> crt(const std::vector<Type> &bs, const std::vector<Type> &ms) {
