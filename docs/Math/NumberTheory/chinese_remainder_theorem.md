@@ -1,25 +1,32 @@
 ## 概要
 
-整数 $m, n, b, c$ に対して，
+非負整数 $m_1, m_2, b_1, b_2$ に対して，
 
 $$
 \begin{align}
-x &\equiv b \pmod m, \notag\\
-x &\equiv c \pmod n \notag
+x &\equiv b_1 \pmod{m_1}, \notag\\
+x &\equiv b_2 \pmod{m_2} \notag
 \end{align}
 $$
 
-を満たす $0$ 以上 $\operatorname{lcm}(m,n)$ 以下の非負整数 $x$ を求める．
+を満たす非負整数 $x \ (0 \leq x < \operatorname{lcm}(m_1,m_2))$ を求める．
 
-$x$ が存在する必要十分条件は
+解 $x$ が存在する必要十分条件は
 
 $$
-b \equiv c \pmod{\gcd(m,n)}
+b_1 \equiv b_2 \pmod{\gcd(m_1,m_2)}
 $$
 
 であること．
+またこのときに限り，解 $x$ が $0$ 以上 $\operatorname{lcm}(m_1,m_2)$ 未満の範囲にただ1つ存在し，それを $r$ とすると
 
-実装では[拡張ユークリッドの互除法](https://today2098.github.io/algorithm/src/Math/NumberTheory/extgcd.hpp)を利用し，計算量は $\mathcal{O}(\log(\max(m,n)))$ となる． 
+$$
+x \equiv r \pmod{\operatorname{lcm}(m_1,m_2)}
+$$
+
+が成り立つ．
+
+実装では[拡張ユークリッドの互除法](https://today2098.github.io/algorithm/src/Math/NumberTheory/extgcd.hpp)を利用し，計算量は $\mathcal{O}(\log(\min(m_1,m_2)))$ となる．
 
 
 ## 参考文献

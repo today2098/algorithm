@@ -2,13 +2,16 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: src/Math/NumberTheory/least_common_multiple.hpp
     title: "Least Common Multiple\uFF08\u6700\u5C0F\u516C\u500D\u6570\uFF09"
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/aoj-NTL_1_C.test.cpp
+    title: test/aoj-NTL_1_C.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     _deprecated_at_docs: docs/Math/NumberTheory/greatest_common_divisor.md
     document_title: "Greatest Common Divisor\uFF08\u6700\u5927\u516C\u7D04\u6570\uFF09"
@@ -31,8 +34,9 @@ data:
   requiredBy:
   - src/Math/NumberTheory/least_common_multiple.hpp
   timestamp: '2023-10-12 15:22:35+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/aoj-NTL_1_C.test.cpp
 documentation_of: src/Math/NumberTheory/greatest_common_divisor.hpp
 layout: document
 redirect_from:

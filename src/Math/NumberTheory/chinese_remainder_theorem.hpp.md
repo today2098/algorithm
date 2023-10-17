@@ -31,20 +31,22 @@ data:
     \ a % b, y, x);\n    y -= a / b * x;\n    return d;\n}\n\n}  // namespace algorithm\n\
     \n\n#line 13 \"src/Math/NumberTheory/chinese_remainder_theorem.hpp\"\n\nnamespace\
     \ algorithm {\n\n// Chinese Remainder Theorem\uFF08\u4E2D\u56FD\u5270\u4F59\u5B9A\
-    \u7406\uFF09.\n// x\u2261b1 (mod m1) \u304B\u3064 x\u2261b2 (mod m2) \u3092\u6E80\
-    \u305F\u3059\u6574\u6570x (0\u2266x\uFF1Clcm(m1,m2)) \u3092\u6C42\u3081\u308B\uFF0E\
-    \n// \u89E3x\u304C\u5B58\u5728\u3059\u308B\u5FC5\u8981\u5341\u5206\u6761\u4EF6\
-    \u306F b1\u2261b2 (mod gcd(m1,m2)) \u3067\u3042\u308B\u3053\u3068\uFF0E\n// \u8FD4\
-    \u308A\u5024\u306Fpair of (x, lcm(m1,m2))\uFF0E\u89E3\u306A\u3057\u306E\u5834\u5408\
-    \uFF0C(0,-1)\u3092\u8FD4\u3059\uFF0E\nstd::pair<long long, long long> crt(long\
-    \ long b1, long long m1, long long b2, long long m2) {\n    long long p, q;\n\
-    \    long long d = extgcd(m1, m2, p, q);     // p is inverse of m1/d (mod m2/d).\n\
-    \    if((b2 - b1) % d != 0) return {0, -1};  // \u89E3\u306A\u3057\uFF0E\n   \
-    \ long long m = m1 / d * m2;              // lcm(m1,m2).\n    long long tmp =\
-    \ (b2 - b1) / d * p % (m2 / d);\n    long long r = (b1 + m1 * tmp) % m;\n    if(r\
-    \ < 0) r += m;\n    return {r, m};\n}\n\n// Chinese Remainder Theorem\uFF08\u4E2D\
+    \u7406\uFF09.\n// \u975E\u8CA0\u6574\u6570m1,b1,m2,b2\u306B\u5BFE\u3057\u3066\
+    \ x\u2261b1 (mod m1) \u304B\u3064 x\u2261b2 (mod m2) \u3092\u6E80\u305F\u3059\u975E\
+    \u8CA0\u6574\u6570x (0\u2266x\uFF1Clcm(m1,m2)) \u3092\u6C42\u3081\u308B\uFF0E\n\
+    // \u89E3x\u304C\u5B58\u5728\u3059\u308B\u5FC5\u8981\u5341\u5206\u6761\u4EF6\u306F\
+    \ b1\u2261b2 (mod gcd(m1,m2)) \u3067\u3042\u308B\u3053\u3068\uFF0E\n// \u8FD4\u308A\
+    \u5024\u306Fpair of (x, lcm(m1,m2))\uFF0E\u89E3\u306A\u3057\u306E\u5834\u5408\uFF0C\
+    (0,-1)\u3092\u8FD4\u3059\uFF0E\nstd::pair<long long, long long> crt(long long\
+    \ b1, long long m1, long long b2, long long m2) {\n    long long p, q;\n    long\
+    \ long d = extgcd(m1, m2, p, q);     // p is inverse of m1/d (mod m2/d).\n   \
+    \ if((b2 - b1) % d != 0) return {0, -1};  // \u89E3\u306A\u3057\uFF0E\n    long\
+    \ long m = m1 / d * m2;              // lcm(m1,m2).\n    long long tmp = (b2 -\
+    \ b1) / d * p % (m2 / d);\n    long long r = (b1 + m1 * tmp) % m;\n    if(r <\
+    \ 0) r += m;\n    return {r, m};\n}\n\n// Chinese Remainder Theorem\uFF08\u4E2D\
     \u56FD\u5270\u4F59\u5B9A\u7406\uFF09.\n// \u5404i\u306B\u3064\u3044\u3066\uFF0C\
-    x\u2261b[i] (mod m[i]) \u3092\u6E80\u305F\u3059\u6574\u6570x (0\u2266x\uFF1Clcm(m[0],m[1],...,m[N-1]))\
+    \u975E\u8CA0\u6574\u6570m[i],b[i]\u306B\u5BFE\u3057\u3066 x\u2261b[i] (mod m[i])\
+    \ \u3092\u6E80\u305F\u3059\u975E\u8CA0\u6574\u6570x (0\u2266x\uFF1Clcm(m[0],m[1],...,m[N-1]))\
     \ \u3092\u6C42\u3081\u308B\uFF0E\n// \u8FD4\u308A\u5024\u306Fpair of (x, lcm(m[0],m[1],...,m[N-1]))\uFF0E\
     \u89E3\u306A\u3057\u306E\u5834\u5408\uFF0C(0,-1)\u3092\u8FD4\u3059\uFF0E\ntemplate\
     \ <typename Type>\nstd::pair<long long, long long> crt(const std::vector<Type>\
@@ -58,20 +60,22 @@ data:
     \u7406\uFF09\n * @docs docs/Math/NumberTheory/chinese_remainder_theorem.md\n */\n\
     \n#include <cassert>\n#include <vector>\n\n#include \"extgcd.hpp\"\n\nnamespace\
     \ algorithm {\n\n// Chinese Remainder Theorem\uFF08\u4E2D\u56FD\u5270\u4F59\u5B9A\
-    \u7406\uFF09.\n// x\u2261b1 (mod m1) \u304B\u3064 x\u2261b2 (mod m2) \u3092\u6E80\
-    \u305F\u3059\u6574\u6570x (0\u2266x\uFF1Clcm(m1,m2)) \u3092\u6C42\u3081\u308B\uFF0E\
-    \n// \u89E3x\u304C\u5B58\u5728\u3059\u308B\u5FC5\u8981\u5341\u5206\u6761\u4EF6\
-    \u306F b1\u2261b2 (mod gcd(m1,m2)) \u3067\u3042\u308B\u3053\u3068\uFF0E\n// \u8FD4\
-    \u308A\u5024\u306Fpair of (x, lcm(m1,m2))\uFF0E\u89E3\u306A\u3057\u306E\u5834\u5408\
-    \uFF0C(0,-1)\u3092\u8FD4\u3059\uFF0E\nstd::pair<long long, long long> crt(long\
-    \ long b1, long long m1, long long b2, long long m2) {\n    long long p, q;\n\
-    \    long long d = extgcd(m1, m2, p, q);     // p is inverse of m1/d (mod m2/d).\n\
-    \    if((b2 - b1) % d != 0) return {0, -1};  // \u89E3\u306A\u3057\uFF0E\n   \
-    \ long long m = m1 / d * m2;              // lcm(m1,m2).\n    long long tmp =\
-    \ (b2 - b1) / d * p % (m2 / d);\n    long long r = (b1 + m1 * tmp) % m;\n    if(r\
-    \ < 0) r += m;\n    return {r, m};\n}\n\n// Chinese Remainder Theorem\uFF08\u4E2D\
+    \u7406\uFF09.\n// \u975E\u8CA0\u6574\u6570m1,b1,m2,b2\u306B\u5BFE\u3057\u3066\
+    \ x\u2261b1 (mod m1) \u304B\u3064 x\u2261b2 (mod m2) \u3092\u6E80\u305F\u3059\u975E\
+    \u8CA0\u6574\u6570x (0\u2266x\uFF1Clcm(m1,m2)) \u3092\u6C42\u3081\u308B\uFF0E\n\
+    // \u89E3x\u304C\u5B58\u5728\u3059\u308B\u5FC5\u8981\u5341\u5206\u6761\u4EF6\u306F\
+    \ b1\u2261b2 (mod gcd(m1,m2)) \u3067\u3042\u308B\u3053\u3068\uFF0E\n// \u8FD4\u308A\
+    \u5024\u306Fpair of (x, lcm(m1,m2))\uFF0E\u89E3\u306A\u3057\u306E\u5834\u5408\uFF0C\
+    (0,-1)\u3092\u8FD4\u3059\uFF0E\nstd::pair<long long, long long> crt(long long\
+    \ b1, long long m1, long long b2, long long m2) {\n    long long p, q;\n    long\
+    \ long d = extgcd(m1, m2, p, q);     // p is inverse of m1/d (mod m2/d).\n   \
+    \ if((b2 - b1) % d != 0) return {0, -1};  // \u89E3\u306A\u3057\uFF0E\n    long\
+    \ long m = m1 / d * m2;              // lcm(m1,m2).\n    long long tmp = (b2 -\
+    \ b1) / d * p % (m2 / d);\n    long long r = (b1 + m1 * tmp) % m;\n    if(r <\
+    \ 0) r += m;\n    return {r, m};\n}\n\n// Chinese Remainder Theorem\uFF08\u4E2D\
     \u56FD\u5270\u4F59\u5B9A\u7406\uFF09.\n// \u5404i\u306B\u3064\u3044\u3066\uFF0C\
-    x\u2261b[i] (mod m[i]) \u3092\u6E80\u305F\u3059\u6574\u6570x (0\u2266x\uFF1Clcm(m[0],m[1],...,m[N-1]))\
+    \u975E\u8CA0\u6574\u6570m[i],b[i]\u306B\u5BFE\u3057\u3066 x\u2261b[i] (mod m[i])\
+    \ \u3092\u6E80\u305F\u3059\u975E\u8CA0\u6574\u6570x (0\u2266x\uFF1Clcm(m[0],m[1],...,m[N-1]))\
     \ \u3092\u6C42\u3081\u308B\uFF0E\n// \u8FD4\u308A\u5024\u306Fpair of (x, lcm(m[0],m[1],...,m[N-1]))\uFF0E\
     \u89E3\u306A\u3057\u306E\u5834\u5408\uFF0C(0,-1)\u3092\u8FD4\u3059\uFF0E\ntemplate\
     \ <typename Type>\nstd::pair<long long, long long> crt(const std::vector<Type>\
@@ -85,7 +89,7 @@ data:
   isVerificationFile: false
   path: src/Math/NumberTheory/chinese_remainder_theorem.hpp
   requiredBy: []
-  timestamp: '2023-10-12 14:57:01+09:00'
+  timestamp: '2023-10-17 16:54:43+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj-2659.test.cpp
@@ -98,26 +102,33 @@ title: "Chinese Remainder Theorem\uFF08\u4E2D\u56FD\u5270\u4F59\u5B9A\u7406\uFF0
 ---
 ## 概要
 
-整数 $m, n, b, c$ に対して，
+非負整数 $m_1, m_2, b_1, b_2$ に対して，
 
 $$
 \begin{align}
-x &\equiv b \pmod m, \notag\\
-x &\equiv c \pmod n \notag
+x &\equiv b_1 \pmod{m_1}, \notag\\
+x &\equiv b_2 \pmod{m_2} \notag
 \end{align}
 $$
 
-を満たす $0$ 以上 $\operatorname{lcm}(m,n)$ 以下の非負整数 $x$ を求める．
+を満たす非負整数 $x \ (0 \leq x < \operatorname{lcm}(m_1,m_2))$ を求める．
 
-$x$ が存在する必要十分条件は
+解 $x$ が存在する必要十分条件は
 
 $$
-b \equiv c \pmod{\gcd(m,n)}
+b_1 \equiv b_2 \pmod{\gcd(m_1,m_2)}
 $$
 
 であること．
+またこのときに限り，解 $x$ が $0$ 以上 $\operatorname{lcm}(m_1,m_2)$ 未満の範囲にただ1つ存在し，それを $r$ とすると
 
-実装では[拡張ユークリッドの互除法](https://today2098.github.io/algorithm/src/Math/NumberTheory/extgcd.hpp)を利用し，計算量は $\mathcal{O}(\log(\max(m,n)))$ となる． 
+$$
+x \equiv r \pmod{\operatorname{lcm}(m_1,m_2)}
+$$
+
+が成り立つ．
+
+実装では[拡張ユークリッドの互除法](https://today2098.github.io/algorithm/src/Math/NumberTheory/extgcd.hpp)を利用し，計算量は $\mathcal{O}(\log(\min(m_1,m_2)))$ となる．
 
 
 ## 参考文献

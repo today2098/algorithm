@@ -15,12 +15,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj-DSL_2_I.test.cpp
     title: test/aoj-DSL_2_I.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo-range_affine_range_sum.test.cpp
     title: test/yosupo-range_affine_range_sum.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     _deprecated_at_docs: docs/DataStructure/SegmentTree/lazy_segment_tree.md
     document_title: "Lazy Segment Tree\uFF08\u9045\u5EF6\u8A55\u4FA1\u30BB\u30B0\u30E1\
@@ -263,7 +263,7 @@ data:
   path: src/DataStructure/SegmentTree/lazy_segment_tree.hpp
   requiredBy: []
   timestamp: '2023-09-23 04:54:39+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/aoj-DSL_2_F.test.cpp
   - test/yosupo-range_affine_range_sum.test.cpp

@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj-3110.test.cpp
     title: test/aoj-3110.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     _deprecated_at_docs: docs/Utils/table.md
     links: []
@@ -29,7 +29,7 @@ data:
   path: src/Utils/table.hpp
   requiredBy: []
   timestamp: '2023-09-25 15:35:18+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/aoj-3110.test.cpp
 documentation_of: src/Utils/table.hpp
