@@ -10,10 +10,12 @@
 #include <iostream>
 #include <utility>
 
+#include "modint_base.hpp"
+
 namespace algorithm {
 
 template <int id>
-class DynamicModint {
+class DynamicModint : ModintBase {
     static int mod;
     long long val;
 

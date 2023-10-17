@@ -764,7 +764,7 @@
 		"prefix": "DynamicModint",
 		"body": [
 			"template <int id>",
-			"class DynamicModint {",
+			"class DynamicModint : ModintBase {",
 			"    static int mod;",
 			"    long long val;",
 			"",
@@ -1756,8 +1756,16 @@
 		"scope": "cpp",
 		"prefix": "Modint",
 		"body": [
+			"class ModintBase {};",
+			"",
+			"template <class T>",
+			"using is_modint = std::is_base_of<ModintBase, T>;",
+			"",
+			"template <class T>",
+			"inline constexpr bool is_modint_v = is_modint<T>::value;",
+			"",
 			"template <int mod>",
-			"class Modint {",
+			"class Modint : ModintBase {",
 			"    long long val;",
 			"",
 			"    void normalize() {",
@@ -1852,7 +1860,21 @@
 			"using mint998244353 = Modint<998'244'353>;",
 			"using mint1000000007 = Modint<1'000'000'007>;"
 		],
-		"description": ""
+		"description": "Modint構造体"
+	},
+	"ModintBase": {
+		"scope": "cpp",
+		"prefix": "ModintBase",
+		"body": [
+			"class ModintBase {};",
+			"",
+			"template <class T>",
+			"using is_modint = std::is_base_of<ModintBase, T>;",
+			"",
+			"template <class T>",
+			"inline constexpr bool is_modint_v = is_modint<T>::value;"
+		],
+		"description": "Modint構造体の基底クラス"
 	},
 	"Montmort": {
 		"scope": "cpp",
