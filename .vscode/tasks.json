@@ -1,22 +1,21 @@
 {
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
     "tasks": [
         {
-            "type": "cppbuild",
-            "label": "C/C++: g++ アクティブなファイルのビルド",
+            "label": "C/C++ g++ build active file",
+            "type": "shell",
             "command": "/usr/bin/g++",
             "args": [
                 "-std=c++17",
                 "-D=DEBUG",
-                "-I",
-                "~/prog/repos/ac-library",
-                "-g",
                 "-O2",
                 "-Wall",
                 "-Wextra",
                 "-fdiagnostics-color=always",
                 "-o",
-                // "${fileDirname}/${fileBasenameNoExtension}",
-                "${workspaceRoot}/debug.out",
+                "${workspaceFolder}/debug.out",
                 "${file}"
             ],
             "options": {
@@ -25,12 +24,7 @@
             "problemMatcher": [
                 "$gcc"
             ],
-            "group": {
-                "kind": "build",
-                "isDefault": true
-            },
-            "detail": "デバッガーによって生成されたタスク。"
+            "group": "build"
         }
-    ],
-    "version": "2.0.0"
+    ]
 }
