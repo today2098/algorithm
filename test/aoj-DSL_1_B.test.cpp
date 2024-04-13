@@ -24,8 +24,8 @@ int main() {
             int x, y;
             std::cin >> x >> y;
 
-            if(uf.is_same(x, y)) std::cout << uf.difference(x, y) << std::endl;
-            else std::cout << '?' << std::endl;
+            if(uf.is_same(x, y)) std::cout << uf.diff(x, y) << std::endl;
+            else std::cout << "?" << std::endl;
         }
     }
 }
