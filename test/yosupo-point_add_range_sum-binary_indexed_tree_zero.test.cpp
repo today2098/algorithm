@@ -13,7 +13,7 @@ int main() {
     std::vector<long long> a(n);
     for(auto &in : a) std::cin >> in;
 
-    algorithm::BIT0 bitree(a);
+    algorithm::BIT0 bit(a);
     while(q--) {
         int t;
         std::cin >> t;
@@ -23,12 +23,12 @@ int main() {
             long long x;
             std::cin >> p >> x;
 
-            bitree.add(p, x);
+            bit.add(p, x);
         } else {
             int l, r;
             std::cin >> l >> r;
 
-            std::cout << bitree.sum(l, r) << std::endl;
+            std::cout << bit.sum(l, r) << std::endl;
         }
     }
 }
