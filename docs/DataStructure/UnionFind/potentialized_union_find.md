@@ -6,7 +6,7 @@
 
 - $\operatorname{potential}(x)$ : 要素 $x$ のポテンシャルを返す．
 - $\operatorname{unite}(x, y, d)$ : $\operatorname{potential}(y)-\operatorname{potential}(x)=d$ となるように，要素xが属するグループと要素yが属するグループとを併合する．
-- $\operatorname{is\_same}(x, y)$ : 要素x, yが同じグループに属するか判定する．
+- $\operatorname{is\_same}(x, y)$ : 要素 $x, y$ が同じグループに属するか判定する．
 
 主な実装方針は Union-Find と同じで，各クエリの計算量は $\mathcal{O}(\operatorname{\alpha}(N))$ となり，実用上  $\mathcal{O}(1)$ とみなせる（ただし，$\operatorname{\alpha}(x)$ はアッカーマン関数の逆関数）．
 
