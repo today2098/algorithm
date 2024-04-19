@@ -224,9 +224,6 @@ data:
   - name: src/Others
     pages:
     - icon: ':warning:'
-      path: src/Others/bit_count.hpp
-      title: src/Others/bit_count.hpp
-    - icon: ':warning:'
       path: src/Others/calc_viewing_range.hpp
       title: src/Others/calc_viewing_range.hpp
     - icon: ':heavy_check_mark:'
@@ -238,6 +235,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: src/Others/mo_algorithm.hpp
       title: "Mo's Algorithm\uFF08\u30AF\u30A8\u30EA\u5E73\u65B9\u5206\u5272\uFF09"
+    - icon: ':warning:'
+      path: src/Others/popcount.hpp
+      title: Population Count (Popcount)
   - name: src/String
     pages:
     - icon: ':heavy_check_mark:'

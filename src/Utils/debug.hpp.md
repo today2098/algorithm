@@ -142,11 +142,11 @@ data:
   timestamp: '2023-09-30 18:36:21+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/aoj-3110.test.cpp
+  - test/aoj-2880.test.cpp
+  - test/aoj-2659.test.cpp
   - test/yosupo-set_xor_min.test.cpp
   - test/aoj-NTL_1_E.test.cpp
-  - test/aoj-2880.test.cpp
-  - test/aoj-3110.test.cpp
-  - test/aoj-2659.test.cpp
 documentation_of: src/Utils/debug.hpp
 layout: document
 redirect_from:

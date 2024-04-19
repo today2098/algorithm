@@ -109,7 +109,7 @@ title: "Union-Find\uFF08\u7D20\u96C6\u5408\u30C7\u30FC\u30BF\u69CB\u9020\uFF09"
 次のクエリ処理を高速に行う．
 
 - $\operatorname{unite}(x, y)$ : 要素 $x$ が属するグループと要素 $y$ が属するグループとを併合する．
-- $\operatorname{is\_same}(x, y)$ : 要素x, yが同じグループに属するか判定する．
+- $\operatorname{is\_same}(x, y)$ : 要素 $x, y$ が同じグループに属するか判定する．
 
 実装では「union by size」と「経路圧縮」の工夫を行っている．
 
