@@ -235,7 +235,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: src/Others/mo_algorithm.hpp
       title: "Mo's Algorithm\uFF08\u30AF\u30A8\u30EA\u5E73\u65B9\u5206\u5272\uFF09"
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: src/Others/popcount.hpp
       title: Population Count (Popcount)
   - name: src/String
@@ -387,6 +387,9 @@ data:
       path: test/aoj-GRL_6_B.test.cpp
       title: test/aoj-GRL_6_B.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/aoj-ITP1_1_A-popcount.test.cpp
+      title: test/aoj-ITP1_1_A-popcount.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/aoj-ITP1_3_D.test.cpp
       title: test/aoj-ITP1_3_D.test.cpp
     - icon: ':heavy_check_mark:'
@@ -425,6 +428,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo-shortest_path.test.cpp
       title: test/yosupo-shortest_path.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo-static_range_inversions_query.test.cpp
+      title: test/yosupo-static_range_inversions_query.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo-staticrmq-segment_tree.test.cpp
       title: test/yosupo-staticrmq-segment_tree.test.cpp

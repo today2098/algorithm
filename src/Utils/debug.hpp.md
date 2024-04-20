@@ -16,6 +16,9 @@ data:
     path: test/aoj-3110.test.cpp
     title: test/aoj-3110.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/aoj-ITP1_1_A-popcount.test.cpp
+    title: test/aoj-ITP1_1_A-popcount.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/aoj-NTL_1_E.test.cpp
     title: test/aoj-NTL_1_E.test.cpp
   - icon: ':heavy_check_mark:'
@@ -143,6 +146,7 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj-3110.test.cpp
+  - test/aoj-ITP1_1_A-popcount.test.cpp
   - test/aoj-2880.test.cpp
   - test/aoj-2659.test.cpp
   - test/yosupo-set_xor_min.test.cpp

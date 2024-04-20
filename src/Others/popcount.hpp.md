@@ -2,10 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/aoj-ITP1_1_A-popcount.test.cpp
+    title: test/aoj-ITP1_1_A-popcount.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     _deprecated_at_docs: docs/Others/popcount.md
     document_title: Population Count (Popcount)
@@ -37,8 +40,9 @@ data:
   path: src/Others/popcount.hpp
   requiredBy: []
   timestamp: '2024-04-19 16:59:43+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/aoj-ITP1_1_A-popcount.test.cpp
 documentation_of: src/Others/popcount.hpp
 layout: document
 redirect_from:
@@ -48,10 +52,15 @@ title: Population Count (Popcount)
 ---
 ## 概要
 
-与えられた数値を2進数表記した際に1となっているビットの数を効率的に求める．
+与えられた整数値を2進数表記した際に1となっているビットの数を効率的に求める．
 "popcount" は "population count" の略．
 
 
 ## 参考文献
 
 1. "Hamming weight". Wikipedia. <https://en.wikipedia.org/wiki/Hamming_weight>.
+
+
+## 例題
+
+1. "D - Popcount and XOR". AtCoder Beginner Contest 347. AtCoder. <https://atcoder.jp/contests/abc347/tasks/abc347_d>.
