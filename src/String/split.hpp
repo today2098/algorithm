@@ -6,6 +6,7 @@
  * @docs docs/String/split.md
  */
 
+#include <regex>
 #include <sstream>
 #include <string>
 #include <vector>
@@ -38,6 +39,17 @@ std::vector<std::string> split(const std::string &s, const std::string &delim, b
         std::string &&item = s.substr(offset, pos - offset);
         if(!(item.empty() and disable_empty)) res.push_back(item);
         offset = pos + length;
+    }
+    return res;
+}
+
+// 文字列分割．文字列sを正規表現patternにマッチする文字列で分割する．
+std::vector<std::string> split_re(const std::string &s, const std::regex &pattern, bool disable_empty = false) {
+    std::vector<std::string> res;
+    std::sregex_token_iterator itr(s.begin(), s.end(), pattern, -1);
+    std::sregex_token_iterator end;
+    for(; itr != end; ++itr) {
+        if(!((*itr).str().empty() and disable_empty)) res.push_back(*itr);
     }
     return res;
 }
