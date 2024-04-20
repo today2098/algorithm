@@ -5,8 +5,8 @@
 
 Mo's algorithm を適用するためには，次の3つの条件を満たす必要がある．
 
-- クエリを先読みできる（オフラインクエリ）．
 - 配列の各要素が不変．
+- クエリを先読みできる（オフラインクエリ）．
 - 区間 $[l,r)$ の結果から区間 $[l-1,r), [l+1,r), [l,r-1), [l,r+1)$ の結果を容易に計算できる（1回の区間伸縮が簡単）． 
 
 アルゴリズムの基本的なアイデアは，クエリを適切な順番に並び替えて，全体での区間の伸縮回数を抑えることにより，計算量を小さくするということである．
@@ -17,7 +17,7 @@ Mo's algorithm を適用するためには，次の3つの条件を満たす必�
 1. 各クエリを $l_i$ についてブロックごとに分け，さらにブロック内で $r_i$ についてソートする．
 1. 各クエリを並び替えた順に，区間を伸縮させながら処理する．
 
-アルゴリズムの計算量は，区間伸縮1回あたりの計算量を $O(α)$ とすると，クエリの並び替えに $O(Q\log{Q})$, クエリの処理に $O(α(N+Q)\sqrt{N})$ かかり，全体として $O(Q\log{Q} + α(N+Q)\sqrt{N})$ となる．
+アルゴリズムの計算量は，区間伸縮1回あたりの計算量を $O(α)$ とすると，クエリの並び替えに $O(Q\log{Q}),$ クエリの処理に $O(α(N+Q)\sqrt{N})$ かかり，全体として $O(Q\log{Q} + α(N+Q)\sqrt{N})$ となる．
 
 
 ## 参考文献
@@ -26,3 +26,9 @@ Mo's algorithm を適用するためには，次の3つの条件を満たす必�
 1. ei1333. "Mo's algorithm". Hatena Blog. <https://ei1333.hateblo.jp/entry/2017/09/11/211011>.
 1. strangerxxx. "Mo's Algorithmのイメージを視覚的に理解したい". Hatena Blog. <https://strangerxxx.hateblo.jp/entry/20230314/1678795200>.
 1. "Mo's algorithm". アルゴリズムとデータ構造大全. <https://take44444.github.io/Algorithm-Book/range/mo/main.html>.
+
+
+## 例題
+
+1. "G - Range Pairing Query". AtCoder Beginner Contest 242. AtCoder. <https://atcoder.jp/contests/abc242/tasks/abc242_g>.
+1. "G - Triple Index". AtCoder Beginner Contest 293. AtCoder. <https://atcoder.jp/contests/abc293/tasks/abc293_g>.
