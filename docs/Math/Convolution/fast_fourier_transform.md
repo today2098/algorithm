@@ -8,7 +8,9 @@ $$
 c_i = \sum_{k=0}^{i} a_k b_{i-k}
 $$
 
-となる長さ $N + M - 1$ の数列 $\lbrace c_n \rbrace$ を $\mathcal{O} \left\lparen \left\lparen N + M \right\rparen \log \left\lparen N + M \right\rparen \right\rparen$ で求める．
+となる長さ $N + M - 1$ の数列 $\lbrace c_n \rbrace$ を $\mathcal{O}((N + M) \log (N + M))$ で求める．
+
+数列の長さや要素の値が大きくなると，誤差も大きくなることに注意．
 
 
 ## 参考文献
