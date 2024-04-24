@@ -140,11 +140,11 @@ data:
       title: src/Math/Combinatorics/montmort.hpp
   - name: src/Math/Convolution
     pages:
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: src/Math/Convolution/discrete_fourier_transform.hpp
       title: "Discrete Fourier Transform\uFF08\u96E2\u6563\u30D5\u30FC\u30EA\u30A8\
         \u5909\u63DB\uFF09"
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: src/Math/Convolution/fast_fourier_transform.hpp
       title: "Fast Fourier Transform\uFF08\u9AD8\u901F\u30D5\u30FC\u30EA\u30A8\u5909\
         \u63DB\uFF09"
@@ -386,6 +386,12 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj-GRL_6_B.test.cpp
       title: test/aoj-GRL_6_B.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/aoj-ITP1_1_A-discrete_fourier_transform.test.cpp
+      title: test/aoj-ITP1_1_A-discrete_fourier_transform.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/aoj-ITP1_1_A-fast_fourier_transform.test.cpp
+      title: test/aoj-ITP1_1_A-fast_fourier_transform.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/aoj-ITP1_1_A-popcount.test.cpp
       title: test/aoj-ITP1_1_A-popcount.test.cpp

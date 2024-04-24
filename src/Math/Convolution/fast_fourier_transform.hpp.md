@@ -2,10 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/aoj-ITP1_1_A-fast_fourier_transform.test.cpp
+    title: test/aoj-ITP1_1_A-fast_fourier_transform.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     _deprecated_at_docs: docs/Math/Convolution/fast_fourier_transform.md
     document_title: "Fast Fourier Transform\uFF08\u9AD8\u901F\u30D5\u30FC\u30EA\u30A8\
@@ -48,12 +51,12 @@ data:
     \ a.end(), na.begin());\n    std::copy(b.begin(), b.end(), nb.begin());\n    transform(na),\
     \ transform(nb);\n    for(int i = 0; i < m; ++i) na[i] *= nb[i];\n    transform(na,\
     \ true);\n    std::vector<Type> res(n);\n    for(int i = 0; i < n; ++i) res[i]\
-    \ = na[i].real() + 0.5;\n    return res;\n}\n\n// \u7573\u307F\u8FBC\u307F\uFF0E\
-    \n// \u6570\u5217a, b\u306B\u5BFE\u3057\u3066\uFF0Cc[i]=sum_{k=0}^{i} a[k]*b[i-k]\
-    \ \u3068\u306A\u308B\u6570\u5217c\u3092\u6C42\u3081\u308B\uFF0EO(N*logN).\ntemplate\
-    \ <typename Type, typename std::enable_if_t<std::is_floating_point_v<Type>, bool>\
-    \ = false>\nstd::vector<Type> convolve(const std::vector<Type> &a, const std::vector<Type>\
-    \ &b) {\n    if(a.size() == 0 or b.size() == 0) return std::vector<Type>();\n\
+    \ = na[i].real() + (na[i].real() < 0.0 ? -0.5 : 0.5);\n    return res;\n}\n\n\
+    // \u7573\u307F\u8FBC\u307F\uFF0E\n// \u6570\u5217a, b\u306B\u5BFE\u3057\u3066\
+    \uFF0Cc[i]=sum_{k=0}^{i} a[k]*b[i-k] \u3068\u306A\u308B\u6570\u5217c\u3092\u6C42\
+    \u3081\u308B\uFF0EO(N*logN).\ntemplate <typename Type, typename std::enable_if_t<std::is_floating_point_v<Type>,\
+    \ bool> = false>\nstd::vector<Type> convolve(const std::vector<Type> &a, const\
+    \ std::vector<Type> &b) {\n    if(a.size() == 0 or b.size() == 0) return std::vector<Type>();\n\
     \    const int n = a.size() + b.size() - 1;\n    int m = 1;\n    while(m < n)\
     \ m <<= 1;\n    std::vector<std::complex<D> > na(m, 0.0), nb(m, 0.0);\n    std::copy(a.begin(),\
     \ a.end(), na.begin());\n    std::copy(b.begin(), b.end(), nb.begin());\n    transform(na),\
@@ -98,12 +101,12 @@ data:
     \ a.end(), na.begin());\n    std::copy(b.begin(), b.end(), nb.begin());\n    transform(na),\
     \ transform(nb);\n    for(int i = 0; i < m; ++i) na[i] *= nb[i];\n    transform(na,\
     \ true);\n    std::vector<Type> res(n);\n    for(int i = 0; i < n; ++i) res[i]\
-    \ = na[i].real() + 0.5;\n    return res;\n}\n\n// \u7573\u307F\u8FBC\u307F\uFF0E\
-    \n// \u6570\u5217a, b\u306B\u5BFE\u3057\u3066\uFF0Cc[i]=sum_{k=0}^{i} a[k]*b[i-k]\
-    \ \u3068\u306A\u308B\u6570\u5217c\u3092\u6C42\u3081\u308B\uFF0EO(N*logN).\ntemplate\
-    \ <typename Type, typename std::enable_if_t<std::is_floating_point_v<Type>, bool>\
-    \ = false>\nstd::vector<Type> convolve(const std::vector<Type> &a, const std::vector<Type>\
-    \ &b) {\n    if(a.size() == 0 or b.size() == 0) return std::vector<Type>();\n\
+    \ = na[i].real() + (na[i].real() < 0.0 ? -0.5 : 0.5);\n    return res;\n}\n\n\
+    // \u7573\u307F\u8FBC\u307F\uFF0E\n// \u6570\u5217a, b\u306B\u5BFE\u3057\u3066\
+    \uFF0Cc[i]=sum_{k=0}^{i} a[k]*b[i-k] \u3068\u306A\u308B\u6570\u5217c\u3092\u6C42\
+    \u3081\u308B\uFF0EO(N*logN).\ntemplate <typename Type, typename std::enable_if_t<std::is_floating_point_v<Type>,\
+    \ bool> = false>\nstd::vector<Type> convolve(const std::vector<Type> &a, const\
+    \ std::vector<Type> &b) {\n    if(a.size() == 0 or b.size() == 0) return std::vector<Type>();\n\
     \    const int n = a.size() + b.size() - 1;\n    int m = 1;\n    while(m < n)\
     \ m <<= 1;\n    std::vector<std::complex<D> > na(m, 0.0), nb(m, 0.0);\n    std::copy(a.begin(),\
     \ a.end(), na.begin());\n    std::copy(b.begin(), b.end(), nb.begin());\n    transform(na),\
@@ -115,9 +118,10 @@ data:
   isVerificationFile: false
   path: src/Math/Convolution/fast_fourier_transform.hpp
   requiredBy: []
-  timestamp: '2023-10-07 23:19:22+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  timestamp: '2024-04-24 15:41:45+09:00'
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/aoj-ITP1_1_A-fast_fourier_transform.test.cpp
 documentation_of: src/Math/Convolution/fast_fourier_transform.hpp
 layout: document
 redirect_from:
@@ -136,7 +140,9 @@ $$
 c_i = \sum_{k=0}^{i} a_k b_{i-k}
 $$
 
-となる長さ $N + M - 1$ の数列 $\lbrace c_n \rbrace$ を $\mathcal{O} \left\lparen \left\lparen N + M \right\rparen \log \left\lparen N + M \right\rparen \right\rparen$ で求める．
+となる長さ $N + M - 1$ の数列 $\lbrace c_n \rbrace$ を $\mathcal{O}((N + M) \log (N + M))$ で求める．
+
+数列の長さや要素の値が大きくなると，誤差も大きくなることに注意．
 
 
 ## 参考文献
