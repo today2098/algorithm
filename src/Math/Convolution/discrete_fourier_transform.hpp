@@ -63,7 +63,7 @@ std::vector<Type> convolve(const std::vector<Type> &a, const std::vector<Type> &
     for(int i = 0; i < n; ++i) na[i] *= nb[i];
     transform(na, true);
     std::vector<Type> res(n);
-    for(int i = 0; i < n; ++i) res[i] = na[i].real() + 0.5;
+    for(int i = 0; i < n; ++i) res[i] = na[i].real() + (na[i].real() < 0.0 ? -0.5 : 0.5);
     return res;
 }
 
