@@ -281,6 +281,9 @@
 			"public:",
 			"    BellmanFord() : BellmanFord(0) {}",
 			"    explicit BellmanFord(size_t vn) : m_vn(vn), m_d(vn, infinity()), m_pre(vn, -1) {}",
+			"    explicit BellmanFord(size_t vn, size_t en) : BellmanFord(vn) {",
+			"        m_edges.reserve(en);",
+			"    }",
 			"",
 			"    static constexpr T infinity() { return std::numeric_limits<T>::max(); }",
 			"    // ノード数を返す．",
@@ -348,7 +351,7 @@
 			"    std::vector<int> shortest_path(int t) const {",
 			"        assert(0 <= t and t < order());",
 			"        std::vector<int> path;",
-			"        if(!(-infinity() < m_d[t] and m_d[t] < infinity())) return path;",
+			"        if(distance(t) == infinity() or distance(t) == -infinity()) return path;",
 			"        for(; t != -1; t = m_pre[t]) path.push_back(t);",
 			"        std::reverse(path.begin(), path.end());",
 			"        return path;",
@@ -574,6 +577,7 @@
 		"description": "二項係数（mod付き）"
 	},
 	"Dijkstra": {
+		"scope": "cpp",
 		"prefix": "Dijkstra",
 		"body": [
 			"template <typename T>",

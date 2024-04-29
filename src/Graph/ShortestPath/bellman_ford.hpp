@@ -1,10 +1,10 @@
+#ifndef ALGORITHM_BELLMAN_FORD_HPP
+#define ALGORITHM_BELLMAN_FORD_HPP 1
+
 /**
  * @brief Bellman-Ford Algorithm（単一始点最短経路）
  * @docs docs/Graph/ShortestPath/bellman_ford.md
  */
-
-#ifndef ALGORITHM_BELLMAN_FORD_HPP
-#define ALGORITHM_BELLMAN_FORD_HPP 1
 
 #include <algorithm>
 #include <cassert>
@@ -29,6 +29,9 @@ class BellmanFord {
 public:
     BellmanFord() : BellmanFord(0) {}
     explicit BellmanFord(size_t vn) : m_vn(vn), m_d(vn, infinity()), m_pre(vn, -1) {}
+    explicit BellmanFord(size_t vn, size_t en) : BellmanFord(vn) {
+        m_edges.reserve(en);
+    }
 
     static constexpr T infinity() { return std::numeric_limits<T>::max(); }
     // ノード数を返す．
@@ -44,7 +47,7 @@ public:
     // グラフ全体から負閉路を検出する．O(|V|*|E|).
     bool find_negative_cycle() const {
         std::vector<T> nd(order(), 0);
-        for(int i = 0, n = order(); i < n; ++i) {
+        for(int i = 0; i < order(); ++i) {
             bool update = false;
             for(const auto &[from, to, cost] : m_edges) {
                 if(nd[to] > nd[from] + cost) {
@@ -62,7 +65,7 @@ public:
         std::fill(m_d.begin(), m_d.end(), infinity());
         m_d[s] = 0;
         std::fill(m_pre.begin(), m_pre.end(), -1);
-        for(int i = 0, n = order(); i < n; ++i) {
+        for(int i = 0; i < order(); ++i) {
             bool update = false;
             for(const auto &[from, to, cost] : m_edges) {
                 if(m_d[from] == infinity()) continue;
@@ -74,7 +77,7 @@ public:
             }
             if(!update) return false;  // 負閉路なし．
         }
-        for(int i = 0, n = order(); i < n; ++i) {
+        for(int i = 0; i < order(); ++i) {
             bool update = false;
             for(const auto &[from, to, cost] : m_edges) {
                 if(m_d[from] == infinity() or m_d[to] == -infinity()) continue;
@@ -96,7 +99,7 @@ public:
     std::vector<int> shortest_path(int t) const {
         assert(0 <= t and t < order());
         std::vector<int> path;
-        if(!(-infinity() < m_d[t] and m_d[t] < infinity())) return path;
+        if(distance(t) == infinity() or distance(t) == -infinity()) return path;
         for(; t != -1; t = m_pre[t]) path.push_back(t);
         std::reverse(path.begin(), path.end());
         return path;
