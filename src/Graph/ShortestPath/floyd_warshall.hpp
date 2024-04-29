@@ -16,13 +16,13 @@ namespace algorithm {
 template <typename T>
 class FloydWarshall {
     int m_vn;                           // m_vn:=(ノード数).
-    std::vector<std::vector<T> > m_dp;  // m_dp[u][v]:=(ノードu-v間の最短距離).
+    std::vector<std::vector<T> > m_dp;  // m_dp[s][t]:=(ノードsからtへの最短距離).
 
 public:
     FloydWarshall() {}
     explicit FloydWarshall(size_t vn) : m_vn(vn), m_dp(vn, std::vector<T>(vn, infinity())) {}
 
-    static constexpr T infinity() { return std::numeric_limits<T>::max(); }
+    static constexpr T infinity() { return std::numeric_limits<T>::max() / 2; }
     // ノード数を返す．
     int order() const { return m_vn; }
     // 重み付き有向辺を張る．
@@ -35,8 +35,8 @@ public:
     void floyd_warshall() {
         for(int v = 0; v < order(); ++v) m_dp[v][v] = 0;
         for(int k = 0; k < order(); ++k) {
-            for(int u = 0; u < order(); ++u) {
-                for(int v = 0; v < order(); ++v) m_dp[u][v] = std::min(m_dp[u][v], m_dp[u][k] + m_dp[k][v]);
+            for(int s = 0; s < order(); ++s) {
+                for(int t = 0; t < order(); ++t) m_dp[s][t] = std::min(m_dp[s][t], m_dp[s][k] + m_dp[k][t]);
             }
         }
     }
