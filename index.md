@@ -96,6 +96,10 @@ data:
       path: src/Graph/ShortestPath/dijkstra.hpp
       title: "Dijkstra's Algorithm\uFF08\u5358\u4E00\u59CB\u70B9\u6700\u77ED\u7D4C\
         \u8DEF\uFF09"
+    - icon: ':warning:'
+      path: src/Graph/ShortestPath/floyd_warshall.hpp
+      title: "Floyd\u2013Warshall Algorithm\uFF08\u5168\u70B9\u5BFE\u9593\u6700\u77ED\
+        \u7D4C\u8DEF\uFF09"
   - name: src/Graph/Tree
     pages:
     - icon: ':heavy_check_mark:'
