@@ -150,7 +150,7 @@ title: "Bellman-Ford Algorithm\uFF08\u5358\u4E00\u59CB\u70B9\u6700\u77ED\u7D4C\u
 グラフの負閉路検出も行う．
 名称は，考案者である Richard E. Bellman と L. R. Ford Jr. にちなむ．
 
-計算量は，グラフのノード数を $|V|,$ 辺数を $|E|$ とすると，$\mathcal{O}(|V||E|)$ となる．
+計算量は，グラフのノード数を $|V|,$ 辺数を $|E|$ とすると，$\mathcal{O}(|V| |E|)$ となる．
 
 
 ## 参考文献

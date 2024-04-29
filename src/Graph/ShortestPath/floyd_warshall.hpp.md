@@ -89,7 +89,7 @@ title: "Floyd\u2013Warshall Algorithm\uFF08\u5168\u70B9\u5BFE\u9593\u6700\u77ED\
 重み付き有向グラフにおける全点対間最短経路問題を解くアルゴリズム．
 名称は，考案者である Stephen Warshall と Robert W. Floyd にちなむ．
 
-計算量は，グラフのノード数を $|V|$ とすると，$\mathcal{O}(|V|^3)$ となる．
+計算量は，グラフのノード数を $|V|$ とすると，$\mathcal{O}(\lvert V \rvert ^3)$ となる．
 
 
 ## 参考文献
