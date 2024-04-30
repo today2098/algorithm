@@ -1,10 +1,10 @@
+#ifndef ALGORITHM_LOWEST_COMMON_ANCESTOR_HPP
+#define ALGORITHM_LOWEST_COMMON_ANCESTOR_HPP 1
+
 /**
  * @brief Lowest Common Ancestor（最近共通祖先）
  * @docs docs/Graph/Tree/lowest_common_ancestor.md
  */
-
-#ifndef ALGORITHM_LOWEST_COMMON_ANCESTOR_HPP
-#define ALGORITHM_LOWEST_COMMON_ANCESTOR_HPP 1
 
 #include <algorithm>
 #include <cassert>
@@ -19,38 +19,38 @@ namespace algorithm {
 // Lowest Common Ancestor（最近共通祖先）.
 template <typename T = int>  // T:Type of cost.
 class LCA {
-    int m_l;                                            // m_l:=ceiling(log2(vn)).
-    std::vector<std::vector<std::pair<int, T> > > m_g;  // m_g[v][]:=(ノードvの隣接リスト). pair of (to, cost).
-    std::vector<std::vector<int> > m_par;               // m_par[v][k]:=(ノードvから2^k回辿って到達する親ノード番号). 親がいない場合は-1．
+    int m_vn;                                           // m_vn:=(ノード数).
+    int m_lb;                                           // m_lb:=ceiling(log2(vn)).
+    std::vector<std::vector<std::pair<int, T> > > m_g;  // m_g[v][]:=(ノードvの隣接リスト). pair of (to, cost). グラフは木であること．
+    std::vector<std::vector<int> > m_par;               // m_par[k][v]:=(ノードvから2^k回辿って到達する親ノード番号). 親がいない場合は-1．
     std::vector<int> m_depth;                           // m_depth[v]:=(ノードvの深さ). 根に連結していない場合は-1．
     std::vector<T> m_dist;                              // m_dist[v]:=(根からノードvまでの距離).
     std::vector<int> m_ord;                             // m_ord[v]:=(DFS木におけるノードvの行きかけ順序).
 
-    // ノードvが木に含まれるか判定する．O(1).
     bool is_included(int v) const { return m_ord[v] != -1; }
-    void dfs(int u, int parent, int depth, T distance, int &now) {
-        assert(m_ord[u] == -1);
+    void dfs(int u, int p, int depth, T distance, int &now) {
+        assert(m_ord[u] == -1);  // グラフ上に閉路はないこと．
         m_ord[u] = now++;
-        m_par[u][0] = parent;
+        m_par[0][u] = p;
         m_depth[u] = depth;
         m_dist[u] = distance;
         for(const auto &[v, cost] : m_g[u]) {
-            if(v == parent) continue;
+            if(v == p) continue;
             dfs(v, u, depth + 1, distance + cost, now);
         }
     }
 
 public:
     LCA() : LCA(0) {}
-    explicit LCA(size_t vn) : m_l(1), m_g(vn), m_depth(vn, -1), m_dist(vn, infinity()), m_ord(vn, -1) {
-        while(1 << m_l <= (int)vn - 1) m_l++;
-        m_par.assign(vn, std::vector<int>(m_l, -1));
+    explicit LCA(size_t vn) : m_vn(vn), m_lb(1), m_g(vn), m_depth(vn, -1), m_dist(vn, infinity()), m_ord(vn, -1) {
+        while(1 << m_lb < order()) m_lb++;
+        m_par.assign(m_lb, std::vector<int>(order(), -1));
     }
 
     static constexpr T infinity() { return std::numeric_limits<T>::max(); }
     // ノード数を返す．
-    int order() const { return m_g.size(); }
-    // 辺を張る．ノードuとvは非連結であること．
+    int order() const { return m_vn; }
+    // 無向辺を張る．ノードuとvは非連結であること．
     void add_edge(int u, int v, T cost = 0) {
         assert(0 <= u and u < order());
         assert(0 <= v and v < order());
@@ -58,27 +58,27 @@ public:
         m_g[v].emplace_back(u, cost);
     }
     // 祖先木を構築する．O(|V|*log|V|).
-    void build(int root = 0) {
-        assert(0 <= root and root < order());
+    void build(int rt = 0) {
+        assert(0 <= rt and rt < order());
         for(std::vector<int> &v : m_par) std::fill(v.begin(), v.end(), -1);
         std::fill(m_depth.begin(), m_depth.end(), -1);
         std::fill(m_dist.begin(), m_dist.end(), infinity());
         std::fill(m_ord.begin(), m_ord.end(), -1);
         int now = 0;
-        dfs(root, -1, 0, 0, now);
-        for(int k = 0; k < m_l - 1; ++k) {
+        dfs(rt, -1, 0, 0, now);
+        for(int k = 0; k < m_lb - 1; ++k) {
             for(int v = 0; v < order(); ++v) {
-                if(m_par[v][k] != -1) m_par[v][k + 1] = m_par[m_par[v][k]][k];
+                if(m_par[k][v] != -1) m_par[k + 1][v] = m_par[k][m_par[k][v]];
             }
         }
     }
     // ノードvの祖先をk代遡る．O(log|V|).
     int trace_back(int v, int k) const {
         assert(0 <= v and v < order());
-        assert(0 <= k and k <= order() - 1);
-        if(!is_included(v) or k > m_depth[v]) return -1;
-        for(int i = 0; i < m_l; ++i) {
-            if(k >> i & 1) v = m_par[v][i];
+        assert(0 <= k and k < order());
+        if(k > m_depth[v]) return -1;
+        for(int i = 0; i < m_lb; ++i) {
+            if(k >> i & 1) v = m_par[i][v];
         }
         return v;
     }
@@ -86,17 +86,17 @@ public:
     int lca(int u, int v) const {
         assert(0 <= u and u < order());
         assert(0 <= v and v < order());
-        if(!(is_included(u) and is_included(v))) return -1;
+        if(!is_included(u) or !is_included(v)) return -1;
         if(m_depth[u] > m_depth[v]) std::swap(u, v);
         v = trace_back(v, m_depth[v] - m_depth[u]);  // 同じ深さに合わせる．
         if(u == v) return u;
-        for(int k = m_l - 1; k >= 0; --k) {
-            if(m_par[u][k] != m_par[v][k]) u = m_par[u][k], v = m_par[v][k];  // 異なったら根に近づける．
+        for(int k = m_lb - 1; k >= 0; --k) {
+            if(m_par[k][u] != m_par[k][v]) u = m_par[k][u], v = m_par[k][v];  // 異なったら根に近づける．
         }
-        return m_par[u][0];
+        return m_par[0][u];
     }
     // ノードvの深さを返す．O(1).
-    T length(int v) const {
+    T depth(int v) const {
         assert(0 <= v and v < order());
         return m_depth[v];
     }
@@ -104,7 +104,7 @@ public:
     int length(int u, int v) const {
         assert(0 <= u and u < order());
         assert(0 <= v and v < order());
-        if(!(is_included(u) and is_included(v))) return -1;
+        if(!is_included(u) or !is_included(v)) return -1;
         return m_depth[u] + m_depth[v] - 2 * m_depth[lca(u, v)];
     }
     // 根とノードv間の距離を返す．O(1).
@@ -116,15 +116,21 @@ public:
     T distance(int u, int v) const {
         assert(0 <= u and u < order());
         assert(0 <= v and v < order());
-        if(!(is_included(u) and is_included(v))) return infinity();
+        if(!is_included(u) or !is_included(v)) return infinity();
         return m_dist[u] + m_dist[v] - 2 * m_dist[lca(u, v)];
     }
-    // 木の座標圧縮．O(K*log|V|).
-    std::pair<int, std::map<int, std::vector<int> > > auxiliary_tree(std::vector<int> &vs) const {
+    // 木の圧縮．
+    // 任意の頂点集合とそのLCAからなる，頂点同士の関係性を維持した木を作成する．O(K*log|V|).
+    std::pair<int, std::map<int, std::vector<int> > > auxiliary_tree(std::vector<int> vs) const {
         assert(std::find_if(vs.begin(), vs.end(), [&](int v) -> bool { return !(0 <= v and v < order()); }) == vs.end());
         std::map<int, std::vector<int> > res;  // res[v][]:=(圧縮した木におけるノードvの隣接リスト).
+        vs.erase(std::remove_if(vs.begin(), vs.end(), [&](int v) -> bool { return !is_included(v); }), vs.end());
         const int n = vs.size();
-        if(n == 0 or std::find_if(vs.begin(), vs.end(), [&](int v) -> bool { return !is_included(v); }) != vs.end()) return {-1, res};
+        if(n == 0) return {-1, res};
+        if(n == 1) {
+            res[vs.front()];
+            return {vs.front(), res};
+        }
         auto comp = [&](int u, int v) -> bool { return m_ord[u] < m_ord[v]; };
         std::sort(vs.begin(), vs.end(), comp);
         std::stack<int> st;
@@ -155,7 +161,6 @@ public:
             res[st.top()].push_back(v);
             res[v].push_back(st.top());
         }
-        std::sort(vs.begin(), vs.end(), comp);
         return {st.top(), res};  // pair of (root, tree).
     }
 };
