@@ -96,7 +96,7 @@ data:
       path: src/Graph/ShortestPath/dijkstra.hpp
       title: "Dijkstra's Algorithm\uFF08\u5358\u4E00\u59CB\u70B9\u6700\u77ED\u7D4C\
         \u8DEF\uFF09"
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: src/Graph/ShortestPath/floyd_warshall.hpp
       title: "Floyd\u2013Warshall Algorithm\uFF08\u5168\u70B9\u5BFE\u9593\u6700\u77ED\
         \u7D4C\u8DEF\uFF09"
@@ -261,7 +261,7 @@ data:
       title: "Z Algorithm\uFF08\u6700\u9577\u5171\u901A\u63A5\u982D\u8F9E\uFF09"
   - name: src/Utils
     pages:
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: src/Utils/convert.hpp
       title: src/Utils/convert.hpp
     - icon: ':heavy_check_mark:'
@@ -279,6 +279,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj-0425.test.cpp
       title: test/aoj-0425.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/aoj-0439.test.cpp
+      title: test/aoj-0439.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/aoj-1276-liner_sieve.test.cpp
       title: test/aoj-1276-liner_sieve.test.cpp
@@ -366,7 +369,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj-GRL_1_B.test.cpp
       title: test/aoj-GRL_1_B.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj-GRL_1_C.test.cpp
       title: test/aoj-GRL_1_C.test.cpp
     - icon: ':heavy_check_mark:'

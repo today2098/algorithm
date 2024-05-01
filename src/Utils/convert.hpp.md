@@ -2,10 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/aoj-0439.test.cpp
+    title: test/aoj-0439.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"src/Utils/convert.hpp\"\n\n\n\n#include <algorithm>\n#include\
@@ -57,8 +60,9 @@ data:
   path: src/Utils/convert.hpp
   requiredBy: []
   timestamp: '2023-09-10 09:58:06+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/aoj-0439.test.cpp
 documentation_of: src/Utils/convert.hpp
 layout: document
 redirect_from:

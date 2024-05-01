@@ -7,6 +7,9 @@ data:
     title: "\u591A\u500D\u9577\u6574\u6570"
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: test/aoj-0439.test.cpp
+    title: test/aoj-0439.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/aoj-2659.test.cpp
     title: test/aoj-2659.test.cpp
   - icon: ':heavy_check_mark:'
@@ -153,6 +156,7 @@ data:
   verifiedWith:
   - test/aoj-3110.test.cpp
   - test/aoj-ITP1_1_A-popcount.test.cpp
+  - test/aoj-0439.test.cpp
   - test/aoj-2880.test.cpp
   - test/aoj-ITP1_1_A-discrete_fourier_transform.test.cpp
   - test/aoj-2659.test.cpp

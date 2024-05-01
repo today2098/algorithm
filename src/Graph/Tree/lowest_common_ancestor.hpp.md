@@ -4,6 +4,9 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: test/aoj-0439.test.cpp
+    title: test/aoj-0439.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/aoj-GRL_5_C.test.cpp
     title: test/aoj-GRL_5_C.test.cpp
   _isVerificationFailed: false
@@ -222,6 +225,7 @@ data:
   timestamp: '2024-05-01 11:14:14+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/aoj-0439.test.cpp
   - test/aoj-GRL_5_C.test.cpp
 documentation_of: src/Graph/Tree/lowest_common_ancestor.hpp
 layout: document
