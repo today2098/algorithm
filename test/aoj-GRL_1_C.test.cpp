@@ -13,7 +13,6 @@ int main() {
         int s, t;
         long long d;
         std::cin >> s >> t >> d;
-
         floyd_warshall.add_edge(s, t, d);
     }
     floyd_warshall.floyd_warshall();
@@ -26,9 +25,9 @@ int main() {
     for(int s = 0; s < vn; ++s) {
         for(int t = 0; t < vn; ++t) {
             auto d = floyd_warshall.distance(s, t);
-            if(d == floyd_warshall.infinity()) std::cout << "INF ";
-            else std::cout << d << " ";
+            if(d == floyd_warshall.infinity()) std::cout << "INF";
+            else std::cout << d;
+            std::cout << (t == vn - 1 ? "\n" : " ");
         }
-        std::cout << "\n";
     }
 }
