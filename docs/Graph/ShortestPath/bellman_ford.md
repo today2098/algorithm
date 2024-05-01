@@ -4,7 +4,7 @@
 グラフの負閉路検出も行う．
 名称は，考案者である Richard E. Bellman と L. R. Ford Jr. にちなむ．
 
-計算量は，グラフのノード数を $|V|,$ 辺数を $|E|$ とすると，$\mathcal{O}(|V| |E|)$ となる．
+計算量は，グラフのノード数を $\lvert V \rvert,$ 辺数を $\lvert E \rvert$ とすると，$\mathcal{O}(\lvert V \rvert \lvert E \rvert)$ となる．
 
 
 ## 参考文献

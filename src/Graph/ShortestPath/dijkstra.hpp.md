@@ -121,7 +121,7 @@ title: "Dijkstra's Algorithm\uFF08\u5358\u4E00\u59CB\u70B9\u6700\u77ED\u7D4C\u8D
 1959年に Edsger W. Dijkstra によって考案された．
 
 実装ではヒープを用いて高速化を図っている．
-計算量は，グラフのノード数を $|V|,$ 辺数を $|E|$ とすると，$\mathcal{O}(|E| \log |V|)$ となる．
+計算量は，グラフのノード数を $\lvert V \rvert,$ 辺数を $\lvert E \rvert$ とすると，$\mathcal{O}(\lvert E \rvert \log \lvert V \rvert)$ となる．
 
 
 ## 参考文献

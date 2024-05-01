@@ -96,7 +96,7 @@ data:
       path: src/Graph/ShortestPath/dijkstra.hpp
       title: "Dijkstra's Algorithm\uFF08\u5358\u4E00\u59CB\u70B9\u6700\u77ED\u7D4C\
         \u8DEF\uFF09"
-    - icon: ':warning:'
+    - icon: ':x:'
       path: src/Graph/ShortestPath/floyd_warshall.hpp
       title: "Floyd\u2013Warshall Algorithm\uFF08\u5168\u70B9\u5BFE\u9593\u6700\u77ED\
         \u7D4C\u8DEF\uFF09"
@@ -366,6 +366,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj-GRL_1_B.test.cpp
       title: test/aoj-GRL_1_B.test.cpp
+    - icon: ':x:'
+      path: test/aoj-GRL_1_C.test.cpp
+      title: test/aoj-GRL_1_C.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/aoj-GRL_3_A.test.cpp
       title: test/aoj-GRL_3_A.test.cpp
