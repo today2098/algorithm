@@ -33,7 +33,6 @@ int main() {
             int p;
             int x;
             std::cin >> p >> x;
-
             bitree.add(hld.vid(p), x);
         } else {
             int u, v;

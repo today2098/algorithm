@@ -20,7 +20,7 @@ int main() {
         std::cin >> p;
         hld.add_edge(p, i);
     }
-    hld.build();
+    hld.build(0);
 
     algorithm::BIT0<long long> bitree(n);
     for(int i = 0; i < n; ++i) bitree.add(hld.vid(i), a[i]);
