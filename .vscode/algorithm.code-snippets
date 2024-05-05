@@ -1090,7 +1090,7 @@
 			"        return m_vid[v];",
 			"    }",
 			"    // パスu-vにおける頂点属性のクエリに対応する範囲を返す．O(log|V|).",
-			"    std::vector<std::pair<int, int> > vertex_query_range(int u, int v) const {",
+			"    std::vector<std::pair<int, int> > vertex_query_ranges(int u, int v) const {",
 			"        assert(0 <= u and u < order());",
 			"        assert(0 <= v and v < order());",
 			"        if(m_vid[u] == -1 or m_vid[v] == -1) return {};",
