@@ -4,7 +4,7 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "C/C++ g++ build active file",
+            "label": "C/C++: g++ build active file",
             "type": "shell",
             "command": "/usr/bin/g++",
             "args": [
@@ -24,7 +24,10 @@
             "problemMatcher": [
                 "$gcc"
             ],
-            "group": "build"
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
         }
     ]
 }
