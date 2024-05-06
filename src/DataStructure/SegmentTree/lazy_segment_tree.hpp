@@ -20,9 +20,9 @@ class LazySegTree {
     using Mapping = std::function<S(const F &, const S &)>;
     using Composition = std::function<F(const F &, const F &)>;
 
-    Op m_op;                    // S m_op(S,S):=(二項演算関数). S×S→Sを計算する．
-    Mapping m_mapping;          // S m_mapping(F f,S x):=(写像). f(x)を返す．
-    Composition m_composition;  // F m_composition(F f,F g):=(写像の合成). f∘gを返す．
+    Op m_op;                    // S m_op(S,S):=(二項演算関数). S×S→S.
+    Mapping m_mapping;          // S m_mapping(F f,S x):=(写像). f(x).
+    Composition m_composition;  // F m_composition(F f,F g):=(写像の合成). f∘g.
     S m_e;                      // m_e:=(単位元).
     F m_id;                     // m_id:=(恒等写像).
     int m_sz;                   // m_sz:=(要素数).
@@ -90,7 +90,7 @@ public:
             for(int j = l >> i, end = (r - 1) >> i; j <= end; ++j) update(j);
         }
     }
-    // k番目の要素を写像fを用いて更新する．O(logN).
+    // k番目の要素を作用素fを用いて更新する．O(logN).
     void apply(int k, const F &f) {
         assert(0 <= k and k < size());
         k += m_n;
@@ -98,7 +98,7 @@ public:
         m_tree[k] = m_mapping(f, m_tree[k]);
         for(int i = 1; i <= m_depth; ++i) update(k >> i);
     }
-    // 区間[l,r)の要素を写像fを用いて更新する．O(logN).
+    // 区間[l,r)の要素を作用素fを用いて更新する．O(logN).
     void apply(int l, int r, const F &f) {
         assert(0 <= l and l <= r and r <= size());
         if(l == r) return;
@@ -142,7 +142,7 @@ public:
     // 区間全体の要素の総積を返す．O(1).
     S prod_all() const { return m_tree[1]; }
     // jud(prod(l,-))=true となる区間の最右位値を二分探索する．
-    // ただし要素列には単調性があり，また jud(e)=true であること．O(logN).
+    // ただし，要素列には単調性があり，また jud(e)=true であること．O(logN).
     int most_right(const std::function<bool(const S &)> &jud, int l) const {
         assert(jud(identity()));
         assert(0 <= l and l <= size());
@@ -167,7 +167,7 @@ public:
         return size();
     }
     // jud(prod(-,r))=true となる区間の最左位値を二分探索する．
-    // ただし要素列には単調性があり，また jud(e)=true であること．O(logN).
+    // ただし，要素列には単調性があり，また jud(e)=true であること．O(logN).
     int most_left(const std::function<bool(const S &)> &jud, int r) const {
         assert(jud(identity()));
         assert(0 <= r and r <= size());

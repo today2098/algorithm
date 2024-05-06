@@ -41,7 +41,7 @@ int main() {
 
             segtree.apply(l, r, (F){b, c});
         } else {
-            std::cout << segtree.prod(l, r).val << std::endl;
+            std::cout << segtree.prod(l, r).val << "\n";
         }
     }
 }

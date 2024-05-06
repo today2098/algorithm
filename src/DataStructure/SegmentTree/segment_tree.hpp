@@ -20,8 +20,8 @@ class SegmentTree {
     Op m_op;                // S m_op(S,S):=(二項演算関数).
     S m_e;                  // m_e:=(単位元).
     int m_sz;               // m_sz:=(要素数).
-    int m_n;                // m_n:=(葉の数).
-    std::vector<S> m_tree;  // m_tree[]:=(完全二分木). 1-based index.
+    int m_n;                // m_n:=(二分木の葉数).
+    std::vector<S> m_tree;  // m_tree(2n)[]:=(完全二分木). 1-based index.
 
 public:
     // constructor. O(N).
@@ -66,7 +66,7 @@ public:
     // 区間全体の要素の総積を返す．O(1).
     S prod_all() const { return m_tree[1]; }
     // jud(prod(l,-))==true となる区間の最右位値を二分探索する．
-    // ただし要素列には単調性があり，また jud(e)==true であること．O(logN).
+    // ただし，要素列には単調性があり，また jud(e)==true であること．O(logN).
     int most_right(const std::function<bool(const S &)> &jud, int l) const {
         assert(jud(identity()) == true);
         assert(0 <= l and l <= size());
@@ -89,7 +89,7 @@ public:
         return size();
     }
     // jud(prod(-,r))==true となる区間の最左位値を二分探索する．
-    // ただし要素列には単調性があり，また jud(e)==true であること．O(logN).
+    // ただし，要素列には単調性があり，また jud(e)==true であること．O(logN).
     int most_left(const std::function<bool(const S &)> &jud, int r) const {
         assert(jud(identity()) == true);
         assert(0 <= r and r <= size());
