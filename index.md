@@ -106,6 +106,10 @@ data:
       path: src/Graph/Tree/calc_tree_diameter.hpp
       title: "\u6728\u306E\u76F4\u5F84"
     - icon: ':heavy_check_mark:'
+      path: src/Graph/Tree/heavy_light_decomposition.hpp
+      title: "Heavy-Light Decomposition\uFF08HL\u5206\u89E3\uFF0C\u91CD\u8EFD\u5206\
+        \u89E3\uFF09"
+    - icon: ':heavy_check_mark:'
       path: src/Graph/Tree/lowest_common_ancestor.hpp
       title: "Lowest Common Ancestor\uFF08\u6700\u8FD1\u5171\u901A\u7956\u5148\uFF09"
   - name: src/Graph
@@ -459,6 +463,12 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo-unionfind.test.cpp
       title: test/yosupo-unionfind.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo-vertex_add_path_sum.test.cpp
+      title: test/yosupo-vertex_add_path_sum.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo-vertex_add_subtree_sum.test.cpp
+      title: test/yosupo-vertex_add_subtree_sum.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo-zalgorithm.test.cpp
       title: test/yosupo-zalgorithm.test.cpp
