@@ -4,7 +4,7 @@
 #include <utility>
 #include <vector>
 
-#include "../src/Graph/Tree/calc_tree_diameter.hpp"
+#include "../src/Graph/Tree/double_sweep.hpp"
 
 int main() {
     int n;
