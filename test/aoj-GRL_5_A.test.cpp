@@ -1,6 +1,8 @@
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/5/GRL_5_A"
 
 #include <iostream>
+#include <utility>
+#include <vector>
 
 #include "../src/Graph/Tree/calc_tree_diameter.hpp"
 
@@ -18,6 +20,6 @@ int main() {
         g[t].emplace_back(s, w);
     }
 
-    auto &&[ans, _, __] = algorithm::calc_tree_diameter(g);
+    auto &&[ans, _, __] = algorithm::double_sweep(g);
     std::cout << ans << std::endl;
 }
