@@ -41,9 +41,9 @@ std::tuple<int, int, int> double_sweep(const std::vector<std::vector<int> > &g, 
         }
     };
     bfs(rt);
-    int v = furthest_node;
-    bfs(v);
-    return {d[furthest_node], v, furthest_node};  // tuple of (diameter, endpoint1, endpoint2).
+    rt = furthest_node;
+    bfs(rt);
+    return {d[furthest_node], rt, furthest_node};  // tuple of (diameter, endpoint1, endpoint2).
 }
 
 // 重み付き木の直径を求める．O(|V|).
@@ -75,9 +75,9 @@ std::tuple<Type, int, int> double_sweep(const std::vector<std::vector<std::pair<
         }
     };
     bfs(rt);
-    int v = furthest_node;
-    bfs(v);
-    return {d[furthest_node], v, furthest_node};  // tuple of (diameter, endpoint1, endpoint2).
+    rt = furthest_node;
+    bfs(rt);
+    return {d[furthest_node], rt, furthest_node};  // tuple of (diameter, endpoint1, endpoint2).
 }
 
 }  // namespace algorithm
