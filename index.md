@@ -103,8 +103,8 @@ data:
   - name: src/Graph/Tree
     pages:
     - icon: ':heavy_check_mark:'
-      path: src/Graph/Tree/calc_tree_diameter.hpp
-      title: "\u6728\u306E\u76F4\u5F84"
+      path: src/Graph/Tree/double_sweep.hpp
+      title: "Double Sweep\uFF08\u6728\u306E\u76F4\u5F84\uFF09"
     - icon: ':heavy_check_mark:'
       path: src/Graph/Tree/heavy_light_decomposition.hpp
       title: "Heavy-Light Decomposition\uFF08HL\u5206\u89E3\uFF0C\u91CD\u8EFD\u5206\
