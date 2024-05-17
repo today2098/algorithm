@@ -21,10 +21,10 @@ int main() {
             if(trie.exist(x)) trie.erase(x);
         } else {
             debug(trie);
-            trie.operator_xor(x);
+            trie.operate_xor_all(x);
             debug(trie);
             std::cout << trie.min_element().to_ulong() << "\n";
-            trie.operator_xor(x);
+            trie.operate_xor_all(x);
         }
     }
 }
