@@ -18,7 +18,7 @@ class Modint : ModintBase {
     long long val;
 
     void normalize() {
-        if(!(-mod <= val and val < mod)) val %= mod;
+        if(val < -mod or mod <= val) val %= mod;
         if(val < 0) val += mod;
     }
 
@@ -67,12 +67,12 @@ public:
     }
     Modint &operator/=(const Modint &rhs) { return *this *= rhs.inv(); }
 
+    friend bool operator==(const Modint &lhs, const Modint &rhs) { return lhs.val == rhs.val; }
+    friend bool operator!=(const Modint &lhs, const Modint &rhs) { return lhs.val != rhs.val; }
     friend Modint operator+(const Modint &lhs, const Modint &rhs) { return Modint(lhs) += rhs; }
     friend Modint operator-(const Modint &lhs, const Modint &rhs) { return Modint(lhs) -= rhs; }
     friend Modint operator*(const Modint &lhs, const Modint &rhs) { return Modint(lhs) *= rhs; }
     friend Modint operator/(const Modint &lhs, const Modint &rhs) { return Modint(lhs) /= rhs; }
-    friend bool operator==(const Modint &lhs, const Modint &rhs) { return lhs.val == rhs.val; }
-    friend bool operator!=(const Modint &lhs, const Modint &rhs) { return lhs.val != rhs.val; }
     friend std::istream &operator>>(std::istream &is, Modint &rhs) {
         is >> rhs.val;
         rhs.normalize();
@@ -83,7 +83,7 @@ public:
     static constexpr int modulus() { return mod; }
     long long value() const { return val; }
     Modint inv() const {
-        long long a = val, b = mod, u = 1, v = 0;
+        long long a = mod, b = val, u = 0, v = 1;
         while(b != 0) {
             long long t = a / b;
             a -= b * t, u -= v * t;

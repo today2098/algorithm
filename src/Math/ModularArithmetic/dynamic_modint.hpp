@@ -20,7 +20,7 @@ class DynamicModint : ModintBase {
     long long val;
 
     void normalize() {
-        if(!(-mod <= val and val < mod)) val %= mod;
+        if(val < -mod or mod <= val) val %= mod;
         if(val < 0) val += mod;
     }
 
@@ -69,12 +69,12 @@ public:
     }
     DynamicModint &operator/=(const DynamicModint &rhs) { return *this *= rhs.inv(); }
 
+    friend bool operator==(const DynamicModint &lhs, const DynamicModint &rhs) { return lhs.val == rhs.val; }
+    friend bool operator!=(const DynamicModint &lhs, const DynamicModint &rhs) { return lhs.val != rhs.val; }
     friend DynamicModint operator+(const DynamicModint &lhs, const DynamicModint &rhs) { return DynamicModint(lhs) += rhs; }
     friend DynamicModint operator-(const DynamicModint &lhs, const DynamicModint &rhs) { return DynamicModint(lhs) -= rhs; }
     friend DynamicModint operator*(const DynamicModint &lhs, const DynamicModint &rhs) { return DynamicModint(lhs) *= rhs; }
     friend DynamicModint operator/(const DynamicModint &lhs, const DynamicModint &rhs) { return DynamicModint(lhs) /= rhs; }
-    friend bool operator==(const DynamicModint &lhs, const DynamicModint &rhs) { return lhs.val == rhs.val; }
-    friend bool operator!=(const DynamicModint &lhs, const DynamicModint &rhs) { return lhs.val != rhs.val; }
     friend std::istream &operator>>(std::istream &is, DynamicModint &rhs) {
         is >> rhs.val;
         rhs.normalize();
@@ -90,8 +90,8 @@ public:
     static int modulus() { return mod; }
     long long value() const { return val; }
     DynamicModint inv() const {
-        long long a = val, b = mod, u = 1, v = 0;
-        while(b) {
+        long long a = mod, b = val, u = 0, v = 1;
+        while(b != 0) {
             long long t = a / b;
             a -= b * t, u -= v * t;
             std::swap(a, b), std::swap(u, v);

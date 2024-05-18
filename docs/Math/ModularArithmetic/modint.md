@@ -15,9 +15,7 @@ $$
 また，任意の素数 $p$ を法としたときは，剰余体 $\mathbb{Z}/p\mathbb{Z}$ において $0+p\mathbb{Z}$ 以外の剰余類  $a+p\mathbb{Z} \in \mathbb{Z}/p\mathbb{Z}$ は乗法逆元 $a^{-1}$ をもち，除法の演算もサポートする．
 
 $$
-\begin{align}
-&\frac{b + m \mathbb{Z}}{a + m \mathbb{Z}} = b \cdot a^{-1} + m \mathbb{Z} \notag
-\end{align}
+\frac{b + m \mathbb{Z}}{a + m \mathbb{Z}} = b \cdot a^{-1} + m \mathbb{Z}
 $$
 
 
