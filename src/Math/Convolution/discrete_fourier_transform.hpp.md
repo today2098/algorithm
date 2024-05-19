@@ -21,12 +21,12 @@ data:
     #include <vector>\n\nnamespace algorithm {\n\nnamespace dft {\n\nusing D = double;\n\
     \nconst D PI = std::acos(-1.0);\n\n// Discrete Fourier Transform\uFF08\u96E2\u6563\
     \u30D5\u30FC\u30EA\u30A8\u5909\u63DB\uFF09. O(N^2).\nvoid transform(std::vector<std::complex<D>\
-    \ > &a, bool inv = false) {\n    if(a.empty()) return;\n    const int n = a.size();\n\
-    \    std::vector<std::complex<D> > res(n, 0.0);\n    D ang = 2 * PI / n;\n   \
-    \ if(inv) ang = -ang;\n    for(int i = 0; i < n; ++i) {\n        D tmp = ang *\
-    \ i;\n        for(int j = 0; j < n; ++j) res[i] += a[j] * std::polar<D>(1.0, tmp\
-    \ * j);\n    }\n    if(inv) {\n        for(int i = 0; i < n; ++i) res[i] /= n;\n\
-    \    }\n    a = res;\n}\n\n// \u7573\u307F\u8FBC\u307F\uFF0E\n// \u6570\u5217\
+    \ > &a, bool inv = false) {\n    if(a.size() == 0) return;\n    const int n =\
+    \ a.size();\n    std::vector<std::complex<D> > res(n, 0.0);\n    D ang = 2 * PI\
+    \ / n;\n    if(inv) ang = -ang;\n    for(int i = 0; i < n; ++i) {\n        D tmp\
+    \ = ang * i;\n        for(int j = 0; j < n; ++j) res[i] += a[j] * std::polar<D>(1.0,\
+    \ tmp * j);\n    }\n    if(inv) {\n        for(int i = 0; i < n; ++i) res[i] /=\
+    \ n;\n    }\n    a = res;\n}\n\n// \u7573\u307F\u8FBC\u307F\uFF0E\n// \u6570\u5217\
     a, b\u306B\u5BFE\u3057\u3066\uFF0Cc[i]=sum_{k=0}^{i} a[k]*b[i-k] \u3068\u306A\u308B\
     \u6570\u5217c\u3092\u6C42\u3081\u308B\uFF0EO(N^2).\ntemplate <typename Type>\n\
     std::vector<Type> convolve_naive(const std::vector<Type> &a, const std::vector<Type>\
@@ -63,12 +63,12 @@ data:
     #include <vector>\n\nnamespace algorithm {\n\nnamespace dft {\n\nusing D = double;\n\
     \nconst D PI = std::acos(-1.0);\n\n// Discrete Fourier Transform\uFF08\u96E2\u6563\
     \u30D5\u30FC\u30EA\u30A8\u5909\u63DB\uFF09. O(N^2).\nvoid transform(std::vector<std::complex<D>\
-    \ > &a, bool inv = false) {\n    if(a.empty()) return;\n    const int n = a.size();\n\
-    \    std::vector<std::complex<D> > res(n, 0.0);\n    D ang = 2 * PI / n;\n   \
-    \ if(inv) ang = -ang;\n    for(int i = 0; i < n; ++i) {\n        D tmp = ang *\
-    \ i;\n        for(int j = 0; j < n; ++j) res[i] += a[j] * std::polar<D>(1.0, tmp\
-    \ * j);\n    }\n    if(inv) {\n        for(int i = 0; i < n; ++i) res[i] /= n;\n\
-    \    }\n    a = res;\n}\n\n// \u7573\u307F\u8FBC\u307F\uFF0E\n// \u6570\u5217\
+    \ > &a, bool inv = false) {\n    if(a.size() == 0) return;\n    const int n =\
+    \ a.size();\n    std::vector<std::complex<D> > res(n, 0.0);\n    D ang = 2 * PI\
+    \ / n;\n    if(inv) ang = -ang;\n    for(int i = 0; i < n; ++i) {\n        D tmp\
+    \ = ang * i;\n        for(int j = 0; j < n; ++j) res[i] += a[j] * std::polar<D>(1.0,\
+    \ tmp * j);\n    }\n    if(inv) {\n        for(int i = 0; i < n; ++i) res[i] /=\
+    \ n;\n    }\n    a = res;\n}\n\n// \u7573\u307F\u8FBC\u307F\uFF0E\n// \u6570\u5217\
     a, b\u306B\u5BFE\u3057\u3066\uFF0Cc[i]=sum_{k=0}^{i} a[k]*b[i-k] \u3068\u306A\u308B\
     \u6570\u5217c\u3092\u6C42\u3081\u308B\uFF0EO(N^2).\ntemplate <typename Type>\n\
     std::vector<Type> convolve_naive(const std::vector<Type> &a, const std::vector<Type>\
@@ -102,7 +102,7 @@ data:
   isVerificationFile: false
   path: src/Math/Convolution/discrete_fourier_transform.hpp
   requiredBy: []
-  timestamp: '2024-04-24 14:49:11+09:00'
+  timestamp: '2024-05-19 11:39:27+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj-ITP1_1_A-discrete_fourier_transform.test.cpp
@@ -118,13 +118,13 @@ title: "Discrete Fourier Transform\uFF08\u96E2\u6563\u30D5\u30FC\u30EA\u30A8\u59
 
 離散フーリエ変換 (DFT: Discrete Fourier Transform) を用いた畳み込みを行う．
 
-具体的には，長さ $N$ の数列 $\lbrace a_n \rbrace$ と長さ $M$ の数列 $\lbrace b_n \rbrace$ に対して
+具体的には，長さ $N$ の数列 $\lbrace a_0, a_1, \ldots, a_{N-1} \rbrace$ と長さ $M$ の数列 $\lbrace b_0, b_1, \ldots, b_{M-1} \rbrace$ に対して
 
 $$
 c_i = \sum_{k=0}^{i} a_k b_{i-k}
 $$
 
-となる長さ $N + M - 1$ の数列 $\lbrace c_n \rbrace$ を $\mathcal{O}((N + M)^2)$ で求める．
+となる長さ $N + M - 1$ の数列 $\lbrace c_0, c_1, \ldots, c_{N+M-1} \rbrace$ を $\mathcal{O}((N + M)^2)$ で求める．
 
 数列の長さや要素の値が大きくなると，誤差も大きくなることに注意．
 

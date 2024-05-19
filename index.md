@@ -407,6 +407,9 @@ data:
       path: test/aoj-ITP1_1_A-fast_fourier_transform.test.cpp
       title: test/aoj-ITP1_1_A-fast_fourier_transform.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/aoj-ITP1_1_A-number_theoretic_transform.test.cpp
+      title: test/aoj-ITP1_1_A-number_theoretic_transform.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/aoj-ITP1_1_A-popcount.test.cpp
       title: test/aoj-ITP1_1_A-popcount.test.cpp
     - icon: ':heavy_check_mark:'

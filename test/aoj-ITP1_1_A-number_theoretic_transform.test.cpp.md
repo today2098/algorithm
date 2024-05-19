@@ -19,6 +19,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: src/Math/ModularArithmetic/modint_base.hpp
     title: "Modint\u69CB\u9020\u4F53\u306E\u57FA\u5E95\u30AF\u30E9\u30B9"
+  - icon: ':heavy_check_mark:'
+    path: src/Utils/debug.hpp
+    title: "\u30C7\u30D0\u30C3\u30B0\u7528\u95A2\u6570\u5F62\u5F0F\u30DE\u30AF\u30ED"
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -26,16 +29,17 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/convolution_mod
+    PROBLEM: https://onlinejudge.u-aizu.ac.jp/courses/lesson/2/ITP1/1/ITP1_1_A
     links:
-    - https://judge.yosupo.jp/problem/convolution_mod
-  bundledCode: "#line 1 \"test/yosupo-convolution_mod.test.cpp\"\n#define PROBLEM\
-    \ \"https://judge.yosupo.jp/problem/convolution_mod\"\n\n#include <iostream>\n\
-    #include <vector>\n\n#line 1 \"src/Math/Convolution/number_theoretic_transform.hpp\"\
-    \n\n\n\n/**\n * @brief Number Theoretic Transform\uFF08\u6570\u8AD6\u5909\u63DB\
-    \uFF09\n * @docs docs/Math/Convolution/number_theoretic_transform.md\n */\n\n\
-    #include <algorithm>\n#include <array>\n#include <cassert>\n#include <type_traits>\n\
-    #include <utility>\n#line 15 \"src/Math/Convolution/number_theoretic_transform.hpp\"\
+    - https://onlinejudge.u-aizu.ac.jp/courses/lesson/2/ITP1/1/ITP1_1_A
+  bundledCode: "#line 1 \"test/aoj-ITP1_1_A-number_theoretic_transform.test.cpp\"\n\
+    #define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/lesson/2/ITP1/1/ITP1_1_A\"\
+    \n\n#include <cassert>\n#include <iostream>\n#include <random>\n#include <vector>\n\
+    \n#line 1 \"src/Math/Convolution/number_theoretic_transform.hpp\"\n\n\n\n/**\n\
+    \ * @brief Number Theoretic Transform\uFF08\u6570\u8AD6\u5909\u63DB\uFF09\n *\
+    \ @docs docs/Math/Convolution/number_theoretic_transform.md\n */\n\n#include <algorithm>\n\
+    #include <array>\n#line 12 \"src/Math/Convolution/number_theoretic_transform.hpp\"\
+    \n#include <type_traits>\n#include <utility>\n#line 15 \"src/Math/Convolution/number_theoretic_transform.hpp\"\
     \n\n#line 1 \"src/Math/ModularArithmetic/dynamic_modint.hpp\"\n\n\n\n/**\n * @brief\
     \ \u52D5\u7684modint\n * @docs docs/Math/ModularArithmetic/dynamic_modint.md\n\
     \ */\n\n#line 12 \"src/Math/ModularArithmetic/dynamic_modint.hpp\"\n\n#line 1\
@@ -200,18 +204,87 @@ data:
     \ - 1;\n    int m = 1;\n    while(m < n) m <<= 1;\n    a.resize(m, 0), b.resize(m,\
     \ 0);\n    transform(a), transform(b);\n    for(int i = 0; i < m; ++i) a[i] *=\
     \ b[i];\n    transform(a, true);\n    a.resize(n);\n    return a;\n}\n\n}  //\
-    \ namespace ntt\n\n}  // namespace algorithm\n\n\n#line 8 \"test/yosupo-convolution_mod.test.cpp\"\
-    \n\nint main() {\n    int n, m;\n    std::cin >> n >> m;\n\n    std::vector<algorithm::mint998244353>\
-    \ a(n), b(m);\n    for(auto &in : a) std::cin >> in;\n    for(auto &in : b) std::cin\
-    \ >> in;\n\n    auto &&c = algorithm::ntt::convolve(a, b);\n    for(const auto\
-    \ &out : c) std::cout << out << \" \";\n    std::cout << std::endl;\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/convolution_mod\"\n\n#include\
-    \ <iostream>\n#include <vector>\n\n#include \"../src/Math/Convolution/number_theoretic_transform.hpp\"\
-    \n#include \"../src/Math/ModularArithmetic/modint.hpp\"\n\nint main() {\n    int\
-    \ n, m;\n    std::cin >> n >> m;\n\n    std::vector<algorithm::mint998244353>\
-    \ a(n), b(m);\n    for(auto &in : a) std::cin >> in;\n    for(auto &in : b) std::cin\
-    \ >> in;\n\n    auto &&c = algorithm::ntt::convolve(a, b);\n    for(const auto\
-    \ &out : c) std::cout << out << \" \";\n    std::cout << std::endl;\n}\n"
+    \ namespace ntt\n\n}  // namespace algorithm\n\n\n#line 1 \"src/Utils/debug.hpp\"\
+    \n\n\n\n/**\n * @brief \u30C7\u30D0\u30C3\u30B0\u7528\u95A2\u6570\u5F62\u5F0F\u30DE\
+    \u30AF\u30ED\n * @docs docs/Utils/debug.md\n */\n\n#line 10 \"src/Utils/debug.hpp\"\
+    \n#include <iterator>\n#include <queue>\n#include <stack>\n#include <string>\n\
+    #include <string_view>\n#include <tuple>\n#line 18 \"src/Utils/debug.hpp\"\n\n\
+    // #define DEBUG\n\n#ifdef DEBUG\n\n#define debug(...) algorithm::debug::debug_internal(__LINE__,\
+    \ #__VA_ARGS__, __VA_ARGS__)\n\nnamespace algorithm {\n\nnamespace debug {\n\n\
+    constexpr std::ostream &os = std::cerr;\n\nstruct has_iterator_impl {\n    template\
+    \ <class T>\n    static constexpr std::true_type check(typename T::iterator *);\n\
+    \n    template <class T>\n    static constexpr std::false_type check(...);\n};\n\
+    \ntemplate <class T>\nclass has_iterator : public decltype(has_iterator_impl::check<T>(nullptr))\
+    \ {};\n\n// Prototype declaration.\nvoid print(const std::string &s);\nvoid print(std::string_view\
+    \ s);\ntemplate <typename T, typename U>\nvoid print(const std::pair<T, U> &p);\n\
+    template <class T, std::size_t... Idxes>\nvoid print_tuple(const T &t, std::index_sequence<Idxes...>);\n\
+    template <typename... Ts>\nvoid print(const std::tuple<Ts...> &t);\ntemplate <typename...\
+    \ Ts>\nvoid print(const std::stack<Ts...> &st);\ntemplate <typename... Ts>\nvoid\
+    \ print(const std::queue<Ts...> &que);\ntemplate <typename... Ts>\nvoid print(const\
+    \ std::priority_queue<Ts...> &pque);\ntemplate <class T, typename std::enable_if_t<has_iterator<T>::value,\
+    \ bool> = false>\nvoid print(const T &v);\ntemplate <typename T, typename std::enable_if_t<!has_iterator<T>::value,\
+    \ bool> = false>\nvoid print(const T &elem);\ntemplate <typename T, typename...\
+    \ Args>\nvoid debug_internal(int line, std::string_view context, T &&first, Args\
+    \ &&...args);\n\nvoid print(const std::string &s) { os << s; }\n\nvoid print(std::string_view\
+    \ s) { os << s; }\n\ntemplate <typename T, typename U>\nvoid print(const std::pair<T,\
+    \ U> &p) {\n    os << \"{\";\n    print(p.first);\n    os << \", \";\n    print(p.second);\n\
+    \    os << \"}\";\n}\n\ntemplate <class T, std::size_t... Idxes>\nvoid print_tuple(const\
+    \ T &t, std::index_sequence<Idxes...>) {\n    os << \"{\";\n    ((os << (Idxes\
+    \ == 0 ? \"\" : \", \"), print(std::get<Idxes>(t))), ...);\n    os << \"}\";\n\
+    }\n\ntemplate <typename... Ts>\nvoid print(const std::tuple<Ts...> &t) {\n   \
+    \ print_tuple(t, std::make_index_sequence<sizeof...(Ts)>());\n}\n\ntemplate <typename...\
+    \ Ts>\nvoid print(const std::stack<Ts...> &st) {\n    std::stack<Ts...> tmp =\
+    \ st;\n    os << \"[\";\n    while(!tmp.empty()) {\n        print(tmp.top());\n\
+    \        tmp.pop();\n        if(!tmp.empty()) os << \" \";\n    }\n    os << \"\
+    ]\";\n}\n\ntemplate <typename... Ts>\nvoid print(const std::queue<Ts...> &que)\
+    \ {\n    std::queue<Ts...> tmp = que;\n    os << \"[\";\n    while(!tmp.empty())\
+    \ {\n        print(tmp.front());\n        tmp.pop();\n        if(!tmp.empty())\
+    \ os << \" \";\n    }\n    os << \"]\";\n}\n\ntemplate <typename... Ts>\nvoid\
+    \ print(const std::priority_queue<Ts...> &pque) {\n    std::priority_queue<Ts...>\
+    \ tmp = pque;\n    os << \"[\";\n    while(!tmp.empty()) {\n        print(tmp.top());\n\
+    \        tmp.pop();\n        if(!tmp.empty()) os << \" \";\n    }\n    os << \"\
+    ]\";\n}\n\ntemplate <class T, typename std::enable_if_t<has_iterator<T>::value,\
+    \ bool> = false>\nvoid print(const T &v) {\n    os << \"[\";\n    for(auto itr\
+    \ = std::cbegin(v); itr != std::cend(v); ++itr) {\n        if(itr != std::cbegin(v))\
+    \ os << \" \";\n        print(*itr);\n    }\n    os << \"]\";\n}\n\ntemplate <typename\
+    \ T, typename std::enable_if_t<!has_iterator<T>::value, bool> = false>\nvoid print(const\
+    \ T &elem) { os << elem; }\n\ntemplate <typename T, typename... Args>\nvoid debug_internal(int\
+    \ line, std::string_view context, T &&first, Args &&...args) {\n    constexpr\
+    \ const char *open_bracket = (sizeof...(args) == 0 ? \"\" : \"(\");\n    constexpr\
+    \ const char *close_bracket = (sizeof...(args) == 0 ? \"\" : \")\");\n    os <<\
+    \ \"[L\" << line << \"] \" << open_bracket << context << close_bracket << \":\
+    \ \" << open_bracket;\n    print(std::forward<T>(first));\n    ((os << \", \"\
+    , print(std::forward<Args>(args))), ...);\n    os << close_bracket << std::endl;\n\
+    }\n\n}  // namespace debug\n\n}  // namespace algorithm\n\n#else\n\n#define debug(...)\
+    \ static_cast<void>(0)\n\n#endif\n\n\n#line 11 \"test/aoj-ITP1_1_A-number_theoretic_transform.test.cpp\"\
+    \n\nint main() {\n    std::random_device seed;\n    std::mt19937_64 rng(seed());\n\
+    \n    std::uniform_int_distribution<int> uniform_n(1, 1000);\n    std::uniform_int_distribution<long\
+    \ long> uniform(-1e18, 1e18);\n    for(int i = 0; i < 100; ++i) {\n        const\
+    \ int n = uniform_n(rng), m = uniform_n(rng);\n        std::vector<algorithm::mint998244353>\
+    \ a(n), b(m);\n        for(auto &elem : a) elem = uniform(rng);\n        for(auto\
+    \ &elem : b) elem = uniform(rng);\n        debug(n, a);\n        debug(m, b);\n\
+    \n        auto &&res = algorithm::ntt::convolve(a, b);\n        auto &&res_naive\
+    \ = algorithm::ntt::convolve_naive(a, b);\n        debug(res.size(), res);\n \
+    \       debug(res_naive.size(), res_naive);\n\n        assert(res.size() == size_t(n\
+    \ + m - 1));\n        assert(res_naive.size() == size_t(n + m - 1));\n       \
+    \ for(int j = 0; j < n + m - 1; ++j) assert(res[j] == res_naive[j]);\n    }\n\n\
+    \    std::cout << \"Hello World\" << std::endl;\n}\n"
+  code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/lesson/2/ITP1/1/ITP1_1_A\"\
+    \n\n#include <cassert>\n#include <iostream>\n#include <random>\n#include <vector>\n\
+    \n#include \"../src/Math/Convolution/number_theoretic_transform.hpp\"\n#include\
+    \ \"../src/Math/ModularArithmetic/modint.hpp\"\n#include \"../src/Utils/debug.hpp\"\
+    \n\nint main() {\n    std::random_device seed;\n    std::mt19937_64 rng(seed());\n\
+    \n    std::uniform_int_distribution<int> uniform_n(1, 1000);\n    std::uniform_int_distribution<long\
+    \ long> uniform(-1e18, 1e18);\n    for(int i = 0; i < 100; ++i) {\n        const\
+    \ int n = uniform_n(rng), m = uniform_n(rng);\n        std::vector<algorithm::mint998244353>\
+    \ a(n), b(m);\n        for(auto &elem : a) elem = uniform(rng);\n        for(auto\
+    \ &elem : b) elem = uniform(rng);\n        debug(n, a);\n        debug(m, b);\n\
+    \n        auto &&res = algorithm::ntt::convolve(a, b);\n        auto &&res_naive\
+    \ = algorithm::ntt::convolve_naive(a, b);\n        debug(res.size(), res);\n \
+    \       debug(res_naive.size(), res_naive);\n\n        assert(res.size() == size_t(n\
+    \ + m - 1));\n        assert(res_naive.size() == size_t(n + m - 1));\n       \
+    \ for(int j = 0; j < n + m - 1; ++j) assert(res[j] == res_naive[j]);\n    }\n\n\
+    \    std::cout << \"Hello World\" << std::endl;\n}\n"
   dependsOn:
   - src/Math/Convolution/number_theoretic_transform.hpp
   - src/Math/ModularArithmetic/dynamic_modint.hpp
@@ -219,16 +292,17 @@ data:
   - src/Math/ModularArithmetic/modint.hpp
   - src/Math/ModularArithmetic/modint_base.hpp
   - src/Math/ModularArithmetic/modint.hpp
+  - src/Utils/debug.hpp
   isVerificationFile: true
-  path: test/yosupo-convolution_mod.test.cpp
+  path: test/aoj-ITP1_1_A-number_theoretic_transform.test.cpp
   requiredBy: []
   timestamp: '2024-05-19 17:43:26+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/yosupo-convolution_mod.test.cpp
+documentation_of: test/aoj-ITP1_1_A-number_theoretic_transform.test.cpp
 layout: document
 redirect_from:
-- /verify/test/yosupo-convolution_mod.test.cpp
-- /verify/test/yosupo-convolution_mod.test.cpp.html
-title: test/yosupo-convolution_mod.test.cpp
+- /verify/test/aoj-ITP1_1_A-number_theoretic_transform.test.cpp
+- /verify/test/aoj-ITP1_1_A-number_theoretic_transform.test.cpp.html
+title: test/aoj-ITP1_1_A-number_theoretic_transform.test.cpp
 ---

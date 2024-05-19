@@ -27,24 +27,24 @@ data:
     \ que.pop();\n            furthest_node = u;\n            for(int v : g[u]) {\n\
     \                assert(0 <= v and v < vn);\n                if(d[v] != -1) continue;\n\
     \                d[v] = d[u] + 1;\n                que.push(v);\n            }\n\
-    \        }\n    };\n    bfs(rt);\n    int v = furthest_node;\n    bfs(v);\n  \
-    \  return {d[furthest_node], v, furthest_node};  // tuple of (diameter, endpoint1,\
-    \ endpoint2).\n}\n\n// \u91CD\u307F\u4ED8\u304D\u6728\u306E\u76F4\u5F84\u3092\u6C42\
-    \u3081\u308B\uFF0EO(|V|).\ntemplate <typename Type>\nstd::tuple<Type, int, int>\
-    \ double_sweep(const std::vector<std::vector<std::pair<int, Type> > > &g, int\
-    \ rt = 0) {\n    const int vn = g.size();\n    assert(vn == 0 or (0 <= rt and\
-    \ rt < vn));\n    if(vn == 0) return {-1, -1, -1};\n    int furthest_node;\n \
-    \   std::vector<Type> d(vn);\n    std::queue<int> que;\n    std::vector<bool>\
-    \ seen(vn);\n    auto bfs = [&](int s) -> void {\n        furthest_node = s;\n\
-    \        d[s] = 0;\n        que.push(s);\n        std::fill(seen.begin(), seen.end(),\
-    \ false);\n        while(!que.empty()) {\n            int u = que.front();\n \
-    \           que.pop();\n            seen[u] = true;\n            if(d[u] > d[furthest_node])\
-    \ furthest_node = u;\n            for(const auto &[v, cost] : g[u]) {\n      \
-    \          assert(0 <= v and v < vn);\n                if(seen[v]) continue;\n\
-    \                d[v] = d[u] + cost;\n                que.emplace(v);\n      \
-    \      }\n        }\n    };\n    bfs(rt);\n    int v = furthest_node;\n    bfs(v);\n\
-    \    return {d[furthest_node], v, furthest_node};  // tuple of (diameter, endpoint1,\
-    \ endpoint2).\n}\n\n}  // namespace algorithm\n\n\n"
+    \        }\n    };\n    bfs(rt);\n    rt = furthest_node;\n    bfs(rt);\n    return\
+    \ {d[furthest_node], rt, furthest_node};  // tuple of (diameter, endpoint1, endpoint2).\n\
+    }\n\n// \u91CD\u307F\u4ED8\u304D\u6728\u306E\u76F4\u5F84\u3092\u6C42\u3081\u308B\
+    \uFF0EO(|V|).\ntemplate <typename Type>\nstd::tuple<Type, int, int> double_sweep(const\
+    \ std::vector<std::vector<std::pair<int, Type> > > &g, int rt = 0) {\n    const\
+    \ int vn = g.size();\n    assert(vn == 0 or (0 <= rt and rt < vn));\n    if(vn\
+    \ == 0) return {-1, -1, -1};\n    int furthest_node;\n    std::vector<Type> d(vn);\n\
+    \    std::queue<int> que;\n    std::vector<bool> seen(vn);\n    auto bfs = [&](int\
+    \ s) -> void {\n        furthest_node = s;\n        d[s] = 0;\n        que.push(s);\n\
+    \        std::fill(seen.begin(), seen.end(), false);\n        while(!que.empty())\
+    \ {\n            int u = que.front();\n            que.pop();\n            seen[u]\
+    \ = true;\n            if(d[u] > d[furthest_node]) furthest_node = u;\n      \
+    \      for(const auto &[v, cost] : g[u]) {\n                assert(0 <= v and\
+    \ v < vn);\n                if(seen[v]) continue;\n                d[v] = d[u]\
+    \ + cost;\n                que.emplace(v);\n            }\n        }\n    };\n\
+    \    bfs(rt);\n    rt = furthest_node;\n    bfs(rt);\n    return {d[furthest_node],\
+    \ rt, furthest_node};  // tuple of (diameter, endpoint1, endpoint2).\n}\n\n} \
+    \ // namespace algorithm\n\n\n"
   code: "#ifndef ALGORITHM_DOUBLE_SWEEP_HPP\n#define ALGORITHM_DOUBLE_SWEEP_HPP 1\n\
     \n/**\n * @brief Double Sweep\uFF08\u6728\u306E\u76F4\u5F84\uFF09\n * @docs docs/Graph/Tree/double_sweep.md\n\
     \ */\n\n#include <algorithm>\n#include <cassert>\n#include <queue>\n#include <tuple>\n\
@@ -59,29 +59,29 @@ data:
     \ que.pop();\n            furthest_node = u;\n            for(int v : g[u]) {\n\
     \                assert(0 <= v and v < vn);\n                if(d[v] != -1) continue;\n\
     \                d[v] = d[u] + 1;\n                que.push(v);\n            }\n\
-    \        }\n    };\n    bfs(rt);\n    int v = furthest_node;\n    bfs(v);\n  \
-    \  return {d[furthest_node], v, furthest_node};  // tuple of (diameter, endpoint1,\
-    \ endpoint2).\n}\n\n// \u91CD\u307F\u4ED8\u304D\u6728\u306E\u76F4\u5F84\u3092\u6C42\
-    \u3081\u308B\uFF0EO(|V|).\ntemplate <typename Type>\nstd::tuple<Type, int, int>\
-    \ double_sweep(const std::vector<std::vector<std::pair<int, Type> > > &g, int\
-    \ rt = 0) {\n    const int vn = g.size();\n    assert(vn == 0 or (0 <= rt and\
-    \ rt < vn));\n    if(vn == 0) return {-1, -1, -1};\n    int furthest_node;\n \
-    \   std::vector<Type> d(vn);\n    std::queue<int> que;\n    std::vector<bool>\
-    \ seen(vn);\n    auto bfs = [&](int s) -> void {\n        furthest_node = s;\n\
-    \        d[s] = 0;\n        que.push(s);\n        std::fill(seen.begin(), seen.end(),\
-    \ false);\n        while(!que.empty()) {\n            int u = que.front();\n \
-    \           que.pop();\n            seen[u] = true;\n            if(d[u] > d[furthest_node])\
-    \ furthest_node = u;\n            for(const auto &[v, cost] : g[u]) {\n      \
-    \          assert(0 <= v and v < vn);\n                if(seen[v]) continue;\n\
-    \                d[v] = d[u] + cost;\n                que.emplace(v);\n      \
-    \      }\n        }\n    };\n    bfs(rt);\n    int v = furthest_node;\n    bfs(v);\n\
-    \    return {d[furthest_node], v, furthest_node};  // tuple of (diameter, endpoint1,\
-    \ endpoint2).\n}\n\n}  // namespace algorithm\n\n#endif\n"
+    \        }\n    };\n    bfs(rt);\n    rt = furthest_node;\n    bfs(rt);\n    return\
+    \ {d[furthest_node], rt, furthest_node};  // tuple of (diameter, endpoint1, endpoint2).\n\
+    }\n\n// \u91CD\u307F\u4ED8\u304D\u6728\u306E\u76F4\u5F84\u3092\u6C42\u3081\u308B\
+    \uFF0EO(|V|).\ntemplate <typename Type>\nstd::tuple<Type, int, int> double_sweep(const\
+    \ std::vector<std::vector<std::pair<int, Type> > > &g, int rt = 0) {\n    const\
+    \ int vn = g.size();\n    assert(vn == 0 or (0 <= rt and rt < vn));\n    if(vn\
+    \ == 0) return {-1, -1, -1};\n    int furthest_node;\n    std::vector<Type> d(vn);\n\
+    \    std::queue<int> que;\n    std::vector<bool> seen(vn);\n    auto bfs = [&](int\
+    \ s) -> void {\n        furthest_node = s;\n        d[s] = 0;\n        que.push(s);\n\
+    \        std::fill(seen.begin(), seen.end(), false);\n        while(!que.empty())\
+    \ {\n            int u = que.front();\n            que.pop();\n            seen[u]\
+    \ = true;\n            if(d[u] > d[furthest_node]) furthest_node = u;\n      \
+    \      for(const auto &[v, cost] : g[u]) {\n                assert(0 <= v and\
+    \ v < vn);\n                if(seen[v]) continue;\n                d[v] = d[u]\
+    \ + cost;\n                que.emplace(v);\n            }\n        }\n    };\n\
+    \    bfs(rt);\n    rt = furthest_node;\n    bfs(rt);\n    return {d[furthest_node],\
+    \ rt, furthest_node};  // tuple of (diameter, endpoint1, endpoint2).\n}\n\n} \
+    \ // namespace algorithm\n\n#endif\n"
   dependsOn: []
   isVerificationFile: false
   path: src/Graph/Tree/double_sweep.hpp
   requiredBy: []
-  timestamp: '2024-05-07 19:36:41+09:00'
+  timestamp: '2024-05-08 10:38:12+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj-GRL_5_A.test.cpp

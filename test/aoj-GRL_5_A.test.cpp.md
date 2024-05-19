@@ -30,7 +30,7 @@ data:
     \ = u;\n            for(int v : g[u]) {\n                assert(0 <= v and v <\
     \ vn);\n                if(d[v] != -1) continue;\n                d[v] = d[u]\
     \ + 1;\n                que.push(v);\n            }\n        }\n    };\n    bfs(rt);\n\
-    \    int v = furthest_node;\n    bfs(v);\n    return {d[furthest_node], v, furthest_node};\
+    \    rt = furthest_node;\n    bfs(rt);\n    return {d[furthest_node], rt, furthest_node};\
     \  // tuple of (diameter, endpoint1, endpoint2).\n}\n\n// \u91CD\u307F\u4ED8\u304D\
     \u6728\u306E\u76F4\u5F84\u3092\u6C42\u3081\u308B\uFF0EO(|V|).\ntemplate <typename\
     \ Type>\nstd::tuple<Type, int, int> double_sweep(const std::vector<std::vector<std::pair<int,\
@@ -44,8 +44,8 @@ data:
     \ furthest_node = u;\n            for(const auto &[v, cost] : g[u]) {\n      \
     \          assert(0 <= v and v < vn);\n                if(seen[v]) continue;\n\
     \                d[v] = d[u] + cost;\n                que.emplace(v);\n      \
-    \      }\n        }\n    };\n    bfs(rt);\n    int v = furthest_node;\n    bfs(v);\n\
-    \    return {d[furthest_node], v, furthest_node};  // tuple of (diameter, endpoint1,\
+    \      }\n        }\n    };\n    bfs(rt);\n    rt = furthest_node;\n    bfs(rt);\n\
+    \    return {d[furthest_node], rt, furthest_node};  // tuple of (diameter, endpoint1,\
     \ endpoint2).\n}\n\n}  // namespace algorithm\n\n\n#line 8 \"test/aoj-GRL_5_A.test.cpp\"\
     \n\nint main() {\n    int n;\n    std::cin >> n;\n\n    std::vector<std::vector<std::pair<int,\
     \ int> > > g(n);\n    for(int i = 0; i < n - 1; ++i) {\n        int s, t;\n  \
@@ -65,7 +65,7 @@ data:
   isVerificationFile: true
   path: test/aoj-GRL_5_A.test.cpp
   requiredBy: []
-  timestamp: '2024-05-07 19:36:41+09:00'
+  timestamp: '2024-05-08 10:38:12+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj-GRL_5_A.test.cpp

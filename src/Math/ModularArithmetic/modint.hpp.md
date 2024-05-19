@@ -13,6 +13,12 @@ data:
     path: test/aoj-3110.test.cpp
     title: test/aoj-3110.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/aoj-ITP1_1_A-number_theoretic_transform.test.cpp
+    title: test/aoj-ITP1_1_A-number_theoretic_transform.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj-ITP1_1_A-number_theoretic_transform.test.cpp
+    title: test/aoj-ITP1_1_A-number_theoretic_transform.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo-convolution_mod.test.cpp
     title: test/yosupo-convolution_mod.test.cpp
   - icon: ':heavy_check_mark:'
@@ -38,9 +44,9 @@ data:
     \ is_modint_v = is_modint<T>::value;\n\n}  // namespace algorithm\n\n\n#line 13\
     \ \"src/Math/ModularArithmetic/modint.hpp\"\n\nnamespace algorithm {\n\ntemplate\
     \ <int mod>\nclass Modint : ModintBase {\n    long long val;\n\n    void normalize()\
-    \ {\n        if(!(-mod <= val and val < mod)) val %= mod;\n        if(val < 0)\
-    \ val += mod;\n    }\n\npublic:\n    Modint() : Modint(0) {}\n    Modint(long\
-    \ long val_) : val(val_) {\n        static_assert(mod >= 1);\n        normalize();\n\
+    \ {\n        if(val < -mod or mod <= val) val %= mod;\n        if(val < 0) val\
+    \ += mod;\n    }\n\npublic:\n    Modint() : Modint(0) {}\n    Modint(long long\
+    \ val_) : val(val_) {\n        static_assert(mod >= 1);\n        normalize();\n\
     \    }\n\n    Modint operator+() const { return Modint(*this); }\n    Modint operator-()\
     \ const { return (val == 0 ? Modint(*this) : Modint(mod - val)); }\n    Modint\
     \ &operator++() {\n        val++;\n        if(val == mod) val = 0;\n        return\
@@ -54,35 +60,34 @@ data:
     \        if(val < 0) val += mod;\n        return *this;\n    }\n    Modint &operator*=(const\
     \ Modint &rhs) {\n        val = val * rhs.val % mod;\n        return *this;\n\
     \    }\n    Modint &operator/=(const Modint &rhs) { return *this *= rhs.inv();\
-    \ }\n\n    friend Modint operator+(const Modint &lhs, const Modint &rhs) { return\
-    \ Modint(lhs) += rhs; }\n    friend Modint operator-(const Modint &lhs, const\
-    \ Modint &rhs) { return Modint(lhs) -= rhs; }\n    friend Modint operator*(const\
-    \ Modint &lhs, const Modint &rhs) { return Modint(lhs) *= rhs; }\n    friend Modint\
-    \ operator/(const Modint &lhs, const Modint &rhs) { return Modint(lhs) /= rhs;\
-    \ }\n    friend bool operator==(const Modint &lhs, const Modint &rhs) { return\
+    \ }\n\n    friend bool operator==(const Modint &lhs, const Modint &rhs) { return\
     \ lhs.val == rhs.val; }\n    friend bool operator!=(const Modint &lhs, const Modint\
-    \ &rhs) { return lhs.val != rhs.val; }\n    friend std::istream &operator>>(std::istream\
-    \ &is, Modint &rhs) {\n        is >> rhs.val;\n        rhs.normalize();\n    \
-    \    return is;\n    }\n    friend std::ostream &operator<<(std::ostream &os,\
-    \ const Modint &rhs) { return os << rhs.val; }\n\n    static constexpr int modulus()\
-    \ { return mod; }\n    long long value() const { return val; }\n    Modint inv()\
-    \ const {\n        long long a = val, b = mod, u = 1, v = 0;\n        while(b\
-    \ != 0) {\n            long long t = a / b;\n            a -= b * t, u -= v *\
-    \ t;\n            std::swap(a, b), std::swap(u, v);\n        }\n        return\
-    \ Modint(u);\n    }\n    Modint pow(long long k) const {\n        if(k < 0) return\
-    \ inv().pow(-k);\n        Modint res = 1, mul = *this;\n        while(k > 0) {\n\
-    \            if(k & 1LL) res *= mul;\n            mul *= mul;\n            k >>=\
-    \ 1;\n        }\n        return res;\n    }\n\n    friend Modint mod_inv(const\
-    \ Modint &a) { return a.inv(); }\n    friend Modint mod_pow(const Modint &a, long\
-    \ long k) { return a.pow(k); }\n};\n\nusing mint998244353 = Modint<998'244'353>;\n\
-    using mint1000000007 = Modint<1'000'000'007>;\n\n}  // namespace algorithm\n\n\
-    \n"
+    \ &rhs) { return lhs.val != rhs.val; }\n    friend Modint operator+(const Modint\
+    \ &lhs, const Modint &rhs) { return Modint(lhs) += rhs; }\n    friend Modint operator-(const\
+    \ Modint &lhs, const Modint &rhs) { return Modint(lhs) -= rhs; }\n    friend Modint\
+    \ operator*(const Modint &lhs, const Modint &rhs) { return Modint(lhs) *= rhs;\
+    \ }\n    friend Modint operator/(const Modint &lhs, const Modint &rhs) { return\
+    \ Modint(lhs) /= rhs; }\n    friend std::istream &operator>>(std::istream &is,\
+    \ Modint &rhs) {\n        is >> rhs.val;\n        rhs.normalize();\n        return\
+    \ is;\n    }\n    friend std::ostream &operator<<(std::ostream &os, const Modint\
+    \ &rhs) { return os << rhs.val; }\n\n    static constexpr int modulus() { return\
+    \ mod; }\n    long long value() const { return val; }\n    Modint inv() const\
+    \ {\n        long long a = mod, b = val, u = 0, v = 1;\n        while(b != 0)\
+    \ {\n            long long t = a / b;\n            a -= b * t, u -= v * t;\n \
+    \           std::swap(a, b), std::swap(u, v);\n        }\n        return Modint(u);\n\
+    \    }\n    Modint pow(long long k) const {\n        if(k < 0) return inv().pow(-k);\n\
+    \        Modint res = 1, mul = *this;\n        while(k > 0) {\n            if(k\
+    \ & 1LL) res *= mul;\n            mul *= mul;\n            k >>= 1;\n        }\n\
+    \        return res;\n    }\n\n    friend Modint mod_inv(const Modint &a) { return\
+    \ a.inv(); }\n    friend Modint mod_pow(const Modint &a, long long k) { return\
+    \ a.pow(k); }\n};\n\nusing mint998244353 = Modint<998'244'353>;\nusing mint1000000007\
+    \ = Modint<1'000'000'007>;\n\n}  // namespace algorithm\n\n\n"
   code: "#ifndef ALGORITHM_MODINT_HPP\n#define ALGORITHM_MODINT_HPP 1\n\n/**\n * @brief\
     \ Modint\u69CB\u9020\u4F53\n * @docs docs/Math/ModularArithmetic/modint.md\n */\n\
     \n#include <iostream>\n#include <utility>\n\n#include \"modint_base.hpp\"\n\n\
     namespace algorithm {\n\ntemplate <int mod>\nclass Modint : ModintBase {\n   \
-    \ long long val;\n\n    void normalize() {\n        if(!(-mod <= val and val <\
-    \ mod)) val %= mod;\n        if(val < 0) val += mod;\n    }\n\npublic:\n    Modint()\
+    \ long long val;\n\n    void normalize() {\n        if(val < -mod or mod <= val)\
+    \ val %= mod;\n        if(val < 0) val += mod;\n    }\n\npublic:\n    Modint()\
     \ : Modint(0) {}\n    Modint(long long val_) : val(val_) {\n        static_assert(mod\
     \ >= 1);\n        normalize();\n    }\n\n    Modint operator+() const { return\
     \ Modint(*this); }\n    Modint operator-() const { return (val == 0 ? Modint(*this)\
@@ -97,19 +102,19 @@ data:
     \       val -= rhs.val;\n        if(val < 0) val += mod;\n        return *this;\n\
     \    }\n    Modint &operator*=(const Modint &rhs) {\n        val = val * rhs.val\
     \ % mod;\n        return *this;\n    }\n    Modint &operator/=(const Modint &rhs)\
-    \ { return *this *= rhs.inv(); }\n\n    friend Modint operator+(const Modint &lhs,\
-    \ const Modint &rhs) { return Modint(lhs) += rhs; }\n    friend Modint operator-(const\
-    \ Modint &lhs, const Modint &rhs) { return Modint(lhs) -= rhs; }\n    friend Modint\
-    \ operator*(const Modint &lhs, const Modint &rhs) { return Modint(lhs) *= rhs;\
-    \ }\n    friend Modint operator/(const Modint &lhs, const Modint &rhs) { return\
-    \ Modint(lhs) /= rhs; }\n    friend bool operator==(const Modint &lhs, const Modint\
-    \ &rhs) { return lhs.val == rhs.val; }\n    friend bool operator!=(const Modint\
-    \ &lhs, const Modint &rhs) { return lhs.val != rhs.val; }\n    friend std::istream\
+    \ { return *this *= rhs.inv(); }\n\n    friend bool operator==(const Modint &lhs,\
+    \ const Modint &rhs) { return lhs.val == rhs.val; }\n    friend bool operator!=(const\
+    \ Modint &lhs, const Modint &rhs) { return lhs.val != rhs.val; }\n    friend Modint\
+    \ operator+(const Modint &lhs, const Modint &rhs) { return Modint(lhs) += rhs;\
+    \ }\n    friend Modint operator-(const Modint &lhs, const Modint &rhs) { return\
+    \ Modint(lhs) -= rhs; }\n    friend Modint operator*(const Modint &lhs, const\
+    \ Modint &rhs) { return Modint(lhs) *= rhs; }\n    friend Modint operator/(const\
+    \ Modint &lhs, const Modint &rhs) { return Modint(lhs) /= rhs; }\n    friend std::istream\
     \ &operator>>(std::istream &is, Modint &rhs) {\n        is >> rhs.val;\n     \
     \   rhs.normalize();\n        return is;\n    }\n    friend std::ostream &operator<<(std::ostream\
     \ &os, const Modint &rhs) { return os << rhs.val; }\n\n    static constexpr int\
     \ modulus() { return mod; }\n    long long value() const { return val; }\n   \
-    \ Modint inv() const {\n        long long a = val, b = mod, u = 1, v = 0;\n  \
+    \ Modint inv() const {\n        long long a = mod, b = val, u = 0, v = 1;\n  \
     \      while(b != 0) {\n            long long t = a / b;\n            a -= b *\
     \ t, u -= v * t;\n            std::swap(a, b), std::swap(u, v);\n        }\n \
     \       return Modint(u);\n    }\n    Modint pow(long long k) const {\n      \
@@ -126,13 +131,15 @@ data:
   path: src/Math/ModularArithmetic/modint.hpp
   requiredBy:
   - src/Math/Convolution/number_theoretic_transform.hpp
-  timestamp: '2023-10-18 06:43:32+09:00'
+  timestamp: '2024-05-19 03:58:18+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj-3110.test.cpp
-  - test/yosupo-convolution_mod.test.cpp
-  - test/yosupo-convolution_mod.test.cpp
   - test/yosupo-range_affine_range_sum.test.cpp
+  - test/aoj-ITP1_1_A-number_theoretic_transform.test.cpp
+  - test/aoj-ITP1_1_A-number_theoretic_transform.test.cpp
+  - test/yosupo-convolution_mod.test.cpp
+  - test/yosupo-convolution_mod.test.cpp
+  - test/aoj-3110.test.cpp
 documentation_of: src/Math/ModularArithmetic/modint.hpp
 layout: document
 redirect_from:
@@ -157,9 +164,7 @@ $$
 また，任意の素数 $p$ を法としたときは，剰余体 $\mathbb{Z}/p\mathbb{Z}$ において $0+p\mathbb{Z}$ 以外の剰余類  $a+p\mathbb{Z} \in \mathbb{Z}/p\mathbb{Z}$ は乗法逆元 $a^{-1}$ をもち，除法の演算もサポートする．
 
 $$
-\begin{align}
-&\frac{b + m \mathbb{Z}}{a + m \mathbb{Z}} = b \cdot a^{-1} + m \mathbb{Z} \notag
-\end{align}
+\frac{b + m \mathbb{Z}}{a + m \mathbb{Z}} = b \cdot a^{-1} + m \mathbb{Z}
 $$
 
 

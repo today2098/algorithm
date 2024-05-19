@@ -23,21 +23,21 @@ data:
     \n// Fast Fourier Transform\uFF08\u9AD8\u901F\u30D5\u30FC\u30EA\u30A8\u5909\u63DB\
     \uFF09.\n// \u5F15\u6570\u306E\u6570\u5217\u306E\u9577\u3055\u306F2\u306E\u3079\
     \u304D\u4E57\u3067\u3042\u308B\u3053\u3068\uFF0EO(N*logN).\nvoid transform(std::vector<std::complex<D>\
-    \ > &a, bool inv = false) {\n    if(a.empty()) return;\n    const int n = a.size();\n\
-    \    int h = 0;  // h:=log2(n).\n    while(1 << h < n) h++;\n    assert(n == 1\
-    \ << h);\n    for(int i = 0; i < n; ++i) {\n        int j = 0;\n        for(int\
-    \ k = 0; k < h; ++k) j |= (i >> k & 1) << (h - 1 - k);\n        if(i < j) std::swap(a[i],\
-    \ a[j]);\n    }\n    for(int b = 1; b < n; b <<= 1) {\n        D ang = PI / b;\n\
-    \        if(inv) ang = -ang;\n        for(int i = 0; i < b; ++i) {\n         \
-    \   std::complex<D> w = std::polar<D>(1.0, ang * i);\n            for(int j =\
-    \ 0; j < n; j += b << 1) {\n                std::complex<D> tmp = a[i + j + b]\
-    \ * w;\n                a[i + j + b] = a[i + j] - tmp;\n                a[i +\
-    \ j] = a[i + j] + tmp;\n            }\n        }\n    }\n    if(inv) {\n     \
-    \   for(int i = 0; i < n; ++i) a[i] /= n;\n    }\n}\n\n// \u7573\u307F\u8FBC\u307F\
-    \uFF0E\n// \u6570\u5217a, b\u306B\u5BFE\u3057\u3066\uFF0Cc[i]=sum_{k=0}^{i} a[k]*b[i-k]\
-    \ \u3068\u306A\u308B\u6570\u5217c\u3092\u6C42\u3081\u308B\uFF0EO(N^2).\ntemplate\
-    \ <typename Type>\nstd::vector<Type> convolve_naive(const std::vector<Type> &a,\
-    \ const std::vector<Type> &b) {\n    if(a.size() == 0 or b.size() == 0) return\
+    \ > &a, bool inv = false) {\n    if(a.size() == 0) return;\n    const int n =\
+    \ a.size();\n    int lb = 0;  // lb:=log2(n).\n    while(1 << lb < n) lb++;\n\
+    \    assert(n == 1 << lb);\n    for(int i = 0; i < n; ++i) {\n        int j =\
+    \ 0;\n        for(int k = 0; k < lb; ++k) j |= (i >> k & 1) << (lb - 1 - k);\n\
+    \        if(i < j) std::swap(a[i], a[j]);\n    }\n    for(int b = 1; b < n; b\
+    \ <<= 1) {\n        D ang = PI / b;\n        if(inv) ang = -ang;\n        for(int\
+    \ i = 0; i < b; ++i) {\n            std::complex<D> w = std::polar<D>(1.0, ang\
+    \ * i);\n            for(int j = 0; j < n; j += b << 1) {\n                std::complex<D>\
+    \ tmp = a[i + j + b] * w;\n                a[i + j + b] = a[i + j] - tmp;\n  \
+    \              a[i + j] = a[i + j] + tmp;\n            }\n        }\n    }\n \
+    \   if(inv) {\n        for(int i = 0; i < n; ++i) a[i] /= n;\n    }\n}\n\n// \u7573\
+    \u307F\u8FBC\u307F\uFF0E\n// \u6570\u5217a, b\u306B\u5BFE\u3057\u3066\uFF0Cc[i]=sum_{k=0}^{i}\
+    \ a[k]*b[i-k] \u3068\u306A\u308B\u6570\u5217c\u3092\u6C42\u3081\u308B\uFF0EO(N^2).\n\
+    template <typename Type>\nstd::vector<Type> convolve_naive(const std::vector<Type>\
+    \ &a, const std::vector<Type> &b) {\n    if(a.size() == 0 or b.size() == 0) return\
     \ std::vector<Type>();\n    const int n = a.size(), m = b.size();\n    std::vector<Type>\
     \ res(n + m - 1, 0);\n    for(int i = 0; i < n; ++i) {\n        for(int j = 0;\
     \ j < m; ++j) res[i + j] += a[i] * b[j];\n    }\n    return res;\n}\n\n// \u7573\
@@ -73,21 +73,21 @@ data:
     \n// Fast Fourier Transform\uFF08\u9AD8\u901F\u30D5\u30FC\u30EA\u30A8\u5909\u63DB\
     \uFF09.\n// \u5F15\u6570\u306E\u6570\u5217\u306E\u9577\u3055\u306F2\u306E\u3079\
     \u304D\u4E57\u3067\u3042\u308B\u3053\u3068\uFF0EO(N*logN).\nvoid transform(std::vector<std::complex<D>\
-    \ > &a, bool inv = false) {\n    if(a.empty()) return;\n    const int n = a.size();\n\
-    \    int h = 0;  // h:=log2(n).\n    while(1 << h < n) h++;\n    assert(n == 1\
-    \ << h);\n    for(int i = 0; i < n; ++i) {\n        int j = 0;\n        for(int\
-    \ k = 0; k < h; ++k) j |= (i >> k & 1) << (h - 1 - k);\n        if(i < j) std::swap(a[i],\
-    \ a[j]);\n    }\n    for(int b = 1; b < n; b <<= 1) {\n        D ang = PI / b;\n\
-    \        if(inv) ang = -ang;\n        for(int i = 0; i < b; ++i) {\n         \
-    \   std::complex<D> w = std::polar<D>(1.0, ang * i);\n            for(int j =\
-    \ 0; j < n; j += b << 1) {\n                std::complex<D> tmp = a[i + j + b]\
-    \ * w;\n                a[i + j + b] = a[i + j] - tmp;\n                a[i +\
-    \ j] = a[i + j] + tmp;\n            }\n        }\n    }\n    if(inv) {\n     \
-    \   for(int i = 0; i < n; ++i) a[i] /= n;\n    }\n}\n\n// \u7573\u307F\u8FBC\u307F\
-    \uFF0E\n// \u6570\u5217a, b\u306B\u5BFE\u3057\u3066\uFF0Cc[i]=sum_{k=0}^{i} a[k]*b[i-k]\
-    \ \u3068\u306A\u308B\u6570\u5217c\u3092\u6C42\u3081\u308B\uFF0EO(N^2).\ntemplate\
-    \ <typename Type>\nstd::vector<Type> convolve_naive(const std::vector<Type> &a,\
-    \ const std::vector<Type> &b) {\n    if(a.size() == 0 or b.size() == 0) return\
+    \ > &a, bool inv = false) {\n    if(a.size() == 0) return;\n    const int n =\
+    \ a.size();\n    int lb = 0;  // lb:=log2(n).\n    while(1 << lb < n) lb++;\n\
+    \    assert(n == 1 << lb);\n    for(int i = 0; i < n; ++i) {\n        int j =\
+    \ 0;\n        for(int k = 0; k < lb; ++k) j |= (i >> k & 1) << (lb - 1 - k);\n\
+    \        if(i < j) std::swap(a[i], a[j]);\n    }\n    for(int b = 1; b < n; b\
+    \ <<= 1) {\n        D ang = PI / b;\n        if(inv) ang = -ang;\n        for(int\
+    \ i = 0; i < b; ++i) {\n            std::complex<D> w = std::polar<D>(1.0, ang\
+    \ * i);\n            for(int j = 0; j < n; j += b << 1) {\n                std::complex<D>\
+    \ tmp = a[i + j + b] * w;\n                a[i + j + b] = a[i + j] - tmp;\n  \
+    \              a[i + j] = a[i + j] + tmp;\n            }\n        }\n    }\n \
+    \   if(inv) {\n        for(int i = 0; i < n; ++i) a[i] /= n;\n    }\n}\n\n// \u7573\
+    \u307F\u8FBC\u307F\uFF0E\n// \u6570\u5217a, b\u306B\u5BFE\u3057\u3066\uFF0Cc[i]=sum_{k=0}^{i}\
+    \ a[k]*b[i-k] \u3068\u306A\u308B\u6570\u5217c\u3092\u6C42\u3081\u308B\uFF0EO(N^2).\n\
+    template <typename Type>\nstd::vector<Type> convolve_naive(const std::vector<Type>\
+    \ &a, const std::vector<Type> &b) {\n    if(a.size() == 0 or b.size() == 0) return\
     \ std::vector<Type>();\n    const int n = a.size(), m = b.size();\n    std::vector<Type>\
     \ res(n + m - 1, 0);\n    for(int i = 0; i < n; ++i) {\n        for(int j = 0;\
     \ j < m; ++j) res[i + j] += a[i] * b[j];\n    }\n    return res;\n}\n\n// \u7573\
@@ -118,7 +118,7 @@ data:
   isVerificationFile: false
   path: src/Math/Convolution/fast_fourier_transform.hpp
   requiredBy: []
-  timestamp: '2024-04-24 15:41:45+09:00'
+  timestamp: '2024-05-19 13:01:11+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj-ITP1_1_A-fast_fourier_transform.test.cpp
@@ -134,13 +134,13 @@ title: "Fast Fourier Transform\uFF08\u9AD8\u901F\u30D5\u30FC\u30EA\u30A8\u5909\u
 
 高速フーリエ変換 (FFT: Fast Fourier Transform) を用いた畳み込みを行う．
 
-具体的には，長さ $N$ の数列 $\lbrace a_n \rbrace$ と長さ $M$ の数列 $\lbrace b_n \rbrace$ に対して
+具体的には，長さ $N$ の数列 $\lbrace a_0, a_1, \ldots, a_{N-1} \rbrace$ と長さ $M$ の数列 $\lbrace b_0, b_1, \ldots, b_{M-1} \rbrace$ に対して
 
 $$
 c_i = \sum_{k=0}^{i} a_k b_{i-k}
 $$
 
-となる長さ $N + M - 1$ の数列 $\lbrace c_n \rbrace$ を $\mathcal{O}((N + M) \log (N + M))$ で求める．
+となる長さ $N + M - 1$ の数列 $\lbrace c_0, c_1, \ldots, c_{N+M-1} \rbrace$ を $\mathcal{O}((N + M) \log (N + M))$ で求める．
 
 数列の長さや要素の値が大きくなると，誤差も大きくなることに注意．
 

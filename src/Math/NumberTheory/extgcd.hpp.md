@@ -45,13 +45,13 @@ data:
   isVerificationFile: false
   path: src/Math/NumberTheory/extgcd.hpp
   requiredBy:
-  - src/Math/ModularArithmetic/linear_congruence.hpp
   - src/Math/NumberTheory/chinese_remainder_theorem.hpp
+  - src/Math/ModularArithmetic/linear_congruence.hpp
   timestamp: '2023-10-12 14:57:01+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj-2659.test.cpp
   - test/aoj-NTL_1_E.test.cpp
+  - test/aoj-2659.test.cpp
 documentation_of: src/Math/NumberTheory/extgcd.hpp
 layout: document
 redirect_from:

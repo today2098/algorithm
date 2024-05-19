@@ -2,13 +2,13 @@
 
 数論変換 (NTT: Number Theoretic Transform) を用いた畳み込みを行う．
 
-具体的には，長さ $N$ の数列 $\lbrace a_n \rbrace$ と長さ $M$ の数列 $\lbrace b_n \rbrace$ に対して
+具体的には，長さ $N$ の数列 $\lbrace a_0, a_1, \ldots, a_{N-1} \rbrace$ と長さ $M$ の数列 $\lbrace b_0, b_1, \ldots, b_{M-1} \rbrace$ に対して
 
 $$
 c_i = \sum_{k=0}^{i} a_k b_{i-k}
 $$
 
-となる長さ $N + M - 1$ の数列 $\lbrace c_n \rbrace$ を $\mathcal{O} \left\lparen \left\lparen N + M \right\rparen \log \left\lparen N + M \right\rparen \right\rparen$ で求める．
+となる長さ $N + M - 1$ の数列 $\lbrace c_0, c_1, \ldots, c_{N+M-1} \rbrace$ を $\mathcal{O}((N + M) \log (N + M))$ で求める．
 
 
 ## 参考文献
