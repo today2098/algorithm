@@ -4,6 +4,7 @@
 #include <cmath>
 #include <iostream>
 #include <random>
+#include <vector>
 
 #include "../src/Math/Convolution/fast_fourier_transform.hpp"
 #include "../src/Utils/debug.hpp"
