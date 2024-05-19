@@ -1,4 +1,4 @@
-#define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/lesson/1/ALDS1/all/ALDS1_10_C"
+#define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/lesson/1/ALDS1/10/ALDS1_10_C"
 
 #include <iostream>
 #include <string>
@@ -13,6 +13,6 @@ int main() {
         std::string x, y;
         std::cin >> x >> y;
 
-        std::cout << algorithm::lcs(x, y).size() << std::endl;
+        std::cout << algorithm::lcs(x, y).size() << "\n";
     }
 }

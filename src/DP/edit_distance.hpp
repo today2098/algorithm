@@ -11,10 +11,10 @@
 
 namespace algorithm {
 
-// Edit Distance（編集距離）.
+// 2つの配列に対して，編集距離 (Edit Distance) を求める．
 // 引数はSTLのシーケンスコンテナであること．O(|S|*|T|).
 template <class Sequence>
-std::vector<std::vector<int> > edit_distance(const Sequence &s, const Sequence &t) {
+int edit_distance(const Sequence &s, const Sequence &t) {
     const int n = s.size(), m = t.size();
     // dp[i][j]:=(s[:i]とt[:j]の編集距離).
     std::vector<std::vector<int> > dp(n + 1, std::vector<int>(m + 1, 0));
@@ -27,7 +27,7 @@ std::vector<std::vector<int> > edit_distance(const Sequence &s, const Sequence &
                                  dp[i - 1][j - 1] + (s[i - 1] == t[j - 1] ? 0 : 1)});
         }
     }
-    return dp;
+    return dp[n][m];
 }
 
 }  // namespace algorithm

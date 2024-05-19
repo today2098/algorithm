@@ -13,10 +13,10 @@
 namespace algorithm {
 
 // 最長増加部分列 (LIS: Longest Increasing Subsequence) の長さを求める．O(N*logN).
-template <typename Type, typename Func = std::function<bool(const Type &, const Type &)> >
+template <typename Type, class Func = std::function<bool(const Type &, const Type &)> >
 std::vector<int> lis(
     const std::vector<Type> &v,
-    const Func &comp = [](const Type &a, const Type &b) -> bool { return a < b; }) {
+    Func comp = [](const Type &a, const Type &b) -> bool { return a < b; }) {
     const int n = v.size();
     std::vector<int> res(n + 1, 0);  // res[i]:=(v[:i]における最長増加部分列の長さ).
     std::vector<Type> sub;

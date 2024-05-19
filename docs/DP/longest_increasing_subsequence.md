@@ -1,8 +1,8 @@
 ## 概要
 
-数列 $\{a_0, a_1, \cdots, a_{n-1}\}$ に対して，各 $i$ における数列 $\{a_0, a_1, \cdots, a_{i-1}\}$ の最長増加部分列 (LIS: Longest Increasing Subsequence) の長さを求める．
+長さ $N$ の数列 $\lbrace a_0, a_1, \cdots, a_{N-1} \rbrace$ に対して，各 $0 \leq i < N$ における数列 $\lbrace a_0, a_1, \cdots, a_{i-1} \rbrace$ の最長増加部分列 (LIS: Longest Increasing Subsequence) の長さを求める．
 
-計算量は $\mathcal{O}(N \log N)$ ．
+アルゴリズムの計算量は $\mathcal{O}(N \log N)$ ．
 
 
 ## 参考文献

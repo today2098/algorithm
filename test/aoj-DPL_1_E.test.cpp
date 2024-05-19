@@ -1,4 +1,4 @@
-#define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/7/DPL/all/DPL_1_E"
+#define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/7/DPL/1/DPL_1_E"
 
 #include <iostream>
 #include <string>
@@ -9,5 +9,5 @@ int main() {
     std::string s, t;
     std::cin >> s >> t;
 
-    std::cout << algorithm::edit_distance(s, t).back().back() << std::endl;
+    std::cout << algorithm::edit_distance(s, t) << std::endl;
 }

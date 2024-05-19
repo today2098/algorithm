@@ -1,8 +1,9 @@
 ## 概要
 
-配列 $A, B$ に対して，最長共通部分列 (LCS: Longest Common Subsequence) を求める．
+配列 $S, T$ に対して，最長共通部分列 (LCS: Longest Common Subsequence) を求める．
+最長共通部分列とは，2つの配列において，双方に現れる部分列の中で最長のものを指す．
 
-計算量は $\mathcal{O}(\lvert A \rvert \lvert B \rvert)$ ．
+アルゴリズムの計算量は $\mathcal{O}(\lvert S \rvert \lvert T \rvert)$ ．
 
 
 ## 参考文献
