@@ -25,14 +25,14 @@ const D PI = std::acos(-1.0);
 // Fast Fourier Transform（高速フーリエ変換）.
 // 引数の数列の長さは2のべき乗であること．O(N*logN).
 void transform(std::vector<std::complex<D> > &a, bool inv = false) {
-    if(a.empty()) return;
+    if(a.size() == 0) return;
     const int n = a.size();
-    int h = 0;  // h:=log2(n).
-    while(1 << h < n) h++;
-    assert(n == 1 << h);
+    int lb = 0;  // lb:=log2(n).
+    while(1 << lb < n) lb++;
+    assert(n == 1 << lb);
     for(int i = 0; i < n; ++i) {
         int j = 0;
-        for(int k = 0; k < h; ++k) j |= (i >> k & 1) << (h - 1 - k);
+        for(int k = 0; k < lb; ++k) j |= (i >> k & 1) << (lb - 1 - k);
         if(i < j) std::swap(a[i], a[j]);
     }
     for(int b = 1; b < n; b <<= 1) {
