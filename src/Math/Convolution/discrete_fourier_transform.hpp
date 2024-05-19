@@ -22,7 +22,7 @@ const D PI = std::acos(-1.0);
 
 // Discrete Fourier Transform（離散フーリエ変換）. O(N^2).
 void transform(std::vector<std::complex<D> > &a, bool inv = false) {
-    if(a.empty()) return;
+    if(a.size() == 0) return;
     const int n = a.size();
     std::vector<std::complex<D> > res(n, 0.0);
     D ang = 2 * PI / n;

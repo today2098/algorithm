@@ -1,4 +1,4 @@
-#define PROBLEM "https://onlinejudge.u-aizu.ac.jp/problems/ITP1_1_A"
+#define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/lesson/2/ITP1/1/ITP1_1_A"
 
 #include <cassert>
 #include <cmath>
@@ -11,6 +11,7 @@
 int main() {
     std::random_device seed;
     std::mt19937_64 rng(seed());
+
     std::uniform_int_distribution<int> uniform_n(1, 200);
     std::uniform_real_distribution<double> uniform(-1e3, 1e3);
     for(int i = 0; i < 100; ++i) {
@@ -25,8 +26,9 @@ int main() {
         auto res_naive = algorithm::dft::convolve_naive(a, b);
         debug(res.size(), res);
         debug(res_naive.size(), res_naive);
-        assert(res.size() == unsigned(n + m - 1));
-        assert(res_naive.size() == unsigned(n + m - 1));
+
+        assert(res.size() == size_t(n + m - 1));
+        assert(res_naive.size() == size_t(n + m - 1));
         for(int j = 0; j < n + m - 1; ++j) assert(std::abs(res[j] - res_naive[j]) < 1e-6);
     }
 
