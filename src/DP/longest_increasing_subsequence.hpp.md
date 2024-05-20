@@ -20,37 +20,65 @@ data:
     \ <algorithm>\n#include <functional>\n#include <vector>\n\nnamespace algorithm\
     \ {\n\n// \u6700\u9577\u5897\u52A0\u90E8\u5206\u5217 (LIS: Longest Increasing\
     \ Subsequence) \u306E\u9577\u3055\u3092\u6C42\u3081\u308B\uFF0EO(N*logN).\ntemplate\
-    \ <typename Type, typename Func = std::function<bool(const Type &, const Type\
-    \ &)> >\nstd::vector<int> lis(\n    const std::vector<Type> &v,\n    const Func\
-    \ &comp = [](const Type &a, const Type &b) -> bool { return a < b; }) {\n    const\
-    \ int n = v.size();\n    std::vector<int> res(n + 1, 0);  // res[i]:=(v[:i]\u306B\
-    \u304A\u3051\u308B\u6700\u9577\u5897\u52A0\u90E8\u5206\u5217\u306E\u9577\u3055\
-    ).\n    std::vector<Type> sub;\n    sub.reserve(n);\n    for(int i = 0; i < n;\
-    \ ++i) {\n        auto itr = std::lower_bound(sub.begin(), sub.end(), v[i], comp);\n\
-    \        if(itr == sub.end()) sub.push_back(v[i]);\n        else *itr = v[i];\n\
-    \        res[i + 1] = sub.size();\n    }\n    return res;\n}\n\n}  // namespace\
-    \ algorithm\n\n\n"
+    \ <typename Type, class Func = std::function<bool(const Type &, const Type &)>\
+    \ >\nstd::vector<int> lis(\n    const std::vector<Type> &v,\n    Func comp = [](const\
+    \ Type &a, const Type &b) -> bool { return a < b; }) {\n    const int n = v.size();\n\
+    \    std::vector<int> res(n + 1, 0);  // res[i]:=(v[:i]\u306B\u304A\u3051\u308B\
+    \u6700\u9577\u5897\u52A0\u90E8\u5206\u5217\u306E\u9577\u3055).\n    std::vector<Type>\
+    \ dp;            // dp[k]:=(\u9577\u3055k\u306E\u5897\u52A0\u90E8\u5206\u5217\u306E\
+    \u3046\u3061\uFF0C\u305D\u306E\u6700\u5F8C\u306E\u8981\u7D20\u306E\u6700\u5C0F\
+    \u5024).\n    dp.reserve(n);\n    for(int i = 0; i < n; ++i) {\n        auto itr\
+    \ = std::lower_bound(dp.begin(), dp.end(), v[i], comp);\n        if(itr == dp.end())\
+    \ dp.push_back(v[i]);\n        else *itr = v[i];\n        res[i + 1] = dp.size();\n\
+    \    }\n    return res;\n}\n\n// \u6700\u9577\u5897\u52A0\u90E8\u5206\u5217 (LIS:\
+    \ Longest Increasing Subsequence) \u306E\u9577\u3055\u3092\u6C42\u3081\u308B\uFF0E\
+    O(N*logN).\ntemplate <typename Type, class Func = std::function<bool(const Type\
+    \ &, const Type &)> >\nstd::vector<int> lis2(\n    const std::vector<Type> &v,\n\
+    \    Func comp = [](const Type &a, const Type &b) -> bool { return a < b; }) {\n\
+    \    const int n = v.size();\n    std::vector<int> res(n, 0);  // res[i]:=(v[i]\u304C\
+    \u6700\u5F8C\u306E\u8981\u7D20\u3067\u3042\u308B\u6700\u9577\u5897\u52A0\u90E8\
+    \u5206\u5217\u306E\u9577\u3055).\n    std::vector<Type> dp;        // dp[k]:=(\u9577\
+    \u3055k\u306E\u5897\u52A0\u90E8\u5206\u5217\u306E\u3046\u3061\uFF0C\u305D\u306E\
+    \u6700\u5F8C\u306E\u8981\u7D20\u306E\u6700\u5C0F\u5024).\n    dp.reserve(n);\n\
+    \    for(int i = 0; i < n; ++i) {\n        auto itr = std::lower_bound(dp.begin(),\
+    \ dp.end(), v[i], comp);\n        res[i] = itr - dp.begin() + 1;\n        if(itr\
+    \ == dp.end()) dp.push_back(v[i]);\n        else *itr = v[i];\n    }\n    return\
+    \ res;\n}\n\n}  // namespace algorithm\n\n\n"
   code: "#ifndef ALGORITHM_LONGEST_INCREASING_SUBSEQUENCE_HPP\n#define ALGORITHM_LONGEST_INCREASING_SUBSEQUENCE_HPP\
     \ 1\n\n/**\n * @brief Longest Increasing Subsequence\uFF08\u6700\u9577\u5897\u52A0\
     \u90E8\u5206\u5217\uFF09\n * @docs docs/DP/longest_increasing_subsequence.md\n\
     \ */\n\n#include <algorithm>\n#include <functional>\n#include <vector>\n\nnamespace\
     \ algorithm {\n\n// \u6700\u9577\u5897\u52A0\u90E8\u5206\u5217 (LIS: Longest Increasing\
     \ Subsequence) \u306E\u9577\u3055\u3092\u6C42\u3081\u308B\uFF0EO(N*logN).\ntemplate\
-    \ <typename Type, typename Func = std::function<bool(const Type &, const Type\
-    \ &)> >\nstd::vector<int> lis(\n    const std::vector<Type> &v,\n    const Func\
-    \ &comp = [](const Type &a, const Type &b) -> bool { return a < b; }) {\n    const\
-    \ int n = v.size();\n    std::vector<int> res(n + 1, 0);  // res[i]:=(v[:i]\u306B\
-    \u304A\u3051\u308B\u6700\u9577\u5897\u52A0\u90E8\u5206\u5217\u306E\u9577\u3055\
-    ).\n    std::vector<Type> sub;\n    sub.reserve(n);\n    for(int i = 0; i < n;\
-    \ ++i) {\n        auto itr = std::lower_bound(sub.begin(), sub.end(), v[i], comp);\n\
-    \        if(itr == sub.end()) sub.push_back(v[i]);\n        else *itr = v[i];\n\
-    \        res[i + 1] = sub.size();\n    }\n    return res;\n}\n\n}  // namespace\
-    \ algorithm\n\n#endif\n"
+    \ <typename Type, class Func = std::function<bool(const Type &, const Type &)>\
+    \ >\nstd::vector<int> lis(\n    const std::vector<Type> &v,\n    Func comp = [](const\
+    \ Type &a, const Type &b) -> bool { return a < b; }) {\n    const int n = v.size();\n\
+    \    std::vector<int> res(n + 1, 0);  // res[i]:=(v[:i]\u306B\u304A\u3051\u308B\
+    \u6700\u9577\u5897\u52A0\u90E8\u5206\u5217\u306E\u9577\u3055).\n    std::vector<Type>\
+    \ dp;            // dp[k]:=(\u9577\u3055k\u306E\u5897\u52A0\u90E8\u5206\u5217\u306E\
+    \u3046\u3061\uFF0C\u305D\u306E\u6700\u5F8C\u306E\u8981\u7D20\u306E\u6700\u5C0F\
+    \u5024).\n    dp.reserve(n);\n    for(int i = 0; i < n; ++i) {\n        auto itr\
+    \ = std::lower_bound(dp.begin(), dp.end(), v[i], comp);\n        if(itr == dp.end())\
+    \ dp.push_back(v[i]);\n        else *itr = v[i];\n        res[i + 1] = dp.size();\n\
+    \    }\n    return res;\n}\n\n// \u6700\u9577\u5897\u52A0\u90E8\u5206\u5217 (LIS:\
+    \ Longest Increasing Subsequence) \u306E\u9577\u3055\u3092\u6C42\u3081\u308B\uFF0E\
+    O(N*logN).\ntemplate <typename Type, class Func = std::function<bool(const Type\
+    \ &, const Type &)> >\nstd::vector<int> lis2(\n    const std::vector<Type> &v,\n\
+    \    Func comp = [](const Type &a, const Type &b) -> bool { return a < b; }) {\n\
+    \    const int n = v.size();\n    std::vector<int> res(n, 0);  // res[i]:=(v[i]\u304C\
+    \u6700\u5F8C\u306E\u8981\u7D20\u3067\u3042\u308B\u6700\u9577\u5897\u52A0\u90E8\
+    \u5206\u5217\u306E\u9577\u3055).\n    std::vector<Type> dp;        // dp[k]:=(\u9577\
+    \u3055k\u306E\u5897\u52A0\u90E8\u5206\u5217\u306E\u3046\u3061\uFF0C\u305D\u306E\
+    \u6700\u5F8C\u306E\u8981\u7D20\u306E\u6700\u5C0F\u5024).\n    dp.reserve(n);\n\
+    \    for(int i = 0; i < n; ++i) {\n        auto itr = std::lower_bound(dp.begin(),\
+    \ dp.end(), v[i], comp);\n        res[i] = itr - dp.begin() + 1;\n        if(itr\
+    \ == dp.end()) dp.push_back(v[i]);\n        else *itr = v[i];\n    }\n    return\
+    \ res;\n}\n\n}  // namespace algorithm\n\n#endif\n"
   dependsOn: []
   isVerificationFile: false
   path: src/DP/longest_increasing_subsequence.hpp
   requiredBy: []
-  timestamp: '2023-09-20 12:17:18+09:00'
+  timestamp: '2024-05-21 00:42:37+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj-DPL_1_D.test.cpp
@@ -64,11 +92,16 @@ title: "Longest Increasing Subsequence\uFF08\u6700\u9577\u5897\u52A0\u90E8\u5206
 ---
 ## 概要
 
-数列 $\{a_0, a_1, \cdots, a_{n-1}\}$ に対して，各 $i$ における数列 $\{a_0, a_1, \cdots, a_{i-1}\}$ の最長増加部分列 (LIS: Longest Increasing Subsequence) の長さを求める．
+長さ $N$ の数列 $\lbrace a_0, a_1, \cdots, a_{N-1} \rbrace$ に対して，各 $0 \leq i < N$ における数列 $\lbrace a_0, a_1, \cdots, a_{i-1} \rbrace$ の最長増加部分列 (LIS: Longest Increasing Subsequence) の長さを求める．
 
-計算量は $\mathcal{O}(N \log N)$ ．
+アルゴリズムの計算量は $\mathcal{O}(N \log N)$ ．
 
 
 ## 参考文献
 
 1. 秋葉拓哉ほか. "2-3 値を覚えて再利用 '動的計画法'". プログラミングコンテストチャレンジブック. 第2版, マイナビ出版, 2012, p.63-65.
+
+
+## 例題
+
+1. "F - Useless for LIS". AtCoder Beginner Contest 354. AtCoder. <https://atcoder.jp/contests/abc354/tasks/abc354_f>.

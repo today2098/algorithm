@@ -15,25 +15,11 @@ data:
     links: []
   bundledCode: "#line 1 \"src/DP/edit_distance.hpp\"\n\n\n\n/**\n * @brief Edit Distance\uFF08\
     \u7DE8\u96C6\u8DDD\u96E2\uFF09\n * @docs docs/DP/edit_distance.md\n */\n\n#include\
-    \ <algorithm>\n#include <vector>\n\nnamespace algorithm {\n\n// Edit Distance\uFF08\
-    \u7DE8\u96C6\u8DDD\u96E2\uFF09.\n// \u5F15\u6570\u306FSTL\u306E\u30B7\u30FC\u30B1\
-    \u30F3\u30B9\u30B3\u30F3\u30C6\u30CA\u3067\u3042\u308B\u3053\u3068\uFF0EO(|S|*|T|).\n\
-    template <class Sequence>\nstd::vector<std::vector<int> > edit_distance(const\
-    \ Sequence &s, const Sequence &t) {\n    const int n = s.size(), m = t.size();\n\
-    \    // dp[i][j]:=(s[:i]\u3068t[:j]\u306E\u7DE8\u96C6\u8DDD\u96E2).\n    std::vector<std::vector<int>\
-    \ > dp(n + 1, std::vector<int>(m + 1, 0));\n    for(int i = 1; i <= n; ++i) dp[i][0]\
-    \ = i;\n    for(int j = 1; j <= m; ++j) dp[0][j] = j;\n    for(int i = 1; i <=\
-    \ n; ++i) {\n        for(int j = 1; j <= m; ++j) {\n            dp[i][j] = std::min({dp[i\
-    \ - 1][j] + 1,\n                                 dp[i][j - 1] + 1,\n         \
-    \                        dp[i - 1][j - 1] + (s[i - 1] == t[j - 1] ? 0 : 1)});\n\
-    \        }\n    }\n    return dp;\n}\n\n}  // namespace algorithm\n\n\n"
-  code: "#ifndef ALGORITHM_EDIT_DISTANCE_HPP\n#define ALGORITHM_EDIT_DISTANCE_HPP\
-    \ 1\n\n/**\n * @brief Edit Distance\uFF08\u7DE8\u96C6\u8DDD\u96E2\uFF09\n * @docs\
-    \ docs/DP/edit_distance.md\n */\n\n#include <algorithm>\n#include <vector>\n\n\
-    namespace algorithm {\n\n// Edit Distance\uFF08\u7DE8\u96C6\u8DDD\u96E2\uFF09\
-    .\n// \u5F15\u6570\u306FSTL\u306E\u30B7\u30FC\u30B1\u30F3\u30B9\u30B3\u30F3\u30C6\
-    \u30CA\u3067\u3042\u308B\u3053\u3068\uFF0EO(|S|*|T|).\ntemplate <class Sequence>\n\
-    std::vector<std::vector<int> > edit_distance(const Sequence &s, const Sequence\
+    \ <algorithm>\n#include <vector>\n\nnamespace algorithm {\n\n// 2\u3064\u306E\u914D\
+    \u5217\u306B\u5BFE\u3057\u3066\uFF0C\u7DE8\u96C6\u8DDD\u96E2 (Edit Distance) \u3092\
+    \u6C42\u3081\u308B\uFF0E\n// \u5F15\u6570\u306FSTL\u306E\u30B7\u30FC\u30B1\u30F3\
+    \u30B9\u30B3\u30F3\u30C6\u30CA\u3067\u3042\u308B\u3053\u3068\uFF0EO(|S|*|T|).\n\
+    template <class Sequence>\nint edit_distance(const Sequence &s, const Sequence\
     \ &t) {\n    const int n = s.size(), m = t.size();\n    // dp[i][j]:=(s[:i]\u3068\
     t[:j]\u306E\u7DE8\u96C6\u8DDD\u96E2).\n    std::vector<std::vector<int> > dp(n\
     \ + 1, std::vector<int>(m + 1, 0));\n    for(int i = 1; i <= n; ++i) dp[i][0]\
@@ -41,12 +27,27 @@ data:
     \ n; ++i) {\n        for(int j = 1; j <= m; ++j) {\n            dp[i][j] = std::min({dp[i\
     \ - 1][j] + 1,\n                                 dp[i][j - 1] + 1,\n         \
     \                        dp[i - 1][j - 1] + (s[i - 1] == t[j - 1] ? 0 : 1)});\n\
-    \        }\n    }\n    return dp;\n}\n\n}  // namespace algorithm\n\n#endif\n"
+    \        }\n    }\n    return dp[n][m];\n}\n\n}  // namespace algorithm\n\n\n"
+  code: "#ifndef ALGORITHM_EDIT_DISTANCE_HPP\n#define ALGORITHM_EDIT_DISTANCE_HPP\
+    \ 1\n\n/**\n * @brief Edit Distance\uFF08\u7DE8\u96C6\u8DDD\u96E2\uFF09\n * @docs\
+    \ docs/DP/edit_distance.md\n */\n\n#include <algorithm>\n#include <vector>\n\n\
+    namespace algorithm {\n\n// 2\u3064\u306E\u914D\u5217\u306B\u5BFE\u3057\u3066\uFF0C\
+    \u7DE8\u96C6\u8DDD\u96E2 (Edit Distance) \u3092\u6C42\u3081\u308B\uFF0E\n// \u5F15\
+    \u6570\u306FSTL\u306E\u30B7\u30FC\u30B1\u30F3\u30B9\u30B3\u30F3\u30C6\u30CA\u3067\
+    \u3042\u308B\u3053\u3068\uFF0EO(|S|*|T|).\ntemplate <class Sequence>\nint edit_distance(const\
+    \ Sequence &s, const Sequence &t) {\n    const int n = s.size(), m = t.size();\n\
+    \    // dp[i][j]:=(s[:i]\u3068t[:j]\u306E\u7DE8\u96C6\u8DDD\u96E2).\n    std::vector<std::vector<int>\
+    \ > dp(n + 1, std::vector<int>(m + 1, 0));\n    for(int i = 1; i <= n; ++i) dp[i][0]\
+    \ = i;\n    for(int j = 1; j <= m; ++j) dp[0][j] = j;\n    for(int i = 1; i <=\
+    \ n; ++i) {\n        for(int j = 1; j <= m; ++j) {\n            dp[i][j] = std::min({dp[i\
+    \ - 1][j] + 1,\n                                 dp[i][j - 1] + 1,\n         \
+    \                        dp[i - 1][j - 1] + (s[i - 1] == t[j - 1] ? 0 : 1)});\n\
+    \        }\n    }\n    return dp[n][m];\n}\n\n}  // namespace algorithm\n\n#endif\n"
   dependsOn: []
   isVerificationFile: false
   path: src/DP/edit_distance.hpp
   requiredBy: []
-  timestamp: '2023-09-20 16:42:39+09:00'
+  timestamp: '2024-05-20 01:51:56+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj-DPL_1_E.test.cpp
@@ -60,8 +61,9 @@ title: "Edit Distance\uFF08\u7DE8\u96C6\u8DDD\u96E2\uFF09"
 ## 概要
 
 配列 $S, T$ に対して，2つの編集距離を求める．
+編集距離とは，1文字の挿入・削除・置換によって，一方の文字列をもう一方の文字列に変換するのに必要な操作の最小回数のことをいう．
 
-計算量は $\mathcal{O}(\lvert S \rvert \lvert T \rvert)$ ．
+アルゴリズムの計算量は $\mathcal{O}(\lvert S \rvert \lvert T \rvert)$ ．
 
 
 ## 参考文献
