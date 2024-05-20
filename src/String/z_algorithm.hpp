@@ -11,7 +11,7 @@
 namespace algorithm {
 
 // 最長共通接頭辞 (LCP: Longest Common Prefix) の長さを求める．
-// 引数はSTLのシーケンスコンテナ．O(|S|).
+// 引数はSTLのシーケンスコンテナであること．O(|S|).
 template <class Sequence>
 std::vector<int> z_algorithm(const Sequence &s) {
     const int n = s.size();

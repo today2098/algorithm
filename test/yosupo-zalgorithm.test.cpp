@@ -9,7 +9,7 @@ int main() {
     std::string s;
     std::cin >> s;
 
-    const auto &&z = algorithm::z_algorithm(s);
+    auto &&z = algorithm::z_algorithm(s);
 
     for(int i = 0, n = s.size(); i < n; ++i) std::cout << z[i] << " ";
     std::cout << std::endl;
