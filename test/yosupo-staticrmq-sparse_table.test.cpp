@@ -14,11 +14,14 @@ int main() {
     std::vector<int> a(n);
     for(auto &in : a) std::cin >> in;
 
-    algorithm::SparseTable<int> sparse_table([](int a, int b) -> int { return std::min(a, b); }, a);
+    auto op = [](int a, int b) -> int {
+        return std::min(a, b);
+    };
+    algorithm::SparseTable<int> sparse_table(op, a);
     while(q--) {
         int l, r;
         std::cin >> l >> r;
 
-        std::cout << sparse_table.fold(l, r) << std::endl;
+        std::cout << sparse_table.fold(l, r) << "\n";
     }
 }
