@@ -1,5 +1,5 @@
-#ifndef ALGORITHM_MO_HPP
-#define ALGORITHM_MO_HPP 1
+#ifndef ALGORITHM_MO_ALGORITHM_HPP
+#define ALGORITHM_MO_ALGORITHM_HPP 1
 
 /**
  * @brief Mo's Algorithm（クエリ平方分割）
@@ -35,16 +35,19 @@ class Mo {
 public:
     Mo() : Mo(0) {}
     explicit Mo(size_t n) : m_len(n), m_q(0) {}
+    explicit Mo(size_t n, size_t q) : Mo(n) {
+        m_queries.reserve(q);
+    }
 
-    // 区間[l,r)のクエリを追加する．
+    // 区間[l,r)についてのクエリを追加する．
     void insert(int l, int r) {
         assert(0 <= l and l < r and r <= m_len);
         m_queries.emplace_back(l, r, m_q++);
     }
-    // 各クエリを実行する．引数はラムダ式．O(α(N+Q)√N).
-    template <typename F1, typename F2, typename F3>
+    // 各クエリを実行する．O(Q*logQ+α*(N+Q)*√N).
+    template <class F1, class F2, class F3>
     void execute(const F1 &add, const F2 &del, const F3 &solve) { execute(add, del, add, del, solve); }
-    template <typename F1, typename F2, typename F3, typename F4, typename F5>
+    template <class F1, class F2, class F3, class F4, class F5>
     void execute(const F1 &add_l, const F2 &del_l, const F3 &add_r, const F4 &del_r, const F5 &solve) {
         sort_query();
         int l = 0, r = 0;
