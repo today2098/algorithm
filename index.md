@@ -142,10 +142,14 @@ data:
     pages:
     - icon: ':warning:'
       path: src/Math/Combinatorics/combination.hpp
-      title: src/Math/Combinatorics/combination.hpp
+      title: "\u9806\u5217\uFF0C\u7D44\u5408\u305B\uFF0C\u91CD\u8907\u7D44\u5408\u305B"
+    - icon: ':warning:'
+      path: src/Math/Combinatorics/combination_with_mod.hpp
+      title: "\u7D44\u5408\u305B\uFF08mod\u4ED8\u304D\uFF09"
     - icon: ':warning:'
       path: src/Math/Combinatorics/montmort.hpp
-      title: src/Math/Combinatorics/montmort.hpp
+      title: "\u5B8C\u5168\u9806\u5217\u306E\u7DCF\u6570\uFF0C\u30E2\u30F3\u30E2\u30FC\
+        \u30EB\u6570\uFF08mod\u4ED8\u304D\uFF09"
   - name: src/Math/Convolution
     pages:
     - icon: ':heavy_check_mark:'

@@ -33,21 +33,22 @@ data:
     \ = bl / width;\n            if(a_block == b_block) return (a_block & 1 ? ar >\
     \ br : ar < br);\n            return a_block < b_block;\n        };\n        std::sort(m_queries.begin(),\
     \ m_queries.end(), comp);\n    }\n\npublic:\n    Mo() : Mo(0) {}\n    explicit\
-    \ Mo(size_t n) : m_len(n), m_q(0) {}\n\n    // \u533A\u9593[l,r)\u306E\u30AF\u30A8\
-    \u30EA\u3092\u8FFD\u52A0\u3059\u308B\uFF0E\n    void insert(int l, int r) {\n\
-    \        assert(0 <= l and l < r and r <= m_len);\n        m_queries.emplace_back(l,\
-    \ r, m_q++);\n    }\n    // \u5404\u30AF\u30A8\u30EA\u3092\u5B9F\u884C\u3059\u308B\
-    \uFF0E\u5F15\u6570\u306F\u30E9\u30E0\u30C0\u5F0F\uFF0EO(\u03B1(N+Q)\u221AN).\n\
-    \    template <typename F1, typename F2, typename F3>\n    void execute(const\
-    \ F1 &add, const F2 &del, const F3 &solve) { execute(add, del, add, del, solve);\
-    \ }\n    template <typename F1, typename F2, typename F3, typename F4, typename\
-    \ F5>\n    void execute(const F1 &add_l, const F2 &del_l, const F3 &add_r, const\
-    \ F4 &del_r, const F5 &solve) {\n        sort_query();\n        int l = 0, r =\
-    \ 0;\n        for(const auto &[nl, nr, idx] : m_queries) {\n            while(nl\
-    \ < l) add_l(--l);\n            while(r < nr) add_r(r++);\n            while(l\
-    \ < nl) del_l(l++);\n            while(nr < r) del_r(--r);\n            solve(idx);\n\
-    \        }\n    }\n    void reset() {\n        m_queries.clear();\n        m_q\
-    \ = 0;\n    }\n};\n\n}  // namespace algorithm\n\n\n#line 7 \"test/yosupo-static_range_inversions_query.test.cpp\"\
+    \ Mo(size_t n) : m_len(n), m_q(0) {}\n    explicit Mo(size_t n, size_t q) : Mo(n)\
+    \ {\n        m_queries.reserve(q);\n    }\n\n    // \u533A\u9593[l,r)\u306B\u3064\
+    \u3044\u3066\u306E\u30AF\u30A8\u30EA\u3092\u8FFD\u52A0\u3059\u308B\uFF0E\n   \
+    \ void insert(int l, int r) {\n        assert(0 <= l and l < r and r <= m_len);\n\
+    \        m_queries.emplace_back(l, r, m_q++);\n    }\n    // \u5404\u30AF\u30A8\
+    \u30EA\u3092\u5B9F\u884C\u3059\u308B\uFF0EO(Q*logQ+\u03B1*(N+Q)*\u221AN).\n  \
+    \  template <class F1, class F2, class F3>\n    void execute(const F1 &add, const\
+    \ F2 &del, const F3 &solve) { execute(add, del, add, del, solve); }\n    template\
+    \ <class F1, class F2, class F3, class F4, class F5>\n    void execute(const F1\
+    \ &add_l, const F2 &del_l, const F3 &add_r, const F4 &del_r, const F5 &solve)\
+    \ {\n        sort_query();\n        int l = 0, r = 0;\n        for(const auto\
+    \ &[nl, nr, idx] : m_queries) {\n            while(nl < l) add_l(--l);\n     \
+    \       while(r < nr) add_r(r++);\n            while(l < nl) del_l(l++);\n   \
+    \         while(nr < r) del_r(--r);\n            solve(idx);\n        }\n    }\n\
+    \    void reset() {\n        m_queries.clear();\n        m_q = 0;\n    }\n};\n\
+    \n}  // namespace algorithm\n\n\n#line 7 \"test/yosupo-static_range_inversions_query.test.cpp\"\
     \n\nint main() {\n    int n;\n    int q;\n    std::cin >> n >> q;\n\n    std::vector<int>\
     \ a(n);\n    for(auto &in : a) std::cin >> in;\n\n    algorithm::Mo mo(n);\n \
     \   for(int i = 0; i < q; ++i) {\n        int l, r;\n        std::cin >> l >>\
@@ -87,7 +88,7 @@ data:
   isVerificationFile: true
   path: test/yosupo-static_range_inversions_query.test.cpp
   requiredBy: []
-  timestamp: '2024-04-20 11:30:25+09:00'
+  timestamp: '2024-05-21 14:02:47+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo-static_range_inversions_query.test.cpp
