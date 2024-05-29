@@ -36,32 +36,40 @@ public:
     }
 
     static constexpr int modulus() { return mod; }
-    // 階乗．
+    // 階乗．O(1).
     long long factorial(int n) const {
         assert(0 <= n and n <= m_mx);
         return m_fact[n];
     }
-    // 逆元．
+    // 逆元．O(1).
     long long inverse(int n) const {
         assert(1 <= n and n <= m_mx);
         return m_inv[n];
     }
-    // 階乗の逆元．
+    // 階乗の逆元．O(1).
     long long inverse_fact(int n) const {
         assert(0 <= n and n <= m_mx);
         return m_finv[n];
     }
-    // 順列．
+    // 順列．O(1).
     long long nPk(int n, int k) const {
         assert(0 <= k and k <= n and n <= m_mx);
         return m_fact[n] * m_finv[n - k] % mod;
     }
-    // 組合せ．
+    // 組合せ．O(1).
     long long nCk(int n, int k) const {
         assert(0 <= k and k <= n and n <= m_mx);
         return m_fact[n] * m_finv[n - k] % mod * m_finv[k] % mod;
     }
-    // 重複組合せ．
+    // 組合せ．O(K).
+    long long big_nCk(long long n, int k) const {
+        assert(0 <= k and k <= m_mx and k <= n);
+        long long res = 1;
+        for(int i = 0; i < k; ++i) res = res * ((n - i) % mod) % mod;
+        res = res * m_finv[k] % mod;
+        return res;
+    }
+    // 重複組合せ．O(1).
     long long nHk(int n, int k) const { return nCk(k + n - 1, n - 1); }
 };
 
