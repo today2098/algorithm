@@ -1,13 +1,18 @@
 #ifndef ALGORITHM_MONTMORT_HPP
 #define ALGORTIHM_MONTMORT_HPP 1
 
+/**
+ * @brief 完全順列の総数，モンモール数（mod付き）
+ * @docs docs/Math/Combinatorics/montmort.md
+ */
+
 #include <cassert>
 #include <cmath>
 #include <vector>
 
 namespace algorithm {
 
-// 完全順列（mod付き）．
+// モンモール数（mod付き）．
 template <int mod>
 class Montmort {
     int m_sz;

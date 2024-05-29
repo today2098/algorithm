@@ -2061,7 +2061,7 @@
 		"scope": "cpp",
 		"prefix": "Montmort",
 		"body": [
-			"// 完全順列（mod付き）．",
+			"// モンモール数（mod付き）．",
 			"template <int mod>",
 			"class Montmort {",
 			"    int m_sz;",
@@ -2087,7 +2087,7 @@
 			"    static constexpr double converged_probability() { return 1.0 / std::exp(1.0); }",
 			"};"
 		],
-		"description": "完全順列（mod付き）"
+		"description": "モンモール数（mod付き）"
 	},
 	"PartiallyPersistentUnionFind": {
 		"scope": "cpp",
