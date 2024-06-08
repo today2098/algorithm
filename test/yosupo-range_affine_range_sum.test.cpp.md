@@ -147,48 +147,51 @@ data:
     \ <class T>\ninline constexpr bool is_modint_v = is_modint<T>::value;\n\n}  //\
     \ namespace algorithm\n\n\n#line 13 \"src/Math/ModularArithmetic/modint.hpp\"\n\
     \nnamespace algorithm {\n\ntemplate <int mod>\nclass Modint : ModintBase {\n \
-    \   long long val;\n\n    void normalize() {\n        if(val < -mod or mod <=\
-    \ val) val %= mod;\n        if(val < 0) val += mod;\n    }\n\npublic:\n    Modint()\
-    \ : Modint(0) {}\n    Modint(long long val_) : val(val_) {\n        static_assert(mod\
-    \ >= 1);\n        normalize();\n    }\n\n    Modint operator+() const { return\
-    \ Modint(*this); }\n    Modint operator-() const { return (val == 0 ? Modint(*this)\
-    \ : Modint(mod - val)); }\n    Modint &operator++() {\n        val++;\n      \
-    \  if(val == mod) val = 0;\n        return *this;\n    }\n    Modint &operator--()\
-    \ {\n        if(val == 0) val = mod;\n        val--;\n        return *this;\n\
-    \    }\n    Modint operator++(int) {\n        Modint res = *this;\n        ++(*this);\n\
-    \        return res;\n    }\n    Modint operator--(int) {\n        Modint res\
-    \ = *this;\n        --(*this);\n        return res;\n    }\n    Modint &operator+=(const\
-    \ Modint &rhs) {\n        val += rhs.val;\n        if(val >= mod) val -= mod;\n\
-    \        return *this;\n    }\n    Modint &operator-=(const Modint &rhs) {\n \
-    \       val -= rhs.val;\n        if(val < 0) val += mod;\n        return *this;\n\
-    \    }\n    Modint &operator*=(const Modint &rhs) {\n        val = val * rhs.val\
-    \ % mod;\n        return *this;\n    }\n    Modint &operator/=(const Modint &rhs)\
-    \ { return *this *= rhs.inv(); }\n\n    friend bool operator==(const Modint &lhs,\
-    \ const Modint &rhs) { return lhs.val == rhs.val; }\n    friend bool operator!=(const\
-    \ Modint &lhs, const Modint &rhs) { return lhs.val != rhs.val; }\n    friend Modint\
-    \ operator+(const Modint &lhs, const Modint &rhs) { return Modint(lhs) += rhs;\
-    \ }\n    friend Modint operator-(const Modint &lhs, const Modint &rhs) { return\
-    \ Modint(lhs) -= rhs; }\n    friend Modint operator*(const Modint &lhs, const\
-    \ Modint &rhs) { return Modint(lhs) *= rhs; }\n    friend Modint operator/(const\
-    \ Modint &lhs, const Modint &rhs) { return Modint(lhs) /= rhs; }\n    friend std::istream\
-    \ &operator>>(std::istream &is, Modint &rhs) {\n        is >> rhs.val;\n     \
-    \   rhs.normalize();\n        return is;\n    }\n    friend std::ostream &operator<<(std::ostream\
-    \ &os, const Modint &rhs) { return os << rhs.val; }\n\n    static constexpr int\
-    \ modulus() { return mod; }\n    long long value() const { return val; }\n   \
-    \ Modint inv() const {\n        long long a = mod, b = val, u = 0, v = 1;\n  \
-    \      while(b != 0) {\n            long long t = a / b;\n            a -= b *\
-    \ t, u -= v * t;\n            std::swap(a, b), std::swap(u, v);\n        }\n \
-    \       return Modint(u);\n    }\n    Modint pow(long long k) const {\n      \
-    \  if(k < 0) return inv().pow(-k);\n        Modint res = 1, mul = *this;\n   \
-    \     while(k > 0) {\n            if(k & 1LL) res *= mul;\n            mul *=\
-    \ mul;\n            k >>= 1;\n        }\n        return res;\n    }\n\n    friend\
-    \ Modint mod_inv(const Modint &a) { return a.inv(); }\n    friend Modint mod_pow(const\
-    \ Modint &a, long long k) { return a.pow(k); }\n};\n\nusing mint998244353 = Modint<998'244'353>;\n\
-    using mint1000000007 = Modint<1'000'000'007>;\n\n}  // namespace algorithm\n\n\
-    \n#line 8 \"test/yosupo-range_affine_range_sum.test.cpp\"\n\nint main() {\n  \
-    \  int n;\n    int q;\n    std::cin >> n >> q;\n\n    using S = struct {\n   \
-    \     algorithm::mint998244353 val;\n        int size;\n    };\n    using F =\
-    \ struct {\n        algorithm::mint998244353 a;\n        algorithm::mint998244353\
+    \   long long val;\n\n    constexpr void normalize() {\n        if(val < -mod\
+    \ or mod <= val) val %= mod;\n        if(val < 0) val += mod;\n    }\n\npublic:\n\
+    \    constexpr Modint() : Modint(0) {}\n    constexpr Modint(long long val_) :\
+    \ val(val_) {\n        static_assert(mod >= 1);\n        normalize();\n    }\n\
+    \n    constexpr Modint operator+() const { return Modint(*this); }\n    constexpr\
+    \ Modint operator-() const { return (val == 0 ? Modint(*this) : Modint(mod - val));\
+    \ }\n    constexpr Modint &operator++() {\n        val++;\n        if(val == mod)\
+    \ val = 0;\n        return *this;\n    }\n    constexpr Modint &operator--() {\n\
+    \        if(val == 0) val = mod;\n        val--;\n        return *this;\n    }\n\
+    \    constexpr Modint operator++(int) {\n        Modint res = *this;\n       \
+    \ ++(*this);\n        return res;\n    }\n    constexpr Modint operator--(int)\
+    \ {\n        Modint res = *this;\n        --(*this);\n        return res;\n  \
+    \  }\n    constexpr Modint &operator+=(const Modint &rhs) {\n        val += rhs.val;\n\
+    \        if(val >= mod) val -= mod;\n        return *this;\n    }\n    constexpr\
+    \ Modint &operator-=(const Modint &rhs) {\n        val -= rhs.val;\n        if(val\
+    \ < 0) val += mod;\n        return *this;\n    }\n    constexpr Modint &operator*=(const\
+    \ Modint &rhs) {\n        val = val * rhs.val % mod;\n        return *this;\n\
+    \    }\n    constexpr Modint &operator/=(const Modint &rhs) { return *this *=\
+    \ rhs.inv(); }\n\n    friend constexpr bool operator==(const Modint &lhs, const\
+    \ Modint &rhs) { return lhs.val == rhs.val; }\n    friend constexpr bool operator!=(const\
+    \ Modint &lhs, const Modint &rhs) { return lhs.val != rhs.val; }\n    friend constexpr\
+    \ Modint operator+(const Modint &lhs, const Modint &rhs) { return Modint(lhs)\
+    \ += rhs; }\n    friend constexpr Modint operator-(const Modint &lhs, const Modint\
+    \ &rhs) { return Modint(lhs) -= rhs; }\n    friend constexpr Modint operator*(const\
+    \ Modint &lhs, const Modint &rhs) { return Modint(lhs) *= rhs; }\n    friend constexpr\
+    \ Modint operator/(const Modint &lhs, const Modint &rhs) { return Modint(lhs)\
+    \ /= rhs; }\n    friend constexpr std::istream &operator>>(std::istream &is, Modint\
+    \ &rhs) {\n        is >> rhs.val;\n        rhs.normalize();\n        return is;\n\
+    \    }\n    friend constexpr std::ostream &operator<<(std::ostream &os, const\
+    \ Modint &rhs) { return os << rhs.val; }\n\n    static constexpr int modulus()\
+    \ { return mod; }\n    constexpr long long value() const { return val; }\n   \
+    \ constexpr Modint inv() const {\n        long long a = mod, b = val, u = 0, v\
+    \ = 1;\n        while(b != 0) {\n            long long t = a / b;\n          \
+    \  a -= b * t, u -= v * t;\n            std::swap(a, b), std::swap(u, v);\n  \
+    \      }\n        return Modint(u);\n    }\n    constexpr Modint pow(long long\
+    \ k) const {\n        if(k < 0) return inv().pow(-k);\n        Modint res = 1,\
+    \ mul = *this;\n        while(k > 0) {\n            if(k & 1LL) res *= mul;\n\
+    \            mul *= mul;\n            k >>= 1;\n        }\n        return res;\n\
+    \    }\n\n    friend constexpr Modint mod_inv(const Modint &a) { return a.inv();\
+    \ }\n    friend constexpr Modint mod_pow(const Modint &a, long long k) { return\
+    \ a.pow(k); }\n};\n\nusing mint998244353 = Modint<998'244'353>;\nusing mint1000000007\
+    \ = Modint<1'000'000'007>;\n\n}  // namespace algorithm\n\n\n#line 8 \"test/yosupo-range_affine_range_sum.test.cpp\"\
+    \n\nint main() {\n    int n;\n    int q;\n    std::cin >> n >> q;\n\n    using\
+    \ S = struct {\n        algorithm::mint998244353 val;\n        int size;\n   \
+    \ };\n    using F = struct {\n        algorithm::mint998244353 a;\n        algorithm::mint998244353\
     \ b;\n    };\n    const S e = (S){0, 0};\n    const F id = (F){1, 0};\n    auto\
     \ op = [&](const S &lhs, const S &rhs) -> S { return (S){lhs.val + rhs.val, lhs.size\
     \ + rhs.size}; };\n    auto mapping = [&](const F &f, const S &x) -> S { return\
@@ -226,7 +229,7 @@ data:
   isVerificationFile: true
   path: test/yosupo-range_affine_range_sum.test.cpp
   requiredBy: []
-  timestamp: '2024-05-19 03:58:18+09:00'
+  timestamp: '2024-06-01 17:05:43+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo-range_affine_range_sum.test.cpp

@@ -54,6 +54,9 @@ data:
       title: "Union-Find\uFF08\u7D20\u96C6\u5408\u30C7\u30FC\u30BF\u69CB\u9020\uFF09"
   - name: src/DataStructure
     pages:
+    - icon: ':warning:'
+      path: src/DataStructure/avl_tree.hpp
+      title: "AVL\u6728"
     - icon: ':heavy_check_mark:'
       path: src/DataStructure/binary_trie.hpp
       title: Binary Trie
