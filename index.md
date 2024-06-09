@@ -54,7 +54,7 @@ data:
       title: "Union-Find\uFF08\u7D20\u96C6\u5408\u30C7\u30FC\u30BF\u69CB\u9020\uFF09"
   - name: src/DataStructure
     pages:
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: src/DataStructure/avl_tree.hpp
       title: "AVL\u6728"
     - icon: ':heavy_check_mark:'
@@ -422,6 +422,18 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj-ITP1_3_D.test.cpp
       title: test/aoj-ITP1_3_D.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/aoj-ITP2_7_C.test.cpp
+      title: test/aoj-ITP2_7_C.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/aoj-ITP2_9_A.test.cpp
+      title: test/aoj-ITP2_9_A.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/aoj-ITP2_9_B.test.cpp
+      title: test/aoj-ITP2_9_B.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/aoj-ITP2_9_C.test.cpp
+      title: test/aoj-ITP2_9_C.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/aoj-NTL_1_A.test.cpp
       title: test/aoj-NTL_1_A.test.cpp
