@@ -15,7 +15,7 @@ int main() {
 
         scc.add_edge(s, t);
     }
-    auto &&[_, ids] = scc.scc();
+    auto &&[_, ids] = scc.decompose();
 
     int q;
     std::cin >> q;

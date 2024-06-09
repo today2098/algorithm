@@ -1,10 +1,10 @@
-/**
- * @brief 強連結成分分解
- * @docs docs/Graph/strongly_connected_components.md
- */
-
 #ifndef ALGORITHM_STRONGLY_CONNECTED_COMPONENTS_HPP
 #define ALGORITHM_STRONGLY_CONNECTED_COMPONENTS_HPP 1
+
+/**
+ * @brief Strongly Connected Components（強連結成分分解）
+ * @docs docs/Graph/strongly_connected_components.md
+ */
 
 #include <algorithm>
 #include <cassert>
@@ -16,22 +16,23 @@ namespace algorithm {
 
 // 強連結成分分解．
 class SCC {
+    int m_vn;                            // m_vn:=(ノード数).
     std::vector<std::vector<int> > m_g;  // m_g[v][]:=(ノードvの隣接リスト).
 
 public:
     SCC() : SCC(0) {}
-    explicit SCC(int vn) : m_g(vn) {}
+    explicit SCC(int vn) : m_vn(vn), m_g(vn) {}
 
     // ノード数を返す．
-    int order() const { return m_g.size(); }
+    int order() const { return m_vn; }
     // 有向辺を張る．
     void add_edge(int from, int to) {
         assert(0 <= from and from < order());
         assert(0 <= to and to < order());
         m_g[from].push_back(to);
     }
-    // return pair of (# of SCCs, SCC id of each nodes).
-    std::pair<int, std::vector<int> > scc() const {
+    // 有向グラフを強連結成分分解する．return pair of (# of SCCs, SCC id of each nodes). O(|V|+|E|).
+    std::pair<int, std::vector<int> > decompose() const {
         int num_sccs = 0;               // num_sccs:=(SCCsの数).
         std::vector<int> ids(order());  // ids[v]:=(ノードvが属するSCCのID).
         // ord[v]:=(DFS木におけるノードvの行きがけ順序).
@@ -61,17 +62,46 @@ public:
                 num_sccs++;
             }
         };
-        for(int v = 0, n = order(); v < n; ++v) {
+        for(int v = 0; v < order(); ++v) {
             if(ord[v] == -1) dfs(dfs, v);
         }
         return {num_sccs, ids};
     }
-    // 有向グラフを強連結成分分解する．O(|V|+|E|).
-    std::vector<std::vector<int> > decompose() const {
-        const auto &&[num_sccs, ids] = scc();
-        std::vector<std::vector<int> > sccs(num_sccs);
-        for(int v = 0, n = order(); v < n; ++v) sccs[ids[v]].push_back(v);
+    // 強連結成分分解ごとに各ノードをグループ分けする．
+    std::vector<std::vector<int> > scc() const {
+        const auto &&[num, ids] = decompose();
+        return scc(num, ids);
+    }
+    std::vector<std::vector<int> > scc(int num, const std::vector<int> &ids) const {
+        assert((int)ids.size() == order());
+        std::vector<std::vector<int> > sccs(num);
+        for(int v = 0; v < order(); ++v) {
+            assert(0 <= ids[v] and ids[v] < num);
+            sccs[ids[v]].push_back(v);
+        }
         return sccs;
+    }
+    // 強連結成分によるDAGを取得する．
+    std::vector<std::vector<int> > directed_acyclic_graph() const {
+        const auto &&[num, ids] = decompose();
+        return directed_acyclic_graph(num, ids);
+    }
+    std::vector<std::vector<int> > directed_acyclic_graph(int num, const std::vector<int> &ids) const {
+        assert((int)ids.size() == order());
+        std::vector<std::vector<int> > dag(num);
+        for(int u = 0; u < order(); ++u) {
+            assert(0 <= ids[u] and ids[u] < num);
+            for(int v : m_g[u]) {
+                assert(0 <= ids[v] and ids[v] < num);
+                if(ids[u] == ids[v]) continue;
+                dag[ids[u]].push_back(ids[v]);
+            }
+        }
+        for(auto &v : dag) {
+            std::sort(v.begin(), v.end());
+            v.erase(std::unique(v.begin(), v.end()), v.end());
+        }
+        return dag;
     }
 };
 
