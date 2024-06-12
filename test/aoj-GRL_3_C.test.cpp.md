@@ -54,16 +54,16 @@ data:
     \ -1) dfs(dfs, v);\n        }\n        return {num_sccs, ids};\n    }\n    //\
     \ \u5F37\u9023\u7D50\u6210\u5206\u5206\u89E3\u3054\u3068\u306B\u5404\u30CE\u30FC\
     \u30C9\u3092\u30B0\u30EB\u30FC\u30D7\u5206\u3051\u3059\u308B\uFF0E\n    std::vector<std::vector<int>\
-    \ > scc() const {\n        const auto &&[num, ids] = decompose();\n        return\
-    \ scc(num, ids);\n    }\n    std::vector<std::vector<int> > scc(int num, const\
-    \ std::vector<int> &ids) const {\n        assert((int)ids.size() == order());\n\
-    \        std::vector<std::vector<int> > sccs(num);\n        for(int v = 0; v <\
-    \ order(); ++v) {\n            assert(0 <= ids[v] and ids[v] < num);\n       \
-    \     sccs[ids[v]].push_back(v);\n        }\n        return sccs;\n    }\n   \
-    \ // \u5F37\u9023\u7D50\u6210\u5206\u306B\u3088\u308BDAG\u3092\u53D6\u5F97\u3059\
-    \u308B\uFF0E\n    std::vector<std::vector<int> > directed_acyclic_graph() const\
-    \ {\n        const auto &&[num, ids] = decompose();\n        return directed_acyclic_graph(num,\
-    \ ids);\n    }\n    std::vector<std::vector<int> > directed_acyclic_graph(int\
+    \ > scc(const std::pair<int, std::vector<int> > &p) const {\n        return scc(p.first,\
+    \ p.second);\n    }\n    std::vector<std::vector<int> > scc(int num, const std::vector<int>\
+    \ &ids) const {\n        assert((int)ids.size() == order());\n        std::vector<std::vector<int>\
+    \ > sccs(num);\n        for(int v = 0; v < order(); ++v) {\n            assert(0\
+    \ <= ids[v] and ids[v] < num);\n            sccs[ids[v]].push_back(v);\n     \
+    \   }\n        return sccs;\n    }\n    // \u5F37\u9023\u7D50\u6210\u5206\u304B\
+    \u3089\u69CB\u6210\u3055\u308C\u308BDAG\u3092\u53D6\u5F97\u3059\u308B\uFF0E\n\
+    \    std::vector<std::vector<int> > directed_acyclic_graph(const std::pair<int,\
+    \ std::vector<int> > &p) const {\n        return directed_acyclic_graph(p.first,\
+    \ p.second);\n    }\n    std::vector<std::vector<int> > directed_acyclic_graph(int\
     \ num, const std::vector<int> &ids) const {\n        assert((int)ids.size() ==\
     \ order());\n        std::vector<std::vector<int> > dag(num);\n        for(int\
     \ u = 0; u < order(); ++u) {\n            assert(0 <= ids[u] and ids[u] < num);\n\
@@ -91,7 +91,7 @@ data:
   isVerificationFile: true
   path: test/aoj-GRL_3_C.test.cpp
   requiredBy: []
-  timestamp: '2024-06-10 06:21:33+09:00'
+  timestamp: '2024-06-12 21:12:52+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj-GRL_3_C.test.cpp

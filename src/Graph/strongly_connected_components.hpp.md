@@ -6,6 +6,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj-GRL_3_C.test.cpp
     title: test/aoj-GRL_3_C.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo-scc.test.cpp
+    title: test/yosupo-scc.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -52,16 +55,16 @@ data:
     \ -1) dfs(dfs, v);\n        }\n        return {num_sccs, ids};\n    }\n    //\
     \ \u5F37\u9023\u7D50\u6210\u5206\u5206\u89E3\u3054\u3068\u306B\u5404\u30CE\u30FC\
     \u30C9\u3092\u30B0\u30EB\u30FC\u30D7\u5206\u3051\u3059\u308B\uFF0E\n    std::vector<std::vector<int>\
-    \ > scc() const {\n        const auto &&[num, ids] = decompose();\n        return\
-    \ scc(num, ids);\n    }\n    std::vector<std::vector<int> > scc(int num, const\
-    \ std::vector<int> &ids) const {\n        assert((int)ids.size() == order());\n\
-    \        std::vector<std::vector<int> > sccs(num);\n        for(int v = 0; v <\
-    \ order(); ++v) {\n            assert(0 <= ids[v] and ids[v] < num);\n       \
-    \     sccs[ids[v]].push_back(v);\n        }\n        return sccs;\n    }\n   \
-    \ // \u5F37\u9023\u7D50\u6210\u5206\u306B\u3088\u308BDAG\u3092\u53D6\u5F97\u3059\
-    \u308B\uFF0E\n    std::vector<std::vector<int> > directed_acyclic_graph() const\
-    \ {\n        const auto &&[num, ids] = decompose();\n        return directed_acyclic_graph(num,\
-    \ ids);\n    }\n    std::vector<std::vector<int> > directed_acyclic_graph(int\
+    \ > scc(const std::pair<int, std::vector<int> > &p) const {\n        return scc(p.first,\
+    \ p.second);\n    }\n    std::vector<std::vector<int> > scc(int num, const std::vector<int>\
+    \ &ids) const {\n        assert((int)ids.size() == order());\n        std::vector<std::vector<int>\
+    \ > sccs(num);\n        for(int v = 0; v < order(); ++v) {\n            assert(0\
+    \ <= ids[v] and ids[v] < num);\n            sccs[ids[v]].push_back(v);\n     \
+    \   }\n        return sccs;\n    }\n    // \u5F37\u9023\u7D50\u6210\u5206\u304B\
+    \u3089\u69CB\u6210\u3055\u308C\u308BDAG\u3092\u53D6\u5F97\u3059\u308B\uFF0E\n\
+    \    std::vector<std::vector<int> > directed_acyclic_graph(const std::pair<int,\
+    \ std::vector<int> > &p) const {\n        return directed_acyclic_graph(p.first,\
+    \ p.second);\n    }\n    std::vector<std::vector<int> > directed_acyclic_graph(int\
     \ num, const std::vector<int> &ids) const {\n        assert((int)ids.size() ==\
     \ order());\n        std::vector<std::vector<int> > dag(num);\n        for(int\
     \ u = 0; u < order(); ++u) {\n            assert(0 <= ids[u] and ids[u] < num);\n\
@@ -108,16 +111,16 @@ data:
     \ -1) dfs(dfs, v);\n        }\n        return {num_sccs, ids};\n    }\n    //\
     \ \u5F37\u9023\u7D50\u6210\u5206\u5206\u89E3\u3054\u3068\u306B\u5404\u30CE\u30FC\
     \u30C9\u3092\u30B0\u30EB\u30FC\u30D7\u5206\u3051\u3059\u308B\uFF0E\n    std::vector<std::vector<int>\
-    \ > scc() const {\n        const auto &&[num, ids] = decompose();\n        return\
-    \ scc(num, ids);\n    }\n    std::vector<std::vector<int> > scc(int num, const\
-    \ std::vector<int> &ids) const {\n        assert((int)ids.size() == order());\n\
-    \        std::vector<std::vector<int> > sccs(num);\n        for(int v = 0; v <\
-    \ order(); ++v) {\n            assert(0 <= ids[v] and ids[v] < num);\n       \
-    \     sccs[ids[v]].push_back(v);\n        }\n        return sccs;\n    }\n   \
-    \ // \u5F37\u9023\u7D50\u6210\u5206\u306B\u3088\u308BDAG\u3092\u53D6\u5F97\u3059\
-    \u308B\uFF0E\n    std::vector<std::vector<int> > directed_acyclic_graph() const\
-    \ {\n        const auto &&[num, ids] = decompose();\n        return directed_acyclic_graph(num,\
-    \ ids);\n    }\n    std::vector<std::vector<int> > directed_acyclic_graph(int\
+    \ > scc(const std::pair<int, std::vector<int> > &p) const {\n        return scc(p.first,\
+    \ p.second);\n    }\n    std::vector<std::vector<int> > scc(int num, const std::vector<int>\
+    \ &ids) const {\n        assert((int)ids.size() == order());\n        std::vector<std::vector<int>\
+    \ > sccs(num);\n        for(int v = 0; v < order(); ++v) {\n            assert(0\
+    \ <= ids[v] and ids[v] < num);\n            sccs[ids[v]].push_back(v);\n     \
+    \   }\n        return sccs;\n    }\n    // \u5F37\u9023\u7D50\u6210\u5206\u304B\
+    \u3089\u69CB\u6210\u3055\u308C\u308BDAG\u3092\u53D6\u5F97\u3059\u308B\uFF0E\n\
+    \    std::vector<std::vector<int> > directed_acyclic_graph(const std::pair<int,\
+    \ std::vector<int> > &p) const {\n        return directed_acyclic_graph(p.first,\
+    \ p.second);\n    }\n    std::vector<std::vector<int> > directed_acyclic_graph(int\
     \ num, const std::vector<int> &ids) const {\n        assert((int)ids.size() ==\
     \ order());\n        std::vector<std::vector<int> > dag(num);\n        for(int\
     \ u = 0; u < order(); ++u) {\n            assert(0 <= ids[u] and ids[u] < num);\n\
@@ -130,10 +133,11 @@ data:
   isVerificationFile: false
   path: src/Graph/strongly_connected_components.hpp
   requiredBy: []
-  timestamp: '2024-06-10 06:21:33+09:00'
+  timestamp: '2024-06-12 21:12:52+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj-GRL_3_C.test.cpp
+  - test/yosupo-scc.test.cpp
 documentation_of: src/Graph/strongly_connected_components.hpp
 layout: document
 redirect_from:
@@ -146,7 +150,6 @@ title: "Strongly Connected Components\uFF08\u5F37\u9023\u7D50\u6210\u5206\u5206\
 
 与えられる有向連結グラフを強連結成分 (SCC: Strongly Connected Components) に分解する．
 
-ここで強連結とは，「あるグラフにおける任意の2ノード $u, v$ について，ノード $u$ から $v$ へのパスが存在すること」をいう．
-つまり，どの2ノードも互いに行き来できるグラフを指す．
+ここで強連結成分とは，「ある有向グラフにおいて，互いに行き来できるノードの集合」を指す．
 
 アルゴリズムの計算量は，グラフのノード数を $\lvert V \rvert$ ，辺の数を $\lvert E \rvert$ とおくと，$\mathcal{O}(\lvert V \rvert + \lvert E \rvert)$ となる．

@@ -466,6 +466,9 @@ data:
       path: test/yosupo-range_affine_range_sum.test.cpp
       title: test/yosupo-range_affine_range_sum.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/yosupo-scc.test.cpp
+      title: test/yosupo-scc.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/yosupo-set_xor_min.test.cpp
       title: test/yosupo-set_xor_min.test.cpp
     - icon: ':heavy_check_mark:'
