@@ -3,7 +3,7 @@
 #include <iostream>
 #include <string>
 
-#include "../src/DataStructure/heap.hpp"
+#include "../src/DataStructure/binary_heap.hpp"
 
 int main() {
     algorithm::BinaryHeap<int> heap;
