@@ -1,11 +1,12 @@
-#ifndef ALGORITHM_HEAP_HPP
-#define ALGORITHM_HEAP_HPP 1
+#ifndef ALGORITHM_BINARY_HEAP_HPP
+#define ALGORITHM_BINARY_HEAP_HPP 1
 
 /**
  * @brief 二分ヒープ
- * @docs docs/DataStructure/heap.md
+ * @docs docs/DataStructure/binary_heap.md
  */
 
+#include <algorithm>
 #include <cassert>
 #include <functional>
 #include <utility>
@@ -15,25 +16,24 @@ namespace algorithm {
 
 // 二分ヒープ．
 template <typename T>
-class Heap {
+class BinaryHeap {
     using Comp = std::function<bool(const T &, const T &)>;
 
     Comp m_comp;            // bool m_comp(T,T):=(比較演算子).
     std::vector<T> m_tree;  // m_tree[]:=(二分木). 1-based index.
 
     void shift_up(int k) {
-        while(true) {
-            if(k == 1) break;
-            int par = k >> 1;
+        int par = k >> 1;
+        while(1 <= par) {
             if(m_comp(m_tree[par], m_tree[k])) break;
             std::swap(m_tree[par], m_tree[k]);
             k = par;
+            par >>= 1;
         }
     }
     void shift_down(int k) {
-        while(true) {
-            int l = k << 1, r = k << 1 | 1;
-            if(size() < l) break;
+        int l = k << 1, r = k << 1 | 1;
+        while(l <= size()) {
             if(size() < r or m_comp(m_tree[l], m_tree[r])) {
                 if(m_comp(m_tree[k], m_tree[l])) break;
                 std::swap(m_tree[k], m_tree[l]);
@@ -43,6 +43,7 @@ class Heap {
                 std::swap(m_tree[k], m_tree[r]);
                 k = r;
             }
+            l = k << 1, r = k << 1 | 1;
         }
     }
     void heap_sort() {
@@ -51,17 +52,22 @@ class Heap {
 
 public:
     // constructor. O(N*logN).
-    Heap() : Heap([](const T &a, const T &b) -> bool { return a > b; }, std::vector<T>(0)) {}
-    explicit Heap(const Comp &comp) : Heap(comp, std::vector<T>(0)) {}
-    explicit Heap(const std::vector<T> &v) : Heap([](const T &a, const T &b) -> bool { return a > b; }, v) {}
-    explicit Heap(const Comp &comp, const std::vector<T> &v) : m_comp(comp), m_tree(v.size() + 1) {
+    BinaryHeap() : BinaryHeap([](const T &a, const T &b) -> bool { return a > b; }) {}
+    explicit BinaryHeap(size_t n) : BinaryHeap([](const T &a, const T &b) -> bool { return a > b; }, n) {}
+    explicit BinaryHeap(const std::vector<T> &v) : BinaryHeap(v, [](const T &a, const T &b) -> bool { return a > b; }) {}
+    explicit BinaryHeap(const std::vector<T> &v, size_t n) : BinaryHeap(v, [](const T &a, const T &b) -> bool { return a > b; }, n) {}
+    explicit BinaryHeap(const Comp &comp) : m_comp(comp), m_tree(1) {}
+    explicit BinaryHeap(const Comp &comp, size_t n) : BinaryHeap(comp) {
+        m_tree.reserve(n + 1);
+    }
+    explicit BinaryHeap(const std::vector<T> &v, const Comp &comp) : m_comp(comp), m_tree(v.size() + 1) {
         if(size() > 0) {
             std::copy(v.begin(), v.end(), m_tree.begin() + 1);
             heap_sort();
         }
     }
-    ~Heap() {
-        std::vector<T>().swap(m_tree);
+    explicit BinaryHeap(const std::vector<T> &v, const Comp &comp, size_t n) : BinaryHeap(v, comp) {
+        m_tree.reserve(n + 1);
     }
 
     // 要素が空か判定する．O(1).

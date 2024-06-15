@@ -1,4 +1,4 @@
-#define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/lesson/1/ALDS1/all/ALDS1_9_C"
+#define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/lesson/1/ALDS1/9/ALDS1_9_C"
 
 #include <iostream>
 #include <string>
@@ -6,7 +6,7 @@
 #include "../src/DataStructure/heap.hpp"
 
 int main() {
-    algorithm::Heap<int> heap;
+    algorithm::BinaryHeap<int> heap;
 
     while(true) {
         std::string op;
