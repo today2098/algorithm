@@ -28,7 +28,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: src/DataStructure/SegmentTree/binary_indexed_tree_zero.hpp
       title: Binary Indexed Tree (0-based index)
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: src/DataStructure/SegmentTree/dynamic_segment_tree.hpp
       title: "Dynamic Segment Tree\uFF08\u52D5\u7684\u30BB\u30B0\u30E1\u30F3\u30C8\
         \u6728\uFF09"
@@ -466,7 +466,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo-point_add_range_sum-binary_indexed_tree_zero.test.cpp
       title: test/yosupo-point_add_range_sum-binary_indexed_tree_zero.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo-point_add_range_sum-dynamic_segment_tree.test.cpp
       title: test/yosupo-point_add_range_sum-dynamic_segment_tree.test.cpp
     - icon: ':heavy_check_mark:'

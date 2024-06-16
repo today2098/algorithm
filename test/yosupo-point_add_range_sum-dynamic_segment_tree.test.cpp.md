@@ -1,15 +1,15 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: src/DataStructure/SegmentTree/dynamic_segment_tree.hpp
     title: "Dynamic Segment Tree\uFF08\u52D5\u7684\u30BB\u30B0\u30E1\u30F3\u30C8\u6728\
       \uFF09"
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/point_add_range_sum
@@ -46,17 +46,17 @@ data:
     \ if(k < p->index) std::swap(k, p->index), std::swap(a, p->value);\n         \
     \   set(p->right, mid, r, k, a);\n        }\n        update(p);\n    }\n    S\
     \ get(const node_ptr &p, size_type l, size_type r, size_type k) const {\n    \
-    \    assert(0 <= l and l <= r and r <= size());\n        if(!p) return identity();\n\
-    \        if(p->index == k) return p->value;\n        size_type mid = (l + r) /\
-    \ 2;\n        if(l < mid) return get(p->left, l, mid, k);\n        return get(p->left,\
-    \ mid, r, k);\n    }\n    S prod(const node_ptr &p, size_type l, size_type r,\
-    \ size_type nl, size_type nr) const {\n        assert(0 <= l and l <= r and r\
-    \ <= size());\n        assert(0 <= nl and nl <= nr and nr <= size());\n      \
-    \  if(!p or nr <= l or r <= nl) return identity();\n        if(nl <= l and r <=\
-    \ nr) return p->product;\n        size_type mid = (l + r) / 2;\n        S &&res\
-    \ = prod(p->left, l, mid, nl, nr);\n        if(nl <= p->index and p->index < nr)\
-    \ res = m_op(res, p->value);\n        res = m_op(res, prod(p->right, mid, r, nl,\
-    \ nr));\n        return res;\n    }\n    template <class Func>\n    size_type\
+    \    assert(0 <= l and l <= k and k < r and r <= size());\n        if(!p) return\
+    \ identity();\n        if(p->index == k) return p->value;\n        size_type mid\
+    \ = (l + r) / 2;\n        if(k < mid) return get(p->left, l, mid, k);\n      \
+    \  return get(p->right, mid, r, k);\n    }\n    S prod(const node_ptr &p, size_type\
+    \ l, size_type r, size_type nl, size_type nr) const {\n        assert(0 <= l and\
+    \ l <= r and r <= size());\n        assert(0 <= nl and nl <= nr and nr <= size());\n\
+    \        if(!p or nr <= l or r <= nl) return identity();\n        if(nl <= l and\
+    \ r <= nr) return p->product;\n        size_type mid = (l + r) / 2;\n        S\
+    \ &&res = prod(p->left, l, mid, nl, nr);\n        if(nl <= p->index and p->index\
+    \ < nr) res = m_op(res, p->value);\n        res = m_op(res, prod(p->right, mid,\
+    \ r, nl, nr));\n        return res;\n    }\n    template <class Func>\n    size_type\
     \ most_right(const node_ptr &p, size_type l, size_type r, const Func &jud, size_type\
     \ nl, S &product) const {\n        assert(0 <= l and l <= r and r <= size());\n\
     \        assert(0 <= nl and nl <= size());\n        if(!p or r <= nl) return r;\n\
@@ -152,8 +152,8 @@ data:
   isVerificationFile: true
   path: test/yosupo-point_add_range_sum-dynamic_segment_tree.test.cpp
   requiredBy: []
-  timestamp: '2024-06-16 23:24:10+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-06-17 00:08:47+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo-point_add_range_sum-dynamic_segment_tree.test.cpp
 layout: document
