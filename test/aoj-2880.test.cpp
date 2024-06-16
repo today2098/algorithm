@@ -5,7 +5,7 @@
 #include <tuple>
 #include <vector>
 
-#include "../src/DataStructure/segment_set.hpp"
+#include "../src/DataStructure/integer_interval_set.hpp"
 #include "../src/Utils/debug.hpp"
 
 int main() {
