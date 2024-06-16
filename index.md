@@ -28,6 +28,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: src/DataStructure/SegmentTree/binary_indexed_tree_zero.hpp
       title: Binary Indexed Tree (0-based index)
+    - icon: ':x:'
+      path: src/DataStructure/SegmentTree/dynamic_segment_tree.hpp
+      title: "Dynamic Segment Tree\uFF08\u52D5\u7684\u30BB\u30B0\u30E1\u30F3\u30C8\
+        \u6728\uFF09"
     - icon: ':heavy_check_mark:'
       path: src/DataStructure/SegmentTree/lazy_segment_tree.hpp
       title: "Lazy Segment Tree\uFF08\u9045\u5EF6\u8A55\u4FA1\u30BB\u30B0\u30E1\u30F3\
@@ -58,15 +62,15 @@ data:
       path: src/DataStructure/avl_tree.hpp
       title: "AVL\u6728"
     - icon: ':heavy_check_mark:'
+      path: src/DataStructure/binary_heap.hpp
+      title: "\u4E8C\u5206\u30D2\u30FC\u30D7"
+    - icon: ':heavy_check_mark:'
       path: src/DataStructure/binary_trie.hpp
       title: Binary Trie
     - icon: ':heavy_check_mark:'
-      path: src/DataStructure/heap.hpp
-      title: "\u4E8C\u5206\u30D2\u30FC\u30D7"
-    - icon: ':heavy_check_mark:'
-      path: src/DataStructure/segment_set.hpp
-      title: "\u6574\u6570\u306E\u96C6\u5408\u3092\u533A\u9593\u3067\u7BA1\u7406\u3059\
-        \u308B\u30C7\u30FC\u30BF\u69CB\u9020"
+      path: src/DataStructure/integer_interval_set.hpp
+      title: "Integer Interval Set\uFF08\u6574\u6570\u306E\u96C6\u5408\u3092\u533A\
+        \u9593\u3067\u7BA1\u7406\u3059\u308B\u30C7\u30FC\u30BF\u69CB\u9020\uFF09"
   - name: src/Geometry
     pages:
     - icon: ':warning:'
@@ -462,6 +466,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo-point_add_range_sum-binary_indexed_tree_zero.test.cpp
       title: test/yosupo-point_add_range_sum-binary_indexed_tree_zero.test.cpp
+    - icon: ':x:'
+      path: test/yosupo-point_add_range_sum-dynamic_segment_tree.test.cpp
+      title: test/yosupo-point_add_range_sum-dynamic_segment_tree.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo-range_affine_range_sum.test.cpp
       title: test/yosupo-range_affine_range_sum.test.cpp
