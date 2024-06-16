@@ -30,18 +30,18 @@ int main() {
     debug(query);
 
     std::vector<bool> ans(q);
-    algorithm::SegmentSet<int> segment_set;
+    algorithm::IntegerIntervalSet<int> st;
     int i = 0;
     for(const auto &[e, s, t, idx] : query) {
         while(i < m) {
             const auto &[d, a, b] = vt[i];
             if(d >= e) break;
-            segment_set.insert(a, b);
+            st.insert(a, b);
             i++;
         }
-        debug(e, segment_set);
+        debug(e, st);
 
-        ans[idx] = (s >= t or segment_set.contains(s, t) == 2);
+        ans[idx] = (s >= t or st.contains(s, t) == 2);
     }
 
     for(auto elem : ans) std::cout << (elem ? "Yes" : "No") << "\n";
