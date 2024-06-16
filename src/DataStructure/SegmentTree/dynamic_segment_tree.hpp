@@ -69,12 +69,12 @@ private:
         update(p);
     }
     S get(const node_ptr &p, size_type l, size_type r, size_type k) const {
-        assert(0 <= l and l <= r and r <= size());
+        assert(0 <= l and l <= k and k < r and r <= size());
         if(!p) return identity();
         if(p->index == k) return p->value;
         size_type mid = (l + r) / 2;
-        if(l < mid) return get(p->left, l, mid, k);
-        return get(p->left, mid, r, k);
+        if(k < mid) return get(p->left, l, mid, k);
+        return get(p->right, mid, r, k);
     }
     S prod(const node_ptr &p, size_type l, size_type r, size_type nl, size_type nr) const {
         assert(0 <= l and l <= r and r <= size());
