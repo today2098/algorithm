@@ -4,9 +4,30 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "echo",
-            "type": "shell",
-            "command": "echo Hello"
+            "label": "C/C++: g++ build active file",
+            "type": "cppbuild",
+            "command": "/usr/bin/g++",
+            "args": [
+                "-std=gnu++20",
+                "-D=DEBUG",
+                "-O2",
+                "-Wall",
+                "-Wextra",
+                "-fdiagnostics-color=always",
+                "-o",
+                "${workspaceFolder}/debug.out",
+                "${file}"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
         }
     ]
 }
