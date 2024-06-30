@@ -30,15 +30,16 @@
             }
         },
         {
+            "label": "C/C++: g++ build active file to debug",
             "type": "cppbuild",
-            "label": "C/C++: g++ アクティブなファイルのビルド",
             "command": "/usr/bin/g++",
             "args": [
+                "-std=gnu++20",
                 "-fdiagnostics-color=always",
                 "-g",
-                "${file}",
                 "-o",
-                "${fileDirname}/${fileBasenameNoExtension}"
+                "${fileDirname}/${fileBasenameNoExtension}.out",
+                "${file}"
             ],
             "options": {
                 "cwd": "${fileDirname}"
