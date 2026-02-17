@@ -34,13 +34,13 @@ jobs:
       - name: Install dependencies
         run: |
           sudo apt-get update
-          DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends build-essential cmake
+          DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends build-essential cmake ninja-build
 
       - name: Configure
-        run: cmake -S . -B build
+        run: cmake -S . -B build -G Ninja
 
       - name: Build
-        run: cmake --build build
+        run: ninja -C build
 
       - name: Run tests
         run: ctest --test-dir build --output-on-failure
