@@ -5,10 +5,10 @@
 		"context": ".."
 	},
 	"runArgs": [
-		"--env-file",
-		".secrets",
 		"--name",
-		"algorithm"
+		"algorithm",
+		"--env-file",
+		".secrets"
 	],
 	"features": {
 		"ghcr.io/devcontainers/features/docker-outside-of-docker:1": {},
