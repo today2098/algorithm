@@ -1,0 +1,80 @@
+{
+    "tasks": [
+        {
+            "label": "C/C++: g++ build active file for debug",
+            "type": "shell",
+            "command": "/usr/bin/g++",
+            "args": [
+                "-I",
+                "${workspaceFolder}/",
+                "-std=c++23",
+                "-g",
+                "-Wall",
+                "-Wextra",
+                "-Wpedantic",
+                "-fdiagnostics-color=always",
+                "${file}",
+                "-o",
+                "debug.out"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}/work"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": "build"
+        },
+        {
+            "label": "C/C++: g++ build active file",
+            "type": "shell",
+            "command": "/usr/bin/g++",
+            "args": [
+                "-D=DEBUG",
+                "-I",
+                "${workspaceFolder}/",
+                "-std=c++23",
+                "-O2",
+                "-Wall",
+                "-Wextra",
+                "-Wpedantic",
+                "-fdiagnostics-color=always",
+                "${file}",
+                "-o",
+                "debug.out"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}/work"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": "build"
+        },
+        {
+            "label": "bundle active file",
+            "type": "shell",
+            "command": "oj-bundle",
+            "args": [
+                "${file}",
+                ">bundle.cpp"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}/work"
+            },
+            "group": "none"
+        },
+        {
+            "label": "build and bundle active file",
+            "dependsOn": [
+                "C/C++: g++ build active file",
+                "bundle active file"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        }
+    ],
+    "version": "2.0.0"
+}

@@ -1,0 +1,9 @@
+{
+    "recommendations": [
+        "mhutchie.git-graph",
+        "donjayamanne.githistory",
+        "eamodio.gitlens",
+        "ms-vscode.hexeditor",
+        "cschlosser.doxdocgen"
+    ]
+}
