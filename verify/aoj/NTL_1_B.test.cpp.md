@@ -48,7 +48,7 @@ data:
     \u3081\u308B\uFF0E\u89E3\u304C\u5B58\u5728\u3059\u308B\u5FC5\u8981\u5341\u5206\
     \u6761\u4EF6\u306F\uFF0Ca\u3068m\u304C\u4E92\u3044\u306B\u7D20\u3067\u3042\u308B\
     \u3053\u3068\uFF0EO(log a).\ntemplate <std::integral Type>\nconstexpr std::int64_t\
-    \ mod_inv(Type a, std::int32_t m) {\n    assert(m >= 1);\n    auto [x, g] = internal::mod_inv(::algorithm::internal::modulo(a,\
+    \ mod_inv(Type a, std::int32_t m) {\n    assert(m >= 1);\n    auto [x, g] = internal::mod_inv(internal::modulo(a,\
     \ m), m);\n    assert(g == 1);\n    return x;\n}\n\n}  // namespace algorithm\n\
     \n\n#line 10 \"algorithm/Math/ModularArithmetic/mod_pow.hpp\"\n\nnamespace algorithm\
     \ {\n\nnamespace internal {\n\n// Return n^k mod m.\nconstexpr std::uint32_t mod_pow(std::uint64_t\
@@ -57,9 +57,9 @@ data:
     \ = n * n % m;\n    }\n    return res;\n}\n\n}  // namespace internal\n\n// \u7E70\
     \u308A\u8FD4\u3057\u4E8C\u4E57\u6CD5\uFF08mod\u4ED8\u304D\uFF09\uFF0EO(log k).\n\
     template <std::integral Type>\nconstexpr std::int64_t mod_pow(Type n, long long\
-    \ k, std::int32_t m) {\n    assert(m >= 1);\n    auto r = ::algorithm::internal::modulo(n,\
-    \ m);\n    if(k < 0) {\n        auto [x, g] = ::algorithm::internal::mod_inv(r,\
-    \ m);\n        assert(g == 1);\n        r = x, k = -k;\n    }\n    return internal::mod_pow(r,\
+    \ k, std::int32_t m) {\n    assert(m >= 1);\n    auto r = internal::modulo(n,\
+    \ m);\n    if(k < 0) {\n        auto [x, g] = internal::mod_inv(r, m);\n     \
+    \   assert(g == 1);\n        r = x, k = -k;\n    }\n    return internal::mod_pow(r,\
     \ k, m);\n}\n\n}  // namespace algorithm\n\n\n#line 6 \"verify/aoj/NTL_1_B.test.cpp\"\
     \n\nint main() {\n    constexpr int MOD = 1'000'000'007;\n\n    int m, n;\n  \
     \  std::cin >> m >> n;\n\n    auto ans = algorithm::mod_pow(m, n, MOD);\n    std::cout\
@@ -76,7 +76,7 @@ data:
   isVerificationFile: true
   path: verify/aoj/NTL_1_B.test.cpp
   requiredBy: []
-  timestamp: '2026-02-21 03:48:52+00:00'
+  timestamp: '2026-02-21 15:04:17+00:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: verify/aoj/NTL_1_B.test.cpp

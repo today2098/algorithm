@@ -8,10 +8,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: algorithm/Math/ModularArithmetic/mod_pow.hpp
     title: "\u7E70\u308A\u8FD4\u3057\u4E8C\u4E57\u6CD5\uFF08mod\u4ED8\u304D\uFF09"
+  - icon: ':heavy_check_mark:'
+    path: algorithm/Math/ModularArithmetic/modint.hpp
+    title: "Modint\u69CB\u9020\u4F53"
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: verify/aoj/NTL_1_B.test.cpp
     title: verify/aoj/NTL_1_B.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/yukicoder/no_1681.test.cpp
+    title: verify/yukicoder/no_1681.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -47,10 +53,12 @@ data:
   requiredBy:
   - algorithm/Math/ModularArithmetic/mod_pow.hpp
   - algorithm/Math/ModularArithmetic/mod_inv.hpp
+  - algorithm/Math/ModularArithmetic/modint.hpp
   timestamp: '2026-02-17 13:22:56+00:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/aoj/NTL_1_B.test.cpp
+  - verify/yukicoder/no_1681.test.cpp
 documentation_of: algorithm/Math/ModularArithmetic/modulo.hpp
 layout: document
 title: "\u30E2\u30B8\u30E5\u30ED\u6F14\u7B97"

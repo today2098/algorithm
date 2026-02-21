@@ -15,6 +15,12 @@ data:
       path: algorithm/Math/ModularArithmetic/mod_pow.hpp
       title: "\u7E70\u308A\u8FD4\u3057\u4E8C\u4E57\u6CD5\uFF08mod\u4ED8\u304D\uFF09"
     - icon: ':heavy_check_mark:'
+      path: algorithm/Math/ModularArithmetic/modint.hpp
+      title: "Modint\u69CB\u9020\u4F53"
+    - icon: ':heavy_check_mark:'
+      path: algorithm/Math/ModularArithmetic/modint_base.hpp
+      title: "Modint\u69CB\u9020\u4F53\u306E\u57FA\u5E95\u30AF\u30E9\u30B9"
+    - icon: ':heavy_check_mark:'
       path: algorithm/Math/ModularArithmetic/modulo.hpp
       title: "\u30E2\u30B8\u30E5\u30ED\u6F14\u7B97"
   - name: algorithm/utils
@@ -31,5 +37,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: verify/aoj/NTL_1_B.test.cpp
       title: verify/aoj/NTL_1_B.test.cpp
+  - name: verify/yukicoder
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: verify/yukicoder/no_1681.test.cpp
+      title: verify/yukicoder/no_1681.test.cpp
 layout: toppage
 ---

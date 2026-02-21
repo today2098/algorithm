@@ -7,11 +7,17 @@ data:
   - icon: ':heavy_check_mark:'
     path: algorithm/Math/ModularArithmetic/modulo.hpp
     title: "\u30E2\u30B8\u30E5\u30ED\u6F14\u7B97"
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: algorithm/Math/ModularArithmetic/modint.hpp
+    title: "Modint\u69CB\u9020\u4F53"
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: verify/aoj/NTL_1_B.test.cpp
     title: verify/aoj/NTL_1_B.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/yukicoder/no_1681.test.cpp
+    title: verify/yukicoder/no_1681.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -43,7 +49,7 @@ data:
     \u3081\u308B\uFF0E\u89E3\u304C\u5B58\u5728\u3059\u308B\u5FC5\u8981\u5341\u5206\
     \u6761\u4EF6\u306F\uFF0Ca\u3068m\u304C\u4E92\u3044\u306B\u7D20\u3067\u3042\u308B\
     \u3053\u3068\uFF0EO(log a).\ntemplate <std::integral Type>\nconstexpr std::int64_t\
-    \ mod_inv(Type a, std::int32_t m) {\n    assert(m >= 1);\n    auto [x, g] = internal::mod_inv(::algorithm::internal::modulo(a,\
+    \ mod_inv(Type a, std::int32_t m) {\n    assert(m >= 1);\n    auto [x, g] = internal::mod_inv(internal::modulo(a,\
     \ m), m);\n    assert(g == 1);\n    return x;\n}\n\n}  // namespace algorithm\n\
     \n\n#line 10 \"algorithm/Math/ModularArithmetic/mod_pow.hpp\"\n\nnamespace algorithm\
     \ {\n\nnamespace internal {\n\n// Return n^k mod m.\nconstexpr std::uint32_t mod_pow(std::uint64_t\
@@ -52,9 +58,9 @@ data:
     \ = n * n % m;\n    }\n    return res;\n}\n\n}  // namespace internal\n\n// \u7E70\
     \u308A\u8FD4\u3057\u4E8C\u4E57\u6CD5\uFF08mod\u4ED8\u304D\uFF09\uFF0EO(log k).\n\
     template <std::integral Type>\nconstexpr std::int64_t mod_pow(Type n, long long\
-    \ k, std::int32_t m) {\n    assert(m >= 1);\n    auto r = ::algorithm::internal::modulo(n,\
-    \ m);\n    if(k < 0) {\n        auto [x, g] = ::algorithm::internal::mod_inv(r,\
-    \ m);\n        assert(g == 1);\n        r = x, k = -k;\n    }\n    return internal::mod_pow(r,\
+    \ k, std::int32_t m) {\n    assert(m >= 1);\n    auto r = internal::modulo(n,\
+    \ m);\n    if(k < 0) {\n        auto [x, g] = internal::mod_inv(r, m);\n     \
+    \   assert(g == 1);\n        r = x, k = -k;\n    }\n    return internal::mod_pow(r,\
     \ k, m);\n}\n\n}  // namespace algorithm\n\n\n"
   code: "#ifndef ALGORITHM_MOD_POW_HPP\n#define ALGORITHM_MOD_POW_HPP 1\n\n#include\
     \ <cassert>\n#include <concepts>\n#include <cstdint>\n\n#include \"mod_inv.hpp\"\
@@ -65,20 +71,22 @@ data:
     \    }\n    return res;\n}\n\n}  // namespace internal\n\n// \u7E70\u308A\u8FD4\
     \u3057\u4E8C\u4E57\u6CD5\uFF08mod\u4ED8\u304D\uFF09\uFF0EO(log k).\ntemplate <std::integral\
     \ Type>\nconstexpr std::int64_t mod_pow(Type n, long long k, std::int32_t m) {\n\
-    \    assert(m >= 1);\n    auto r = ::algorithm::internal::modulo(n, m);\n    if(k\
-    \ < 0) {\n        auto [x, g] = ::algorithm::internal::mod_inv(r, m);\n      \
-    \  assert(g == 1);\n        r = x, k = -k;\n    }\n    return internal::mod_pow(r,\
-    \ k, m);\n}\n\n}  // namespace algorithm\n\n#endif\n"
+    \    assert(m >= 1);\n    auto r = internal::modulo(n, m);\n    if(k < 0) {\n\
+    \        auto [x, g] = internal::mod_inv(r, m);\n        assert(g == 1);\n   \
+    \     r = x, k = -k;\n    }\n    return internal::mod_pow(r, k, m);\n}\n\n}  //\
+    \ namespace algorithm\n\n#endif\n"
   dependsOn:
   - algorithm/Math/ModularArithmetic/mod_inv.hpp
   - algorithm/Math/ModularArithmetic/modulo.hpp
   isVerificationFile: false
   path: algorithm/Math/ModularArithmetic/mod_pow.hpp
-  requiredBy: []
-  timestamp: '2026-02-21 01:23:39+00:00'
+  requiredBy:
+  - algorithm/Math/ModularArithmetic/modint.hpp
+  timestamp: '2026-02-21 15:04:17+00:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - verify/aoj/NTL_1_B.test.cpp
+  - verify/yukicoder/no_1681.test.cpp
 documentation_of: algorithm/Math/ModularArithmetic/mod_pow.hpp
 layout: document
 title: "\u7E70\u308A\u8FD4\u3057\u4E8C\u4E57\u6CD5\uFF08mod\u4ED8\u304D\uFF09"
