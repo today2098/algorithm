@@ -25,19 +25,22 @@ public:
     engine_type &engine() { return m_engine; }
     auto next() { return m_engine(); }
 
-    // 離散一様分布 (Discrete Uniform Distribution) に従う乱数（整数）を生成する．
+    // 離散一様分布 (discrete uniform distribution) に従う乱数（整数）を生成する．
     template <std::integral Type>
     Type uniform(Type min = std::numeric_limits<Type>::min(), Type max = std::numeric_limits<Type>::max()) {
         std::uniform_int_distribution<Type> dist(min, max);
         return dist(m_engine);
     }
-    // 離散一様分布 (Discrete Uniform Distribution) に従う乱数（実数）を生成する．
+    // 連続一様分布 (continuous uniform distribution) に従う乱数（実数）を生成する．
     template <std::floating_point Type>
     Type uniform(Type min = std::numeric_limits<Type>::min(), Type max = std::numeric_limits<Type>::max()) {
         std::uniform_real_distribution<Type> dist(min, max);
         return dist(m_engine);
     }
 };
+
+using RandomWithMt19937 = Random<std::mt19937>;
+using RandomWithMt19937_64 = Random<std::mt19937_64>;
 
 }  // namespace algorithm
 
