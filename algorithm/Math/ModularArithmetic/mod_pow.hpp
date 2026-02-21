@@ -28,9 +28,9 @@ constexpr std::uint32_t mod_pow(std::uint64_t n, unsigned long long k, std::uint
 template <std::integral Type>
 constexpr std::int64_t mod_pow(Type n, long long k, std::int32_t m) {
     assert(m >= 1);
-    auto r = ::algorithm::internal::modulo(n, m);
+    auto r = internal::modulo(n, m);
     if(k < 0) {
-        auto [x, g] = ::algorithm::internal::mod_inv(r, m);
+        auto [x, g] = internal::mod_inv(r, m);
         assert(g == 1);
         r = x, k = -k;
     }
