@@ -7,4 +7,5 @@ AllowShortIfStatementsOnASingleLine: AllIfsAndElse
 ColumnLimit: 0
 ForEachMacros: ["REP", "FOR"]
 IndentWidth: 4
+PointerAlignment: Right
 SpaceBeforeParens: Never
