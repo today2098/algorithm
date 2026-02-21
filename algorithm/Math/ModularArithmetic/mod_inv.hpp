@@ -34,7 +34,7 @@ constexpr std::pair<std::uint32_t, std::uint32_t> mod_inv(std::uint32_t a, std::
 template <std::integral Type>
 constexpr std::int64_t mod_inv(Type a, std::int32_t m) {
     assert(m >= 1);
-    auto [x, g] = internal::mod_inv(::algorithm::internal::modulo(a, m), m);
+    auto [x, g] = internal::mod_inv(internal::modulo(a, m), m);
     assert(g == 1);
     return x;
 }
