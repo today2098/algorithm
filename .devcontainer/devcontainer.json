@@ -26,7 +26,16 @@
 				"docker.docker",
 				"GitHub.vscode-github-actions",
 				"SanjulaGanepola.github-local-actions"
-			]
+			],
+			"settings": {
+				"markdownlint.config": {
+					"MD033": {
+						"table_allowed_elements": [
+							"br"
+						]
+					}
+				}
+			}
 		}
 	},
 	"workspaceFolder": "/workspaces/algorithm"
