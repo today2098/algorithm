@@ -13,28 +13,34 @@ namespace {
 
 TEST(InternalModInvTest, Basic) {
     {
-        static_assert(2 * 1 % 4 == 2 % 4);
+        static_assert(2 * 1 % 4 == 2);
         constexpr auto p = algorithm::internal::mod_inv(2, 4);
         static_assert(p.first == 1);
         static_assert(p.second == 2);
     }
 
     {
-        static_assert(24 * 11 % 256 == 8 % 256);
+        static_assert(6 * 1 % 4 == 2);
+        constexpr auto p = algorithm::internal::mod_inv(6, 4);
+        static_assert(p.first == 1);
+        static_assert(p.second == 2);
+    }
+
+    {
+        static_assert(24 * 11 % 256 == 8);
         constexpr auto p = algorithm::internal::mod_inv(24, 256);
         static_assert(p.first == 11);
         static_assert(p.second == 8);
     }
 
     {
-        static_assert(27 * 2 % 45 == 9 % 45);
+        static_assert(27 * 2 % 45 == 9);
         constexpr auto p = algorithm::internal::mod_inv(27, 45);
         static_assert(p.first == 2);
         static_assert(p.second == 9);
     }
 
     {  // corner case: a = 0
-        static_assert(0 * 0 % 3 == 3 % 3);
         constexpr auto p = algorithm::internal::mod_inv(0, 3);
         static_assert(p.first == 0);
         static_assert(p.second == 3);
@@ -45,8 +51,8 @@ TEST(InternalModInvTest, PropertyBased) {
     algorithm::RandomWithMt19937 random;
 
     for(int i = 0; i < 1000; ++i) {
-        auto a = random.uniform<std::uint32_t>(std::numeric_limits<std::uint32_t>::min(), std::numeric_limits<std::uint32_t>::max() - 1);
-        auto m = random.uniform<std::uint32_t>(a + 1, std::numeric_limits<std::uint32_t>::max());
+        auto a = random.uniform<std::uint32_t>(std::numeric_limits<std::uint32_t>::min(), std::numeric_limits<std::uint32_t>::max());
+        auto m = random.uniform<std::uint32_t>(std::numeric_limits<std::uint32_t>::min(), std::numeric_limits<std::uint32_t>::max());
 
         auto [x, g] = algorithm::internal::mod_inv(a, m);
 

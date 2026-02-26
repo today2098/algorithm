@@ -24,17 +24,15 @@ constexpr std::uint32_t mod_pow(std::uint64_t n, unsigned long long k, std::uint
 
 }  // namespace internal
 
-// 繰り返し二乗法（mod付き）．O(log k).
+// 繰り返し二乗法（mod付き）．
+// n^k mod m を求める．O(log k).
 template <std::integral Type>
 constexpr std::int64_t mod_pow(Type n, long long k, std::int32_t m) {
     assert(m >= 1);
-    auto r = internal::modulo(n, m);
-    if(k < 0) {
-        auto [x, g] = internal::mod_inv(r, m);
-        assert(g == 1);
-        r = x, k = -k;
-    }
-    return internal::mod_pow(r, k, m);
+    if(k >= 0) return internal::mod_pow(internal::modulo(n, m), k, m);
+    auto [x, g] = internal::mod_inv(internal::modulo(n, m), m);
+    assert(g == 1);
+    return internal::mod_pow(x, -k, m);
 }
 
 }  // namespace algorithm
