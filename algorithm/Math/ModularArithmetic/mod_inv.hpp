@@ -12,7 +12,7 @@ namespace algorithm {
 
 namespace internal {
 
-// Return pair of (x, g) s.t. g=gcd(a,m), ax=g (mod m), 0<=x<m/g.
+// Returns pair of (x, g) s.t. g=gcd(a,m), ax=g (mod m), 0<=x<m/g．O(log(min(a,m))).
 constexpr std::pair<std::uint32_t, std::uint32_t> mod_inv(std::uint32_t a, std::uint32_t m) {
     if(a == 0) return {0, m};
     std::uint32_t s = m, t = a;
@@ -30,7 +30,7 @@ constexpr std::pair<std::uint32_t, std::uint32_t> mod_inv(std::uint32_t a, std::
 }  // namespace internal
 
 // モジュラ逆数（乗法逆元）．
-// a^-1 mod m を求める．解が存在する必要十分条件は，aとmが互いに素であること．O(log a).
+// a^(-1) mod m を求める．解が存在する必要十分条件は，aとmが互いに素であること．O(log(min(a,m))).
 template <std::integral Type>
 constexpr std::int64_t mod_inv(Type a, std::int32_t m) {
     assert(m >= 1);

@@ -8,15 +8,15 @@ namespace algorithm {
 
 namespace internal {
 
-// Return x mod m.
+// Returns x mod m.
 template <std::unsigned_integral Type>
 constexpr std::uint32_t modulo(Type x, std::uint32_t m) { return x % m; }
 
-// Return x mod m.
+// Returns x mod m.
 template <std::unsigned_integral Type>
-constexpr std::uint32_t modulo(Type x, std::int32_t m) { return modulo(x, static_cast<std::uint32_t>(m)); }
+constexpr std::uint32_t modulo(Type x, std::int32_t m) { return x % static_cast<std::uint32_t>(m); }
 
-// Return x mod m.
+// Returns x mod m.
 template <std::signed_integral Type>
 constexpr std::uint32_t modulo(Type x, std::uint32_t m) {
     x %= static_cast<std::int64_t>(m);
@@ -24,7 +24,7 @@ constexpr std::uint32_t modulo(Type x, std::uint32_t m) {
     return x;
 }
 
-// Return x mod m.
+// Returns x mod m.
 template <std::signed_integral Type>
 constexpr std::uint32_t modulo(Type x, std::int32_t m) {
     x %= m;
