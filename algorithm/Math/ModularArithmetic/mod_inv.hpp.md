@@ -6,6 +6,9 @@ data:
     title: "\u30E2\u30B8\u30E5\u30ED\u6F14\u7B97"
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
+    path: algorithm/Math/ModularArithmetic/dynamic_modint.hpp
+    title: "\u52D5\u7684Modint\u69CB\u9020\u4F53"
+  - icon: ':heavy_check_mark:'
     path: algorithm/Math/ModularArithmetic/mod_pow.hpp
     title: "\u7E70\u308A\u8FD4\u3057\u4E8C\u4E57\u6CD5\uFF08mod\u4ED8\u304D\uFF09"
   - icon: ':heavy_check_mark:'
@@ -18,6 +21,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: verify/yukicoder/no_1681.test.cpp
     title: verify/yukicoder/no_1681.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: verify/yukicoder/no_1681_2.test.cpp
+    title: verify/yukicoder/no_1681_2.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -26,60 +32,62 @@ data:
   bundledCode: "#line 1 \"algorithm/Math/ModularArithmetic/mod_inv.hpp\"\n\n\n\n#include\
     \ <cassert>\n#include <concepts>\n#include <cstdint>\n#include <utility>\n\n#line\
     \ 1 \"algorithm/Math/ModularArithmetic/modulo.hpp\"\n\n\n\n#line 6 \"algorithm/Math/ModularArithmetic/modulo.hpp\"\
-    \n\nnamespace algorithm {\n\nnamespace internal {\n\n// Return x mod m.\ntemplate\
+    \n\nnamespace algorithm {\n\nnamespace internal {\n\n// Returns x mod m.\ntemplate\
     \ <std::unsigned_integral Type>\nconstexpr std::uint32_t modulo(Type x, std::uint32_t\
-    \ m) { return x % m; }\n\n// Return x mod m.\ntemplate <std::unsigned_integral\
-    \ Type>\nconstexpr std::uint32_t modulo(Type x, std::int32_t m) { return modulo(x,\
-    \ static_cast<std::uint32_t>(m)); }\n\n// Return x mod m.\ntemplate <std::signed_integral\
-    \ Type>\nconstexpr std::uint32_t modulo(Type x, std::uint32_t m) {\n    x %= static_cast<std::int64_t>(m);\n\
-    \    if(x < 0) x += static_cast<std::int64_t>(m);\n    return x;\n}\n\n// Return\
+    \ m) { return x % m; }\n\n// Returns x mod m.\ntemplate <std::unsigned_integral\
+    \ Type>\nconstexpr std::uint32_t modulo(Type x, std::int32_t m) { return x % static_cast<std::uint32_t>(m);\
+    \ }\n\n// Returns x mod m.\ntemplate <std::signed_integral Type>\nconstexpr std::uint32_t\
+    \ modulo(Type x, std::uint32_t m) {\n    x %= static_cast<std::int64_t>(m);\n\
+    \    if(x < 0) x += static_cast<std::int64_t>(m);\n    return x;\n}\n\n// Returns\
     \ x mod m.\ntemplate <std::signed_integral Type>\nconstexpr std::uint32_t modulo(Type\
     \ x, std::int32_t m) {\n    x %= m;\n    if(x < 0) x += m;\n    return x;\n}\n\
     \n}  // namespace internal\n\n}  // namespace algorithm\n\n\n#line 10 \"algorithm/Math/ModularArithmetic/mod_inv.hpp\"\
-    \n\nnamespace algorithm {\n\nnamespace internal {\n\n// Return pair of (x, g)\
-    \ s.t. g=gcd(a,m), ax=g (mod m), 0<=x<m/g.\nconstexpr std::pair<std::uint32_t,\
+    \n\nnamespace algorithm {\n\nnamespace internal {\n\n// Returns pair of (x, g)\
+    \ s.t. g=gcd(a,m), ax=g (mod m), 0<=x<m/g\uFF0EO(log(min(a,m))).\nconstexpr std::pair<std::uint32_t,\
     \ std::uint32_t> mod_inv(std::uint32_t a, std::uint32_t m) {\n    if(a == 0) return\
     \ {0, m};\n    std::uint32_t s = m, t = a;\n    std::uint32_t u = 0, v = 1;\n\
     \    while(true) {\n        std::uint32_t q = s / t;\n        s -= t * q, u -=\
     \ v * q;\n        if(s == 0) return {v, t};\n        q = t / s;\n        t -=\
     \ s * q, v -= u * q;\n        if(t == 0) return {u + m / s, s};  // u will be\
     \ negative.\n    }\n}\n\n}  // namespace internal\n\n// \u30E2\u30B8\u30E5\u30E9\
-    \u9006\u6570\uFF08\u4E57\u6CD5\u9006\u5143\uFF09\uFF0E\n// a^-1 mod m \u3092\u6C42\
-    \u3081\u308B\uFF0E\u89E3\u304C\u5B58\u5728\u3059\u308B\u5FC5\u8981\u5341\u5206\
-    \u6761\u4EF6\u306F\uFF0Ca\u3068m\u304C\u4E92\u3044\u306B\u7D20\u3067\u3042\u308B\
-    \u3053\u3068\uFF0EO(log a).\ntemplate <std::integral Type>\nconstexpr std::int64_t\
-    \ mod_inv(Type a, std::int32_t m) {\n    assert(m >= 1);\n    auto [x, g] = internal::mod_inv(internal::modulo(a,\
-    \ m), m);\n    assert(g == 1);\n    return x;\n}\n\n}  // namespace algorithm\n\
-    \n\n"
+    \u9006\u6570\uFF08\u4E57\u6CD5\u9006\u5143\uFF09\uFF0E\n// a^(-1) mod m \u3092\
+    \u6C42\u3081\u308B\uFF0E\u89E3\u304C\u5B58\u5728\u3059\u308B\u5FC5\u8981\u5341\
+    \u5206\u6761\u4EF6\u306F\uFF0Ca\u3068m\u304C\u4E92\u3044\u306B\u7D20\u3067\u3042\
+    \u308B\u3053\u3068\uFF0EO(log(min(a,m))).\ntemplate <std::integral Type>\nconstexpr\
+    \ std::int64_t mod_inv(Type a, std::int32_t m) {\n    assert(m >= 1);\n    auto\
+    \ [x, g] = internal::mod_inv(internal::modulo(a, m), m);\n    assert(g == 1);\n\
+    \    return x;\n}\n\n}  // namespace algorithm\n\n\n"
   code: "#ifndef ALGORITHM_MOD_INV_HPP\n#define ALGORITHM_MOD_INV_HPP 1\n\n#include\
     \ <cassert>\n#include <concepts>\n#include <cstdint>\n#include <utility>\n\n#include\
-    \ \"modulo.hpp\"\n\nnamespace algorithm {\n\nnamespace internal {\n\n// Return\
-    \ pair of (x, g) s.t. g=gcd(a,m), ax=g (mod m), 0<=x<m/g.\nconstexpr std::pair<std::uint32_t,\
-    \ std::uint32_t> mod_inv(std::uint32_t a, std::uint32_t m) {\n    if(a == 0) return\
-    \ {0, m};\n    std::uint32_t s = m, t = a;\n    std::uint32_t u = 0, v = 1;\n\
-    \    while(true) {\n        std::uint32_t q = s / t;\n        s -= t * q, u -=\
-    \ v * q;\n        if(s == 0) return {v, t};\n        q = t / s;\n        t -=\
-    \ s * q, v -= u * q;\n        if(t == 0) return {u + m / s, s};  // u will be\
-    \ negative.\n    }\n}\n\n}  // namespace internal\n\n// \u30E2\u30B8\u30E5\u30E9\
-    \u9006\u6570\uFF08\u4E57\u6CD5\u9006\u5143\uFF09\uFF0E\n// a^-1 mod m \u3092\u6C42\
-    \u3081\u308B\uFF0E\u89E3\u304C\u5B58\u5728\u3059\u308B\u5FC5\u8981\u5341\u5206\
-    \u6761\u4EF6\u306F\uFF0Ca\u3068m\u304C\u4E92\u3044\u306B\u7D20\u3067\u3042\u308B\
-    \u3053\u3068\uFF0EO(log a).\ntemplate <std::integral Type>\nconstexpr std::int64_t\
-    \ mod_inv(Type a, std::int32_t m) {\n    assert(m >= 1);\n    auto [x, g] = internal::mod_inv(internal::modulo(a,\
-    \ m), m);\n    assert(g == 1);\n    return x;\n}\n\n}  // namespace algorithm\n\
-    \n#endif\n"
+    \ \"modulo.hpp\"\n\nnamespace algorithm {\n\nnamespace internal {\n\n// Returns\
+    \ pair of (x, g) s.t. g=gcd(a,m), ax=g (mod m), 0<=x<m/g\uFF0EO(log(min(a,m))).\n\
+    constexpr std::pair<std::uint32_t, std::uint32_t> mod_inv(std::uint32_t a, std::uint32_t\
+    \ m) {\n    if(a == 0) return {0, m};\n    std::uint32_t s = m, t = a;\n    std::uint32_t\
+    \ u = 0, v = 1;\n    while(true) {\n        std::uint32_t q = s / t;\n       \
+    \ s -= t * q, u -= v * q;\n        if(s == 0) return {v, t};\n        q = t /\
+    \ s;\n        t -= s * q, v -= u * q;\n        if(t == 0) return {u + m / s, s};\
+    \  // u will be negative.\n    }\n}\n\n}  // namespace internal\n\n// \u30E2\u30B8\
+    \u30E5\u30E9\u9006\u6570\uFF08\u4E57\u6CD5\u9006\u5143\uFF09\uFF0E\n// a^(-1)\
+    \ mod m \u3092\u6C42\u3081\u308B\uFF0E\u89E3\u304C\u5B58\u5728\u3059\u308B\u5FC5\
+    \u8981\u5341\u5206\u6761\u4EF6\u306F\uFF0Ca\u3068m\u304C\u4E92\u3044\u306B\u7D20\
+    \u3067\u3042\u308B\u3053\u3068\uFF0EO(log(min(a,m))).\ntemplate <std::integral\
+    \ Type>\nconstexpr std::int64_t mod_inv(Type a, std::int32_t m) {\n    assert(m\
+    \ >= 1);\n    auto [x, g] = internal::mod_inv(internal::modulo(a, m), m);\n  \
+    \  assert(g == 1);\n    return x;\n}\n\n}  // namespace algorithm\n\n#endif\n"
   dependsOn:
   - algorithm/Math/ModularArithmetic/modulo.hpp
   isVerificationFile: false
   path: algorithm/Math/ModularArithmetic/mod_inv.hpp
   requiredBy:
+  - algorithm/Math/ModularArithmetic/dynamic_modint.hpp
   - algorithm/Math/ModularArithmetic/mod_pow.hpp
   - algorithm/Math/ModularArithmetic/modint.hpp
-  timestamp: '2026-02-21 15:04:17+00:00'
+  timestamp: '2026-02-27 06:07:42+00:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - verify/aoj/NTL_1_B.test.cpp
+  - verify/yukicoder/no_1681_2.test.cpp
   - verify/yukicoder/no_1681.test.cpp
+  - verify/aoj/NTL_1_B.test.cpp
 documentation_of: algorithm/Math/ModularArithmetic/mod_inv.hpp
 layout: document
 title: "\u30E2\u30B8\u30E5\u30E9\u9006\u6570\uFF08\u4E57\u6CD5\u9006\u5143\uFF09"
@@ -96,16 +104,16 @@ $$
 
 この解が存在する必要十分条件は，$a$ と $m$ が互いに素であること．
 
-アルゴリズムの計算量は $\mathcal{O}(\log m)$ である．
+アルゴリズムの計算量は $\mathcal{O}(\log(\min(a,m)))$ である．
 
 ### アルゴリズムの説明
 
 #### 解の存在条件
 
-剰余類環 $\mathbb{Z}/m\mathbb{Z}$ において，元 $[a]$ の乗法逆元 $[x]$ を求めることは，次の合同方程式を解くことと同じ．
+剰余類環 $\mathbb{Z}/m\mathbb{Z}$ において，元 $a$ の乗法逆元 $x$ を求めることは，次の合同方程式を解くことと同じ．
 
 $$
-ax \equiv 1 \pmod m, \ 0 \leq a < m.
+ax \equiv 1 \pmod m.
 $$
 
 ここで適当な整数 $q$ を用いると，$ax - qm = 1$ が成り立つ．
@@ -114,17 +122,17 @@ $$
 
 #### 解の構成
 
-次のような形の合同式を考える．
-
-$$
-s \equiv t \cdot a \pmod m, \ 0 \leq a < m.
-$$
-
 $m=1$ のとき，$\mathbb{Z}/1 \mathbb{Z}$ は零環であるため，$0$ が逆元となる．
 
 $m>1$ かつ $a=0$ のとき，$0 \cdot x \not\equiv 1$ より，解なし．
 
-以降，$m>1, \ a>0$ とする．
+以降，$m>1, \ a \neq 0$ とする．
+
+次のような形の合同式を考える．
+
+$$
+s \equiv t \cdot a \pmod m.
+$$
 
 このとき，明らかに
 
@@ -184,7 +192,7 @@ $$
 \end{align}
 $$
 
-であるから，計算過程において値が $m$ を超えることなく，オーバーフローしないことがわかる．
+であるから，計算過程において各値が $m$ を超えることなく，オーバーフローしないことがわかる．
 
 #### 解の範囲
 
@@ -208,14 +216,14 @@ $$
 
 #### 計算量の解析
 
-$s_{i+2} < s_i / 2$ なので，繰り返し回数は高々 $2 \log a$ 回である．
-したがって，計算量は $\mathcal{O}(\log a)$ となる．
+$s_{i+2} < s_i / 2$ なので，繰り返し回数は高々 $2 \log(\min(a,m))$ 回である．
+したがって，計算量は $\mathcal{O}(\log(\min(a,m)))$ となる．
 
 ## Interface
 
-| 関数                                                                              | 説明                                     | 計算量                |
-| --------------------------------------------------------------------------------- | ---------------------------------------- | --------------------- |
-| `template <std::integral Type>`<br>`std::int64_t mod_inv(Type a, std::int32_t m)` | 法 $m$ における整数 $a$ の逆数を求める． | $\mathcal{O}(\log a)$ |
+| 関数                                                                                        | 説明                       | 制約                          | 計算量                         |
+| ------------------------------------------------------------------------------------------- | -------------------------- | ----------------------------- | ------------------------------ |
+| `template <std::integral Type>`<br>`constexpr std::int64_t mod_inv(Type a, std::int32_t m)` | $a^{-1} \mod m$ を求める． | $m \ge 1,$<br>$\gcd(a,m) = 1$ | $\mathcal{O}(\log(\min(a,m)))$ |
 
 ## 参考
 
