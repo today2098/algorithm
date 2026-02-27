@@ -21,7 +21,7 @@ $$
 また，法 $m$ が素数 $p$ であるとき，剰余類環 $\mathbb{Z}/p\mathbb{Z}$ の零元 $0+p\mathbb{Z}$ を除くすべての元 $a+p\mathbb{Z}$ は乗法逆元 $a^{-1}$ をもち，除法の演算も定義できる．
 
 $$
-\frac{b + m \mathbb{Z}}{a + m \mathbb{Z}} = b \cdot a^{-1} + m \mathbb{Z}.
+\frac{b + p \mathbb{Z}}{a + p \mathbb{Z}} = b \cdot a^{-1} + p \mathbb{Z}.
 $$
 
 ## 参考
