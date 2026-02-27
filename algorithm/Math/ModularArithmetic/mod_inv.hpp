@@ -12,7 +12,7 @@ namespace algorithm {
 
 namespace internal {
 
-// Return pair of (x, g) s.t. g=gcd(a,m), ax=g (mod m), 0<=x<m/g．O(log(min(a,m))).
+// Returns pair of (x, g) s.t. g=gcd(a,m), ax=g (mod m), 0<=x<m/g．O(log(min(a,m))).
 constexpr std::pair<std::uint32_t, std::uint32_t> mod_inv(std::uint32_t a, std::uint32_t m) {
     if(a == 0) return {0, m};
     std::uint32_t s = m, t = a;

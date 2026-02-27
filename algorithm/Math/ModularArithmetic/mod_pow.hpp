@@ -12,7 +12,7 @@ namespace algorithm {
 
 namespace internal {
 
-// Return n^k mod m.
+// Returns n^k mod m.
 constexpr std::uint32_t mod_pow(std::uint64_t n, unsigned long long k, std::uint32_t m) {
     std::uint64_t res = 1;
     for(; k > 0; k >>= 1) {
