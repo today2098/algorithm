@@ -46,6 +46,12 @@ data:
       path: algorithm/utils/absolute.hpp
       title: "\u6574\u6570\u578B\u306E\u7D76\u5BFE\u5024"
     - icon: ':warning:'
+      path: algorithm/utils/debug.hpp
+      title: "\u30C7\u30D0\u30C3\u30B0\u30DE\u30AF\u30ED"
+    - icon: ':warning:'
+      path: algorithm/utils/my_template.hpp
+      title: My Template
+    - icon: ':warning:'
       path: algorithm/utils/random.hpp
       title: "\u4E71\u6570\u751F\u6210"
   verificationCategories:
