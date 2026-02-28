@@ -4,7 +4,7 @@
 #include <cstdint>
 #include <iostream>
 
-#include "../algorithm/Math/NumberTheory/divisors.hpp"
+#include "../../algorithm/Math/NumberTheory/divisors.hpp"
 
 int main() {
     std::uint32_t a, b, c;
