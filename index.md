@@ -29,6 +29,9 @@ data:
   - name: algorithm/Math/NumberTheory
     pages:
     - icon: ':heavy_check_mark:'
+      path: algorithm/Math/NumberTheory/divisors.hpp
+      title: "\u7D04\u6570\u5217\u6319"
+    - icon: ':heavy_check_mark:'
       path: algorithm/Math/NumberTheory/greatest_common_divisor.hpp
       title: "Greatest Common Divisor\uFF08\u6700\u5927\u516C\u7D04\u6570\uFF09"
     - icon: ':heavy_check_mark:'
@@ -54,6 +57,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: verify/aoj/DSL_1_A.test.cpp
       title: verify/aoj/DSL_1_A.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: verify/aoj/ITP1_3_D.test.cpp
+      title: verify/aoj/ITP1_3_D.test.cpp
     - icon: ':heavy_check_mark:'
       path: verify/aoj/NTL_1_B.test.cpp
       title: verify/aoj/NTL_1_B.test.cpp
