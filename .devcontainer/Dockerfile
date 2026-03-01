@@ -34,8 +34,8 @@ RUN mkdir -p /workspaces && \
 RUN git config --system init.defaultBranch main && \
     git config --system alias.cof "!git branch -a | fzf | xargs git checkout"
 
-# Install online-judge-verify-helper to verify
-RUN python3 -m pip install --break-system-packages --no-cache-dir online-judge-verify-helper 
+# Install competitive-verifier to verify
+RUN python3 -m pip install --break-system-packages --no-cache-dir competitive-verifier
 
 # Install gtest for testing
 RUN cd /tmp && \
