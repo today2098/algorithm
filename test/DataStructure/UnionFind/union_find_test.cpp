@@ -1,3 +1,4 @@
+// competitive-verifier: UNITTEST GTEST_RESULT
 #include "../../../algorithm/DataStructure/UnionFind/union_find.hpp"
 
 #include <gtest/gtest.h>

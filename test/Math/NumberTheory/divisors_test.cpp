@@ -1,3 +1,4 @@
+// competitive-verifier: UNITTEST GTEST_RESULT
 #include "../../../algorithm/Math/NumberTheory/divisors.hpp"
 
 #include <gtest/gtest.h>

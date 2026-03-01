@@ -1,3 +1,4 @@
+// competitive-verifier: UNITTEST GTEST_RESULT
 #include "../../../algorithm/Math/NumberTheory/greatest_common_divisor.hpp"
 
 #include <gtest/gtest.h>

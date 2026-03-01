@@ -1,5 +1,5 @@
+// competitive-verifier: UNITTEST GTEST_RESULT
 #define DEBUG
-
 #include "../../algorithm/utils/debug.hpp"
 
 #include <gtest/gtest.h>
