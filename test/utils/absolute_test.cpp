@@ -1,3 +1,4 @@
+// competitive-verifier: UNITTEST GTEST_RESULT
 #include "../../algorithm/utils/absolute.hpp"
 
 #include <gtest/gtest.h>

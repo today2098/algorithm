@@ -1,3 +1,4 @@
+// competitive-verifier: UNITTEST GTEST_RESULT
 #include "../../../algorithm/Math/ModularArithmetic/dynamic_modint.hpp"
 
 #include <gtest/gtest.h>

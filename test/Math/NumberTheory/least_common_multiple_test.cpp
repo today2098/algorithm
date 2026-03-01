@@ -1,3 +1,4 @@
+// competitive-verifier: UNITTEST GTEST_RESULT
 #include "../../../algorithm/Math/NumberTheory/least_common_multiple.hpp"
 
 #include <gtest/gtest.h>

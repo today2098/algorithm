@@ -1,3 +1,4 @@
+// competitive-verifier: UNITTEST GTEST_RESULT
 #include "../../../algorithm/Math/ModularArithmetic/mod_pow.hpp"
 
 #include <gtest/gtest.h>

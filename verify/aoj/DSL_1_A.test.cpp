@@ -1,5 +1,4 @@
-#define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/1/DSL_1_A"
-
+// competitive-verifier: PROBLEM https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/1/DSL_1_A
 #include <iostream>
 
 #include "../../algorithm/DataStructure/UnionFind/union_find.hpp"

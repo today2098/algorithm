@@ -1,3 +1,4 @@
+// competitive-verifier: UNITTEST GTEST_RESULT
 #include "../../../algorithm/Math/NumberTheory/is_prime.hpp"
 
 #include <gtest/gtest.h>
