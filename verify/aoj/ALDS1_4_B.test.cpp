@@ -2,7 +2,7 @@
 #include <iostream>
 #include <vector>
 
-#include "../algorithm/Others/binary_search.hpp"
+#include "../../algorithm/Others/binary_search.hpp"
 
 int main() {
     int n;
