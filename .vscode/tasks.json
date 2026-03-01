@@ -5,6 +5,7 @@
             "type": "shell",
             "command": "/usr/bin/g++",
             "args": [
+                "-D_GLIBCXX_DEBUG",
                 "-I",
                 "${workspaceFolder}/",
                 "-std=c++23",
@@ -13,6 +14,7 @@
                 "-Wextra",
                 "-Wpedantic",
                 "-fdiagnostics-color=always",
+                "-fsanitize=undefined",
                 "${file}",
                 "-o",
                 "debug.out"
@@ -30,7 +32,8 @@
             "type": "shell",
             "command": "/usr/bin/g++",
             "args": [
-                "-D=DEBUG",
+                "-DDEBUG",
+                "-D_GLIBCXX_DEBUG",
                 "-I",
                 "${workspaceFolder}/",
                 "-std=c++23",
@@ -39,7 +42,11 @@
                 "-Wextra",
                 "-Wpedantic",
                 "-fdiagnostics-color=always",
+                "-fsanitize=undefined",
                 "${file}",
+                "-lgtest",
+                "-lgtest_main",
+                "-pthread",
                 "-o",
                 "debug.out"
             ],
