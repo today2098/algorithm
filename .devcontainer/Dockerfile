@@ -38,7 +38,14 @@ RUN git config --system init.defaultBranch main && \
 RUN python3 -m pip install --break-system-packages --no-cache-dir online-judge-verify-helper 
 
 # Install gtest for testing
-RUN su vscode -c "${VCPKG_ROOT}/vcpkg install gtest"
+RUN cd /tmp && \
+    git clone https://github.com/google/googletest.git -b v1.17.0 && \
+    cd googletest && \
+    cmake -S . -B build -D BUILD_GMOCK=OFF && \
+    cd build && \
+    make && \
+    sudo make install && \
+    rm -rf /tmp/googletest
 
 # Install nektos/act for testing GitHub Actions locally
 RUN curl --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/nektos/act/master/install.sh | sudo bash

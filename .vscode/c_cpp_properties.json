@@ -3,8 +3,7 @@
         {
             "name": "Linux",
             "includePath": [
-                "${workspaceFolder}/**",
-                "${VCPKG_ROOT}/installed/**/include/**"
+                "${workspaceFolder}/**"
             ],
             "defines": [
                 "DEBUG"
